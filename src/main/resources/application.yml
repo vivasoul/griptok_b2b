@@ -1,0 +1,46 @@
+spring: 
+ profiles: 
+  active: local
+ session:
+   store-type: jdbc
+   jdbc:
+     initialize-schema: embedded
+     schema: classpath:org/springframework/session/jdbc/schema-mysql.sql
+     table-name: SPRING_SESSION
+     
+server:
+  port: 80
+      
+---
+spring:
+ profiles: local
+ datasource:
+  #driver: org.mariadb.jdbc.Driver
+  driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  url: jdbc:log4jdbc:mariadb://221.146.251.97:63306/ppcwiz_test
+  username: root
+  password: Cho9184!!!
+---
+spring:  
+ resources: 
+  static-locations: classpath:/static/
+ mvc: 
+  view:
+   prefix: /WEB-INF/jsp/
+   suffix: .jsp
+ #mvc:
+ # static-path-pattern: classpath:/static/**
+ # view:
+       
+ thymeleaf:  
+  cache: false
+  view-names: thymeleaf/*
+ 
+ messages:
+  basename: i18n/message
+ 
+   
+mybatis:
+ mapper-locations: classpath:mapper/**/*.xml
+ #config-location: classpath:mybatis-config.xml
+ 

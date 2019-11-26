@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	    <encoder>
+	        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+	        </pattern>
+	    </encoder>
+	</appender>
+
+	<!-- log4jdbc-log4j2 Log4j2SpyLogDelegator implementation-->	
+<!-- 	<logger name="log4jdbc.log4j2"   level="INFO" /> -->
+
+<!-- log4jdbc-log4j2 Slf4jSpyLogDelegator implementation-->
+	<logger name="jdbc.sqlonly"   level="ERROR" />
+	<logger name="jdbc sqltiming" level="INFO"/>
+	<logger name="jdbc.audit"		level="ERROR"/>
+	<logger name="jdbc.resultset"		level="ERROR"/>
+	<logger name="jdbc.resultsettable"		level="INFO"/>
+	<logger name="jdbc.connection"		level="ERROR"/>
+	 
+	<logger name="com.zaxxer.hikari"		level="INFO"/>
+	<logger name="org.thymeleaf"		level="INFO"/>
+	<logger name="org.springframework"	level="ERROR"/>
+
+
+	<root level="DEBUG">
+	    <appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
