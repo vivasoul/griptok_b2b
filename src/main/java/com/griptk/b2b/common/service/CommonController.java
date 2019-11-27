@@ -1,5 +1,5 @@
 package com.griptk.b2b.common.service;
 
-public class ViewController {
+public class CommonController {
 
 }
