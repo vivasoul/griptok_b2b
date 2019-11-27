@@ -10,7 +10,7 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@MapperScan({"com.ppcwiz.mapper.*"})
+@MapperScan({"com.griptok.b2b.*"})
 //@ServletComponentScan({"com.ppcwiz.http.filter"})
 public class GriptokB2BApplication {
 	
