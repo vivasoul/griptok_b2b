@@ -7,13 +7,11 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>griptok B2B web</name>
   <url>http://www.griptok-b2b.com</url>
-  
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.2.RELEASE</version>
-    </parent>  
-  
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.0.2.RELEASE</version>
+  </parent>
   <dependencies>
   	<!-- password encoding -->
 	    <dependency>
@@ -162,7 +160,7 @@
 	          <archive>
 	            <manifest>
 	              <addClasspath>true</addClasspath>
-	              <mainClass>com.ppcwiz.PPCWIZApplication</mainClass>
+	              <mainClass>com.griptk.b2b.GriptokB2BApplication</mainClass>
 	            </manifest>
 	          </archive>
 	        </configuration>

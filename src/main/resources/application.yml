@@ -17,9 +17,9 @@ spring:
  datasource:
   #driver: org.mariadb.jdbc.Driver
   driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-  url: jdbc:log4jdbc:mariadb://221.146.251.97:63306/ppcwiz_test
-  username: root
-  password: Cho9184!!!
+  url: jdbc:log4jdbc:mariadb://mr-lee-database.cl1qpbs1xffv.ap-northeast-2.rds.amazonaws.com/griptok_b2b
+  username: admin 
+  password: lktnyhkdh
 ---
 spring:  
  resources: 
