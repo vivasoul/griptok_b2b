@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="resources/static/lib/common/js/jquery.min.js"></script>
-<script src="resources/static/lib/bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="resources/static/lib/login/css/login.css">
-<link rel="stylesheet" href="resources/static/lib/bootstrap/css/bootstrap.min.css">
+<script src="./lib/js/jquery.min.js"></script>
+<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./lib/css/login.css">
+<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="/css/common/bootstrap.min.css"> -->
 <!-- <link rel="stylesheet" href="/css/common/font-awesome.min.css"> -->
 <!-- <link rel="stylesheet" href="/css/common/googleapi.css"> -->
@@ -16,7 +16,7 @@
 
  <div class="custom-container container">    
 		<div class="mainbox col-sm-10 col-sm-offset-2">
-			<img class="login_top" src="/img/login/griptok.png"/>
+			<img class="login_top" src="./lib/img/griptok.png"/>
 			<div class="login_top">
 				<h2>그립톡 도매전용 쇼핑몰입니다.</h2>
 				<h4>본 사이트는 사업자만 이용이 가능한 도매 사이트 입니다.<br>가입 승인 완료 후 이용이 가능 합니다.</h4>
@@ -72,7 +72,7 @@
                                         </div>
                                         <div data-toggle="modal" data-target="#idFinderModal" class="login_float"> ●아이디찾기</div>
 										<div data-toggle="modal" data-target="#pwdFinderModal" class="login_float"> ●비밀번호찾기</div>
-										<div onclick="location.href='/register.html'"  class="login_float"> ●회원가입</div>
+										<div onclick="location.href='/register'"  class="login_float"> ●회원가입</div>
                                     </div>
                                 </div>    
                             </form>     
