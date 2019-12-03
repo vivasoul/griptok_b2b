@@ -1,11 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.griptok.b2b.user.mapper.UserMapper">
+<mapper namespace="com.griptk.b2b.user.mapper.UserMapper">
 
 	<select id="checkUserId" parameterType="String" resultType="Integer">
 		SELECT count(*) FROM tb_user
-		WHERE id = #{user_id}
+		WHERE user_id = #{user_id}
 	</select>
+	
+	<select id="checkCompanyNm" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM tb_user
+		WHERE company_nm = #{company_nm}
+	</select>
+	
+	<select id="checkBizRegNumber" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM tb_user
+		WHERE biz_reg_number = #{biz_reg_number}
+	</select>
+	
+	<insert id="insertImgInfo" parameterType="com.griptk.b2b.user.domain.UserVO" >
+		INSERT INTO tb_img_file_info(
+			file_nm,
+			file_path,
+			file_size,
+			reg_dt,
+			file_format,
+			img_width,
+			img_height
+		)
+		VALUES(
+			#{file_nm},
+			#{file_path},
+			#{file_size},
+			now(),
+			#{file_format},
+			#{img_width},
+			#{img_height}
+		)
+		
+	</insert>
+	
+	<select id="getImgNo" resultType="Integer">
+		SELECT LAST_INSERT_ID();
+	</select>
+	
+	<insert id="signUpUser" parameterType="com.griptk.b2b.user.domain.UserVO" >
+		INSERT INTO tb_user(
+			user_id, 
+			company_nm,
+			biz_reg_number,
+			ceo_nm,
+			biz_category,
+			biz_addr,
+			contact_tel,
+			tax_email,
+			manager_nm,
+			manager_tel,
+			manager_email,
+			reg_dt,
+			upd_dt,
+			biz_img_no 
+		)
+		VALUES (
+			#{user_id}, 
+			#{company_nm},
+			#{biz_reg_number},
+			#{ceo_nm},
+			#{biz_category},
+			#{biz_addr},
+			#{contact_tel},
+			#{tax_email},
+			#{manager_nm},
+			#{manager_tel},
+			#{manager_email},
+			now(),
+			now(),
+			#{biz_img_no} 
+		)
+	</insert>
+	
+	<insert id="insertLoginInfo" parameterType="com.griptk.b2b.user.domain.UserVO">
+		INSERT INTO tb_login(
+			user_no,
+			passwd,
+			reg_dt,
+			upd_dt,
+			aprv_status
+		)VALUES(
+			(SELECT user_no FROM tb_user WHERE user_id = #{user_id}),
+			#{passwd},
+			now(),
+			now(),
+			"N"
+		)
+	</insert>
 	
 </mapper>

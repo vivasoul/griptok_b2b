@@ -1,5 +1,8 @@
 package com.griptk.b2b.user.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.annotation.MapperScan;
@@ -10,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.griptk.b2b.user.domain.ImageVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.mapper.UserMapper;
 
 @RestController
-@MapperScan({"com.griptok.b2b.user.mapper.*"})
+@MapperScan({"com.griptk.b2b.user.mapper.*"})
 public class UserAPI {
 	
 	@Autowired
@@ -22,33 +26,48 @@ public class UserAPI {
 	
 	// id_check
 	@PostMapping(path="/sign_up/check/id", produces="application/json")
-	public void user_id_check(
+	public Map<String, Object> user_id_check(
 			@RequestParam("user_id") String user_id,
 	        HttpServletResponse response) {
 		
 		int result = mapper.checkUserId(user_id);
 		
+		Map<String, Object> resp = new HashMap();
 		
+		resp.put("result", result);
+		
+		return resp;
 	}
 	
 	// company_nm check
 	@PostMapping("/sign_up/check/company_nm")
-	public void company_nm_check(
+	public Map<String, Object> company_nm_check(
 			@RequestParam("company_nm") String company_nm,
 	        HttpServletResponse response) {
 		
-		UserVO vo = new UserVO();
+		int result = mapper.checkCompanyNm(company_nm);
+		
+		Map<String, Object> resp = new HashMap();
+		
+		resp.put("result", result);
+		
+		return resp;
 		
 	}
 	
 	// biz_reg_number check	
 	@PostMapping("/sign_up/check/biz_reg_number")
-	public void biz_reg_number_check(
+	public Map<String, Object> biz_reg_number_check(
 			@RequestParam("biz_reg_number") String biz_reg_number,
 	        HttpServletResponse response) {
 		
-		UserVO vo = new UserVO();
+		int result = mapper.checkBizRegNumber(biz_reg_number);
 		
+		Map<String, Object> resp = new HashMap();
+		
+		resp.put("result", result);
+		
+		return resp;
 	}
 	
 	// upload_file
@@ -59,35 +78,49 @@ public class UserAPI {
 		
 	}
 	
-	
-	// email 
-	
-	
-	
-	
-	@GetMapping(value= "/ajax.seo")
-	public void AjaxView(  
-	        @RequestParam("id") String id,
-	        HttpServletResponse response)  {
+	@PostMapping("/sign_up/sign_up")
+	public Map<String, Object> griptokSignUp(
+			@RequestBody UserVO vo,
+	        HttpServletResponse response) {
+
+		System.out.println(vo.toString());
+		// file upload and setup File info
 		
-//		
-//	    String personJson;
-//
-//	    UserVO person = dao.getPerson(id);
-//	    if(person != null){
-//	        personJson = "{\"id\":\""+person.getId()
-//	                    +"\",\"name\":\""+person.getName()
-//	                    +"\",\"password\":\""+person.getPassword()
-//	                    +"\",\"email\":\""+person.getEmail()+"\"}";
-//	    }
-//	    else{
-//	        personJson = "null";
-//	    }
-//	    try {
-//	        response.getWriter().print(personJson);
-//	    } catch (IOException e) {
-//	        e.printStackTrace();
-//	    }   
+		ImageVO imgVo = new ImageVO();
+		imgVo.setFile_nm("gombong");
+		imgVo.setFile_format("png");
+		imgVo.setFile_path("somewhere");
+		imgVo.setFile_size(1000);
+		imgVo.setImg_width(100);
+		imgVo.setImg_height(200);
+		
+		int result = 1;
+		
+		int img_result = mapper.insertImgInfo(imgVo);
+		
+		int img_no = mapper.getImgNo();
+		
+		vo.setBiz_img_no(img_no);
+		
+		int user_result = mapper.signUpUser(vo);
+		
+		int login_result = mapper.insertLoginInfo(vo);
+		
+		Map<String, Object> resp = new HashMap();
+		
+		if(img_result==0){
+			result=-1;
+		}else if(user_result==0){
+			result=-2;
+		}else if(login_result==0){
+			result=-3;
+		}
+		
+		resp.put("result", result);
+		
+		return resp;
 	}
+	
+	
 
 }

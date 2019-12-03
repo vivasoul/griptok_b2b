@@ -15,6 +15,8 @@ public class UserVO {
 	
 	
 	// user
+	private String user_id;
+	
 	private String company_nm;
 	
 	private String biz_reg_number;
@@ -75,6 +77,14 @@ public class UserVO {
 
 	public void setAprv_status(String aprv_status) {
 		this.aprv_status = aprv_status;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getCompany_nm() {
@@ -168,9 +178,11 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "UserVO [user_no=" + user_no + ", passwd=" + passwd + ", reg_dt=" + reg_dt + ", upd_dt=" + upd_dt
-				+ ", aprv_status=" + aprv_status + ", company_nm=" + company_nm + ", biz_reg_number=" + biz_reg_number
-				+ ", ceo_nm=" + ceo_nm + ", biz_category=" + biz_category + ", biz_addr=" + biz_addr + ", contact_tel="
-				+ contact_tel + ", tax_email=" + tax_email + ", manager_nm=" + manager_nm + ", manager_tel="
-				+ manager_tel + ", manager_email=" + manager_email + ", biz_img_no=" + biz_img_no + "]";
+				+ ", aprv_status=" + aprv_status + ", user_id=" + user_id + ", company_nm=" + company_nm
+				+ ", biz_reg_number=" + biz_reg_number + ", ceo_nm=" + ceo_nm + ", biz_category=" + biz_category
+				+ ", biz_addr=" + biz_addr + ", contact_tel=" + contact_tel + ", tax_email=" + tax_email
+				+ ", manager_nm=" + manager_nm + ", manager_tel=" + manager_tel + ", manager_email=" + manager_email
+				+ ", biz_img_no=" + biz_img_no + "]";
 	}
+
 }
