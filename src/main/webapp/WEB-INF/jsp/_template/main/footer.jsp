@@ -18,6 +18,9 @@
 		background-color:#CCC;
 		color:#FFF;
 	}
+	.bottom_copyright {
+		text-align:center; 
+	}
 </style>    
 <div class="container-fluid">
 	<div class="row">
@@ -28,6 +31,8 @@
 			   --><a href="#">Terms of Use(이용약관)</a><!--
 			--></nav>
 		</div>
+		<div class="col-sm-12 bottom_copyright">
+			Copyright ⓒ 2019 iburster Griptok All rights reserved.
+		</div>
 	</div>
-	
 </div>
