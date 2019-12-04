@@ -3,7 +3,6 @@ package com.griptk.b2b.qna.service;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +19,6 @@ public class QnaController {
 	}
 	
 	@RequestMapping("/qna/{qnaId}")
-	@ModelAttribute("qnaDetail")
 	public ModelAndView detail(@PathVariable String qnaId,ModelMap model) {
 		String viewPath = "qna/detail";
 		ModelAndView mav =  new ModelAndView(viewPath);
