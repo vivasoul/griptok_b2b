@@ -103,10 +103,11 @@ griptalk.component.datatable = function(p_tableId){
 		$table.DataTable().clear().rows.add(new_data).draw();
 	};
 	
-	$this.setRowEvent = function(event_name,event_func){
-		let $tbody = $('#' + $this.tableId + " tbody");
-		$tbody.bind(event_name,'tr',event_func);
+	$this.selectedRow = function(rowHtml){
+		let $table = $('#' + $this.tableId);
+		return $table.DataTable().row(rowHtml).data();
 	};
+	
 	
 return $this;
 }

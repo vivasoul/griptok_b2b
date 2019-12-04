@@ -76,9 +76,12 @@ $(document).ready(function() {
 		exampleTable.reload(filtered);
 	});
 	
-	exampleTable.setRowEvent('click',function(){
-		
-	});
+	$('#example tbody').on('click','tr',function(){
+		const rowdata = exampleTable.selectedRow(this);
+		const qnaId = rowdata.rnum;
+		const _url = 'qna/' + qnaId;
+		window.location.href = _url;
+	})
 	/*
 	* EVENT TRIGGER END
 	*/
