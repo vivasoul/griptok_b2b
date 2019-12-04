@@ -46,7 +46,7 @@
 					</td>
 				</tr>
 				<tr class="js-display-answer">
-					<th>답변</th>
+					<th class="col-md-2">답변</th>
 					<td>
 						<textarea rows="10" cols="10" class="form-control" name="answer" readonly >${answerObject.answer }</textarea>
 					</td>
