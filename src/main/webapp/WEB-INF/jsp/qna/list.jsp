@@ -23,7 +23,7 @@
 			<table id="example" class="table table-striped table-bordered hover">
 				<thead>
 					<tr>
-						<th data-column = "rnum">번호</th>
+						<th data-column = "board_no">번호</th>
 						<th data-column = "title">문의내용</th>
 						<th data-column = "reg_dt">문의일자</th>
 						<th data-column = "proc_yn">처리여부</th>
@@ -39,32 +39,33 @@ $(document).ready(function() {
 		//replace with ajax later
 		const originalData = [
 			{
-			  "rnum": "1",
+			  "board_no": "1",
 			  "title": "답변완료됬나요",
 			  "reg_dt": "2011/04/25",
 				  "content" : "답변완료됬군요./n 오케이.",
 				"proc_yn": "답변 완료"
 			},
 			{
-				"rnum": "2",
+				"board_no": "2",
 				"title": "답변준비중이신가요",
 				"reg_dt": "2011/04/28",
 				"content": "답변완료됬군요./n 오케이.",
 				"proc_yn": "답변 준비중"
 			},
 		]
-		return griptalk.wrangle.mockdata(originalData,100,['rnum','title','content']);
+		return griptalk.wrangle.mockdata(originalData,100,['board_no','title','content']);
 	}
 	
 	// initial data : later replace with API
 	const initData = get_query();
 	// DataTable initialisation 
 	const exampleTable = griptalk.component.datatable('example');
-	
 	exampleTable.create(initData);
-	/*
+	
+	
+	/****************************************
 	* EVENT TRIGGER START
-	*/
+	*****************************************/
 	$('#sel-proc-yn').on('change',function(){
 		const optionValue = $(this).val();
 		
@@ -78,13 +79,13 @@ $(document).ready(function() {
 	
 	$('#example tbody').on('click','tr',function(){
 		const rowdata = exampleTable.selectedRow(this);
-		const qnaId = rowdata.rnum;
+		const qnaId = rowdata.board_no;
 		const _url = 'qna/' + qnaId;
 		window.location.href = _url;
 	})
-	/*
+	/****************************************
 	* EVENT TRIGGER END
-	*/
+	*****************************************/
 });
 </script>
 </body>

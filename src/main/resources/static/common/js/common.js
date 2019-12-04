@@ -92,8 +92,10 @@ griptalk.component.datatable = function(p_tableId){
 		if(newOptions != undefined){
 		  useOptions = $.extend(useOptions, newOptions);
 		}
-
-		useOptions = $.extend(useOptions,{data : p_data});
+		
+		if(p_data != null){
+			useOptions = $.extend(useOptions,{data : p_data});
+		}
 		
 		return $table.DataTable(useOptions);
 	};
