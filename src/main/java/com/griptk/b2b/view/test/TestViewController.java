@@ -19,8 +19,9 @@ public class TestViewController {
 	private CategoryAPI categoryAPI;
 	
 	@GetMapping("/test")
-	public String goTestPage(HttpServletRequest req, Model model) {
-		req.setAttribute("content_page", "test");
+	public String goTestPage(Model model) {
+		
+		model.addAttribute("content_page", "test");
 		model.addAttribute("top_menus", menuAPI.getClientHead("N"));
 		model.addAttribute("brands_filter", categoryAPI.getParentBrands());
 		model.addAttribute("crafts_filter", categoryAPI.getCrafts());
