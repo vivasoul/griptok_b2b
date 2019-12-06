@@ -1,18 +1,18 @@
 /*
-object : griptalk common module wrapper
-object-name : griptalk
+object : griptok common module wrapper
+object-name : griptok
 module-depth : 1
 */
-var griptalk = {}; 
+var griptok = {}; 
 
 /*
-object : griptalk wrangle wrapper
-object-name : griptalk
+object : griptok wrangle wrapper
+object-name : griptok
 module-depth : 2
 */
-griptalk.wrangle = {};
+griptok.wrangle = {};
 
-griptalk.wrangle.seq_len = function(arrSize){
+griptok.wrangle.seq_len = function(arrSize){
 	let intArr = [];
 	for(let i = 0; i < arrSize; i++){
 		intArr.push(i);
@@ -20,12 +20,12 @@ griptalk.wrangle.seq_len = function(arrSize){
 	return intArr;
 };
 
-griptalk.wrangle.mockdata = function(
+griptok.wrangle.mockdata = function(
 	originalArray,
 	mockSize,
 	keyArray
 ){
-	return griptalk.wrangle.seq_len(mockSize).map(function(intElem){
+	return griptok.wrangle.seq_len(mockSize).map(function(intElem){
 		return originalArray.map(function(eachElem){
 			return Object.keys(eachElem).map(function(k){
 				let eachValue = eachElem[k];
@@ -43,18 +43,18 @@ griptalk.wrangle.mockdata = function(
 }
 
 /*
-object : griptalk component wrapper
-object-name : griptalk
+object : griptok component wrapper
+object-name : griptok
 module-depth : 2
 */
-griptalk.component = {};
+griptok.component = {};
 
 /*
-object : griptalk datatable wrapper
+object : griptok datatable wrapper
 object-name : datatable
 module-depth : 3
 */
-griptalk.component.datatable = function(p_tableId){
+griptok.component.datatable = function(p_tableId){
 	let $this = $(this);
 
 	$this.tableId = p_tableId;

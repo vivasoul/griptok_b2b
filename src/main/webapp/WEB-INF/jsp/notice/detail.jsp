@@ -54,7 +54,7 @@ $(document).ready(function() {
 	const onInit = function(){
 		const toDoList = {
 			'createInitialTable' : function(){
-				griptalk.component.datatable('example2').create(null,{
+				griptok.component.datatable('example2').create(null,{
 					"paging": false
 				});
 			},

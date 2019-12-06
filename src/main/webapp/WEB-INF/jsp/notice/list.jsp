@@ -54,13 +54,13 @@ $(document).ready(function() {
 			  	"view_count" : 499,
 			},
 		]
-		return griptalk.wrangle.mockdata(originalData,10,['notice_no','title','view_count']);
+		return griptok.wrangle.mockdata(originalData,10,['notice_no','title','view_count']);
 	}
 	
 	// initial data : later replace with API
 	const initData = get_query();
 	// DataTable initialisation 
-	const exampleTable = griptalk.component.datatable('example');
+	const exampleTable = griptok.component.datatable('example');
 	exampleTable.create(initData);
 	
 	/****************************************

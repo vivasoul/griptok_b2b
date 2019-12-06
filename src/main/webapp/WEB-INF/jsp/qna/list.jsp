@@ -53,13 +53,13 @@ $(document).ready(function() {
 				"proc_yn": "답변 준비중"
 			},
 		]
-		return griptalk.wrangle.mockdata(originalData,100,['board_no','title','content']);
+		return griptok.wrangle.mockdata(originalData,100,['board_no','title','content']);
 	}
 	
 	// initial data : later replace with API
 	const initData = get_query();
 	// DataTable initialisation 
-	const exampleTable = griptalk.component.datatable('example');
+	const exampleTable = griptok.component.datatable('example');
 	exampleTable.create(initData);
 	
 	
