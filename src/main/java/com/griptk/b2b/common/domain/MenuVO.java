@@ -1,18 +1,12 @@
 package com.griptk.b2b.common.domain;
 
-import java.io.Serializable;
-
-public class MenuVO implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class MenuVO{
 	private String menu_id;
 	private String menu_nm;
 	private String p_menu_id;
 	private String menu_url;
 	private String menu_auth;
+	private String template_id;
 	public String getMenu_id() {
 		return menu_id;
 	}
@@ -43,9 +37,15 @@ public class MenuVO implements Serializable{
 	public void setMenu_auth(String menu_auth) {
 		this.menu_auth = menu_auth;
 	}
+	public String getTemplate_id() {
+		return template_id;
+	}
+	public void setTemplate_id(String template_id) {
+		this.template_id = template_id;
+	}
 	@Override
 	public String toString() {
 		return "MenuVO [menu_id=" + menu_id + ", menu_nm=" + menu_nm + ", p_menu_id=" + p_menu_id + ", menu_url="
-				+ menu_url + ", menu_auth=" + menu_auth + "]";
+				+ menu_url + ", menu_auth=" + menu_auth + ", template_id=" + template_id + "]";
 	}
 }

@@ -1,8 +1,7 @@
 package com.griptk.b2b.common.service;
 
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,4 +18,7 @@ public class MenuAPI {
 		return mapper.getClientRoot(menu_auth);
 	}
 	
+	public Map<String, MenuVO> getAllMenus(){
+		return mapper.getAll();
+	}
 }

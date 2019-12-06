@@ -4,7 +4,7 @@
 <mapper namespace="com.griptk.b2b.common.mapper.MenuMapper">
 	<select id="getClientRoot" parameterType="String" resultType="com.griptk.b2b.common.domain.MenuVO">
 		SELECT 	
-			menu_id, menu_nm, p_menu_id, menu_url, menu_auth
+			menu_id, menu_nm, p_menu_id, menu_url, menu_auth, template_id
 		FROM tb_menu
 		WHERE 1=1
 		AND p_menu_id = 'client_root'
@@ -15,5 +15,11 @@
 		)  
 		AND menu_id != 'shop_main'
 		ORDER BY sort_no
+	</select>
+	
+	<select id="getAll" resultType="com.griptk.b2b.common.domain.MenuVO">
+		SELECT 	
+			menu_id, menu_nm, p_menu_id, menu_url, menu_auth, template_id
+		FROM tb_menu WHERE 1=1	
 	</select>	
 </mapper>
