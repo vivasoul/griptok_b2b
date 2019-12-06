@@ -10,55 +10,6 @@
 	List<CraftTypeVO> crafts_filter = (List<CraftTypeVO>)request.getAttribute("crafts_filter");
 	List<BrandTypeVO> brands_filter = (List<BrandTypeVO>)request.getAttribute("brands_filter");
 %>
-<style type="text/css">
-	.top_menu { 
-		 text-align:right;
-	}
-	.top_menu>a {
-		 display:inline-block;
-		 width:90px;
-		 height:27px;
-		 box-shadow: 
-		    2px 0 0 0 #CCC, 
-		    0 2px 0 0 #CCC, 
-		    2px 2px 0 0 #CCC,   /* Just to fix the corner */
-		    2px 0 0 0 #CCC inset, 
-		    0 2px 0 0 #CCC inset;
-		 padding-top:3px;
-		 text-align:center;
-		 text-decoration:none;
-		 color:#333;
-	}
-	.top_menu>a:hover {
-		background-color:#999;
-		color:#FFF;
-	}
-	.cat_filter>a {
-		 display:inline-block;
-		 min-width:130px;
-		 height:35px;
-		 padding-top:7px;
-		 text-align:center;
-		 text-decoration:none;
-		 color:#333;
-		 box-shadow: 
-		    2px 0 0 0 #999, 
-		    0 2px 0 0 #999, 
-		    2px 2px 0 0 #999,   /* Just to fix the corner */
-		    2px 0 0 0 #999 inset, 
-		    0 2px 0 0 #999 inset;
-	}
-	.cat_filter>a:hover {
-		background-color:#CCC;
-		color:#FFF;
-	}
-	.cat_filter.left_filter {
-		text-align:left;
-	}
-	.cat_filter.right_filter {
-		text-align:right;
-	}
-</style>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-4">

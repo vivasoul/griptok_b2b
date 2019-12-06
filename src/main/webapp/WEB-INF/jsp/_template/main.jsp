@@ -12,11 +12,7 @@
 <script src="/lib/js/jquery.min.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
-<style type="text/css">
-	body {
-		margin: 1%;
-	}
-</style>
+<link rel="stylesheet" href="/css/_template/main.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/_template/main/header.jsp" flush="false" />
