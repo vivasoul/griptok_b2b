@@ -95,4 +95,37 @@
 		)
 	</insert>
 	
+	<select id="login" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="Integer">
+		SELECT count(*) FROM tb_user u
+		INNER JOIN tb_login l
+		ON u.user_no = l.user_no
+		WHERE user_id= #{user_id}
+        AND passwd = #{passwd}
+	</select>
+	
+	<select id="findId" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="String">
+		SELECT user_id FROM tb_user
+		WHERE ceo_nm = #{ceo_nm}
+		 <if test="contact_tel != null">
+	        AND contact_tel = #{contact_tel}
+	    </if>
+	    <if test="tax_email != null">
+	        AND tax_email = #{tax_email}
+	    </if>
+	</select>
+	
+	<select id="findPasswd" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="String">
+		SELECT l.passwd FROM tb_user u
+		INNER JOIN tb_login l
+		ON u.user_no = l.user_no
+		WHERE user_id= #{user_id}
+		AND ceo_nm = #{ceo_nm}
+		<if test="contact_tel != null">
+	        AND contact_tel = #{contact_tel}
+	    </if>
+	    <if test="tax_email != null">
+	        AND tax_email = #{tax_email}
+	    </if>
+	</select>
+	
 </mapper>

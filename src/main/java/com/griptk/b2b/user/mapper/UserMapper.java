@@ -12,6 +12,12 @@ public interface UserMapper {
 	
 	int checkBizRegNumber(String biz_reg_number);
 	
+	int login(UserVO userVo);
+	
+	String findId(UserVO userVo);
+	
+	String findPasswd(UserVO userVo);
+	
 	int insertImgInfo(ImageVO imgVo);
 	
 	int getImgNo();
