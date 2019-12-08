@@ -51,7 +51,9 @@ body {
 .cat_filter.right_filter {
 	text-align:right;
 }
-	.bottom_menu { }
+.bottom_menu { 
+	margin-top:15px;
+}
 .bottom_menu>a {
 	 display:inline-block;
 	 width:200px;
