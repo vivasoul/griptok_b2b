@@ -26,7 +26,7 @@ public class UserAPI {
 	
 	// id_check
 	@PostMapping(path="/sign_up/check/id", produces="application/json")
-	public Map<String, Object> user_id_check(
+	public Map<String, Object> checkUserId(
 			@RequestParam("user_id") String user_id,
 	        HttpServletResponse response) {
 		
@@ -41,7 +41,7 @@ public class UserAPI {
 	
 	// company_nm check
 	@PostMapping("/sign_up/check/company_nm")
-	public Map<String, Object> company_nm_check(
+	public Map<String, Object> checkCompanyNm(
 			@RequestParam("company_nm") String company_nm,
 	        HttpServletResponse response) {
 		
@@ -57,7 +57,7 @@ public class UserAPI {
 	
 	// biz_reg_number check	
 	@PostMapping("/sign_up/check/biz_reg_number")
-	public Map<String, Object> biz_reg_number_check(
+	public Map<String, Object> checkBizRegNumber(
 			@RequestParam("biz_reg_number") String biz_reg_number,
 	        HttpServletResponse response) {
 		
@@ -72,12 +72,13 @@ public class UserAPI {
 	
 	// upload_file
 	@PostMapping("/sign_up/upload_file")
-	public void upload_file(
+	public void uploadFile(
 			@RequestBody UserVO vo,
 	        HttpServletResponse response) {
 		
 	}
 	
+	// sign_up
 	@PostMapping("/sign_up/sign_up")
 	public Map<String, Object> griptokSignUp(
 			@RequestBody UserVO vo,
@@ -121,6 +122,52 @@ public class UserAPI {
 		return resp;
 	}
 	
+	// find Id
+	@PostMapping("/login/find/id")
+	public Map<String, Object> findId(
+			@RequestBody UserVO vo,
+	        HttpServletResponse response) {
+		
+		String result = mapper.findId(vo);
+		
+		System.out.println(result);
+		
+		Map<String, Object> resp = new HashMap();
+		
+		resp.put("result", result);
+		
+		return resp;
+	}
 	
-
+	
+	// find Passwd
+	@PostMapping("/login/find/passwd")
+	public Map<String, Object> findPasswd(
+			@RequestBody UserVO vo,
+	        HttpServletResponse response) {
+		
+		String result = mapper.findPasswd(vo);
+		
+		Map<String, Object> resp = new HashMap();
+		
+		resp.put("result", result);
+		
+		return resp;
+	}
+	
+	// find Passwd
+	@PostMapping("/login/connect")
+	public Map<String, Object> login(
+			@RequestBody UserVO vo,
+	        HttpServletResponse response) {
+		
+		int result = mapper.login(vo);
+		
+		Map<String, Object> resp = new HashMap();
+		
+		resp.put("result", result);
+		
+		return resp;
+	}
+		
 }

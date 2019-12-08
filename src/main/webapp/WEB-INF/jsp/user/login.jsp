@@ -44,12 +44,12 @@
                                     
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+                                        <input id="login_user_id" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
                                     </div>
                                 
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                                        <input id="login_passwd" type="password" class="form-control" name="password" placeholder="password">
                                     </div>
                                     
 
@@ -60,7 +60,7 @@
                                     <!-- Button -->
 
                                     <div class="col-sm-12 controls">
-                                      <a id="btn-login" href="#" class="btn btn-primary">Login  </a>
+                                      <a id="btn_login" href="#" class="btn btn-primary">Login  </a>
 
                                     </div>
                                 </div>
@@ -102,20 +102,20 @@
             <div class="form-group">
               <div class="right-inner-addon">
                 <i class="fa fa-envelope"></i>
-                <input class="form-control input-lg" placeholder="e-Mail Address" type="text">
+                <input id="id_cell_ceo_nm" class="form-control input-lg" placeholder="이름" type="text">
               </div>
             </div>
             <div class="form-group">
             <div class="right-inner-addon">
                 <i class="fa fa-key"></i>
-                <input class="form-control input-lg"      placeholder="Password" type="password">
+                <input id="id_cell_contact_tel" class="form-control input-lg" placeholder="휴대폰번호" type="text">
               </div>
             </div>
           </fieldset>
           <hr>
           <div class="tab-content">
             <div class="tab-pane fade in active text-center" id="pp">
-              <button class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 전송</button>
+              <button id="id_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 전송</button>
             </div>
           </div>
         </div>
@@ -126,19 +126,19 @@
             <div class="form-group">
               <div class="right-inner-addon">
                 <i class="fa fa-envelope"></i>
-                <input class="form-control input-lg" placeholder="e-Mail Address" type="text">
+                <input id="id_email_ceo_nm" class="form-control input-lg" placeholder="이름" type="text">
               </div>
             </div>
             <div class="form-group">
               <div class="right-inner-addon">
                 <i class="fa fa-key"></i>
-                <input class="form-control input-lg" placeholder="Password" type="password">
+                <input id="id_email_email" class="form-control input-lg" placeholder="이메일" type="password">
               </div>
             </div>
           </fieldset>
           <br>
           <div class=" text-center">
-            <button class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 아이디 찾기</button>
+            <button id="id_email_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 아이디 찾기</button>
           </div>
            <br>
         </div> 
@@ -180,7 +180,7 @@
             <div class="form-group">
             <div class="right-inner-addon">
                 <i class="fa fa-key"></i>
-                <input class="form-control input-lg"      placeholder="Password" type="password">
+                <input class="form-control input-lg" placeholder="Password" type="password">
               </div>
             </div>
           </fieldset>
@@ -262,6 +262,67 @@ function openModal(type){
 	document.getElementById(type+'_finder').style.display='block'
 	document.getElementById(type+'_finder_initial').click();
 }	
+
+//
+$("#id_cell_finder").bind("click",function(){
+    $.ajax({
+        url : "/login/find/id",
+        type: "post",
+        data : JSON.stringify({ 
+        			"ceo_nm" : $("#id_cell_ceo_nm").val(),
+        			"contact_tel" : $("#id_cell_contact_tel").val()
+        	   }),
+     	contentType: "application/json",
+        success : function(responseData){
+        	var user_id = responseData.result;
+        	if(user_id==null){
+        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
+        	}else{
+        		alert("회원님의 아이디는 " + user_id + "입니다.");
+        	}
+        }
+    });
+});
+
+$("#id_email_finder").bind("click",function(){
+    $.ajax({
+        url : "/login/find/id",
+        type: "post",
+        data : JSON.stringify({ 
+        			"ceo_nm" : $("#id_email_ceo_nm").val(),
+        			"tax_email" : $("#id_email_email").val()
+        	   }),
+   	    contentType: "application/json",
+        success : function(responseData){
+        	var user_id = responseData.result;
+        	if(user_id==null){
+        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
+        	}else{
+        		alert("회원님의 아이디는 " + user_id + "입니다.");
+        	}
+        }
+    });
+});
+
+$("#btn_login").bind("click",function(){
+    $.ajax({
+        url : "/login/connect",
+        type: "post",
+        data : JSON.stringify({ 
+        			"user_id" : $("#login_user_id").val(),
+        			"passwd" : $("#login_passwd").val()
+        	   }),
+    	contentType: "application/json",
+        success : function(responseData){
+        	if(responseData.result==1){
+        		alert("페이지이동");
+        	}else{
+        		alert("아이디 또는 비밀번호가 올바르지 않습니다.")
+        	}
+        }
+    });
+});
+
 
 </script>
 
