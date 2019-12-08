@@ -114,8 +114,8 @@
 	    </if>
 	</select>
 	
-	<select id="findPasswd" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="String">
-		SELECT l.passwd FROM tb_user u
+	<select id="findPasswd" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="com.griptk.b2b.user.domain.UserVO">
+		SELECT l.passwd, u.tax_email FROM tb_user u
 		INNER JOIN tb_login l
 		ON u.user_no = l.user_no
 		WHERE user_id= #{user_id}

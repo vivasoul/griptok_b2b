@@ -16,7 +16,7 @@ public interface UserMapper {
 	
 	String findId(UserVO userVo);
 	
-	String findPasswd(UserVO userVo);
+	UserVO findPasswd(UserVO userVo);
 	
 	int insertImgInfo(ImageVO imgVo);
 	

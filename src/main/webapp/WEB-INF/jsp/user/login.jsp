@@ -114,7 +114,7 @@
           </fieldset>
           <hr>
           <div class="tab-content">
-            <div class="tab-pane fade in active text-center" id="pp">
+            <div class="tab-pane fade in active text-center">
               <button id="id_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 전송</button>
             </div>
           </div>
@@ -132,7 +132,7 @@
             <div class="form-group">
               <div class="right-inner-addon">
                 <i class="fa fa-key"></i>
-                <input id="id_email_email" class="form-control input-lg" placeholder="이메일" type="password">
+                <input id="id_email_email" class="form-control input-lg" placeholder="이메일" type="text">
               </div>
             </div>
           </fieldset>
@@ -174,20 +174,26 @@
             <div class="form-group">
               <div class="right-inner-addon">
                 <i class="fa fa-envelope"></i>
-                <input class="form-control input-lg" placeholder="e-Mail Address" type="text">
+                <input id="passwd_cell_user_id" class="form-control input-lg" placeholder="아이디" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="right-inner-addon">
+                <i class="fa fa-envelope"></i>
+                <input id="passwd_cell_ceo_nm" class="form-control input-lg" placeholder="이름" type="text">
               </div>
             </div>
             <div class="form-group">
             <div class="right-inner-addon">
                 <i class="fa fa-key"></i>
-                <input class="form-control input-lg" placeholder="Password" type="password">
+                <input id="passwd_cell_contact_tel" class="form-control input-lg" placeholder="휴대폰번호" type="text">
               </div>
             </div>
           </fieldset>
           <hr>
           <div class="tab-content">
-            <div class="tab-pane fade in active text-center" id="pp">
-              <button class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 전송</button>
+            <div class="tab-pane fade in active text-center">
+              <button id="passwd_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 전송</button>
             </div>
           </div>
         </div>
@@ -198,13 +204,19 @@
             <div class="form-group">
               <div class="right-inner-addon">
                 <i class="fa fa-envelope"></i>
-                <input class="form-control input-lg" placeholder="e-Mail Address" type="text">
+                <input id="passwd_email_user_id" class="form-control input-lg" placeholder="아이디" type="text">
               </div>
             </div>
             <div class="form-group">
               <div class="right-inner-addon">
+                <i class="fa fa-envelope"></i>
+                <input id="passwd_email_ceo_nm" class="form-control input-lg" placeholder="이름" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+            <div class="right-inner-addon">
                 <i class="fa fa-key"></i>
-                <input class="form-control input-lg" placeholder="Password" type="password">
+                <input id="passwd_email_email" class="form-control input-lg" placeholder="이메일" type="text">
               </div>
             </div>
           </fieldset>
@@ -217,7 +229,7 @@
         
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="passwd_email_finder" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -291,6 +303,49 @@ $("#id_email_finder").bind("click",function(){
         data : JSON.stringify({ 
         			"ceo_nm" : $("#id_email_ceo_nm").val(),
         			"tax_email" : $("#id_email_email").val()
+        	   }),
+   	    contentType: "application/json",
+        success : function(responseData){
+        	var user_id = responseData.result;
+        	if(user_id==null){
+        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
+        	}else{
+        		alert("회원님의 아이디는 " + user_id + "입니다.");
+        	}
+        }
+    });
+});
+
+
+$("#passwd_cell_finder").bind("click",function(){
+    $.ajax({
+        url : "/login/find/passwd",
+        type: "post",
+        data : JSON.stringify({ 
+        			"user_id" : $("#passwd_cell_user_id").val(),
+        			"ceo_nm" : $("#passwd_cell_ceo_nm").val(),
+        			"contact_tel" : $("#passwd_cell_contact_tel").val()
+        	   }),
+     	contentType: "application/json",
+        success : function(responseData){
+        	var user_id = responseData.result;
+        	if(user_id==null){
+        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
+        	}else{
+        		alert("회원님의 아이디는 " + user_id + "입니다.");
+        	}
+        }
+    });
+});
+
+$("#passwd_email_finder").bind("click",function(){
+    $.ajax({
+        url : "/login/find/passwd",
+        type: "post",
+        data : JSON.stringify({ 
+        			"user_id" : $("#passwd_email_user_id").val(),
+        			"ceo_nm" : $("#passwd_email_ceo_nm").val(),
+        			"tax_email" : $("#passwd_email_email").val()
         	   }),
    	    contentType: "application/json",
         success : function(responseData){
