@@ -28,7 +28,7 @@
                     <div style="padding-top:30px" class="panel-body" >
                     	
                     	
-		<form id="sign_up_form">                    	
+		<form id="sign_up_form" method="post" action="/sign_up/sign_up" enctype="multipart/form-data">                    	
       	   <div class="row" >
             <div class="col-sm-4">
               	<div class="col-sm-12 input-group custom">
@@ -91,7 +91,6 @@
 			    </span>
               </div>
               <div class="col-sm-12 input-group custom">
-<!--               	<input type="file" maxlength="3" placeholder="사업자 등록증 사본 이미지 등록" class="form-control input-lg"> -->
               	<div class="input-group input-file">
 		    		<input id="file_nm" name="file_nm" type="text" class="form-control" placeholder='Choose a file...' />			
 		            <span class="input-group-btn">
@@ -116,7 +115,7 @@
            </div>
            <div class="row">
            		<div class="col-sm-12 submit">
-           			 <button id="sign_up" class="btn-primary btn-lg" type="button">가입하기</button>
+           			 <button id="sign_up" class="btn-primary btn-lg" type="submit">가입하기</button>
            			 <button class="btn-warning btn-lg" type="button">취소</button>
            		</div>
            </div>
@@ -136,7 +135,7 @@ function bs_input_file() {
 	$(".input-file").before(
 		function() {
 			if ( ! $(this).prev().hasClass('input-ghost') ) {
-				var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+				var element = $("<input type='file' name='real_file' id='real_file' class='input-ghost' style='visibility:hidden; height:0'>");
 				element.attr("name",$(this).attr("name"));
 				element.change(function(){
 					element.next(element).find('input').val((element.val()).split('\\').pop());
@@ -212,17 +211,17 @@ $("#biz_reg_number_check").bind("click",function(){
     });
 });
 
-$("#sign_up").bind("click",function(){
-    $.ajax({
-        url : "/sign_up/sign_up",
-        type: "post",
-        data : JSON.stringify(jQuery('#sign_up_form').serializeObject()),
-        contentType: "application/json",
-        success : function(responseData){
-        	console.log(responseData);
-        }
-    });
-});
+// $("#sign_up").bind("click",function(){
+//     $.ajax({
+//         url : "/sign_up/sign_up",
+//         type: "post",
+//         data : JSON.stringify(jQuery('#sign_up_form').serializeObject()),
+//         contentType: "application/json",
+//         success : function(responseData){
+//         	console.log(responseData);
+//         }
+//     });
+// });
 
 jQuery.fn.serializeObject = function() {
     var obj = null;
@@ -240,7 +239,6 @@ jQuery.fn.serializeObject = function() {
         alert(e.message);
     } finally {
     }
- 
     return obj;
 };
 

@@ -1,5 +1,7 @@
 package com.griptk.b2b.user.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UserVO {
 	
 	private int user_no;
@@ -13,6 +15,10 @@ public class UserVO {
 	
 	private String aprv_status;
 	
+
+	private MultipartFile real_file;
+	
+	private String file_nm;
 	
 	// user
 	private String user_id;
@@ -77,6 +83,22 @@ public class UserVO {
 
 	public void setAprv_status(String aprv_status) {
 		this.aprv_status = aprv_status;
+	}
+	
+	public MultipartFile getReal_file() {
+		return real_file;
+	}
+
+	public void setReal_file(MultipartFile real_file) {
+		this.real_file = real_file;
+	}
+
+	public String getFile_nm() {
+		return file_nm;
+	}
+
+	public void setFile_nm(String file_nm) {
+		this.file_nm = file_nm;
 	}
 
 	public String getUser_id() {
@@ -178,11 +200,13 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "UserVO [user_no=" + user_no + ", passwd=" + passwd + ", reg_dt=" + reg_dt + ", upd_dt=" + upd_dt
-				+ ", aprv_status=" + aprv_status + ", user_id=" + user_id + ", company_nm=" + company_nm
-				+ ", biz_reg_number=" + biz_reg_number + ", ceo_nm=" + ceo_nm + ", biz_category=" + biz_category
-				+ ", biz_addr=" + biz_addr + ", contact_tel=" + contact_tel + ", tax_email=" + tax_email
-				+ ", manager_nm=" + manager_nm + ", manager_tel=" + manager_tel + ", manager_email=" + manager_email
-				+ ", biz_img_no=" + biz_img_no + "]";
+				+ ", aprv_status=" + aprv_status + ", real_file=" + real_file + ", file_nm=" + file_nm + ", user_id="
+				+ user_id + ", company_nm=" + company_nm + ", biz_reg_number=" + biz_reg_number + ", ceo_nm=" + ceo_nm
+				+ ", biz_category=" + biz_category + ", biz_addr=" + biz_addr + ", contact_tel=" + contact_tel
+				+ ", tax_email=" + tax_email + ", manager_nm=" + manager_nm + ", manager_tel=" + manager_tel
+				+ ", manager_email=" + manager_email + ", biz_img_no=" + biz_img_no + "]";
 	}
+
+	
 
 }

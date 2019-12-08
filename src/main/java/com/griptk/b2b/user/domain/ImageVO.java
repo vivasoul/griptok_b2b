@@ -8,7 +8,7 @@ public class ImageVO {
 	
 	private String file_path;
 	
-	private int file_size;
+	private long file_size;
 	
 	private String reg_dt;
 	
@@ -42,11 +42,11 @@ public class ImageVO {
 		this.file_path = file_path;
 	}
 
-	public int getFile_size() {
+	public long getFile_size() {
 		return file_size;
 	}
 
-	public void setFile_size(int file_size) {
+	public void setFile_size(long file_size) {
 		this.file_size = file_size;
 	}
 

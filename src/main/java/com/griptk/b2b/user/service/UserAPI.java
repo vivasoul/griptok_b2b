@@ -1,17 +1,26 @@
 package com.griptk.b2b.user.service;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.griptk.b2b.user.domain.ImageVO;
 import com.griptk.b2b.user.domain.UserVO;
@@ -70,56 +79,99 @@ public class UserAPI {
 		return resp;
 	}
 	
-	// upload_file
-	@PostMapping("/sign_up/upload_file")
-	public void uploadFile(
-			@RequestBody UserVO vo,
-	        HttpServletResponse response) {
+	public ImageVO uploadFile(
+			MultipartFile mf) throws Exception {
+		
+		String uploadPath = "";
+		
+		String path = "D:\\"+"upload\\"; // 파일 업로드 경로
+			
+		String original = mf.getOriginalFilename(); // 업로드하는 파일 name
+			
+		System.out.println("!!!!!!!!!!"+original);	// file original name
+		System.out.println("!!!!!!!!!!"+mf.getSize());// file size
+			
+		uploadPath = path+original; // 파일 업로드 경로 + 파일 이름
+		
+		File imag_file = new File(uploadPath);
+		try {
+			mf.transferTo(imag_file); // 파일을 위에 지정 경로로 업로드
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		BufferedImage bimg = ImageIO.read(imag_file);
+		int width          = bimg.getWidth();
+		int height         = bimg.getHeight();
+		
+		
+		String extension = "";
+
+		int i = original.lastIndexOf('.');
+		if (i >= 0) {
+		    extension = original.substring(i+1);
+		}
+		
+		ImageVO imgVo = new ImageVO();
+		imgVo.setFile_nm(original);
+		imgVo.setFile_format(extension);
+		imgVo.setFile_path(uploadPath);
+		imgVo.setFile_size(imag_file.length());
+		imgVo.setImg_width(width);
+		imgVo.setImg_height(height);
+		
+		return imgVo;
 		
 	}
 	
 	// sign_up
 	@PostMapping("/sign_up/sign_up")
-	public Map<String, Object> griptokSignUp(
-			@RequestBody UserVO vo,
+	public void griptokSignUp(
+			@RequestPart (value="real_file") MultipartFile real_file,
+			@ModelAttribute UserVO vo,
 	        HttpServletResponse response) {
 
+		
+		System.out.println("Checking =============");
+		
 		System.out.println(vo.toString());
-		// file upload and setup File info
-		
-		ImageVO imgVo = new ImageVO();
-		imgVo.setFile_nm("gombong");
-		imgVo.setFile_format("png");
-		imgVo.setFile_path("somewhere");
-		imgVo.setFile_size(1000);
-		imgVo.setImg_width(100);
-		imgVo.setImg_height(200);
-		
-		int result = 1;
-		
-		int img_result = mapper.insertImgInfo(imgVo);
-		
-		int img_no = mapper.getImgNo();
-		
-		vo.setBiz_img_no(img_no);
-		
-		int user_result = mapper.signUpUser(vo);
-		
-		int login_result = mapper.insertLoginInfo(vo);
 		
 		Map<String, Object> resp = new HashMap();
-		
-		if(img_result==0){
-			result=-1;
-		}else if(user_result==0){
-			result=-2;
-		}else if(login_result==0){
-			result=-3;
+		int result = 1;
+		try{
+			ImageVO imgVo = uploadFile(real_file);
+			
+			int img_result = mapper.insertImgInfo(imgVo);
+			
+			int img_no = mapper.getImgNo();
+			
+			vo.setBiz_img_no(img_no);
+			
+			int user_result = mapper.signUpUser(vo);
+			
+			int login_result = mapper.insertLoginInfo(vo);
+			
+
+			if(img_result==0){
+				result=-1;
+			}else if(user_result==0){
+				result=-2;
+			}else if(login_result==0){
+				result=-3;
+			}
+			response.sendRedirect("/login");
+		}catch(Exception e){
+			try{
+				response.sendRedirect("/register");
+			}catch(Exception re){
+				
+			}
 		}
 		
-		resp.put("result", result);
-		
-		return resp;
 	}
 	
 	// find Id
