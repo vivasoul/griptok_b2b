@@ -14,5 +14,10 @@ public class UserController {
 	public String goRegisterPage() {
 		return "user/sign_up";
 	}
+	
+	@GetMapping("/withdrawal")
+	public String goWithdrawlPage() {
+		return "user/withdrawal";
+	}
 
 }

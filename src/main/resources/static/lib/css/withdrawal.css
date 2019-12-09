@@ -1,0 +1,28 @@
+.login_top_cover{
+	 overflow:hidden;
+	 text-align: center;
+}
+
+.login_top{
+	float:left;
+}
+
+.login_float{
+	padding-right : 10px;
+	cursor:pointer;
+	float:left;
+}
+
+
+.h_tag_center{
+	text-align : left;
+}
+    
+
+.container.custom-container {
+  padding-top: 100px;
+}
+
+.grey_back{
+	background-color:grey;
+}
