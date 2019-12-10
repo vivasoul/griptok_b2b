@@ -29,8 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.griptk.b2b.user.domain.ImageVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.mapper.UserMapper;
-import com.griptk.b2b.util.generator.MailSendUtil;
-import com.griptk.b2b.util.generator.PasswordGenerator;
 
 @RestController
 @MapperScan({"com.griptk.b2b.user.mapper.*"})
@@ -39,11 +37,11 @@ public class UserAPI {
 	@Autowired
 	private UserMapper mapper;
 	
-	@Autowired
-	private MailSendUtil mailSender;
+//	@Autowired
+//	private MailSendUtil mailSender;
 	
-	@Autowired 
-	private PasswordGenerator passwordGenerator;
+//	@Autowired 
+//	private PasswordGenerator passwordGenerator;
 	
 	// id_check
 	@PostMapping(path="/sign_up/check/id", produces="application/json")
@@ -285,14 +283,14 @@ public class UserAPI {
         return 1;
 	}
 	
-	private void sendTempPassword(String email, String password) throws Exception{
-		String title = "Sending a temporary passowrd to access the solution, PPCWIZ";
-		StringBuilder sb = new StringBuilder();
-		  sb.append("This is your temporary password:<br/><input type='text' value='")
-		  	.append(password)
-		  	.append("'/>");
-		mailSender.send(email, title, sb.toString());
-	}
+//	private void sendTempPassword(String email, String password) throws Exception{
+//		String title = "Sending a temporary passowrd to access the solution, PPCWIZ";
+//		StringBuilder sb = new StringBuilder();
+//		  sb.append("This is your temporary password:<br/><input type='text' value='")
+//		  	.append(password)
+//		  	.append("'/>");
+//		mailSender.send(email, title, sb.toString());
+//	}
 
 	
 	
