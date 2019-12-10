@@ -28,15 +28,28 @@
 	}
 	.griptok-thumb>.thumb-image { width:200px;height:200px; }
 	.griptok-thumb>.thumb-image>img { width:100%;height:100%; }	
-	.griptok-thumb>.thumb-title { text-align:left;font-size:0.95em;	}
-	.griptok-thumb>.thumb-price { text-align:right;	}
-	.thumb-price>.base-price { font-size:0.7em;text-decoration:line-through; }	
-	.thumb-price>.real-price { font-size:1.1em;font-weight:bold; }	
+	.griptok-thumb>.thumb-title { text-align:left;font-size:12px;font-weight:400; }
+	.griptok-thumb>.thumb-price { text-align:right;font-family:Tahoma,'Nanum Gothic', sans-serif	}
+	.thumb-price>.base-price { font-size:11px;font-weight:400;text-decoration:line-through; }	
+	.thumb-price>.real-price { font-size:13px;font-weight:700; }	
 </style>
 <script type="text/javascript">
 const currency_formatter = function(amount, unit) {
+	let input = amount;
+	const format_arr = [];
+
+	while(input > 999){
+		const rest = input % 1000;
+		
+		if(rest < 10) format_arr.push("00"+rest);
+		else if(rest < 100) format_arr.push("0"+rest);
+		else				format_arr.push(""+rest);
+		
+		input = (input - rest)/1000;
+	}
+	format_arr.push(""+input);
 	
-	return amount+unit;
+	return format_arr.reverse().join(",")+unit;
 };
 
 const thumbnailGenerator = function(data) {
