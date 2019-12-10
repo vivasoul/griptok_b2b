@@ -40,7 +40,52 @@
          </div>
          
         </div>
-
 </div>
+
+
+<div class="modal fade" id="idFinderModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h3>비밀번호 변경</h3>
+            <br>            
+        <div class="tab-content clearfix">
+          <br>
+          <fieldset>
+            <div class="form-group">
+              <div class="right-inner-addon">
+                <i class="fa fa-envelope"></i>
+                <input id="old_passwd" class="form-control input-lg" placeholder="기존 비밀번호" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+            	<div class="right-inner-addon">
+	                <i class="fa fa-key"></i>
+	                <input id="new_passwd" class="form-control input-lg" placeholder="새 비밀번호" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+            	<div class="right-inner-addon">
+	                <i class="fa fa-key"></i>
+	                <input id="passwd_confirm" class="form-control input-lg" placeholder="비밀번호 확인" type="text">
+              </div>
+            </div>
+          </fieldset>
+          <hr>
+          <div class="tab-content">
+            <div class="tab-pane fade in active text-center">
+              <button id="id_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 전송</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </body>
 </html>

@@ -19,5 +19,10 @@ public class UserController {
 	public String goWithdrawlPage() {
 		return "user/withdrawal";
 	}
+	
+	@GetMapping("/info")
+	public String goInfoChangelPage() {
+		return "user/info_change";
+	}
 
 }
