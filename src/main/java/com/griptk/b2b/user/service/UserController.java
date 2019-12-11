@@ -24,5 +24,11 @@ public class UserController {
 	public String goInfoChangelPage() {
 		return "user/info_change";
 	}
+	
+	@GetMapping("/shipTo")
+	public String goShipToPage() {
+		return "shipto/list";
+	}
+
 
 }
