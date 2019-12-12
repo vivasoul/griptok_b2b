@@ -3,9 +3,10 @@ package com.griptk.b2b.product.domain;
 public class ProductVO {
 	private int product_id;
 	private String title;
-	private int price;
-	private String evt_code;
+	private int retail_price;
+	private int sales_price;
 	private String thumb_img;
+	
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -18,17 +19,17 @@ public class ProductVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getPrice() {
-		return price;
+	public int getRetail_price() {
+		return retail_price;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setRetail_price(int retail_price) {
+		this.retail_price = retail_price;
 	}
-	public String getEvt_code() {
-		return evt_code;
+	public int getSales_price() {
+		return sales_price;
 	}
-	public void setEvt_code(String evt_code) {
-		this.evt_code = evt_code;
+	public void setSales_price(int sales_price) {
+		this.sales_price = sales_price;
 	}
 	public String getThumb_img() {
 		return thumb_img;
@@ -38,7 +39,7 @@ public class ProductVO {
 	}
 	@Override
 	public String toString() {
-		return "ProductVO [product_id=" + product_id + ", title=" + title + ", price=" + price + ", evt_code="
-				+ evt_code + ", thumb_img=" + thumb_img + "]";
+		return "ProductVO [product_id=" + product_id + ", title=" + title + ", retail_price=" + retail_price
+				+ ", sales_price=" + sales_price + ", thumb_img=" + thumb_img + "]";
 	}
 }

@@ -18,6 +18,16 @@ public class ProductAPI {
 	
 	@GetMapping("/new")
 	public List<ProductVO> getNewProducts(){
-		return mapper.listProductsByEvent("N");
+		return mapper.listNewProducts();
 	}
+	
+	@GetMapping("/best")
+	public List<ProductVO> getBestProducts(){
+		return mapper.listBestProducts();
+	}
+	
+	@GetMapping("/dc")
+	public List<ProductVO> getDCProducts(){
+		return mapper.listDcProducts();
+	}	
 }

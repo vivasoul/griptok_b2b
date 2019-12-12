@@ -70,10 +70,10 @@ const thumbnailGenerator = function(data) {
 		price_div.className = "thumb-price";
 			const base_span = document.createElement("span");
 			base_span.className = "base-price";
-			base_span.innerHTML = currency_formatter(data.price+3100,"원");
+			base_span.innerHTML = currency_formatter(data.retail_price,"원");
 			const real_span = document.createElement("span");
 			real_span.className = "real-price"; 
-			real_span.innerHTML = currency_formatter(data.price,"원");
+			real_span.innerHTML = currency_formatter(data.sales_price,"원");
 		price_div.appendChild(base_span);
 		price_div.appendChild(real_span);	
 		
@@ -99,17 +99,17 @@ const loadList = function(url, render_id){
 		if(dom_arr.length) jQuery("#"+render_id).append(dom_arr);
 		
 	}).fail(function(e){
-		console.log("loadList failed..");
+		//console.log("loadList failed..");
 		console.log(e);
 	}).always(function(){
-		console.log("loadList finished.")
+		//console.log("loadList finished.")
 	});
 };
 
 jQuery(document).ready(function(){
 	loadList("/product/new","new-product-list");
-	loadList("/product/new","best-product-list");
-	loadList("/product/new","special-product-list");
+	loadList("/product/best","best-product-list");
+	loadList("/product/dc","special-product-list");
 });
 </script>
 <div class="container-fluid main-shopping-list">

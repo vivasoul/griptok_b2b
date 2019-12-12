@@ -2,15 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.product.mapper.ProductMapper">
-	<select id="listProductsByEvent" parameterType="String" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listNewProducts" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
-			a.price,
+			a.retail_price,
+			a.sales_price,
 			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
-		AND a.evt_code = #{evt_code}
+		AND a.is_new = 'Y'
+		ORDER BY a.reg_dt desc
+		LIMIT 5
 	</select>
+	
+	<select id="listBestProducts" resultType="com.griptk.b2b.product.domain.ProductVO">
+		SELECT 
+			a.product_id,
+			a.title,
+			a.retail_price,
+			a.sales_price,
+			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+		FROM tb_product a
+		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
+		WHERE 1=1
+		AND a.is_best = 'Y'
+		LIMIT 5
+	</select>
+	
+	<select id="listDcProducts" resultType="com.griptk.b2b.product.domain.ProductVO">
+		SELECT 
+			a.product_id,
+			a.title,
+			a.retail_price,
+			ROUND(a.sales_price*0.9,-2) AS sales_price,
+			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+		FROM tb_product a
+		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
+		WHERE 1=1
+		AND a.is_dc = 'Y'
+	</select>		
 </mapper>
