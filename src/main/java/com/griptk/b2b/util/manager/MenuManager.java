@@ -24,7 +24,7 @@ public class MenuManager {
 	public void refresh() {
 		logined_menus = api.getClientHead("L");
 		not_logined_menus = api.getClientHead("N");
-		menu_map = api.getAllMenus();
+		menu_map = api.getMenusWithURL();
 	}
 	
 	public List<MenuVO> getLogined(){
@@ -34,8 +34,20 @@ public class MenuManager {
 	public List<MenuVO> getNotLogined(){
 		return not_logined_menus;
 	}
+		
+	public MenuVO getMenuFromURL(String url) {
+		return menu_map.get(url);
+	}
 	
-	public String getTemplateId(String menu_id) {
-		return menu_map.get(menu_id).getTemplate_id();
+	public String getTemplateFromURL(String url) {
+		MenuVO menu = getMenuFromURL(url);
+		if(menu == null)	return null;
+		else				return getMenuFromURL(url).getTemplate_id();
+	}
+
+	public String getNameFromURL(String url) {
+		MenuVO menu = getMenuFromURL(url);
+		if(menu == null)	return null;		
+		else				return getMenuFromURL(url).getMenu_nm();
 	}
 }

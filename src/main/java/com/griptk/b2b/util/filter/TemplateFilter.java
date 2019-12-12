@@ -8,8 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpServletRequest;
 
 import com.griptk.b2b.util.manager.CategoryManager;
 import com.griptk.b2b.util.manager.MenuManager;
@@ -33,10 +32,24 @@ public class TemplateFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
+		String url = ((HttpServletRequest)request).getRequestURI();		
 		
 		request.setAttribute("top_menus", menuMng.getLogined());
-		request.setAttribute("brands_filter", categoryMng.getParentBrands());
-		request.setAttribute("crafts_filter", categoryMng.getCrafts());
+		
+		String template = menuMng.getTemplateFromURL(url);
+		
+		if(template != null) {
+			switch(template) {
+				case ITemplateType.LOGIN_TEMPLATE:
+					break;
+				case ITemplateType.MAIN_TEMPLATE:
+					request.setAttribute("brands_filter", categoryMng.getParentBrands());
+					request.setAttribute("crafts_filter", categoryMng.getCrafts());				
+					break;
+				default:
+					//DO NOTHING
+			}
+		}
 		
 		chain.doFilter(request, response);
 	}

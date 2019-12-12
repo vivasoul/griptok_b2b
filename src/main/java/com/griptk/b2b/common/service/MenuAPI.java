@@ -15,10 +15,14 @@ public class MenuAPI {
 	private MenuMapper mapper;
 	
 	public List<MenuVO> getClientHead(String menu_auth){
-		return mapper.getClientRoot(menu_auth);
+		return mapper.listInClientRoot(menu_auth);
 	}
 	
-	public Map<String, MenuVO> getAllMenus(){
-		return mapper.getAll();
+	public List<MenuVO> getAllMenus(){
+		return mapper.list();
 	}
+	
+	public Map<String, MenuVO> getMenusWithURL(){
+		return mapper.listWithUrl();
+	}	
 }
