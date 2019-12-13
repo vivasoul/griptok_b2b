@@ -5,6 +5,71 @@ module-depth : 1
 */
 var griptok = {}; 
 
+
+/*
+object : griptok date util wrapper
+object-name : griptok
+module-depth : 2
+*/
+griptok.date = {};
+
+/*
+object : griptok date util function
+object-name : date.isDateValid
+explanation : check if object can be parsed as a date object
+module-depth : 3
+*/
+griptok.date.isDateValid = function(pDate){
+	const dateToCheck = new Date(pDate);
+	return (dateToCheck instanceof Date) && !isNaN(dateToCheck)
+}
+
+/*
+object : griptok date util function
+object-name : date.manipulate
+explanation : add or subtract month,year,day from date object
+module-depth : 3
+*/
+griptok.date.manipulate = function(pDate,pOptions){
+	const defaultOptions = {
+		"year" : 0,
+		"month" : 0,
+		"day" : 0,
+		"sep" : "/"
+	};
+	
+	const useDate = new Date(pDate);
+	
+	if(typeof pOptions === 'object'){
+		if(!griptok.date.isDateValid(pDate)){
+			console.log('[griptok.date.manipulate()]failed to parse your date')
+			return pDate;
+		}else{
+			var returnDate = new Date();
+			
+			returnDate.setFullYear(useDate.getFullYear() + parseInt((pOptions['year'] === undefined ? defaultOptions['year'] : pOptions['year'])));
+			returnDate.setMonth(useDate.getMonth() + parseInt((pOptions['month'] === undefined ? defaultOptions['month'] : pOptions['month'])));
+			returnDate.setDate(useDate.getDate() + parseInt((pOptions['day'] === undefined ? defaultOptions['day'] : pOptions['day'])));
+			
+			const separation = pOptions['sep'] === undefined ? defaultOptions['sep'] : pOptions['sep'];
+			
+			const finalDate = returnDate.getFullYear() + separation + 
+				(returnDate.getMonth() + 1) + separation + 
+				returnDate.getDate();
+			
+			if(griptok.date.isDateValid(finalDate)){
+				return finalDate;
+			}else{
+				console.log('[griptok.date.manipulate()]invalid value for your pOptions parameters.[griptok.date.manipulate()]');
+				return pDate;
+			}
+		}
+	}else{
+		console.log('[griptok.date.manipulate()]no date manipulation was done. check your pOptions parameters.')
+		return pDate;
+	}
+}
+
 /*
 object : griptok wrangle wrapper
 object-name : griptok
@@ -12,6 +77,12 @@ module-depth : 2
 */
 griptok.wrangle = {};
 
+/*
+object : griptok wrangle function
+object-name : wrangle.seq_len
+explanation : create an int array with with given size starting from 0
+module-depth : 3
+*/
 griptok.wrangle.seq_len = function(arrSize){
 	let intArr = [];
 	for(let i = 0; i < arrSize; i++){
@@ -19,6 +90,15 @@ griptok.wrangle.seq_len = function(arrSize){
 	}
 	return intArr;
 };
+
+
+/*
+object : griptok wrangle function
+object-name : wrangle.mockdata
+explanation : given an array, containing key value objects, create multiple objects with different values for the given keys.
+example-usage : griptok.wrangle.mockdata([{a:1,b:'hello'},{a:4,b:'bye'}],10,['a','b'])
+module-depth : 3
+*/
 
 griptok.wrangle.mockdata = function(
 	originalArray,
@@ -50,8 +130,9 @@ module-depth : 2
 griptok.component = {};
 
 /*
-object : griptok datatable wrapper
-object-name : datatable
+object : griptok component function
+object-name : component.datatable
+explanation : wrapper for DataTable library. Currently available functions - [create],[reload],[selectedRow]
 module-depth : 3
 */
 griptok.component.datatable = function(p_tableId){
