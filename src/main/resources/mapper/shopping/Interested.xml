@@ -2,5 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.shopping.mapper.InterestedMapper">
+	<select id="getInterestedInfo" parameterType="Integer" resultType="com.griptk.b2b.shopping.domain.InterestedVO">
+		SELECT file_path,
+			title,
+			retail_price,
+			sales_price,
+		FROM
+			tb_product p
+		INNER JOIN
+			tb_interested_list l
+		ON 
+			p.product_id = l.product_id
+		WHERE
+			l.user_no = #{user_no}
+	</select>
+	
+<!-- 	<insert id="addToCart" parameterType="com.griptk.b2b.shopping.domain.InterestedVO"> -->
+		
+<!-- 	</insert> -->
 	
 </mapper>

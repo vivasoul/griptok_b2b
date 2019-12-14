@@ -44,6 +44,27 @@
 		SELECT LAST_INSERT_ID();
 	</select>
 	
+	<select id="getUserInfo" parameterType="Integer" resultType="com.griptk.b2b.user.domain.UserVO">
+		SELECT user_id, 
+			company_nm,
+			biz_reg_number,
+			ceo_nm,
+			biz_category,
+			biz_addr,
+			contact_tel,
+			tax_email,
+			manager_nm,
+			manager_tel,
+			manager_email,
+			reg_dt,
+			upd_dt,
+			biz_img_no 
+		FROM
+			tb_user
+		WHERE
+			user_no = #{user_no}
+	</select>
+	
 	<insert id="signUpUser" parameterType="com.griptk.b2b.user.domain.UserVO" >
 		INSERT INTO tb_user(
 			user_id, 

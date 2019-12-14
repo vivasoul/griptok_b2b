@@ -3,4 +3,53 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.user.mapper.ShipToMapper">
 	
+	<select id="getShippingInfo" parameterType="Integer" resultType="com.griptk.b2b.user.domain.UserVO">
+		SELECT user_no, 
+			receiver_nm,
+			shipto_addr1,
+			shipto_addr2,
+			receiver_tel,
+			reg_dt,
+			shipto_no,
+			shipto_nm,
+			upd_dt 
+		FROM
+			tb_shipto_addr
+		WHERE
+			user_no = #{user_no}
+	</select>
+	
+	<select id="deleteShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO">
+		DELETE FROM
+			tb_shipto_addr
+		WHERE
+			user_no = #{user_no}
+		AND 
+			shipto_no = #{shipto_no}
+	</select>
+	
+	<insert id="insertShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO" >
+		INSERT INTO tb_shipto_addr(
+			user_no, 
+			receiver_nm,
+			shipto_addr1,
+			shipto_addr2,
+			receiver_tel,
+			reg_dt,
+			shipto_no,
+			shipto_nm,
+			upd_dt 
+		)
+		VALUES (
+			#{user_no}, 
+			#{receiver_nm},
+			#{shipto_addr1},
+			#{shipto_addr2},
+			#{receiver_tel},
+			NOW(),
+			#{shipto_no},
+			#{shipto_nm},
+			NOW()
+		)
+	</insert>
 </mapper>

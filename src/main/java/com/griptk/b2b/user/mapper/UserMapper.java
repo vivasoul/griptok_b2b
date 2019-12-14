@@ -22,6 +22,8 @@ public interface UserMapper {
 	
 	int getImgNo();
 	
+	UserVO getUserInfo(int user_no);
+	
 	int signUpUser(UserVO userVo);
 	
 	int insertLoginInfo(UserVO userVo);
