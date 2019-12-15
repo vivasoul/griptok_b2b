@@ -9,6 +9,11 @@ public interface ProductMapper {
 	List<ProductVO> listNewProducts();
 	List<ProductVO> listBestProducts();
 	List<ProductVO> listDcProducts();
+	List<ProductVO> listProducts();
+	List<ProductVO> listProducts_C(int craft_no);
+	List<ProductVO> listProducts_CC(int category_no);
+	List<ProductVO> listProducts_B(int p_brand_no);
+	List<ProductVO> listProducts_BB(int brand_no);	
 	
 	int getAllCounts();
 	int getDCCounts();

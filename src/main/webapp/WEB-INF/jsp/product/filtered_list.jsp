@@ -3,7 +3,7 @@
 <script type="text/javascript" src= "/js/product/list.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function(){
-	loadList("/product/new","filtered-product-list");
+	loadList("<%=request.getAttribute("list_url")%>","filtered-product-list");
 });
 </script>    
 <div class="container-fluid main-shopping-list">

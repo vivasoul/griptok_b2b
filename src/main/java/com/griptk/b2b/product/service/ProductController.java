@@ -27,6 +27,7 @@ public class ProductController {
 		
 		model.addAttribute("page_title","전체상품("+cnt+")");
 		model.addAttribute("page_path","홈 > 전체상품("+cnt+")");
+		model.addAttribute("list_url","/products");
 		model.addAttribute("content_page", "product/filtered_list");
 		return "_template/main";
 	}
@@ -39,12 +40,19 @@ public class ProductController {
 			return "redirect:/main";
 		}else {
 			PageLabelVO label = null;
+			String list_url = null;
 			
-			if(c_id == null)  label = productMapper.getPageLabel_B(p_id);
-			else 			  label = productMapper.getPageLabel_BB(c_id);	
+			if(c_id == null)  {
+				label = productMapper.getPageLabel_B(p_id);
+				list_url = "/products/brand/"+p_id;
+			}else {
+				label = productMapper.getPageLabel_BB(c_id);
+				list_url = "/products/brand/"+p_id+"/"+c_id;
+			}
 			
 			model.addAttribute("page_title", label.getTitle());
 			model.addAttribute("page_path", label.getPath());
+			model.addAttribute("list_url",list_url);
 			model.addAttribute("content_page", "product/filtered_list");
 		}
 		return "_template/main";
@@ -58,12 +66,19 @@ public class ProductController {
 			return "redirect:/main";
 		}else {
 			PageLabelVO label = null;
+			String list_url = null;
 			
-			if(c_id == null)  label = productMapper.getPageLabel_C(p_id);
-			else 			  label = productMapper.getPageLabel_CC(c_id);	
+			if(c_id == null)  {
+				label = productMapper.getPageLabel_C(p_id);
+				list_url = "/products/craft/"+p_id;
+			}else {
+				label = productMapper.getPageLabel_CC(c_id);
+				list_url = "/products/craft/"+p_id+"/"+c_id;
+			}
 			
 			model.addAttribute("page_title", label.getTitle());
-			model.addAttribute("page_path", label.getPath());			
+			model.addAttribute("page_path", label.getPath());
+			model.addAttribute("list_url", list_url);
 			model.addAttribute("content_page", "product/filtered_list");
 		}
 		return "_template/main";
@@ -75,6 +90,7 @@ public class ProductController {
 		
 		model.addAttribute("page_title","특가상품("+cnt+")");
 		model.addAttribute("page_path","홈 > 특가상품("+cnt+")");
+		model.addAttribute("list_url","/products/dc");
 		model.addAttribute("content_page", "product/filtered_list");
 		return "_template/main";
 	}	
