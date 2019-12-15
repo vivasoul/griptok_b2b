@@ -30,41 +30,25 @@
 			<h4 class="h_tag_center">4. 사이트 로그인 후 이용</h4>
 		</div>
 
-        <div id="loginbox" style="margin-top:50px;" class="mainbox col-sm-8 col-sm-offset-2">                    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-sm-8 col-sm-offset-2">    
+        	
+                        
             <div class="panel panel-info" >
-                    <div class="panel-heading">
-                        <div class="panel-title">로그인</div>
-                    </div>     
 
                     <div style="padding-top:30px" class="panel-body" >
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            
-                        <form id="loginform" class="form-horizontal" role="form">
+                                <div class="row" >
+						            <div class="media-object col-sm-9">
+						            	<div class="col-sm-12 input-group"><input id="login_user_id" name="user_id" type="text" placeholder="아이디"  class="form-control input-lg"></div>
+						            	<div class="col-sm-12 input-group"><input id="login_passwd" name="passwd" type="password" placeholder="비밀번호"  class="form-control input-lg"></div>
+						            </div>
+						            <div class="media-object col-sm-3" >
+                                      <button class="btn btn-primary option-button" id="btn_login">로그인</button>
+						            </div>
+					            </div>
                                     
-                            <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="login_user_id" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
-                                    </div>
-                                
-                            <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="login_passwd" type="password" class="form-control" name="password" placeholder="password">
-                                    </div>
-                                    
-
-                                
-
-
-                                <div style="margin-top:10px" class="form-group">
-                                    <!-- Button -->
-
-                                    <div class="col-sm-12 controls">
-                                      <a id="btn_login" href="#" class="btn btn-primary">Login  </a>
-
-                                    </div>
-                                </div>
-
+                                <br>
 
                                 <div class="form-group">
                                     <div class="col-md-12 control">
@@ -75,7 +59,6 @@
 										<div onclick="location.href='/register'"  class="login_float"> ●회원가입</div>
                                     </div>
                                 </div>    
-                            </form>     
                         </div>                     
                     </div>  
         </div>
@@ -106,16 +89,28 @@
               </div>
             </div>
             <div class="form-group">
-            <div class="right-inner-addon">
-                <i class="fa fa-key"></i>
-                <input id="id_cell_contact_tel" class="form-control input-lg" placeholder="휴대폰번호" type="text">
+            <div class="row">
+            	<div class="col-sm-4">
+                	<input id="id_cell_contact_tel1" class="form-control input-lg" placeholder="010" type="text">
+                </div>
+                <div class="col-sm-4">
+                	<input id="id_cell_contact_tel2" class="form-control input-lg" type="text">
+                </div>
+                <div class="col-sm-4">
+                	<input id="id_cell_contact_tel3" class="form-control input-lg" type="text">
+                </div>
               </div>
             </div>
           </fieldset>
-          <hr>
+          <div class="row">
+          	<div class="col-sm-12 notice" >
+          		*회원가입 시 등록한 이름과 휴대폰 번호 또는 이메일을 입력하시면 아이디를 확인하실 수 있습니다.
+          	</div>
+          </div>
+          <br>
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
-              <button id="id_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 전송</button>
+              <button id="id_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
             </div>
           </div>
         </div>
@@ -136,9 +131,14 @@
               </div>
             </div>
           </fieldset>
+          <div class="row">
+          	<div class="col-sm-12 notice" >
+          		*회원가입 시 등록한 이름과 휴대폰 번호 또는 이메일을 입력하시면 아이디를 확인하실 수 있습니다.
+          	</div>
+          </div>
           <br>
           <div class=" text-center">
-            <button id="id_email_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 아이디 찾기</button>
+            <button id="id_email_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
           </div>
            <br>
         </div> 
@@ -160,15 +160,15 @@
             <h3>비밀번호 찾기</h3>
             <ul class="nav nav-tabs">
               <li class="active">
-                <a href="#cell_tab" data-toggle="tab">전화번호</a>                  
+                <a href="#pass_cell_tab" data-toggle="tab">전화번호</a>                  
               </li>
               <li>
-                <a href="#email_tab" data-toggle="tab">이메일</a>
+                <a href="#pass_email_tab" data-toggle="tab">이메일</a>
               </li>
             </ul>
             <br>            
         <div class="tab-content clearfix">
-          <div class="tab-pane fade in active" id="cell_tab">
+          <div class="tab-pane fade in active" id="pass_cell_tab">
           <br>
           <fieldset>
             <div class="form-group">
@@ -184,21 +184,34 @@
               </div>
             </div>
             <div class="form-group">
-            <div class="right-inner-addon">
-                <i class="fa fa-key"></i>
-                <input id="passwd_cell_contact_tel" class="form-control input-lg" placeholder="휴대폰번호" type="text">
+            <div class="row">
+            	<div class="col-sm-4">
+                	<input id="passwd_cell_contact_tel1" class="form-control input-lg" placeholder="010" type="text">
+                </div>
+                <div class="col-sm-4">
+                	<input id="passwd_cell_contact_tel2" class="form-control input-lg" type="text">
+                </div>
+                <div class="col-sm-4">
+                	<input id="passwd_cell_contact_tel3" class="form-control input-lg" type="text">
+                </div>
               </div>
             </div>
           </fieldset>
-          <hr>
+          <div class="row">
+          	<div class="col-sm-12 notice" >
+          		*회원가입 시 등록한 아이디와 이름을 입력해주세요.<br>
+          		고객님의 이메일로 임시 비밀번호가 전송됩니다.
+          	</div>
+          </div>
+          <br>
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
-              <button id="passwd_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 전송</button>
+              <button id="passwd_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
             </div>
           </div>
         </div>
           
-         <div class="tab-pane fade" id="email_tab">
+         <div class="tab-pane fade" id="pass_email_tab">
           <br>
           <fieldset>
             <div class="form-group">
@@ -220,9 +233,15 @@
               </div>
             </div>
           </fieldset>
+          <div class="row">
+          	<div class="col-sm-12 notice" >
+          		*회원가입 시 등록한 아이디와 이름을 입력해주세요.<br>
+          		고객님의 이메일로 임시 비밀번호가 전송됩니다.
+          	</div>
+          </div>
           <br>
           <div class=" text-center">
-            <button class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> Create Account</button>
+            <button class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
           </div>
            <br>
         </div> 
@@ -277,43 +296,54 @@ function openModal(type){
 
 //
 $("#id_cell_finder").bind("click",function(){
-    $.ajax({
-        url : "/login/find/id",
-        type: "post",
-        data : JSON.stringify({ 
-        			"ceo_nm" : $("#id_cell_ceo_nm").val(),
-        			"contact_tel" : $("#id_cell_contact_tel").val()
-        	   }),
-     	contentType: "application/json",
-        success : function(responseData){
-        	var user_id = responseData.result;
-        	if(user_id==null){
-        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
-        	}else{
-        		alert("회원님의 아이디는 " + user_id + "입니다.");
-        	}
-        }
-    });
+	var checker_vals = ["id_cell_ceo_nm", "id_cell_contact_tel1","id_cell_contact_tel2","id_cell_contact_tel3"];
+	if(form_checker(checker_vals)){
+	    $.ajax({
+	        url : "/login/find/id",
+	        type: "post",
+	        data : JSON.stringify({ 
+	        			"ceo_nm" : $("#id_cell_ceo_nm").val(),
+	        			"contact_tel" : $("#id_cell_contact_tel1").val()+$("#id_cell_contact_tel2").val()+$("#id_cell_contact_tel3").val()
+	        	   }),
+	     	contentType: "application/json",
+	        success : function(responseData){
+	        	var user_id = responseData.result;
+	        	if(user_id==null){
+	        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
+	        	}else{
+	        		alert("회원님의 아이디는 " + user_id + "입니다.");
+	        	}
+	        }
+	    });
+	}else{
+		alert("빈 칸을 다 채워주세요.");
+	}
 });
 
 $("#id_email_finder").bind("click",function(){
-    $.ajax({
-        url : "/login/find/id",
-        type: "post",
-        data : JSON.stringify({ 
-        			"ceo_nm" : $("#id_email_ceo_nm").val(),
-        			"tax_email" : $("#id_email_email").val()
-        	   }),
-   	    contentType: "application/json",
-        success : function(responseData){
-        	var user_id = responseData.result;
-        	if(user_id==null){
-        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
-        	}else{
-        		alert("회원님의 아이디는 " + user_id + "입니다.");
-        	}
-        }
-    });
+	var checker_vals = ["id_email_ceo_nm", "id_email_email"];
+	if(form_checker(checker_vals)){
+	    $.ajax({
+	        url : "/login/find/id",
+	        type: "post",
+	        data : JSON.stringify({ 
+	        			"ceo_nm" : $("#id_email_ceo_nm").val(),
+	        			"tax_email" : $("#id_email_email").val()
+	        	   }),
+	   	    contentType: "application/json",
+	        success : function(responseData){
+	        	var user_id = responseData.result;
+	        	if(user_id==null){
+	        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
+	        	}else{
+	        		alert("회원님의 아이디는 " + user_id + "입니다.");
+	        	}
+	        }
+	    });
+	}else{
+		alert("빈 칸을 다 채워주세요");
+	}   
+	    
 });
 
 
@@ -360,24 +390,45 @@ $("#passwd_email_finder").bind("click",function(){
 });
 
 $("#btn_login").bind("click",function(){
-    $.ajax({
-        url : "/login/connect",
-        type: "post",
-        data : JSON.stringify({ 
-        			"user_id" : $("#login_user_id").val(),
-        			"passwd" : $("#login_passwd").val()
-        	   }),
-    	contentType: "application/json",
-        success : function(responseData){
-        	if(responseData.result==1){
-        		alert("페이지이동");
-        	}else{
-        		alert("아이디 또는 비밀번호가 올바르지 않습니다.")
-        	}
-        }
-    });
+	var checker_vals = ["login_user_id", "login_passwd"];
+	if(form_checker(checker_vals)){
+	    $.ajax({
+	        url : "/login/connect",
+	        type: "post",
+	        data : JSON.stringify({ 
+	        			"user_id" : $("#login_user_id").val(),
+	        			"passwd" : $("#login_passwd").val()
+	        	   }),
+	    	contentType: "application/json",
+	        success : function(responseData){
+	        	if(responseData.result==1){
+	        		alert("페이지이동");
+	        	}else{
+	        		alert("아이디 또는 비밀번호가 올바르지 않습니다.")
+	        	}
+	        }
+	    });
+	}else{
+		alert("빈칸을 다 채워주세요.");
+	}
 });
 
+function form_clear(){
+	
+}
+
+function form_checker(_vals, highlight_needed){
+	var return_val = true;
+	if(_vals.length>0){
+		_vals.forEach(function(item, index){
+			if($("#"+item).val()==""){
+				if(highlight_needed) $("#"+item).css("border-color","red");
+				return_val = false;
+			}
+		})
+	}
+	return return_val;
+}
 
 </script>
 

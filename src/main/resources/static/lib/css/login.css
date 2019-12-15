@@ -22,3 +22,20 @@
 .container.custom-container {
   padding-top: 100px;
 }
+
+.option-button {
+    height:100%;
+    width:100%;
+}
+
+.media-object {
+    height: 100px;
+}
+
+#login_passwd{
+	margin-top:10px;
+}
+
+.notice{
+	font-size:20px;
+}
