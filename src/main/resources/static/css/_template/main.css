@@ -4,7 +4,7 @@ body {
 	margin: 1%;
 	font-family: 'Nanum Gothic', sans-serif;
 }
-	.top_menu { 
+.top_menu { 
 	 text-align:right;
 }
 .top_menu>a {
@@ -77,3 +77,5 @@ body {
 		padding-top:10px;
 		text-align:center; 
 }
+#griptok-page-title { text-align:left;font-size:13px;font-weight:700; }
+#griptok-page-path { text-align:right;font-size:13px;font-weight:700; } 
