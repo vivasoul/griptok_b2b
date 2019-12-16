@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,10 +38,71 @@
 				</tr>
 			</table>
 		</div>
+		<div class="row margin-bottom-lg">
+			<div style="background-color: transparent">
+				<font style="font-weight: bold">배송정보</font>
+			</div>
+		</div>
+		<div class="row">
+			<table id="custom-css-table" class="table">
+				<tbody>
+					<tr>
+						<th>송장번호</th>
+						<td>${one.invoice_no}</td>
+					</tr>
+					<tr>
+						<th>주문자</th>
+						<td>${one.sender}/${one.contact_tel}/${one.tax_email}</td>
+					</tr>
+					<tr>
+						<th>받는사람</th>
+						<td>${one.receiver_nm}</td>
+					</tr>
+					<tr>
+						<th>출고시 참고사항</th>
+						<td>${one.memo}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row margin-bottom-lg">
+			<div style="background-color: transparent">
+				<font style="font-weight: bold">주문상품 정보</font>
+			</div>
+		</div>
+		<div class="row">
+			<table id="example" class="table table-striped table-bordered hover">
+				<thead>
+					<tr>
+						<th data-column = "reg_dt">주문일자</th>
+						<th data-column = "order_no">주문번호</th>
+						<th data-column = "title">상품명</th>
+						<th data-column = "order_cnt">수량</th>
+						<th data-column = "order_cost">주문금액</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="each" items="${arr }">
+						<tr>
+							<td>${one.reg_dt }</td>
+							<td>${each.order_no }</td>
+							<td>${each.title }</td>
+							<td>${each.order_cnt }개</td>
+							<td><fmt:formatNumber value="${each.order_cost}" pattern="#,###" />원</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 <script>
 $(document).ready(function() {
-	
+	$('#custom-css-table th').css({
+		'background-color':'LightGray',
+		'width':'20%',
+		'text-align':'center'
+	})
+	griptok.component.datatable('example').create();
 });
 </script>
 </body>
