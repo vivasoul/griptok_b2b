@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row margin-bottom-lg">
+		<div class="row">
 			<div style="background-color: LightGray">
 				<font style="font-weight: bold">주문 배송 조회/ 주문 상세 내역</font>
 			</div>
@@ -38,7 +38,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="row margin-bottom-lg">
+		<div class="row">
 			<div style="background-color: transparent">
 				<font style="font-weight: bold">배송정보</font>
 			</div>
@@ -65,7 +65,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="row margin-bottom-lg">
+		<div class="row">
 			<div style="background-color: transparent">
 				<font style="font-weight: bold">주문상품 정보</font>
 			</div>
@@ -102,7 +102,9 @@ $(document).ready(function() {
 		'width':'20%',
 		'text-align':'center'
 	})
-	griptok.component.datatable('example').create();
+	griptok.component.datatable('example').create(null,{
+		  "lengthChange": false
+	} );
 });
 </script>
 </body>
