@@ -5,15 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.imageio.ImageIO;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.annotation.MapperScan;
@@ -206,37 +199,32 @@ public class UserAPI {
 	
 	
 	// find Passwd
+	@SuppressWarnings("finally")
 	@PostMapping("/login/find/passwd")
 	public Map<String, Object> findPasswd(
 			@RequestBody UserVO vo,
 	        HttpServletResponse response) {
-		
-		UserVO resultVo = mapper.findPasswd(vo);
-		
-		int result = 1;
-		String recipient_email = resultVo.getTax_email();
-		if(recipient_email.equals(null)){
-			result = 0;
-		}else{
-			try {
-				String temp_pass = passwordGenerator.generate(12);
-				String new_temp_password = passwordEncoder.encode(temp_pass);
-				sendTempPassword(recipient_email, new_temp_password);
-				resultVo.setPasswd(new_temp_password);
-				result = mapper.setPasswd(resultVo);
-			}catch(Exception e) {
-				result =-1;
-			}
-		}
-		
-		
-		
-		
-		System.out.println("checking result : " + result);
 		Map<String, Object> resp = new HashMap();
+		int result = 1;
 		
+		try {
+			UserVO resultVo = mapper.findPasswd(vo);
+			if(resultVo==null) {
+				System.out.println("asdfasdfasdf");
+				result =-2;
+			}else {
+				String recipient_email = resultVo.getTax_email();
+				String temp_pass = passwordGenerator.generate(12);
+				sendTempPassword(recipient_email, temp_pass);
+				String new_temp_password = passwordEncoder.encode(temp_pass);
+				resultVo.setPasswd(new_temp_password);
+				System.out.println(resultVo.toString());
+				result = mapper.setPasswd(resultVo);
+			}
+		}catch(Exception e) {
+			result =-1;
+		}
 		resp.put("result", result);
-		
 		return resp;
 	}
 	
@@ -250,58 +238,15 @@ public class UserAPI {
 		String user_id = vo.getUser_id();
 		String encoded_password = mapper.getPassword(user_id);
 		int result = 1;
+		System.out.println(passwd);
+		System.out.println(encoded_password);
 		if(!passwordEncoder.matches(passwd, encoded_password)) {
-			result = 0;
-		}
-		if(passwd.equals(encoded_password)) {
 			result = 0;
 		}
 		Map<String, Object> resp = new HashMap();
 		resp.put("result", result);
 		return resp;
 	}
-	
-//	public int mailSender(String recipient){
-//		String username="yohan394";
-//	    String password="nM3947242@@";
-//	    
-//        Properties props = new Properties(); 
-//        props.put("mail.smtp.user",username); 
-//        props.put("mail.smtp.password", password);
-//        props.put("mail.smtp.host", "smtp.gmail.com"); 
-//        props.put("mail.smtp.port", "25"); 
-//        props.put("mail.debug", "true"); 
-//        props.put("mail.smtp.auth", "true"); 
-//        props.put("mail.smtp.starttls.enable","true"); 
-//        props.put("mail.smtp.EnableSSL.enable","true");
-//        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-//        props.setProperty("mail.smtp.socketFactory.fallback", "false");   
-//        props.setProperty("mail.smtp.port", "465");   
-//        props.setProperty("mail.smtp.socketFactory.port", "465"); 
-//    
-//        Session session = Session.getInstance(props, 
-//         new javax.mail.Authenticator() { 
-//        protected PasswordAuthentication getPasswordAuthentication() { 
-//        return new PasswordAuthentication(username, password); 
-//        }});
-//        try{
-//            Message message = new MimeMessage(session); 
-//            message.setFrom(new InternetAddress(username));// 
-//            message.setRecipients(Message.RecipientType.TO,
-//            			InternetAddress.parse(recipient)); 
-//            message.setSubject("Testing Subject");
-//            message.setText("Dear Mail Crawler," 
-//            + "\n\n No spam to my email, please!");//내용 
-//            System.out.println("send!!!");
-//            Transport.send(message); 
-//            System.out.println("SEND");
-//            
-//        } catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        
-//        return 1;
-//	}
 	
 	private void sendTempPassword(String email, String password) throws Exception{
 		String title = "Sending a temporary passowrd to access the solution, Griptok";
@@ -311,8 +256,5 @@ public class UserAPI {
 		  	.append("'/>");
 		mailSender.send(email, title, sb.toString());
 	}
-
-	
-	
 		
 }

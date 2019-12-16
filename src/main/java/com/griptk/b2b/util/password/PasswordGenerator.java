@@ -34,10 +34,10 @@ public final class PasswordGenerator {
         private boolean usePunctuation;
 
         public PasswordGeneratorBuilder() {
-            this.useLower = false;
-            this.useUpper = false;
-            this.useDigits = false;
-            this.usePunctuation = false;
+            this.useLower = true;
+            this.useUpper = true;
+            this.useDigits = true;
+            this.usePunctuation = true;
         }
 
         /**
@@ -121,7 +121,7 @@ public final class PasswordGenerator {
         // Variables.
         StringBuilder password = new StringBuilder(length);
         Random random = new Random(System.nanoTime());
-
+        
         // Collect the categories to use.
         List<String> charCategories = new ArrayList<>(4);
         if (useLower) {

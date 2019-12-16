@@ -241,14 +241,14 @@
           </div>
           <br>
           <div class=" text-center">
-            <button class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
+            <button id="passwd_email_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
           </div>
            <br>
         </div> 
         
         </div>
         <div class="modal-footer">
-          <button id="passwd_email_finder" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -358,11 +358,19 @@ $("#passwd_cell_finder").bind("click",function(){
         	   }),
      	contentType: "application/json",
         success : function(responseData){
-        	var user_id = responseData.result;
-        	if(user_id==null){
+        	console.log(responseData);
+        	var result = responseData.result;
+        	if(result==null){
         		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
         	}else{
-        		alert("회원님의 아이디는 " + user_id + "입니다.");
+        		if(result==-1){
+        			alert("비밀번호 전송에 실패하였습니다.");
+        		}else if(result==-2){
+        			alert("해당 정보로 등록된 사용자가 없습니다.");
+        		}else if(result==1){
+        			alert("회원님의 이메일로 임시 비밀번호가 발송되었습니다.");
+        		}
+        		
         	}
         }
     });
@@ -379,11 +387,18 @@ $("#passwd_email_finder").bind("click",function(){
         	   }),
    	    contentType: "application/json",
         success : function(responseData){
-        	var user_id = responseData.result;
-        	if(user_id==null){
+        	var result = responseData.result;
+        	if(result==null){
         		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
         	}else{
-        		alert("회원님의 아이디는 " + user_id + "입니다.");
+        		if(result==-1){
+        			alert("비밀번호 전송에 실패하였습니다.");
+        		}else if(result==-2){
+        			alert("해당 정보로 등록된 사용자가 없습니다.");
+        		}else if(result==1){
+        			alert("회원님의 이메일로 임시 비밀번호가 발송되었습니다.");
+        		}
+        		
         	}
         }
     });
