@@ -134,7 +134,7 @@
 			AND c.craft_no = #{craft_no}
 		)
 		SELECT 
-			CONCAT(craft_nm,cnt_str) AS `title`,
+			craft_nm AS `title`,
 			CONCAT('홈 > ',craft_nm,cnt_str) AS `path`
 		FROM tb_craft_type a CROSS JOIN CTE b
 		WHERE 1=1
@@ -149,7 +149,7 @@
 			AND b.category_no = #{category_no}
 		)
 		SELECT 
-			CONCAT(craft_nm,cnt_str) AS `title`,
+			category_nm AS `title`,
 			CONCAT('홈 > ',craft_nm,' > ', category_nm, cnt_str) AS `path`
 		FROM tb_product_category a 
 		INNER JOIN tb_craft_type b ON a.craft_no = b.craft_no
@@ -167,7 +167,7 @@
 			AND c.p_brand_no = #{p_brand_no}
 		)
 		SELECT 
-			CONCAT(brand_nm,cnt_str) AS `title`,
+			a.brand_nm AS `title`,
 			CONCAT('홈 > ',brand_nm,cnt_str) AS `path`
 		FROM tb_brand_type a CROSS JOIN CTE b
 		WHERE 1=1
@@ -183,7 +183,7 @@
 			AND c.brand_no = #{brand_no}
 		)
 		SELECT 
-			CONCAT(a.brand_nm,cnt_str) AS `title`,
+			a.brand_nm AS `title`,
 			CONCAT('홈 > ',b.brand_nm,' > ',a.brand_nm, cnt_str) AS `path`
 		FROM tb_brand_type a 
 		INNER JOIN tb_brand_type b ON a.p_brand_no = b.brand_no
