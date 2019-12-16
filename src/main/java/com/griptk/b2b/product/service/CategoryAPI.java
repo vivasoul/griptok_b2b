@@ -22,4 +22,11 @@ public class CategoryAPI {
 		return mapper.listCrafts();
 	}
 	
+	public CraftTypeVO getCraft(int craft_no){
+		return mapper.getCraft(craft_no);
+	}
+	
+	public BrandTypeVO getBrand(int brand_no){
+		return mapper.getBrand(brand_no);
+	}	
 }

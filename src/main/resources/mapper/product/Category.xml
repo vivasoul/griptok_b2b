@@ -14,4 +14,16 @@
 		FROM tb_craft_type
 		ORDER BY craft_no
 	</select>
+	
+	<select id="getCraft" parameterType="Int" resultType="com.griptk.b2b.product.domain.CraftTypeVO">
+		SELECT craft_no, craft_nm 
+		FROM tb_craft_type 
+		WHERE craft_no = #{craft_no}
+	</select>
+	
+	<select id="getBrand" parameterType="Int" resultType="com.griptk.b2b.product.domain.BrandTypeVO">
+		SELECT brand_no, brand_nm 
+		FROM tb_brand_type 
+		WHERE brand_no = #{brand_no}
+	</select>
 </mapper>

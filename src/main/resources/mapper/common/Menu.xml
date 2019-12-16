@@ -27,4 +27,26 @@
 		SELECT  DISTINCT menu_url, menu_nm, menu_auth, template_id 
 		FROM tb_menu WHERE menu_url != ''	
 	</select>
+	
+	<select id="listMenusByBrand" resultType="com.griptk.b2b.common.domain.MenuVO">
+	<![CDATA[
+		SELECT 
+			brand_no AS menu_id,
+			CONCAT('/main/brand?p_id=',p_brand_no,'&id=',brand_no) AS menu_url, 
+			brand_nm AS menu_nm
+		FROM tb_brand_type WHERE p_brand_no = #{p_brand_no}
+		ORDER BY brand_no
+	]]>
+	</select>
+	
+	<select id="listMenusByCraft" resultType="com.griptk.b2b.common.domain.MenuVO">
+	<![CDATA[
+		SELECT 
+			category_no AS menu_id,
+			CONCAT('/main/craft?p_id=',craft_no,'&id=',category_no) AS menu_url, 
+			category_nm AS menu_nm
+		FROM tb_product_category WHERE craft_no = #{craft_no}
+		ORDER BY craft_no
+	]]>
+	</select>
 </mapper>

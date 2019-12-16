@@ -9,7 +9,7 @@
 	List<MenuVO> top_menus = (List<MenuVO>)request.getAttribute("top_menus");
 	List<CraftTypeVO> crafts_filter = (List<CraftTypeVO>)request.getAttribute("crafts_filter");
 	List<BrandTypeVO> brands_filter = (List<BrandTypeVO>)request.getAttribute("brands_filter");
-	String page_title = (String)request.getAttribute("page_title");
+
 	String page_path = (String)request.getAttribute("page_path");
 %>
 <div class="container-fluid griptok-body">
@@ -38,5 +38,5 @@
 		</div>
 	</div>
 	<%if(page_path!=null){%><div class="row"><div class="col-sm-12" id="griptok-page-path"><%=page_path%></div></div><%}%>	
-	<%if(page_title!=null){%><div class="row"><div class="col-sm-12" id="griptok-page-title"><%=page_title%></div></div><%}%>	
+		
 </div>

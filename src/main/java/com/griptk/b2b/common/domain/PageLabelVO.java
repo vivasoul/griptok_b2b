@@ -17,6 +17,6 @@ public class PageLabelVO {
 	}
 	@Override
 	public String toString() {
-		return "PageLabel [title=" + title + ", path=" + path + "]";
+		return "PageLabelVO [title=" + title + ", path=" + path + "]";
 	}
 }

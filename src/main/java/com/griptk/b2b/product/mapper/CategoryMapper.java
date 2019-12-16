@@ -8,4 +8,7 @@ import com.griptk.b2b.product.domain.CraftTypeVO;
 public interface CategoryMapper {
 	List<BrandTypeVO> listBrands(int p_brand_no);
 	List<CraftTypeVO> listCrafts();
+	
+	CraftTypeVO getCraft(int craft_no);
+	BrandTypeVO getBrand(int brand_no);
 }

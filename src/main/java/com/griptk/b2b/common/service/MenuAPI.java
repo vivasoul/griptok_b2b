@@ -24,5 +24,13 @@ public class MenuAPI {
 	
 	public Map<String, MenuVO> getMenusWithURL(){
 		return mapper.listWithUrl();
-	}	
+	}
+	
+	public List<MenuVO> getSideMenuByBrand(int p_brand_no){
+		return mapper.listMenusByBrand(p_brand_no);
+	}
+	
+	public List<MenuVO> getSideMenuByCraft(int craft_no){
+		return mapper.listMenusByCraft(craft_no);
+	}
 }
