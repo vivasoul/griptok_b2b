@@ -40,8 +40,8 @@ public class UserAPI {
 	@Autowired
 	private UserMapper mapper;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private MailSendUtil mailSender;
@@ -220,9 +220,9 @@ public class UserAPI {
 		}else{
 			try {
 				String temp_pass = passwordGenerator.generate(12);
-				String new_temp_password = passwordEncoder.encode(temp_pass);
+//				String new_temp_password = passwordEncoder.encode(temp_pass);
 				sendTempPassword(recipient_email, temp_pass);
-				resultVo.setPasswd(new_temp_password);
+				resultVo.setPasswd(temp_pass);
 				result = mapper.setPasswd(resultVo);
 			}catch(Exception e) {
 				result =-1;
@@ -248,9 +248,12 @@ public class UserAPI {
 		
 		String passwd = vo.getPasswd();
 		String user_id = vo.getUser_id();
-		String enconded_password = mapper.getPassword(user_id);
+		String encoded_password = mapper.getPassword(user_id);
 		int result = 1;
-		if(!passwordEncoder.matches(passwd, enconded_password)) {
+//		if(!passwordEncoder.matches(passwd, enconded_password)) {
+//			result = 0;
+//		}
+		if(passwd.equals(encoded_password)) {
 			result = 0;
 		}
 		Map<String, Object> resp = new HashMap();
