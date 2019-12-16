@@ -1,4 +1,4 @@
-package com.griptk.b2b.util.generator;
+package com.griptk.b2b.util.mail;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -16,11 +16,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 
-public class MailSendUtil {
+public class MailSender {
 
 	private Properties props;
 	
-	public MailSendUtil(Properties props) {
+	public MailSender(Properties props) {
 		this.props = props;
 	}
 	

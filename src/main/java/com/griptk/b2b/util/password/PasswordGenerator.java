@@ -1,4 +1,4 @@
-package com.griptk.b2b.util.generator;
+package com.griptk.b2b.util.password;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public final class PasswordGenerator {
         throw new UnsupportedOperationException("Empty constructor is not supported.");
     }
 
-    private PasswordGenerator(PasswordGeneratorBuilder builder) {
+    public PasswordGenerator(PasswordGeneratorBuilder builder) {
         this.useLower = builder.useLower;
         this.useUpper = builder.useUpper;
         this.useDigits = builder.useDigits;

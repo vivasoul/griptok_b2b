@@ -30,8 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.griptk.b2b.user.domain.ImageVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.mapper.UserMapper;
-import com.griptk.b2b.util.generator.MailSendUtil;
-import com.griptk.b2b.util.generator.PasswordGenerator;
+import com.griptk.b2b.util.mail.MailSender;
+import com.griptk.b2b.util.password.PasswordGenerator;
 
 @RestController
 @MapperScan({"com.griptk.b2b.user.mapper.*"})
@@ -40,11 +40,11 @@ public class UserAPI {
 	@Autowired
 	private UserMapper mapper;
 	
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private MailSendUtil mailSender;
+	private MailSender mailSender;
 	
 	@Autowired 
 	private PasswordGenerator passwordGenerator;
@@ -220,9 +220,9 @@ public class UserAPI {
 		}else{
 			try {
 				String temp_pass = passwordGenerator.generate(12);
-//				String new_temp_password = passwordEncoder.encode(temp_pass);
-				sendTempPassword(recipient_email, temp_pass);
-				resultVo.setPasswd(temp_pass);
+				String new_temp_password = passwordEncoder.encode(temp_pass);
+				sendTempPassword(recipient_email, new_temp_password);
+				resultVo.setPasswd(new_temp_password);
 				result = mapper.setPasswd(resultVo);
 			}catch(Exception e) {
 				result =-1;
@@ -250,9 +250,9 @@ public class UserAPI {
 		String user_id = vo.getUser_id();
 		String encoded_password = mapper.getPassword(user_id);
 		int result = 1;
-//		if(!passwordEncoder.matches(passwd, enconded_password)) {
-//			result = 0;
-//		}
+		if(!passwordEncoder.matches(passwd, encoded_password)) {
+			result = 0;
+		}
 		if(passwd.equals(encoded_password)) {
 			result = 0;
 		}
