@@ -116,6 +116,22 @@
 		)
 	</insert>
 	
+	
+	
+	
+	<select id="getPassword" parameterType="String" resultType="String">
+		SELECT l.passwd FROM tb_user u
+		INNER JOIN tb_login l
+		ON u.user_no = l.user_no
+		WHERE user_id= #{user_id}
+	</select>
+	
+	<update id="setPassword" parameterType="String">
+		UPDATE tb_login
+		SET passwd = #{passwd}
+		WHERE user_no = #{user_no}
+	</update>
+	
 	<select id="login" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="Integer">
 		SELECT count(*) FROM tb_user u
 		INNER JOIN tb_login l
@@ -136,7 +152,7 @@
 	</select>
 	
 	<select id="findPasswd" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="com.griptk.b2b.user.domain.UserVO">
-		SELECT l.passwd, u.tax_email FROM tb_user u
+		SELECT u.user_no, l.passwd, u.tax_email FROM tb_user u
 		INNER JOIN tb_login l
 		ON u.user_no = l.user_no
 		WHERE user_id= #{user_id}

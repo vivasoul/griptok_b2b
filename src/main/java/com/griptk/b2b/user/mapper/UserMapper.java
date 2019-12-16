@@ -12,11 +12,15 @@ public interface UserMapper {
 	
 	int checkBizRegNumber(String biz_reg_number);
 	
+	String getPassword(String user_id);
+	
 	int login(UserVO userVo);
 	
 	String findId(UserVO userVo);
 	
 	UserVO findPasswd(UserVO userVo);
+	
+	int setPasswd(UserVO userVo);
 	
 	int insertImgInfo(ImageVO imgVo);
 	

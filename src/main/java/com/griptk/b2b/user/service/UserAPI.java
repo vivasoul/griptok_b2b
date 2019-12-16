@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.griptk.b2b.user.domain.ImageVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.mapper.UserMapper;
+import com.griptk.b2b.util.generator.MailSendUtil;
+import com.griptk.b2b.util.generator.PasswordGenerator;
 
 @RestController
 @MapperScan({"com.griptk.b2b.user.mapper.*"})
@@ -37,11 +40,14 @@ public class UserAPI {
 	@Autowired
 	private UserMapper mapper;
 	
-//	@Autowired
-//	private MailSendUtil mailSender;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
-//	@Autowired 
-//	private PasswordGenerator passwordGenerator;
+	@Autowired
+	private MailSendUtil mailSender;
+	
+	@Autowired 
+	private PasswordGenerator passwordGenerator;
 	
 	// id_check
 	@PostMapping(path="/sign_up/check/id", produces="application/json")
@@ -94,12 +100,10 @@ public class UserAPI {
 		
 		String uploadPath = "";
 		
+		// mapper
 		String path = "D:\\"+"upload\\"; // 파일 업로드 경로
 			
 		String original = mf.getOriginalFilename(); // 업로드하는 파일 name
-			
-		System.out.println("!!!!!!!!!!"+original);	// file original name
-		System.out.println("!!!!!!!!!!"+mf.getSize());// file size
 			
 		uploadPath = path+original; // 파일 업로드 경로 + 파일 이름
 		
@@ -117,7 +121,6 @@ public class UserAPI {
 		BufferedImage bimg = ImageIO.read(imag_file);
 		int width          = bimg.getWidth();
 		int height         = bimg.getHeight();
-		
 		
 		String extension = "";
 
@@ -215,8 +218,20 @@ public class UserAPI {
 		if(recipient_email.equals(null)){
 			result = 0;
 		}else{
-			result = mailSender(recipient_email);
+			try {
+				String temp_pass = passwordGenerator.generate(12);
+				String new_temp_password = passwordEncoder.encode(temp_pass);
+				sendTempPassword(recipient_email, temp_pass);
+				resultVo.setPasswd(new_temp_password);
+				result = mapper.setPasswd(resultVo);
+			}catch(Exception e) {
+				result =-1;
+			}
 		}
+		
+		
+		
+		
 		System.out.println("checking result : " + result);
 		Map<String, Object> resp = new HashMap();
 		
@@ -231,66 +246,68 @@ public class UserAPI {
 			@RequestBody UserVO vo,
 	        HttpServletResponse response) {
 		
-		int result = mapper.login(vo);
-		
+		String passwd = vo.getPasswd();
+		String user_id = vo.getUser_id();
+		String enconded_password = mapper.getPassword(user_id);
+		int result = 1;
+		if(!passwordEncoder.matches(passwd, enconded_password)) {
+			result = 0;
+		}
 		Map<String, Object> resp = new HashMap();
-		
 		resp.put("result", result);
-		
 		return resp;
 	}
 	
-	public int mailSender(String recipient){
-		String username="yohan394";
-	    String password="nM3947242!!";
-	    
-        Properties props = new Properties(); 
-        props.put("mail.smtp.user",username); 
-        props.put("mail.smtp.password", password);
-        props.put("mail.smtp.host", "smtp.gmail.com"); 
-        props.put("mail.smtp.port", "25"); 
-        props.put("mail.debug", "true"); 
-        props.put("mail.smtp.auth", "true"); 
-        props.put("mail.smtp.starttls.enable","true"); 
-        props.put("mail.smtp.EnableSSL.enable","true");
-        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");   
-        props.setProperty("mail.smtp.port", "465");   
-        props.setProperty("mail.smtp.socketFactory.port", "465"); 
-    
-        Session session = Session.getInstance(props, 
-         new javax.mail.Authenticator() { 
-        protected PasswordAuthentication getPasswordAuthentication() { 
-        return new PasswordAuthentication(username, password); 
-        }});
-        System.out.println("??");
-        try{
-            Message message = new MimeMessage(session); 
-            message.setFrom(new InternetAddress(username));// 
-            message.setRecipients(Message.RecipientType.TO,
-            			InternetAddress.parse(recipient)); 
-            message.setSubject("Testing Subject");
-            message.setText("Dear Mail Crawler," 
-            + "\n\n No spam to my email, please!");//내용 
-            System.out.println("send!!!");
-            Transport.send(message); 
-            System.out.println("SEND");
-            
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        return 1;
-	}
-	
-//	private void sendTempPassword(String email, String password) throws Exception{
-//		String title = "Sending a temporary passowrd to access the solution, PPCWIZ";
-//		StringBuilder sb = new StringBuilder();
-//		  sb.append("This is your temporary password:<br/><input type='text' value='")
-//		  	.append(password)
-//		  	.append("'/>");
-//		mailSender.send(email, title, sb.toString());
+//	public int mailSender(String recipient){
+//		String username="yohan394";
+//	    String password="nM3947242@@";
+//	    
+//        Properties props = new Properties(); 
+//        props.put("mail.smtp.user",username); 
+//        props.put("mail.smtp.password", password);
+//        props.put("mail.smtp.host", "smtp.gmail.com"); 
+//        props.put("mail.smtp.port", "25"); 
+//        props.put("mail.debug", "true"); 
+//        props.put("mail.smtp.auth", "true"); 
+//        props.put("mail.smtp.starttls.enable","true"); 
+//        props.put("mail.smtp.EnableSSL.enable","true");
+//        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
+//        props.setProperty("mail.smtp.socketFactory.fallback", "false");   
+//        props.setProperty("mail.smtp.port", "465");   
+//        props.setProperty("mail.smtp.socketFactory.port", "465"); 
+//    
+//        Session session = Session.getInstance(props, 
+//         new javax.mail.Authenticator() { 
+//        protected PasswordAuthentication getPasswordAuthentication() { 
+//        return new PasswordAuthentication(username, password); 
+//        }});
+//        try{
+//            Message message = new MimeMessage(session); 
+//            message.setFrom(new InternetAddress(username));// 
+//            message.setRecipients(Message.RecipientType.TO,
+//            			InternetAddress.parse(recipient)); 
+//            message.setSubject("Testing Subject");
+//            message.setText("Dear Mail Crawler," 
+//            + "\n\n No spam to my email, please!");//내용 
+//            System.out.println("send!!!");
+//            Transport.send(message); 
+//            System.out.println("SEND");
+//            
+//        } catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        
+//        return 1;
 //	}
+	
+	private void sendTempPassword(String email, String password) throws Exception{
+		String title = "Sending a temporary passowrd to access the solution, Griptok";
+		StringBuilder sb = new StringBuilder();
+		  sb.append("This is your temporary password:<br/><input type='text' value='")
+		  	.append(password)
+		  	.append("'/>");
+		mailSender.send(email, title, sb.toString());
+	}
 
 	
 	
