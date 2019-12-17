@@ -35,18 +35,18 @@
       	   <div class="row" >
             <div class="col-sm-4">
               	<div class="col-sm-12 input-group custom">
-			    <input name="user_id" id="user_id" type="text" class="form-control input-lg" placeholder="아이디">
+			    <input name="user_id" id="user_id" type="text" class="form-control input-lg" placeholder="아이디" required>
 			    <span class="input-group-btn" style="width:0;">
 			        <button id="id_check" class="btn-primary btn-lg" type="button">중복확인</button>
 			    </span>
 			   </div>
-               <div class="col-sm-12 input-group custom"><input id="passwd" name="passwd" type="password" placeholder="비밀번호"  class="form-control input-lg"></div>
-               <div class="col-sm-12 input-group custom"><input id="passwd_check" name="passwd_check" type="password" placeholder="비밀번호 확인"  class="form-control input-lg"></div>
-               <div class="col-sm-12 input-group custom"><input id="contact_tel" name="contact_tel" type="text" placeholder="전화번호"  class="form-control input-lg"></div>
+               <div class="col-sm-12 input-group custom"><input id="passwd" name="passwd" type="password" placeholder="비밀번호"  class="form-control input-lg" required></div>
+               <div class="col-sm-12 input-group custom"><input id="passwd_check" name="passwd_check" type="password" placeholder="비밀번호 확인"  class="form-control input-lg" required></div>
+               <div class="col-sm-12 input-group custom"><input id="contact_tel" name="contact_tel" type="text" placeholder="전화번호" class="form-control input-lg" required></div>
             </div>
             <div class="col-sm-8">
             	<span class="input_chk">
-					<input type="checkbox" id="termsService" name="termsService" class="chk">
+					<input type="checkbox" id="termsService" name="termsService" class="chk" >
 					<label for="termsService">전체 동의<span class="terms_necessary">(필수)</span></label>
 				</span>
             	<div class="col-sm-12" style="border:1px solid #dadada">
@@ -82,20 +82,20 @@
            <div class="row">
             <div class="col-sm-4 ">
               <div class="col-sm-12 input-group custom">
-              	<input type="text" id="company_nm" name="company_nm" placeholder="회사명" class="form-control input-lg">
+              	<input type="text" id="company_nm" name="company_nm" placeholder="회사명" class="form-control input-lg" required>
               	<span class="input-group-btn" style="width:0;">
 			        <button id="company_nm_check" class="btn-primary btn-lg text-sm" type="button">중복확인</button>
 			    </span>
               </div>
               <div class="col-sm-12 input-group custom">
-              	<input type="number" id="biz_reg_number" name="biz_reg_number" placeholder="사업자등록번호"  class="form-control input-lg">
+              	<input type="number" id="biz_reg_number" name="biz_reg_number" placeholder="사업자등록번호"  class="form-control input-lg" required>
               	<span class="input-group-btn" style="width:0;">
 			        <button id="biz_reg_number_check" class="btn-primary btn-lg text-sm" type="button">중복확인</button>
 			    </span>
               </div>
               <div class="col-sm-12 input-group custom">
               	<div class="input-group input-file">
-		    		<input id="file_nm" name="file_nm" type="text" class="form-control" placeholder='Choose a file...' />			
+		    		<input id="file_nm" name="file_nm" type="text" class="form-control" placeholder='Choose a file...' required/>			
 		            <span class="input-group-btn">
 		        		<button class="btn btn-default btn-choose" type="button">Choose</button>
 		    		</span>
@@ -104,13 +104,13 @@
               <div class="col-sm-12 input-group custom"><input type="text" id="ceo_nm" name="ceo_nm" placeholder="대표자명"  class="form-control input-lg"></div>
             </div>
             <div class="col-sm-4">
-              <div class="col-sm-12 input-group custom"><input type="text" id="manger_nm" name="manager_nm" placeholder="담당자명" class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="manager_tel" name="manager_tel" placeholder="담당자 휴대전화"  class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="manager_email" name="manager_email" placeholder="담당자 이메일" class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="manger_nm" name="manager_nm" placeholder="담당자명" class="form-control input-lg" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="manager_tel" name="manager_tel" placeholder="담당자 휴대전화"  class="form-control input-lg" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="manager_email" name="manager_email" placeholder="담당자 이메일" class="form-control input-lg" required></div>
             </div>
             <div class="col-sm-4">
 	          <div class="col-sm-12 input-group custom">
-	          		<input type="text" id="tax_email" name="tax_email" placeholder="세금계산서 발행 이메일" class="form-control input-lg">
+	          		<input type="text" id="tax_email" name="tax_email" placeholder="세금계산서 발행 이메일" class="form-control input-lg" required>
 	          </div>
               <div class="col-sm-12 input-group custom">
           		<input type="text" id="postcode1" placeholder="우편번호"  class="form-control input-lg">
@@ -119,8 +119,8 @@
 			    </span>
 	          </div>
 	          	
-              <div class="col-sm-12 input-group custom"><input type="text" id="address" name="biz_addr" placeholder="주소" class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="address_etc" name="biz_addr" placeholder="세부주소" class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="address" name="biz_addr" placeholder="주소" class="form-control input-lg" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="address_etc" name="biz_addr_etc" placeholder="세부주소" class="form-control input-lg" required></div>
             </div>
            
            
@@ -171,122 +171,7 @@ function bs_input_file() {
 }
 $(function() {
 	bs_input_file();
-	
-	$('#sign_up_form').bootstrapValidator({
-        fields: {
-        	user_id: {
-                validators: {
-                        stringLength: {
-                        min: 2,
-                    },
-                        notEmpty: {
-                        message: 'Please supply your first name'
-                    }
-                }
-            },
-             last_name: {
-                validators: {
-                     stringLength: {
-                        min: 2,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your last name'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your email address'
-                    },
-                    emailAddress: {
-                        message: 'Please supply a valid email address'
-                    }
-                }
-            },
-            phone: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your phone number'
-                    },
-                    phone: {
-                        country: 'US',
-                        message: 'Please supply a vaild phone number with area code'
-                    }
-                }
-            },
-            address: {
-                validators: {
-                     stringLength: {
-                        min: 8,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your street address'
-                    }
-                }
-            },
-            city: {
-                validators: {
-                     stringLength: {
-                        min: 4,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your city'
-                    }
-                }
-            },
-            state: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select your state'
-                    }
-                }
-            },
-            zip: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your zip code'
-                    },
-                    zipCode: {
-                        country: 'US',
-                        message: 'Please supply a vaild zip code'
-                    }
-                }
-            },
-            comment: {
-                validators: {
-                      stringLength: {
-                        min: 10,
-                        max: 200,
-                        message:'Please enter at least 10 characters and no more than 200'
-                    },
-                    notEmpty: {
-                        message: 'Please supply a description of your project'
-                    }
-                    }
-                }
-            }
-        })
-        .on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-                $('#contact_form').data('bootstrapValidator').resetForm();
-
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
-        });
-	
-});
+})
 
 
 // user_id_check button bind
