@@ -16,7 +16,23 @@ const currency_formatter = function(amount, unit) {
 	return format_arr.reverse().join(",")+unit;
 };
 
+const getProductURL = function(product_id){
+	const path = location.pathname;
+	const query = location.search.replace(/[?]/,"");
+	let url = "/main/detail?product_id="+product_id;
+	if(path == "/main/brand"){
+		url += "&"+query+"&mode=B";
+	}else if(path == "/main/craft"){
+		url += "&"+query+"&mode=C";
+	}
+	
+	return url;
+}; 
+
 const thumbnailGenerator = function(data) {
+	const anchor = document.createElement("a");
+	anchor.href = getProductURL(data.product_id);
+	
 	const main_div = document.createElement("div");
 	main_div.className = "griptok-thumb";
 	
@@ -45,7 +61,8 @@ const thumbnailGenerator = function(data) {
 	main_div.appendChild(title_div);
 	main_div.appendChild(price_div);
 	
-	return main_div;
+	anchor.appendChild(main_div);
+	return anchor;
 }
 
 const loadList = function(url, render_id){

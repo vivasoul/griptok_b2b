@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -50,23 +51,13 @@ public class ProductController {
 		if(p_id == null) {
 			return "redirect:/main";
 		}else {
-			PageLabelVO label = null;
-			String list_url = null;
-			
-			if(c_id == null)  {
-				label = productMapper.getPageLabel_B(p_id);
-				list_url = "/products/brand/"+p_id;
-			}else {
-				label = productMapper.getPageLabel_BB(c_id);
-				list_url = "/products/brand/"+p_id+"/"+c_id;
-			}
-			List<MenuVO> side_menus = menuMapper.listMenusByBrand(p_id);
-			
-			model.addAttribute("side_title", categoryMapper.getBrand(p_id).getBrand_nm());
-			model.addAttribute("side_menus", side_menus);			
+			PageLabelVO label = getPageLabel('B', p_id, c_id == null ? 0 : c_id);
+						
 			model.addAttribute("page_title", label.getTitle());
 			model.addAttribute("page_path", label.getPath());
-			model.addAttribute("list_url",list_url);
+			model.addAttribute("list_url", label.getList_url());
+			model.addAttribute("side_title", label.getSide_title());
+			model.addAttribute("side_menus", label.getSub_menus());
 			model.addAttribute("content_page", "product/filtered_list");
 		}
 		return "_template/main";
@@ -79,23 +70,13 @@ public class ProductController {
 		if(p_id == null) {
 			return "redirect:/main";
 		}else {
-			PageLabelVO label = null;
-			String list_url = null;
-			
-			if(c_id == null)  {
-				label = productMapper.getPageLabel_C(p_id);
-				list_url = "/products/craft/"+p_id;
-			}else {
-				label = productMapper.getPageLabel_CC(c_id);
-				list_url = "/products/craft/"+p_id+"/"+c_id;
-			}
-			List<MenuVO> side_menus = menuMapper.listMenusByCraft(p_id);
-			
-			model.addAttribute("side_title", categoryMapper.getCraft(p_id).getCraft_nm());
-			model.addAttribute("side_menus", side_menus);
+			PageLabelVO label = getPageLabel('C', p_id, c_id == null ? 0 : c_id);
+
 			model.addAttribute("page_title", label.getTitle());
 			model.addAttribute("page_path", label.getPath());
-			model.addAttribute("list_url", list_url);
+			model.addAttribute("list_url", label.getList_url());
+			model.addAttribute("side_title", label.getSide_title());
+			model.addAttribute("side_menus", label.getSub_menus());
 			model.addAttribute("content_page", "product/filtered_list");
 		}
 		return "_template/main";
@@ -110,5 +91,61 @@ public class ProductController {
 		model.addAttribute("list_url","/products/dc");
 		model.addAttribute("content_page", "product/filtered_list");
 		return "_template/main";
-	}	
+	}
+	
+	@RequestMapping("/main/detail")
+	public String goDetailPage(Model model,
+							  @RequestParam("product_id") int product_id,
+							  @RequestParam(value="mode",defaultValue = "0") char mode,
+							  @RequestParam(value="p_id",defaultValue = "0") int p_id,
+							  @RequestParam(value="id",defaultValue = "0") int c_id) {
+		
+		PageLabelVO label = getPageLabel(mode, p_id, c_id);
+		if(label != null) {
+			//model.addAttribute("page_title", label.getTitle());
+			model.addAttribute("page_path", label.getPath());
+			model.addAttribute("side_title", label.getSide_title());
+			model.addAttribute("side_menus", label.getSub_menus());
+		}
+		model.addAttribute("content_page", "product/detail");
+		return "_template/main";
+	}
+	
+	private PageLabelVO getPageLabel(char mode, int p_id, int c_id) {
+		PageLabelVO label = null;
+		String list_url = null;
+		String side_title = null;
+		List<MenuVO> sub_menus = null;
+		switch(mode) {
+			case 'B':
+				if(c_id < 1)  {
+					label = productMapper.getPageLabel_B(p_id);
+					list_url = "/products/brand/"+p_id;
+				}else {
+					label = productMapper.getPageLabel_BB(c_id);
+					list_url = "/products/brand/"+p_id+"/"+c_id;
+				}
+				sub_menus = menuMapper.listMenusByBrand(p_id);
+				side_title = categoryMapper.getBrand(p_id).getBrand_nm();
+				break;
+			case 'C':
+				if(c_id < 1)  {
+					label = productMapper.getPageLabel_C(p_id);
+					list_url = "/products/craft/"+p_id;
+				}else {
+					label = productMapper.getPageLabel_CC(c_id);
+					list_url = "/products/craft/"+p_id+"/"+c_id;
+				}
+				sub_menus = menuMapper.listMenusByCraft(p_id);
+				side_title = categoryMapper.getCraft(p_id).getCraft_nm();
+				break;
+			default:
+		}
+		if(label != null) {
+			label.setList_url(list_url);
+			label.setSide_title(side_title);
+			label.setSub_menus(sub_menus);
+		}
+		return label;
+	}
 }

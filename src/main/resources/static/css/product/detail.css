@@ -1,0 +1,20 @@
+.gtk-detail .gtk-detail-id { margin-bottom:15px;color:#999; }
+.gtk-detail .gtk-detail-title { margin-bottom:20px; font-size:25px; }
+.gtk-detail .gtk-detail-price { margin-bottom:20px; text-align:right;font-family:Tahoma,'Nanum Gothic', sans-serif; }
+.gtk-detail-price .retail-price { font-size:15px;font-weight:400;text-decoration:line-through;color:#999; }
+.gtk-detail-price .sales-price { padding-left:5px;font-size:27px;font-weight:700; }
+.gtk-detail .gtk-detail-quantity { padding:20px 15px; margin-bottom:20px; border-top:1px dashed #999; border-bottom:1px dashed #999;}
+.gtk-detail .gtk-detail-quantity button,.gtk-detail .gtk-detail-quantity input{ float:right; vertical-align:top; }
+.gtk-detail .gtk-detail-quantity input { width:30px;text-align:center; }
+.gtk-detail .gtk-detail-quantity button { width:30px; }
+.gtk-detail .gtk-detail-summary  { margin-bottom:70px;text-align:right }
+.gtk-detail-summary .detail-summary-1 { font-size:13px; }
+.gtk-detail-summary .detail-summary-2 { font-size:13px;font-weight:700; }
+.gtk-detail-summary .detail-summary-3 { padding-left:10px; font-family:Tahoma,'Nanum Gothic', sans-serif;font-size:27px;font-weight:700;color:#C00000; }
+.gtk-detail .gtk-detail-btn-group { margin-bottom:50px;text-align:center }
+.gtk-detail .gtk-detail-btn-group button { 
+		background-color:#D0CECE;color:#FFF;
+		width:120px;height:45px;border:1px solid transparent;
+		font-size:15px;font-weight:700;
+}
+.gtk-detail .gtk-detail-btn-group #goto-buy-btn { background-color:#5B9BD5; }
