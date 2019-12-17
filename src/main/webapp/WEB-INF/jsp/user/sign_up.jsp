@@ -6,8 +6,11 @@
 <meta charset="utf-8">
 <script src="./lib/js/jquery.min.js"></script>
 <script src="./lib/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
 <link rel="stylesheet" href="./lib/css/register.css">
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!-- <link rel="stylesheet" href="/css/common/bootstrap.min.css"> -->
 <!-- <link rel="stylesheet" href="/css/common/font-awesome.min.css"> -->
 <!-- <link rel="stylesheet" href="/css/common/googleapi.css"> -->
@@ -106,17 +109,26 @@
               <div class="col-sm-12 input-group custom"><input type="text" id="manager_email" name="manager_email" placeholder="담당자 이메일" class="form-control input-lg"></div>
             </div>
             <div class="col-sm-4">
-	          <div class="col-sm-12 input-group custom"><input type="text" id="tax_email" name="tax_email" placeholder="세금계산서 발행 이메일" class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="biz_category" name="biz_category" placeholder="우편번호"  class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="biz_addr" name="biz_addr" placeholder="주소" class="form-control input-lg"></div>
+	          <div class="col-sm-12 input-group custom">
+	          		<input type="text" id="tax_email" name="tax_email" placeholder="세금계산서 발행 이메일" class="form-control input-lg">
+	          </div>
+              <div class="col-sm-12 input-group custom">
+          		<input type="text" id="postcode1" placeholder="우편번호"  class="form-control input-lg">
+	        	<span class="input-group-btn" style="width:0;">
+		        	<button onclick="openDaumZipAddress()" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
+			    </span>
+	          </div>
+	          	
+              <div class="col-sm-12 input-group custom"><input type="text" id="address" name="biz_addr" placeholder="주소" class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="address_etc" name="biz_addr" placeholder="세부주소" class="form-control input-lg"></div>
             </div>
            
            
            </div>
            <div class="row">
            		<div class="col-sm-12 submit">
-           			 <button id="sign_up" class="btn-primary btn-lg" type="submit">가입하기</button>
            			 <button class="btn-warning btn-lg" type="button">취소</button>
+           			 <button id="sign_up" class="btn-primary btn-lg" type="submit">가입하기</button>
            		</div>
            </div>
           	</form>
@@ -159,6 +171,121 @@ function bs_input_file() {
 }
 $(function() {
 	bs_input_file();
+	
+	$('#sign_up_form').bootstrapValidator({
+        fields: {
+        	user_id: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                    },
+                        notEmpty: {
+                        message: 'Please supply your first name'
+                    }
+                }
+            },
+             last_name: {
+                validators: {
+                     stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your last name'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your email address'
+                    },
+                    emailAddress: {
+                        message: 'Please supply a valid email address'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your phone number'
+                    },
+                    phone: {
+                        country: 'US',
+                        message: 'Please supply a vaild phone number with area code'
+                    }
+                }
+            },
+            address: {
+                validators: {
+                     stringLength: {
+                        min: 8,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your street address'
+                    }
+                }
+            },
+            city: {
+                validators: {
+                     stringLength: {
+                        min: 4,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your city'
+                    }
+                }
+            },
+            state: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select your state'
+                    }
+                }
+            },
+            zip: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your zip code'
+                    },
+                    zipCode: {
+                        country: 'US',
+                        message: 'Please supply a vaild zip code'
+                    }
+                }
+            },
+            comment: {
+                validators: {
+                      stringLength: {
+                        min: 10,
+                        max: 200,
+                        message:'Please enter at least 10 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a description of your project'
+                    }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#contact_form').data('bootstrapValidator').resetForm();
+
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
+	
 });
 
 
@@ -241,6 +368,27 @@ jQuery.fn.serializeObject = function() {
     }
     return obj;
 };
+
+function openDaumZipAddress() {
+
+	new daum.Postcode({
+
+		oncomplete:function(data) {
+
+			jQuery("#postcode1").val(data.postcode1+"-"+data.postcode2);
+
+// 			jQuery("#zonecode").val(data.zonecode);
+
+			jQuery("#address").val(data.address);
+
+			jQuery("#address_etc").focus();
+
+
+		}
+
+	}).open();
+
+}
 
 
 
