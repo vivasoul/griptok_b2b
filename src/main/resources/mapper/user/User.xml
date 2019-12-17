@@ -116,11 +116,24 @@
 		)
 	</insert>
 	
-	
 	<insert id="setPasswd" parameterType="com.griptk.b2b.user.domain.UserVO">
 		UPDATE tb_login
 		SET passwd = #{passwd}
 		WHERE user_no = #{user_no}
+	</insert>
+	
+	<insert id="insertWithdrawal" parameterType="com.griptk.b2b.user.domain.WithdrawalVO">
+		INSERT INTO tb_withdrawl_hist
+			user_no,
+			code,
+			remark,
+			reg_dt
+		)VALUES(
+			(SELECT user_no FROM tb_user WHERE user_id = #{user_id}),
+			#{code},
+			#{remark},
+			now()
+		)
 	</insert>
 	
 	<select id="getPassword" parameterType="String" resultType="String">
@@ -129,12 +142,6 @@
 		ON u.user_no = l.user_no
 		WHERE user_id= #{user_id}
 	</select>
-	
-	<update id="setPassword" parameterType="String">
-		UPDATE tb_login
-		SET passwd = #{passwd}
-		WHERE user_no = #{user_no}
-	</update>
 	
 	<select id="login" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="Integer">
 		SELECT count(*) FROM tb_user u

@@ -28,7 +28,7 @@
 			shipto_no = #{shipto_no}
 	</select>
 	
-	<insert id="insertShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO" >
+	<insert id="addShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO" >
 		INSERT INTO tb_shipto_addr(
 			user_no, 
 			receiver_nm,

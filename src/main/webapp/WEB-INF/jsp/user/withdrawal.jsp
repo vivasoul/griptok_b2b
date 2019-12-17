@@ -27,10 +27,10 @@
 			<tr>
 				<td class="grey_back_td bolded">탈퇴사유</td>
 				<td colspan="3">
-					 <input type="radio" name="withdraw_reason" value="unsatisfied">서비스 불만족<br>
-					 <input type="radio" name="withdraw_reason" value="complex">이용이 불편해서<br>
-					 <input type="radio" name="withdraw_reason" value="privacy">개인정보 유출 우려<br>
-					 <input type="radio" name="withdraw_reason" value="etc">기타<br>  
+					 <input type="radio" name="withdraw_reason" value="U">서비스 불만족<br>
+					 <input type="radio" name="withdraw_reason" value="C">이용이 불편해서<br>
+					 <input type="radio" name="withdraw_reason" value="P">개인정보 유출 우려<br>
+					 <input type="radio" name="withdraw_reason" value="E">기타<br>  
 					 <input type="text" style="width:100%" name="etc_text" placeholder="기타 불편 사항을 100자 이내로 작성해주세요."/>
 				</td>
 			</tr>	

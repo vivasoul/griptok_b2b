@@ -2,6 +2,7 @@ package com.griptk.b2b.user.mapper;
 
 import com.griptk.b2b.user.domain.ImageVO;
 import com.griptk.b2b.user.domain.UserVO;
+import com.griptk.b2b.user.domain.WithdrawalVO;
 
 public interface UserMapper {
 	
@@ -31,6 +32,8 @@ public interface UserMapper {
 	int signUpUser(UserVO userVo);
 	
 	int insertLoginInfo(UserVO userVo);
+	
+	int insertWithdrawal(WithdrawalVO withdrawlVo);
 
 }
 
