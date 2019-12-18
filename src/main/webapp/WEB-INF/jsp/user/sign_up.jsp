@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <script src="./lib/js/jquery.min.js"></script>
 <script src="./lib/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
 <link rel="stylesheet" href="./lib/css/register.css">
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 
@@ -21,8 +19,8 @@
 		<div class="mainbox col-sm-10 col-sm-offset-2" >
 			<img class="login_top" src="./lib/img/griptok.png" onclick="location.href='/login';"/>
 			<div class="login_top">
-				<h2>±×¸³Åå µµ¸ÅÀü¿ë ¼îÇÎ¸ôÀÔ´Ï´Ù.</h2>
-				<h4>º» »çÀÌÆ®´Â »ç¾÷ÀÚ¸¸ ÀÌ¿ëÀÌ °¡´ÉÇÑ µµ¸Å »çÀÌÆ® ÀÔ´Ï´Ù.<br>°¡ÀÔ ½ÂÀÎ ¿Ï·á ÈÄ ÀÌ¿ëÀÌ °¡´É ÇÕ´Ï´Ù.</h4>
+				<h2>ê·¸ë¦½í†¡ ë„ë§¤ì „ìš© ì‡¼í•‘ëª°ì…ë‹ˆë‹¤.</h2>
+				<h4>ë³¸ ì‚¬ì´íŠ¸ëŠ” ì‚¬ì—…ìë§Œ ì´ìš©ì´ ê°€ëŠ¥í•œ ë„ë§¤ ì‚¬ì´íŠ¸ ì…ë‹ˆë‹¤.<br>ê°€ì… ìŠ¹ì¸ ì™„ë£Œ í›„ ì´ìš©ì´ ê°€ëŠ¥ í•©ë‹ˆë‹¤.</h4>
 			</div>
 		</div>
 
@@ -35,40 +33,40 @@
       	   <div class="row" >
             <div class="col-sm-4">
               	<div class="col-sm-12 input-group custom">
-			    <input name="user_id" id="user_id" type="text" class="form-control input-lg" placeholder="¾ÆÀÌµğ" required>
+			    <input name="user_id" id="user_id" type="text" pattern="[A-Za-z]{}" class="form-control input-lg" placeholder="ì•„ì´ë””" required>
 			    <span class="input-group-btn" style="width:0;">
-			        <button id="id_check" class="btn-primary btn-lg" type="button">Áßº¹È®ÀÎ</button>
+			        <button id="id_check" class="btn-primary btn-lg" type="button">ì¤‘ë³µí™•ì¸</button>
 			    </span>
 			   </div>
-               <div class="col-sm-12 input-group custom"><input id="passwd" name="passwd" type="password" placeholder="ºñ¹Ğ¹øÈ£"  class="form-control input-lg" required></div>
-               <div class="col-sm-12 input-group custom"><input id="passwd_check" name="passwd_check" type="password" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ"  class="form-control input-lg" required></div>
-               <div class="col-sm-12 input-group custom"><input id="contact_tel" name="contact_tel" type="text" placeholder="ÀüÈ­¹øÈ£" class="form-control input-lg" required></div>
+               <div class="col-sm-12 input-group custom"><input id="passwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="passwd" type="password" placeholder="ë¹„ë°€ë²ˆí˜¸"  class="form-control input-lg" required></div>
+               <div class="col-sm-12 input-group custom"><input id="passwd_check" name="passwd_check" type="password" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸"  class="form-control input-lg" required></div>
+               <div class="col-sm-12 input-group custom"><input id="contact_tel" name="contact_tel" type="text" placeholder="ì „í™”ë²ˆí˜¸" class="form-control input-lg" required></div>
             </div>
             <div class="col-sm-8">
             	<span class="input_chk">
-					<input type="checkbox" id="termsService" name="termsService" class="chk" >
-					<label for="termsService">ÀüÃ¼ µ¿ÀÇ<span class="terms_necessary">(ÇÊ¼ö)</span></label>
+					<input type="checkbox" id="termsService" name="termsService" class="chk" onclick="checkAll()" >
+					<label for="termsService" onclick="checkAll()">ì „ì²´ ë™ì˜<span class="terms_necessary">(í•„ìˆ˜)</span></label>
 				</span>
-            	<div class="col-sm-12" style="border:1px solid #dadada">
-	            <div class="col-sm-6 custom" >
+            	<div class="col-sm-12" style="border:1px solid #dadada; height:280px;">
+	            <div class="col-sm-6 custom full_height" >
 	            <span class="input_chk">
-					<input type="checkbox" id="termsService2" name="termsService2" class="chk">
-					<label for="termsService">ÀÌ¿ë¾à°ü µ¿ÀÇ<span class="terms_necessary">(ÇÊ¼ö)</span></label>
+					<input type="checkbox" id="termsService2" name="termsService2" class="chk" onclick="checkEach()">
+					<label  onclick="checkInput('termsService2')">ì´ìš©ì•½ê´€ ë™ì˜<span class="terms_necessary">(í•„ìˆ˜)</span></label>
 				</span>
-	              <div class="col-sm-12" style="background-color:#f5f6f7;overflow-y:scroll;">	
-		            <p> 
+	              <div class="col-sm-12 eighty_height" style="background-color:#f5f6f7;overflow-y:scroll;">	
+		            <p class="eighty_height"> 
 		              yohan394yohan394yohan394yohan394
 		              yohan394yohan394yohan394yohan394
 		              </p>
 	              </div>
 	            </div>
-	            <div class="col-sm-6 custom">
+	            <div class="col-sm-6 custom full_height">
 	            <span class="input_chk">
-					<input type="checkbox" id="termsService3" name="termsService3" class="chk">
-					<label for="termsService">°³ÀÎÁ¤º¸ ¼öÁı ¹× ÀÌ¿ë µ¿ÀÇ<span class="terms_necessary">(ÇÊ¼ö)</span></label>
+					<input type="checkbox" id="termsService3" name="termsService3" class="chk" onclick="checkEach()">
+					<label onclick="checkInput('termsService3')">ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš© ë™ì˜<span class="terms_necessary">(í•„ìˆ˜)</span></label>
 				</span>
-				<div class="col-sm-12" style="background-color:#f5f6f7;overflow-y:scroll;">	
-		            <p> 
+				<div class="col-sm-12 eighty_height" style="background-color:#f5f6f7;overflow-y:scroll;">	
+		            <p class="eighty_height"> 
 		              yohan394yohan394yohan394yohan394
 		              yohan394yohan394yohan394yohan394
 		              </p>
@@ -82,53 +80,53 @@
            <div class="row">
             <div class="col-sm-4 ">
               <div class="col-sm-12 input-group custom">
-              	<input type="text" id="company_nm" name="company_nm" placeholder="È¸»ç¸í" class="form-control input-lg" required>
+              	<input type="text" id="company_nm" name="company_nm" placeholder="íšŒì‚¬ëª…" class="form-control input-lg" required>
               	<span class="input-group-btn" style="width:0;">
-			        <button id="company_nm_check" class="btn-primary btn-lg text-sm" type="button">Áßº¹È®ÀÎ</button>
+			        <button id="company_nm_check" class="btn-primary btn-lg text-sm" type="button">ì¤‘ë³µí™•ì¸</button>
 			    </span>
               </div>
               <div class="col-sm-12 input-group custom">
-              	<input type="number" id="biz_reg_number" name="biz_reg_number" placeholder="»ç¾÷ÀÚµî·Ï¹øÈ£"  class="form-control input-lg" required>
+              	<input type="number" id="biz_reg_number" name="biz_reg_number" placeholder="ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸"  class="form-control input-lg" required>
               	<span class="input-group-btn" style="width:0;">
-			        <button id="biz_reg_number_check" class="btn-primary btn-lg text-sm" type="button">Áßº¹È®ÀÎ</button>
+			        <button id="biz_reg_number_check" class="btn-primary btn-lg text-sm" type="button">ì¤‘ë³µí™•ì¸</button>
 			    </span>
               </div>
               <div class="col-sm-12 input-group custom">
               	<div class="input-group input-file">
-		    		<input id="file_nm" name="file_nm" type="text" class="form-control" placeholder='Choose a file...' required/>			
+		    		<input id="file_nm" name="file_nm" type="text" class="form-control input-lg" placeholder='ì‚¬ì—…ìë“±ë¡ì¦ ì‚¬ë³¸ ë“±ë¡' required/>			
 		            <span class="input-group-btn">
-		        		<button class="btn btn-default btn-choose" type="button">Choose</button>
+		        		<button class="btn-lg btn-default btn-choose" type="button">ì°¾ì•„ë³´ê¸°</button>
 		    		</span>
 				</div>
               </div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="ceo_nm" name="ceo_nm" placeholder="´ëÇ¥ÀÚ¸í"  class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="ceo_nm" name="ceo_nm" placeholder="ëŒ€í‘œìëª…"  class="form-control input-lg"></div>
             </div>
             <div class="col-sm-4">
-              <div class="col-sm-12 input-group custom"><input type="text" id="manger_nm" name="manager_nm" placeholder="´ã´çÀÚ¸í" class="form-control input-lg" required></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="manager_tel" name="manager_tel" placeholder="´ã´çÀÚ ÈŞ´ëÀüÈ­"  class="form-control input-lg" required></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="manager_email" name="manager_email" placeholder="´ã´çÀÚ ÀÌ¸ŞÀÏ" class="form-control input-lg" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="manger_nm" name="manager_nm" placeholder="ë‹´ë‹¹ìëª…" class="form-control input-lg" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="manager_tel" name="manager_tel" placeholder="ë‹´ë‹¹ì íœ´ëŒ€ì „í™”"  class="form-control input-lg" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="manager_email" name="manager_email" placeholder="ë‹´ë‹¹ì ì´ë©”ì¼" class="form-control input-lg" required></div>
             </div>
             <div class="col-sm-4">
 	          <div class="col-sm-12 input-group custom">
-	          		<input type="text" id="tax_email" name="tax_email" placeholder="¼¼±İ°è»ê¼­ ¹ßÇà ÀÌ¸ŞÀÏ" class="form-control input-lg" required>
+	          		<input type="text" id="tax_email" name="tax_email" placeholder="ì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰ ì´ë©”ì¼" class="form-control input-lg" required>
 	          </div>
               <div class="col-sm-12 input-group custom">
-          		<input type="text" id="postcode1" placeholder="¿ìÆí¹øÈ£"  class="form-control input-lg">
+          		<input type="text" id="postcode1" placeholder="ìš°í¸ë²ˆí˜¸"  class="form-control input-lg">
 	        	<span class="input-group-btn" style="width:0;">
-		        	<button onclick="openDaumZipAddress()" class="btn-primary btn-lg text-sm" type="button">ÁÖ¼ÒÃ£±â</button>
+		        	<button onclick="openDaumZipAddress()" class="btn-primary btn-lg text-sm" type="button">ì£¼ì†Œì°¾ê¸°</button>
 			    </span>
 	          </div>
 	          	
-              <div class="col-sm-12 input-group custom"><input type="text" id="address" name="biz_addr" placeholder="ÁÖ¼Ò" class="form-control input-lg" required></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="address_etc" name="biz_addr_etc" placeholder="¼¼ºÎÁÖ¼Ò" class="form-control input-lg" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="address" name="biz_addr" placeholder="ì£¼ì†Œ" class="form-control input-lg" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="address_etc" name="biz_addr_etc" placeholder="ì„¸ë¶€ì£¼ì†Œ" class="form-control input-lg" required></div>
             </div>
            
            
            </div>
            <div class="row">
            		<div class="col-sm-12 submit">
-           			 <button class="btn-warning btn-lg" type="button">Ãë¼Ò</button>
-           			 <button id="sign_up" class="btn-primary btn-lg" type="submit">°¡ÀÔÇÏ±â</button>
+           			 <button class="btn-warning btn-lg" type="button">ì·¨ì†Œ</button>
+           			 <button id="sign_up" class="btn-primary btn-lg" type="submit">ê°€ì…í•˜ê¸°</button>
            		</div>
            </div>
           	</form>
@@ -139,148 +137,6 @@
 </div>
 <!-- div container -->
 </div>
-
-  
-<script>
-// Get the modal
-function bs_input_file() {
-	$(".input-file").before(
-		function() {
-			if ( ! $(this).prev().hasClass('input-ghost') ) {
-				var element = $("<input type='file' name='real_file' id='real_file' class='input-ghost' style='visibility:hidden; height:0'>");
-				element.attr("name",$(this).attr("name"));
-				element.change(function(){
-					element.next(element).find('input').val((element.val()).split('\\').pop());
-				});
-				$(this).find("button.btn-choose").click(function(){
-					element.click();
-				});
-				$(this).find("button.btn-reset").click(function(){
-					element.val(null);
-					$(this).parents(".input-file").find('input').val('');
-				});
-				$(this).find('input').css("cursor","pointer");
-				$(this).find('input').mousedown(function() {
-					$(this).parents('.input-file').prev().click();
-					return false;
-				});
-				return element;
-			}
-		}
-	);
-}
-$(function() {
-	bs_input_file();
-})
-
-
-// user_id_check button bind
-$("#id_check").bind("click",function(){
-    $.ajax({
-        url : "/sign_up/check/id",
-        type: "post",
-        data : { "user_id" : $("#user_id").val() },
-        success : function(responseData){
-        	if(responseData.result==0){
-        		alert("»ç¿ë°¡´ÉÇÑ IdÀÔ´Ï´Ù.");
-        	}else{
-        		alert("»ç¿ëÁßÀÎ IdÀÔ´Ï´Ù. ´Ù¸¥ Id¸¦ »ç¿ëÇØÁÖ¼¼¿ä.")
-        	}
-        }
-    });
-});
-
-
-//company_nm_check button bind
-$("#company_nm_check").bind("click",function(){
-    $.ajax({
-        url : "/sign_up/check/company_nm",
-        type: "post",
-        data : { "company_nm" : $("#company_nm").val() },
-        success : function(responseData){
-        	if(responseData.result==0){
-        		alert("»ç¿ë°¡´ÉÇÑ È¸»ç¸íÀÔ´Ï´Ù.");
-        	}else{
-        		alert("»ç¿ëÁßÀÎ È¸»ç¸íÀÔ´Ï´Ù. ´Ù¸¥ È¸»ç¸íÀ» »ç¿ëÇØÁÖ¼¼¿ä.")
-        	}
-        }
-    });
-});
-
-//biz_reg_number_check button bind
-$("#biz_reg_number_check").bind("click",function(){
-    $.ajax({
-        url : "/sign_up/check/biz_reg_number",
-        type: "post",
-        data : { "biz_reg_number" : $("#biz_reg_number").val() },
-        success : function(responseData){
-        	if(responseData.result==0){
-        		alert("»ç¿ë°¡´ÉÇÑ »ç¾÷ÀÚ¹øÈ£ÀÔ´Ï´Ù.");
-        	}else{
-        		alert("»ç¿ëÁßÀÎ »ç¾÷ÀÚ¹øÈ£ÀÔ´Ï´Ù. ´Ù¸¥ »ç¾÷ÀÚ¹øÈ£¸¦ »ç¿ëÇØÁÖ¼¼¿ä.")
-        	}
-        }
-    });
-});
-
-// $("#sign_up").bind("click",function(){
-//     $.ajax({
-//         url : "/sign_up/sign_up",
-//         type: "post",
-//         data : JSON.stringify(jQuery('#sign_up_form').serializeObject()),
-//         contentType: "application/json",
-//         success : function(responseData){
-//         	console.log(responseData);
-//         }
-//     });
-// });
-
-jQuery.fn.serializeObject = function() {
-    var obj = null;
-    try {
-        if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
-            var arr = this.serializeArray();
-            if (arr) {
-                obj = {};
-                jQuery.each(arr, function() {
-                    obj[this.name] = this.value;
-                });
-            }//if ( arr ) {
-        }
-    } catch (e) {
-        alert(e.message);
-    } finally {
-    }
-    return obj;
-};
-
-function openDaumZipAddress() {
-
-	new daum.Postcode({
-
-		oncomplete:function(data) {
-
-			jQuery("#postcode1").val(data.postcode1+"-"+data.postcode2);
-
-// 			jQuery("#zonecode").val(data.zonecode);
-
-			jQuery("#address").val(data.address);
-
-			jQuery("#address_etc").focus();
-
-
-		}
-
-	}).open();
-
-}
-
-
-
-
-
-</script>
-
-
+<script src="./js/user/sign_up.js" charset="utf-8"></script>
 </body>
 </html>

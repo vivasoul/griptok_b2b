@@ -26,6 +26,14 @@
   margin-bottom:20px;
 }
 
+.full_height{
+	height:100%
+}
+
+.eighty_height{
+	height:80%
+}
+
 .row{
   overflow: hidden; 
 }
