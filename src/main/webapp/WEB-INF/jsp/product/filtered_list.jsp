@@ -11,6 +11,6 @@ jQuery(document).ready(function(){
 		<div class="col-sm-12 griptok-main-sort"><a href="#">인기도순</a> / <a href="#">낮은가격순</a> / <a href="#">최신등록순</a></div>
 	</div>	
 	<div class="row">
-		<div class="col-sm-12" id="filtered-product-list"></div>
+		<div class="col-sm-12 product-list" id="filtered-product-list"></div>
 	</div>
 </div>	
