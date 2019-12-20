@@ -1,0 +1,22 @@
+span {cursor:pointer; }
+.minus, .plus{
+	width:25px;
+	height:25px;
+	background:#f2f2f2;
+	border-radius:4px;
+	padding:2px 5px 8px 5px;
+	border:1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+input{
+	height:24px;
+    width: 50px;
+    text-align: center;
+    font-size: 15px;
+	border:1px solid #ddd;
+	border-radius:4px;
+    display: inline-block;
+    vertical-align: middle;
+}		

@@ -186,11 +186,20 @@ griptok.component.datatable = function(p_tableId){
 		$table.DataTable().clear().rows.add(new_data).draw();
 	};
 	
-	$this.selectedRow = function(rowHtml){
+	$this.updateRow = function(new_data,indice){
 		let $table = $('#' + $this.tableId);
-		return $table.DataTable().row(rowHtml).data();
+		$table.DataTable().row(indice).data(new_data);
 	};
 	
+	$this.selectedRow = function(){
+		let $table = $('#' + $this.tableId);
+		return $table.DataTable().row({selected : true}).data();
+	};
+	
+	$this.getRow = function(rowIndex){
+		let $table = $('#' + $this.tableId);
+		return $table.DataTable().row(rowIndex).data();
+	};
 	
 return $this;
 }

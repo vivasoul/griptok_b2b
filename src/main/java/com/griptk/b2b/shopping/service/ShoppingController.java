@@ -13,12 +13,16 @@ import com.griptk.b2b.shopping.domain.OrderedVO;
 
 @Controller
 public class ShoppingController {
-	
+	/*****************************************************************************************
+	 *	VIEW : jsp/interested
+	 *****************************************************************************************/
 	@GetMapping("/interested")
 	public String list() {
 		return "interested/list";
 	}
-	
+	/*****************************************************************************************
+	 *	VIEW : jsp/order_hst
+	 *****************************************************************************************/
 	@GetMapping("/order_hst")
 	public String hst_list() {
 		return "order_hst/list";
@@ -37,6 +41,13 @@ public class ShoppingController {
 		mav.addObject("one",one);
 		
 		return mav;
+	}
+	/*****************************************************************************************
+	 *	VIEW : jsp/cart
+	 *****************************************************************************************/
+	@GetMapping("/cart")
+	public String cart_list() {
+		return "cart/list";
 	}
 }
 
