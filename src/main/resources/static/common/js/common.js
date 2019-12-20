@@ -201,5 +201,10 @@ griptok.component.datatable = function(p_tableId){
 		return $table.DataTable().row(rowIndex).data();
 	};
 	
+	$this.getRows = function(){
+		let $table = $('#' + $this.tableId);
+		return $table.DataTable().rows().data();
+	}
+		
 return $this;
 }
