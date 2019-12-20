@@ -31,7 +31,11 @@ public class UserVO {
 	
 	private String biz_category;
 	
-	private String biz_addr;
+	private String post_code;
+	
+	private String biz_addr_1;
+	
+	private String biz_addr_2;
 	
 	private String contact_tel;
 	
@@ -141,12 +145,28 @@ public class UserVO {
 		this.biz_category = biz_category;
 	}
 
-	public String getBiz_addr() {
-		return biz_addr;
+	public String getPost_code() {
+		return post_code;
 	}
 
-	public void setBiz_addr(String biz_addr) {
-		this.biz_addr = biz_addr;
+	public void setPost_code(String post_code) {
+		this.post_code = post_code;
+	}
+
+	public String getBiz_addr_1() {
+		return biz_addr_1;
+	}
+
+	public void setBiz_addr_1(String biz_addr_1) {
+		this.biz_addr_1 = biz_addr_1;
+	}
+
+	public String getBiz_addr_2() {
+		return biz_addr_2;
+	}
+
+	public void setBiz_addr_2(String biz_addr_2) {
+		this.biz_addr_2 = biz_addr_2;
 	}
 
 	public String getContact_tel() {
@@ -202,11 +222,10 @@ public class UserVO {
 		return "UserVO [user_no=" + user_no + ", passwd=" + passwd + ", reg_dt=" + reg_dt + ", upd_dt=" + upd_dt
 				+ ", aprv_status=" + aprv_status + ", real_file=" + real_file + ", file_nm=" + file_nm + ", user_id="
 				+ user_id + ", company_nm=" + company_nm + ", biz_reg_number=" + biz_reg_number + ", ceo_nm=" + ceo_nm
-				+ ", biz_category=" + biz_category + ", biz_addr=" + biz_addr + ", contact_tel=" + contact_tel
-				+ ", tax_email=" + tax_email + ", manager_nm=" + manager_nm + ", manager_tel=" + manager_tel
-				+ ", manager_email=" + manager_email + ", biz_img_no=" + biz_img_no + "]";
+				+ ", biz_category=" + biz_category + ", biz_addr_1=" + biz_addr_1 + ", biz_addr_2=" + biz_addr_2
+				+ ", contact_tel=" + contact_tel + ", tax_email=" + tax_email + ", manager_nm=" + manager_nm
+				+ ", manager_tel=" + manager_tel + ", manager_email=" + manager_email + ", biz_img_no=" + biz_img_no
+				+ "]";
 	}
-
-	
 
 }

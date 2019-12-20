@@ -30,8 +30,8 @@ public class MailSender {
 	
 	public void send(String recipient, String[] cc_recipients, String subject, String body) throws AddressException, MessagingException, UnsupportedEncodingException {
 		
-		String username = "";
-		String password = "";
+		String username = "yohan394";
+		String password = "nM3947242@@";
 		
 		Session session = Session.getInstance(props, new Authenticator() {
 			String un = username;

@@ -95,7 +95,7 @@ public class UserAPI {
 		String uploadPath = "";
 		
 		// mapper
-		String path = "D:\\"+"upload\\"; // 파일 업로드 경로
+		String path = "C:\\"+"upload\\"; // 파일 업로드 경로
 			
 		String original = mf.getOriginalFilename(); // 업로드하는 파일 name
 			
