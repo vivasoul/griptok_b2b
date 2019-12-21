@@ -46,23 +46,29 @@
 	
 	<select id="getUserInfo" parameterType="Integer" resultType="com.griptk.b2b.user.domain.UserVO">
 		SELECT user_id, 
-			company_nm,
-			biz_reg_number,
-			ceo_nm,
-			biz_category,
-			biz_addr,
-			contact_tel,
-			tax_email,
-			manager_nm,
-			manager_tel,
-			manager_email,
-			reg_dt,
-			upd_dt,
-			biz_img_no 
+			u.company_nm,
+			u.biz_reg_number,
+			u.ceo_nm,
+			u.biz_category,
+			u.biz_addr_1,
+			u.biz_addr_2,
+			u.contact_tel,
+			u.tax_email,
+			u.manager_nm,
+			u.manager_tel,
+			u.manager_email,
+			u.post_code,
+			u.reg_dt,
+			u.upd_dt,
+			u.biz_img_no,
+			i.file_nm
 		FROM
-			tb_user
+			tb_user u
+		INNER JOIN
+			tb_img_file_info i
+		ON u.biz_img_no = i.img_no
 		WHERE
-			user_no = #{user_no}
+			u.user_no = #{user_no}
 	</select>
 	
 	<insert id="signUpUser" parameterType="com.griptk.b2b.user.domain.UserVO" >
@@ -149,18 +155,16 @@
 			user_no = (SELECT user_no FROM tb_user WHERE user_id = #{user_id})
 	</update>
 	
-	<select id="getAprvStatus" parameterType="String" resultType="String">
-		SELECT l.aprv_status FROM tb_user u
+	<select id="getUserLoginInfo" parameterType="String" resultType="com.griptk.b2b.user.domain.UserVO">
+		SELECT l.aprv_status, u.user_no, l.passwd FROM tb_user u
 		INNER JOIN tb_login l
 		ON u.user_no = l.user_no
 		WHERE user_id= #{user_id}
 	</select>
 	
-	<select id="getPassword" parameterType="String" resultType="String">
-		SELECT l.passwd FROM tb_user u
-		INNER JOIN tb_login l
-		ON u.user_no = l.user_no
-		WHERE user_id= #{user_id}
+	<select id="getPassword" parameterType="Integer" resultType="String">
+		SELECT l.passwd FROM tb_login l
+		WHERE user_no= #{user_no}
 	</select>
 	
 	<select id="login" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="Integer">

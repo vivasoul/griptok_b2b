@@ -175,13 +175,12 @@ public class UserAPI {
 			}else if(login_result==0){
 				result=-2;
 			}
-			request.setAttribute("result", result);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
-			dispatcher.forward(request, response);
+			request.getSession().setAttribute("registered", "registered");
+			response.sendRedirect("/register");
 		}catch(Exception e){
 			result = -1;
 			try{
-				request.setAttribute("result", result);
+				request.getSession().setAttribute("registered", "failed");
 				response.sendRedirect("/register");
 			}catch(Exception ex){
 				ex.printStackTrace();
@@ -237,22 +236,29 @@ public class UserAPI {
 	@PostMapping("/login/connect")
 	public Map<String, Object> login(
 			@RequestBody UserVO vo,
+			HttpServletRequest request,
 	        HttpServletResponse response) {
 		
 		String passwd = vo.getPasswd();
 		String user_id = vo.getUser_id();
 		
-		String aprv_status = mapper.getAprvStatus(user_id);
-		
-		String encoded_password = mapper.getPassword(user_id);
-		int result = 1;
-		if(!passwordEncoder.matches(passwd, encoded_password)) {
-			result = 0;
-		}
+		UserVO loginInfo = mapper.getUserLoginInfo(user_id);
 		Map<String, Object> resp = new HashMap<String, Object>();
-		resp.put("aprv_status", aprv_status);
-		resp.put("result", result);
-		return resp;
+		try{
+			String encoded_password = loginInfo.getPasswd();
+			int result = 1;
+			if(!passwordEncoder.matches(passwd, encoded_password)) {
+				result = 0;
+			}else{
+				request.getSession().setAttribute("user_no", loginInfo.getUser_no());
+			}
+			resp.put("aprv_status", loginInfo.getAprv_status());
+			resp.put("result", result);
+			return resp;
+		}catch(Exception e){
+			resp.put("result", 0);
+			return resp;
+		}
 	}
 	
 	@PostMapping("/passwd/check")
@@ -261,8 +267,8 @@ public class UserAPI {
 	        HttpServletResponse response) {
 		
 		String passwd = vo.getPasswd();
-		String user_id = vo.getUser_id();
-		String encoded_password = mapper.getPassword(user_id);
+		int user_no = vo.getUser_no();
+		String encoded_password = mapper.getPassword(user_no);
 		int result = 1;
 		if(!passwordEncoder.matches(passwd, encoded_password)) {
 			result = 0;
@@ -274,18 +280,38 @@ public class UserAPI {
 	
 	@PostMapping("/passwd/change")
 	public Map<String, Object> passwordChange(
-			@RequestBody UserVO vo,
+			@RequestParam("old_passwd") String old_passwd,
+			@RequestParam("new_passwd") String new_passwd,
+			@RequestParam("user_no") int user_no,
 	        HttpServletResponse response) {
 		
-		String passwd = vo.getPasswd();
-		String new_temp_password = passwordEncoder.encode(passwd);
-		
-		vo.setPasswd(new_temp_password);
-		
-		int result = mapper.setPasswd(vo);
+		String encoded_password = mapper.getPassword(user_no);
+		int result = 1;
+		if(!passwordEncoder.matches(old_passwd, encoded_password)) {
+			result = 0;
+		}else{
+			String new_temp_password = passwordEncoder.encode(new_passwd);
+			UserVO resultVo = new UserVO();
+			resultVo.setPasswd(new_temp_password);
+			resultVo.setUser_no(user_no);
+			result = mapper.setPasswd(resultVo);
+		}
 		
 		Map<String, Object> resp = new HashMap<String, Object>();
 		resp.put("result", result);
+		return resp;
+	}
+	
+	// withdraw 
+	@PostMapping("/withdraw/load")
+	public Map<String, Object> withdrawLoad(
+			@RequestParam("user_no") int user_no,
+	        HttpServletResponse response) {
+		
+		UserVO loginInfo = mapper.getUserInfo(user_no);
+		
+		Map<String, Object> resp = new HashMap<String, Object>();
+		resp.put("user_id", loginInfo.getUser_id());
 		return resp;
 	}
 	
@@ -301,6 +327,34 @@ public class UserAPI {
 		
 		Map<String, Object> resp = new HashMap<String, Object>();
 		resp.put("result", result);
+		return resp;
+	}
+	
+	// withdraw 
+	@PostMapping("/info_change/load")
+	public Map<String, Object> infoChangeLoad(
+			@RequestParam("user_no") int user_no,
+	        HttpServletResponse response) {
+		
+		UserVO loginInfo = mapper.getUserInfo(user_no);
+		
+		
+		Map<String, Object> resp = new HashMap<String, Object>();
+		resp.put("user_id", loginInfo.getUser_id());
+		resp.put("company_nm", loginInfo.getCompany_nm());
+		resp.put("ceo_nm", loginInfo.getCeo_nm());
+		resp.put("manager_nm", loginInfo.getManager_nm());
+		resp.put("manager_tel", loginInfo.getManager_tel());
+		resp.put("manager_email", loginInfo.getManager_email());
+		resp.put("biz_reg_number", loginInfo.getBiz_reg_number());
+		resp.put("biz_category", loginInfo.getBiz_category());
+		resp.put("file_nm", loginInfo.getFile_nm());
+		resp.put("biz_addr_1", loginInfo.getBiz_addr_1());
+		resp.put("biz_addr_2", loginInfo.getBiz_addr_2());
+		resp.put("post_code", loginInfo.getPost_code());
+		resp.put("contact_tel", loginInfo.getContact_tel());
+		resp.put("tax_email", loginInfo.getTax_email());
+		
 		return resp;
 	}
 	

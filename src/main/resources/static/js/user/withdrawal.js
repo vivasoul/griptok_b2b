@@ -26,7 +26,7 @@ $("#withdraw").bind("click",function(){
         url : "/passwd/check",
         type: "post",
         data : JSON.stringify({  
-        		 "user_id" : user_id,
+        		 "user_no" : user_no,
         		 "passwd" : $("#passwd").val()
                }),
         contentType: "application/json",
@@ -60,3 +60,5 @@ $("#withdraw").bind("click",function(){
 	
 	    
 });
+
+

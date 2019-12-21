@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +7,19 @@
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./lib/css/info_change.css">
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+<script>
+var user_no = "<%= session.getAttribute( "user_no" ) %>";
+</script>
+
 </head>
+
 <body>
 
  <div class="custom-container container">    
 		<div class="mainbox col-sm-10 col-sm-offset-2">
-			<h3 class="grey_back_title">È¸¿øÁ¤º¸ ¼öÁ¤</h3>
+			<h3 class="grey_back_title">íšŒì›ì •ë³´ ìˆ˜ì •</h3>
 		<br>	
-		<h5 class="bolded">±âº»Á¤º¸(ÇÊ¼ö ÀÔ·Â»çÇ×)</h5>
+		<h5 class="bolded">ê¸°ë³¸ì •ë³´(í•„ìˆ˜ ìž…ë ¥ì‚¬í•­)</h5>
 		<br>
 	
 		<table id="info_change_table">
@@ -27,21 +31,21 @@
 		    </colgroup>
 			<tbody>
 			<tr>
-				<td class="grey_back_td bolded">¾ÆÀÌµð</td>
-				<td colspan="3">yoahn394</td>
+				<td class="grey_back_td bolded">ì•„ì´ë””</td>
+				<td colspan="3"><input type="text" id="user_id"/></td>
 			</tr>
 			<tr>
-				<td class="grey_back_td bolded">ºñ¹Ð¹øÈ£</td>
-				<td colspan="3">asdfadf</td>
+				<td class="grey_back_td bolded">ë¹„ë°€ë²ˆí˜¸</td>
+				<td colspan="3"><button data-toggle="modal" data-target="#pwChangeModal" class="btn-primary btn-sm text-sm" type="button">ë¹„ë°€ë²ˆí˜¸ ë³€ê²½</button></td>
 			</tr>
 			<tr>
-				<td class="grey_back_td bolded">È¸»ç¸í</td>
-				<td> ¾ÆÀÌ¹ö½ºÅÍ</td>
-				<td class="grey_back_td bolded">»ç¾÷ÀÚ µî·Ï¹øÈ£</td>
-				<td>123123123</td>
+				<td class="grey_back_td bolded">íšŒì‚¬ëª…</td>
+				<td><input type="text" id="company_nm"/></td>
+				<td class="grey_back_td bolded">ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸</td>
+				<td><input type="text" id="biz_reg_number"/></td>
 			</tr>
 			<tr>
-				<td class="grey_back_td bolded">»ç¾÷ÀÚ µî·Ï¹øÈ£ »çº»</td>
+				<td class="grey_back_td bolded">ì‚¬ì—…ìž ë“±ë¡ë²ˆí˜¸ ì‚¬ë³¸</td>
 				<td colspan="3">
 					<div class="col-sm-12 input-group custom">
 	              	<div class="input-group input-file">
@@ -54,36 +58,37 @@
                 </td>
 			</tr>
 			<tr>
-				<td class="grey_back_td bolded">´ëÇ¥ÀÚ</td>
-				<td>³ª¿äÇÑ</td>
-				<td class="grey_back_td bolded">¾÷ÅÂ/¾÷Á¾</td>
-				<td>Á¦Á¶¾÷/¾Ç¼¼¼­¸®</td>
+				<td class="grey_back_td bolded">ëŒ€í‘œìž</td>
+				<td><input type="text" id="ceo_nm"/></td>
+				<td class="grey_back_td bolded">ì—…íƒœ/ì—…ì¢…</td>
+				<td><input type="text" id="biz_category"/></td>
 			</tr>
 			<tr>
-				<td class="grey_back_td bolded">ÁÖ¼Ò</td>
+				<td class="grey_back_td bolded">ì£¼ì†Œ</td>
 				<td colspan="3">
+					<input type="text" id="addr"/>
 					<p>
-					ÀÔ·ÂÇÏ½Å ÁÖ¼Ò´Â ±âº» ¹è¼ÛÁö·Î ÀÔ·ÂµË´Ï´Ù. <br>
-					È¸¿ø°¡ÀÔ½Ã ±âÀÔµÈ ÁÖ¼Ò´Â »ç¾÷ÀÚ µî·ÏÁõ ¼ÒÀç ÁÖ¼Ò ÀÔ´Ï´Ù.<br>
-					»ç¾÷ÀÚ µî·ÏÁõ°ú ¹è¼Û ÁÖ¼Ò°¡ ´Ù¸¦ °æ¿ì  ¸¶ÀÌÆäÀÌÁö ¹è¼ÛÁö°ü¸®¿¡¼­ ¼öÁ¤ ¹× Ãß°¡°¡ °¡´ÉÇÕ´Ï´Ù<br>
+					ìž…ë ¥í•˜ì‹  ì£¼ì†ŒëŠ” ê¸°ë³¸ ë°°ì†¡ì§€ë¡œ ìž…ë ¥ë©ë‹ˆë‹¤. <br>
+					íšŒì›ê°€ìž…ì‹œ ê¸°ìž…ëœ ì£¼ì†ŒëŠ” ì‚¬ì—…ìž ë“±ë¡ì¦ ì†Œìž¬ ì£¼ì†Œ ìž…ë‹ˆë‹¤.<br>
+					ì‚¬ì—…ìž ë“±ë¡ì¦ê³¼ ë°°ì†¡ ì£¼ì†Œê°€ ë‹¤ë¥¼ ê²½ìš°  ë§ˆì´íŽ˜ì´ì§€ ë°°ì†¡ì§€ê´€ë¦¬ì—ì„œ ìˆ˜ì • ë° ì¶”ê°€ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤<br>
 					</p>
 				</td>
 			</tr>	
 			<tr>
-				<td class="grey_back_td bolded">¿¬¶ôÃ³</td>
-				<td>aaaa</td>
-				<td class="grey_back_td bolded">¼¼±Ý°è»ê¼­¹ßÇà ÀÌ¸ÞÀÏ</td>
-				<td>123</td>
+				<td class="grey_back_td bolded">ì—°ë½ì²˜</td>
+				<td><input type="text" id="contact_tel"/></td>
+				<td class="grey_back_td bolded">ì„¸ê¸ˆê³„ì‚°ì„œë°œí–‰ ì´ë©”ì¼</td>
+				<td><input type="text" id="tax_email"/></td>
 			</tr>
 			<tr>
-				<td class="grey_back_td bolded">´ã´çÀÚ¸í</td>
-				<td>aaaa</td>
-				<td class="grey_back_td bolded">´ã´çÀÚ ¿¬¶ôÃ³</td>
-				<td>123</td>
+				<td class="grey_back_td bolded">ë‹´ë‹¹ìžëª…</td>
+				<td><input type="text" id="manager_nm"/></td>
+				<td class="grey_back_td bolded">ë‹´ë‹¹ìž ì—°ë½ì²˜</td>
+				<td><input type="text" id="manager_tel"/></td>
 			</tr>
 			<tr>
-				<td class="grey_back_td bolded">´ã´çÀÚ ÀÌ¸ÞÀÏ</td>
-				<td colspan="3">yohan394@hotmail.com</td>
+				<td class="grey_back_td bolded">ë‹´ë‹¹ìž ì´ë©”ì¼</td>
+				<td colspan="3"><input type="text" id="manager_email"/></td>
 			</tr>	
 			</tbody>
 		</table>
@@ -92,8 +97,8 @@
       	<br>
       	<div class="row">
       		<div class="col-sm-12 submit" align="center">
-      			 <button id="sign_up" class="btn-primary btn-lg" type="submit">È®ÀÎ</button>
-      			 <button class="btn-warning btn-lg" type="button">Ãë¼Ò</button>
+      			 <button id="sign_up" class="btn-primary btn-lg" type="submit">í™•ì¸</button>
+      			 <button class="btn-warning btn-lg" type="button">ì·¨ì†Œ</button>
       		</div>
          </div>
          
@@ -101,11 +106,11 @@
 </div>
 
 
-<div class="modal fade" id="idFinderModal" role="dialog">
+<div class="modal fade" id="pwChangeModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-            <h3>ºñ¹Ð¹øÈ£ º¯°æ</h3>
+            <h3>ë¹„ë°€ë²ˆí˜¸ ë³€ê²½</h3>
             <br>            
         <div class="tab-content clearfix">
           <br>
@@ -113,31 +118,31 @@
             <div class="form-group">
               <div class="right-inner-addon">
                 <i class="fa fa-envelope"></i>
-                <input id="old_passwd" class="form-control input-lg" placeholder="±âÁ¸ ºñ¹Ð¹øÈ£" type="text">
+                <input id="old_passwd" class="form-control input-lg" placeholder="ê¸°ì¡´ ë¹„ë°€ë²ˆí˜¸" type="password">
               </div>
             </div>
             <div class="form-group">
             	<div class="right-inner-addon">
 	                <i class="fa fa-key"></i>
-	                <input id="new_passwd" class="form-control input-lg" placeholder="»õ ºñ¹Ð¹øÈ£" type="text">
+	                <input id="new_passwd" class="form-control input-lg" placeholder="ìƒˆ ë¹„ë°€ë²ˆí˜¸" type="password">
               </div>
             </div>
             <div class="form-group">
             	<div class="right-inner-addon">
 	                <i class="fa fa-key"></i>
-	                <input id="passwd_confirm" class="form-control input-lg" placeholder="ºñ¹Ð¹øÈ£ È®ÀÎ" type="text">
+	                <input id="new_passwd_check" class="form-control input-lg" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" type="password">
               </div>
             </div>
           </fieldset>
           <hr>
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
-              <button id="id_cell_finder" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> Àü¼Û</button>
+              <button id="btn_passwd_change" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> í™•ì¸</button>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="passwd_change_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -145,5 +150,8 @@
 </div>
 
 
+
+
+<script src="./js/user/info_change.js"></script>
 </body>
 </html>

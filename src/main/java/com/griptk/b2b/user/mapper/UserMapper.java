@@ -13,9 +13,9 @@ public interface UserMapper {
 	
 	int checkBizRegNumber(String biz_reg_number);
 	
-	String getAprvStatus(String user_id);
+	UserVO getUserLoginInfo(String user_id);
 	
-	String getPassword(String user_id);
+	String getPassword(int user_no);
 	
 	int login(UserVO userVo);
 	
