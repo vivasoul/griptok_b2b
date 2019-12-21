@@ -89,30 +89,50 @@
 					<font style="font-weight: bold;font-size:20px;">배송정보</font>	
 				</div>
 				<div class="col-md-12">
-					<table id= "order-detail-tbl" class="table table-bordered">
-						<tbody>
-							<tr>
-								<th style="width:30%;">배송지 선택</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th style="width:30%;">받는사람</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th style="width:30%;">주소</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th style="width:30%;">휴대전화</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th style="width:30%;">배송 메모</th>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
+					<form id="cart-shipto-form">
+						<table id= "order-detail-tbl" class="table table-bordered">
+							<tbody>
+								<tr>
+									<th style="width:20%;">배송지 선택</th>
+									<td>
+										<div class="col-md-7">
+											<select class="form-control" name="shipto_addr1" id="sel-shipto">
+												<option value="shipto_no_1" data-recv-addr = "서울특별시 마포구 8길 19 포스코 3단지 303호">기본배송지</option>
+												<option value="shipto_no_2" data-recv-addr = "부산광역시 아무개구 9-2 홍길동 아파트 1005호">부산배송지</option>
+											</select>
+										</div>
+										<div class="col-md-5">
+											<input type="button" id="btn-add-shipto" class="btn btn-sm btn-primary form-control" value="신규배송지 추가하기"/>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th style="width:20%;">받는사람</th>
+									<td>
+										<input type="text" name="receiver_nm" value="머털도사" class="form-control"/>
+									</td>
+								</tr>
+								<tr>
+									<th style="width:20%;">주소</th>
+									<td>
+										<input type="text" name="recv_addr" readonly class="form-control"/>
+									</td>
+								</tr>
+								<tr>
+									<th style="width:20%;">휴대전화</th>
+									<td>
+										<input type="text" name="receiver_tel" value="010-8282-5244" class="form-control"/>
+									</td>
+								</tr>
+								<tr>
+									<th style="width:20%;">배송 메모</th>
+									<td>
+										<input type="text" name="memo" value="조심히 배달해주세요." class="form-control"/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -124,17 +144,23 @@
 						<tbody>
 							<tr>
 								<th style="width:30%;">총 주문 금액</th>
-								<td></td>
+								<td>
+									<input type="text" id="final-original-price" readonly class="form-control"/>
+								</td>
 							</tr>
 							<tr>
 								<th style="width:30%;">총 할인 금액</th>
-								<td></td>
+								<td>
+									<input type="text" id="final-discount-price" readonly class="form-control"/>
+								</td>
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-					            <th style="width:30%;">최종 결제 금액</td>
-					            <td></td>
+					            <th style="width:30%;">최종 결제 금액</th>
+					            <td>
+					            	<input type="text" id="final-order-price" readonly class="form-control"/>
+					            </td>
 					        </tr>
 						</tfoot>
 					</table>
@@ -209,6 +235,29 @@ $(document).ready(function() {
 				if(e.id === targetDivId) {$(e).show(); }
 				else {$(e).hide();}
 			})
+		},
+		postHandle : {
+			price : function(fromId,rowData){
+				if(fromId == 'btn-view-pay'){
+					$('#final-original-price').val($('#tot-original-price').val())
+					$('#final-discount-price').val($('#tot-discount-price').val())
+					$('#final-order-price').val($('#tot-order-price').val())
+				}else{
+					const originalP = rowData.unit_price * rowData.order_cnt;
+					const discountP = 0;
+					const finalP = originalP - discountP;
+					
+					$('#final-original-price').val(originalP + '원')
+					$('#final-discount-price').val(discountP + '원')
+					$('#final-order-price').val(finalP + '원')
+				}
+			},
+			address : function(){
+				const $f = $('#cart-shipto-form'), f = $f[0];
+				const sel = f.shipto_addr1;
+				const recv_addr = $(sel.options[sel.selectedIndex]).attr('data-recv-addr');
+				f.recv_addr.value = recv_addr;
+			}
 		}
 	};
 	
@@ -226,11 +275,15 @@ $(document).ready(function() {
 					cartTable.updateRow(newData,pData.rowIndice);
 				},
 				buy : function(pRowIndice){
-					const arr = [cartTable.getRow(pRowIndice)];
+					const rowData = cartTable.getRow(pRowIndice);
+					const arr = [rowData];
+					
 					toggle.buttons('btn-view-pay');
 					toggle.div();
 					toggle.label();
 					payTable.reload(arr);
+					toggle.postHandle.price(null,rowData);
+					toggle.postHandle.address();
 				},
 				remove : function(pRowIndice){
 					const targetRow = cartTable.getRow(pRowIndice)
@@ -258,6 +311,7 @@ $(document).ready(function() {
 						$('#tot-original-price').val(originalSum + '원')
 						$('#tot-discount-price').val(discount + '원')
 						$('#tot-order-price').val(netSum + '원')
+						
 					}
 				},
 				remove : function(){
@@ -405,11 +459,13 @@ $(document).ready(function() {
 				map(function(x){return cartTable.getRow($(x).attr('data-row-indice'))});			
 			if(arr.length == 0){
 				alert('주문하실 상품들을 먼저 체크해주세요.')
-			}else{
+			}else{				
 				toggle.buttons(btnId);
 				toggle.div();
 				toggle.label();
 				payTable.reload(arr);
+				toggle.postHandle.price(btnId);
+				toggle.postHandle.address();
 			}
 		}else{
 			toggle.buttons(btnId);
@@ -435,7 +491,6 @@ $(document).ready(function() {
 		
 		update.clicked.count(newData);
 		update.checked.payment();
-// 		return false;
 	});
 
 	$(document).on('click','.plus',function () {
@@ -476,6 +531,10 @@ $(document).ready(function() {
 	$('#btn-remove-all').on('click',function(){
 		update.checked.remove();
 		update.checked.payment();
+	});
+	
+	$('#sel-shipto').on('change',function(){
+		toggle.postHandle.address();
 	})
 });
 </script>
