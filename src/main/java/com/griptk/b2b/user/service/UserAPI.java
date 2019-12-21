@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.annotation.MapperScan;
@@ -95,7 +97,7 @@ public class UserAPI {
 		String uploadPath = "";
 		
 		// mapper
-		String path = "C:\\"+"upload\\"; // 파일 업로드 경로
+		String path = "D:\\"+"upload\\"; // 파일 업로드 경로
 			
 		String original = mf.getOriginalFilename(); // 업로드하는 파일 name
 			
@@ -137,17 +139,15 @@ public class UserAPI {
 	
 	// sign_up
 	@PostMapping("/sign_up/sign_up")
-	public Map<String, Object> griptokSignUp(
+	public void griptokSignUp(
 			@RequestPart (value="real_file") MultipartFile real_file,
 			@ModelAttribute UserVO vo,
+			HttpServletRequest request,
 	        HttpServletResponse response) {
 
 		
-		System.out.println("Checking =============");
-		
 		System.out.println(vo.toString());
 		
-		Map<String, Object> resp = new HashMap<String, Object>();
 		int result = 1;
 		
 		try{
@@ -158,6 +158,10 @@ public class UserAPI {
 			int img_no = mapper.getImgNo();
 			
 			vo.setBiz_img_no(img_no);
+			
+			String new_temp_password = passwordEncoder.encode(vo.getPasswd());
+			
+			vo.setPasswd(new_temp_password);
 			
 			int user_result = mapper.signUpUser(vo);
 			
@@ -171,13 +175,19 @@ public class UserAPI {
 			}else if(login_result==0){
 				result=-2;
 			}
+			request.setAttribute("result", result);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+			dispatcher.forward(request, response);
 		}catch(Exception e){
 			result = -1;
+			try{
+				request.setAttribute("result", result);
+				response.sendRedirect("/register");
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
 		}
 		
-		resp.put("result", result);
-		
-		return resp;
 		
 	}
 	
@@ -231,12 +241,16 @@ public class UserAPI {
 		
 		String passwd = vo.getPasswd();
 		String user_id = vo.getUser_id();
+		
+		String aprv_status = mapper.getAprvStatus(user_id);
+		
 		String encoded_password = mapper.getPassword(user_id);
 		int result = 1;
 		if(!passwordEncoder.matches(passwd, encoded_password)) {
 			result = 0;
 		}
 		Map<String, Object> resp = new HashMap<String, Object>();
+		resp.put("aprv_status", aprv_status);
 		resp.put("result", result);
 		return resp;
 	}
@@ -281,16 +295,9 @@ public class UserAPI {
 			@RequestBody WithdrawalVO vo,
 	        HttpServletResponse response) {
 		
-		String passwd = vo.getPasswd();
-		String user_id = vo.getUser_id();
-		String encoded_password = mapper.getPassword(user_id);
-		int result = 1;
+		int result = mapper.insertWithdrawal(vo);
 		
-		if(!passwordEncoder.matches(passwd, encoded_password)) {
-			result = -2;
-		}else {
-			result = mapper.insertWithdrawal(vo);
-		}
+		result = mapper.updateStatus(vo);
 		
 		Map<String, Object> resp = new HashMap<String, Object>();
 		resp.put("result", result);

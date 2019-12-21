@@ -13,6 +13,8 @@ public interface UserMapper {
 	
 	int checkBizRegNumber(String biz_reg_number);
 	
+	String getAprvStatus(String user_id);
+	
 	String getPassword(String user_id);
 	
 	int login(UserVO userVo);
@@ -34,6 +36,8 @@ public interface UserMapper {
 	int insertLoginInfo(UserVO userVo);
 	
 	int insertWithdrawal(WithdrawalVO withdrawlVo);
+	
+	int updateStatus(WithdrawalVO withdrawlVo);
 
 }
 

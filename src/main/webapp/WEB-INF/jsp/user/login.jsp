@@ -303,7 +303,7 @@ $("#id_cell_finder").bind("click",function(){
 	        type: "post",
 	        data : JSON.stringify({ 
 	        			"ceo_nm" : $("#id_cell_ceo_nm").val(),
-	        			"contact_tel" : $("#id_cell_contact_tel1").val()+$("#id_cell_contact_tel2").val()+$("#id_cell_contact_tel3").val()
+	        			"contact_tel" : $("#id_cell_contact_tel1").val()+"-"+$("#id_cell_contact_tel2").val()+"-"+$("#id_cell_contact_tel3").val()
 	        	   }),
 	     	contentType: "application/json",
 	        success : function(responseData){
@@ -354,7 +354,7 @@ $("#passwd_cell_finder").bind("click",function(){
         data : JSON.stringify({ 
         			"user_id" : $("#passwd_cell_user_id").val(),
         			"ceo_nm" : $("#passwd_cell_ceo_nm").val(),
-        			"contact_tel" : $("#passwd_cell_contact_tel").val()
+        			"contact_tel" : $("#passwd_cell_contact_tel1").val()+"-"+$("#passwd_cell_contact_tel2").val()+"-"+$("#passwd_cell_contact_tel3").val()
         	   }),
      	contentType: "application/json",
         success : function(responseData){
@@ -416,10 +416,19 @@ $("#btn_login").bind("click",function(){
 	        	   }),
 	    	contentType: "application/json",
 	        success : function(responseData){
-	        	if(responseData.result==1){
-	        		alert("페이지이동");
-	        	}else{
+	        	console.log(responseData);
+	        	var result = responseData.result;
+	        	var aprv_status = responseData.aprv_status;
+	        	if(responseData.result==0){
 	        		alert("아이디 또는 비밀번호가 올바르지 않습니다.")
+	        	}else{
+	        		if(aprv_status=="A"){
+		        		alert("페이지이동");
+	        		}else if(aprv_status=="W"){
+	        			alert("탈퇴한 아이디입니다.");
+	        		}else{
+	        			alert("미승인상태");
+	        		}
 	        	}
 	        }
 	    });
@@ -428,9 +437,11 @@ $("#btn_login").bind("click",function(){
 	}
 });
 
-function form_clear(){
-	
+var test = <%=request.getAttribute("result")%>;
+if(test==1){
+	alert("가입을 축하드립니다. 관리자 승인 대기중입니다.");
 }
+
 
 function form_checker(_vals, highlight_needed){
 	var return_val = true;

@@ -4,6 +4,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class WithdrawalVO {
 	
+	private int user_no;
+	
 	private String user_id;
 	
 	private String passwd;
@@ -11,6 +13,14 @@ public class WithdrawalVO {
 	private String code;
 	
 	private String remark;
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
 
 	public String getUser_id() {
 		return user_id;
@@ -46,9 +56,8 @@ public class WithdrawalVO {
 
 	@Override
 	public String toString() {
-		return "WithdrawVO [user_id=" + user_id + ", passwd=" + passwd + ", code=" + code + ", remark=" + remark + "]";
+		return "WithdrawalVO [user_no=" + user_no + ", user_id=" + user_id + ", passwd=" + passwd + ", code=" + code
+				+ ", remark=" + remark + "]";
 	}
-	
-	
 
 }

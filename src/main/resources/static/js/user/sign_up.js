@@ -60,7 +60,7 @@ $("#company_nm_check").bind("click",function(){
 	        data : { "company_nm" : $("#company_nm").val() },
 	        success : function(responseData){
 	        	if(responseData.result==0){
-	        		company_checked=true;
+	        		company_nm_checked=true;
 	        		alert("사용가능한 회사명입니다.");
 	        	}else{
 	        		alert("사용중인 회사명입니다. 다른 회사명을 사용해주세요.")
@@ -154,6 +154,7 @@ function validatePassword()
 	} 
     else if(password.value != confirm_password.value)
     {
+    	password_match = false;
         confirm_password.setCustomValidity("비밀번호가 다릅니다.");
         confirm_password.reportValidity();
     }  else
@@ -223,7 +224,9 @@ biz_reg_number.onkeyup = autoHypenBizNum;
 var password_match = false;
 var id_checked = false;
 var biz_reg_number_checked = false;
+var company_nm_checked = false;
 var term_checked = false;
+
 
 // check_box
 
@@ -306,3 +309,21 @@ function autoHypenBizNum(){
   this.value=tmp;
 }
 
+$('#sign_up_form').submit(function() {
+	if(!id_checked){
+		alert("아이디 중복을 체크해주세요.");
+		return false;
+	}else if(!term_checked){
+		alert("이용 약관에 동의해주세요.");
+		return false;
+	}else if(!company_nm_checked){
+		alert("회사 이름 중복을 체크해주세요.");
+		return false;
+	}else if(!biz_reg_number_checked){
+		alert("사업자 등록번호 중복을 체크해주세요.");
+		return false;
+	}else{
+		return true; 
+	}
+    
+});

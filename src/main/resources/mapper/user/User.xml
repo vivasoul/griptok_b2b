@@ -127,7 +127,7 @@
 	</insert>
 	
 	<insert id="insertWithdrawal" parameterType="com.griptk.b2b.user.domain.WithdrawalVO">
-		INSERT INTO tb_withdrawl_hist
+		INSERT INTO tb_withdrawal_hist(
 			user_no,
 			code,
 			remark,
@@ -139,6 +139,22 @@
 			now()
 		)
 	</insert>
+	
+	<update id="updateStatus" parameterType="com.griptk.b2b.user.domain.WithdrawalVO">
+		UPDATE 
+			tb_login
+		SET
+			aprv_status='W'
+		WHERE 
+			user_no = (SELECT user_no FROM tb_user WHERE user_id = #{user_id})
+	</update>
+	
+	<select id="getAprvStatus" parameterType="String" resultType="String">
+		SELECT l.aprv_status FROM tb_user u
+		INNER JOIN tb_login l
+		ON u.user_no = l.user_no
+		WHERE user_id= #{user_id}
+	</select>
 	
 	<select id="getPassword" parameterType="String" resultType="String">
 		SELECT l.passwd FROM tb_user u
