@@ -101,12 +101,14 @@ public class ProductController {
 							  @RequestParam(value="id",defaultValue = "0") int c_id) {
 		
 		PageLabelVO label = getPageLabel(mode, p_id, c_id);
+		
 		if(label != null) {
 			//model.addAttribute("page_title", label.getTitle());
 			model.addAttribute("page_path", label.getPath());
 			model.addAttribute("side_title", label.getSide_title());
 			model.addAttribute("side_menus", label.getSub_menus());
 		}
+		model.addAttribute("product_id", product_id);
 		model.addAttribute("content_page", "product/detail");
 		return "_template/main";
 	}

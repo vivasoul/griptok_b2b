@@ -190,5 +190,28 @@
 		CROSS JOIN CTE c
 		WHERE 1=1
 		AND a.brand_no = #{brand_no}		
-	</select>			
+	</select>
+	
+	<select id="getDetail" parameterType="Int" resultType="com.griptk.b2b.product.domain.ProductDetailVO">
+		SELECT 
+			a.product_id,
+			a.title,
+			a.retail_price,
+			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
+										 ELSE a.sales_price
+			END AS sales_price
+		FROM tb_product a 
+		INNER JOIN tb_product_detail b ON a.product_id = b.product_id
+		WHERE 1=1
+		AND a.product_id = #{product_id}		
+	</select>	
+	
+	<select id="getDetailImages" parameterType="Int" resultType="String">
+		SELECT 
+			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format)
+		FROM tb_product_img a 
+		INNER JOIN tb_img_file_info b ON a.img_no = b.img_no
+		WHERE 1=1
+		AND a.product_id = #{product_id}		
+	</select>		
 </mapper>

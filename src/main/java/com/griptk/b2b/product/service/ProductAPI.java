@@ -1,6 +1,5 @@
 package com.griptk.b2b.product.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.griptk.b2b.product.domain.ProductDetailVO;
 import com.griptk.b2b.product.domain.ProductVO;
 import com.griptk.b2b.product.mapper.ProductMapper;
 
@@ -58,5 +58,12 @@ public class ProductAPI {
 	public List<ProductVO> getProducts_BB(@PathVariable("p_brand_no") int p_brand_no,
 										  @PathVariable("brand_no") int brand_no){
 		return mapper.listProducts_BB(brand_no);
+	}
+	@GetMapping("/{product_id}")
+	public ProductDetailVO getDetail(@PathVariable("product_id") int product_id) {
+		ProductDetailVO result = mapper.getDetail(product_id);
+		List<String> images = mapper.getDetailImages(product_id);
+		result.setImages(images);
+		return result;
 	}
 }
