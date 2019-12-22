@@ -208,3 +208,69 @@ griptok.component.datatable = function(p_tableId){
 		
 return $this;
 }
+
+/*
+object : griptok component function
+object-name : component.bootbox
+explanation : wrapper for bootbox library. Currently available functions - [alert],[confirm]
+required : bootstrap.min.js, bootbox.min.js
+module-depth : 3
+*/
+griptok.component.bootbox = {
+		growl : function(message,pColor,pMilliseconds){
+			const milliseconds = pMilliseconds === undefined ? 2000 : pMilliseconds;
+			const useColor = pColor === undefined ? 'transparent' : pColor;
+			
+		    const dialog = bootbox.dialog({
+		        message: message 
+		    });
+		    
+		    dialog.init(function() {
+		        $(dialog).find(".modal-body").css({"background-color": pColor});
+		    });
+		    
+		    setTimeout(function(){ 
+		        dialog.modal('hide');
+		    }, milliseconds);
+		},
+		alert : function(pOptions){
+			const size = pOptions.size === undefined ? 'small' : pOptions.size;
+			const title = pOptions.title === undefined ? '' : pOptions.title;
+			const message = pOptions.message === undefined ? '' : pOptions.message;
+			
+			return bootbox.alert({
+				title : title,
+				size : size,
+				message : message,
+				buttons : {
+					ok : {
+						label : '<i class="fa fa-check"></i> 확인'
+					}
+				}
+			})
+		},
+		confirm : function(pOptions){
+			const defaultCallback = function(result){
+				console.log('no callback was defined for bootbox.confirm. result = ' + result);
+			}
+			
+			const message = pOptions.message === undefined ? '진행하시겠어요?' : pOptions.message;
+			const title = pOptions.title === undefined ? '': pOptions.title;
+			const callback = typeof pOptions.callback !== 'function' ? defaultCallback : pOptions.callback;
+			
+			return bootbox.confirm({
+			    title: title,
+			    message: message,
+			    buttons: {
+			        cancel: {
+			            label: '<i class="fa fa-times"></i> 취소'
+			        },
+			        confirm: {
+			            label: '<i class="fa fa-check"></i> 확인'
+			        }
+			    },
+			    callback: callback
+			});
+		},
+		
+}
