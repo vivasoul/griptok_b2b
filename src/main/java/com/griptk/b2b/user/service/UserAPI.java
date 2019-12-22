@@ -104,6 +104,11 @@ public class UserAPI {
 		uploadPath = path+original; // 파일 업로드 경로 + 파일 이름
 		
 		File imag_file = new File(uploadPath);
+		
+		if(imag_file.exists()){
+			imag_file.delete();
+		}
+		
 		try {
 			mf.transferTo(imag_file); // 파일을 위에 지정 경로로 업로드
 		} catch (IllegalStateException e) {
@@ -151,6 +156,7 @@ public class UserAPI {
 		int result = 1;
 		
 		try{
+			
 			ImageVO imgVo = uploadFile(real_file);
 			
 			int img_result = mapper.insertImgInfo(imgVo);
@@ -368,20 +374,19 @@ public class UserAPI {
 		
 		System.out.println(vo.toString());
 		
+		System.out.println("checking");
+		System.out.println(real_file.isEmpty());
+		
 		int result = 1;
 		
 		try{
-			ImageVO imgVo = uploadFile(real_file);
 			
-			int img_result = mapper.updateImgInfo(imgVo);
-			
-			int img_no = mapper.getImgNo();
-			
-			vo.setBiz_img_no(img_no);
-			
-			String new_temp_password = passwordEncoder.encode(vo.getPasswd());
-			
-			vo.setPasswd(new_temp_password);
+			int img_result = 1;
+			if(!real_file.isEmpty()){
+				ImageVO imgVo = uploadFile(real_file);
+				imgVo.setUser_no(vo.getUser_no());
+				img_result = mapper.updateImgInfo(imgVo);
+			}
 			
 			int user_result = mapper.updateUser(vo);
 
@@ -391,7 +396,7 @@ public class UserAPI {
 				result=-2;
 			}
 			request.getSession().setAttribute("info_changed", "info_changed");
-			response.sendRedirect("/login");
+			response.sendRedirect("/info");
 		}catch(Exception e){
 			result = -1;
 			try{
@@ -404,7 +409,8 @@ public class UserAPI {
 		
 		
 	}
-
+	
+	
 	private void sendTempPassword(String email, String password) throws Exception{
 		String title = "Sending a temporary passowrd to access the solution, Griptok";
 		StringBuilder sb = new StringBuilder();

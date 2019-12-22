@@ -31,6 +31,16 @@ $(function() {
 
 
 $(document).ready(function() {
+	if(user_no=="null"){
+		alert("세션이 만료되었습니다.");
+		location.href="/login";
+	}else if(info_changed!="null"){
+		if(info_changed=="failed"){
+			alert("정보 변경에 실패하였습니다.");
+		}else{
+			alert("정보 변경에 성공하였습니다.");
+		}
+	}
 	$.ajax({
         url : "/info_change/load",
         type: "post",
@@ -51,10 +61,33 @@ $(document).ready(function() {
         	$("#addr").val("("+responseData.post_code+") "+responseData.biz_addr_1+" "+responseData.biz_addr_2);
         	$("#contact_tel").val(responseData.contact_tel);
         	$("#tax_email").val(responseData.tax_email);
+        	$("#user_no").val(user_no);
         }
     });
 });
 
+
+
+function openDaumZipAddress() {
+
+	new daum.Postcode({
+
+		oncomplete:function(data) {
+			jQuery("#post_code").val(data.postcode1+"-"+data.postcode2);
+
+			if(data.postcode1==""){
+				jQuery("#post_code").val(data.zonecode);
+			}
+			
+			jQuery("#shipto_addr1").val(data.address);
+
+			jQuery("#shipto_addr2").focus();
+
+		}
+
+	}).open();
+
+}
 
 //company_nm_check button bind
 $("#btn_passwd_change").bind("click",function(){
@@ -81,6 +114,39 @@ $("#btn_passwd_change").bind("click",function(){
 });
 
 
+//company_nm_check button bind
+$("#shipto_change").bind("click",function(){
+	if(emptyCheck("post_code")&&emptyCheck("shipto_addr_1")&&emptyCheck("shipto_addr_2")&&emptyCheck("shipto_nm")&&emptyCheck("receiver_nm")&&emptyCheck("receiver_tel")){
+	    $.ajax({
+	        url : "/shipto/change",
+	        type: "post",
+	        data : JSON.stringify({ 
+	        		 "receiver_nm" : $("#receiver_nm").val(),
+	        	     "receiver_tel" : $("#receiver_tel").val(),
+	        	     "shipto_nm" : $("#shipto_nm").val(),
+	        	     "post_code" : $("#post_code").val(),
+	        	     "shipto_addr1" : $("#shipto_addr1").val(),
+	        	     "shipto_addr2" : $("#shipto_addr2").val(),
+	        	     "user_no" : user_no,
+	        	     "shipto_no" : 1
+	        		}),
+	    	contentType: "application/json",
+	        success : function(responseData){
+	        	if(responseData.result==0){
+	        		alert("배송지 변경에 실패했습니다.");
+	        	}else{
+	        		alert("배송지 정보가 업데이트 되었습니다.");
+	        		$("#addr").val("("+$("#post_code").val()+") "+$("#shipto_addr1").val()+" "+$("#shipto_addr2").val());
+	        		$("#shipto_change_close").click();
+	        	}
+	        }
+	    });
+	}else{
+		alert("값을 채워주세요.");
+	}
+});
+
+
 
 var password = document.getElementById("new_passwd");
 var confirm_password = document.getElementById("new_passwd_check");
@@ -91,7 +157,7 @@ var biz_reg_number = document.getElementById("biz_reg_number");
 var manager_email = document.getElementById("manager_email");
 var manager_tel = document.getElementById("manager_tel");
 var tax_email = document.getElementById("tax_email");
-
+var receiver_tel = document.getElementById("receiver_tel");
 
 function validatePassword()
 {
@@ -123,7 +189,7 @@ function validateRegex(){
 	}else if(regex_id=="user_id"){
 		regex_type = /([a-zA-Z0-9].{1,})/;
 		regex_msg = "아이디는 2자리 이상의 영문 및 숫자의 조합만 가능합니다."; 
-	}else if(regex_id=="contact_tel"||regex_id=="manager_tel"){
+	}else if(regex_id=="contact_tel"||regex_id=="manager_tel"||regex_id=="receiver_tel"){
 		regex_type = /^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/;
 		regex_msg = "전화번호가 올바르지 않습니다.";
 	}else if(regex_id=="manager_email"||regex_id=="tax_email"){
@@ -162,10 +228,11 @@ manager_email.onfocusout = validateRegex;
 manager_tel.onfocusout = validateRegex;
 tax_email.onfocusout = validateRegex;
 confirm_password.onkeyup = validatePassword;
-
+receiver_tel.onfocusout = validateRegex;
 
 contact_tel.onkeyup = autoHypenPhone;
 manager_tel.onkeyup = autoHypenPhone;
+receiver_tel.onkeyup = autoHypenPhone;
 biz_reg_number.onkeyup = autoHypenBizNum;
 
 // validation checker

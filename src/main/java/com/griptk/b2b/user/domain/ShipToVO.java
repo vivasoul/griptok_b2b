@@ -14,11 +14,13 @@ public class ShipToVO {
 	
 	private String reg_dt;
 	
-	private int ship_to;
+	private int shipto_no;
 	
 	private String shipto_nm;
 	
 	private String upd_dt;
+	
+	private String post_code;
 
 	public int getUser_no() {
 		return user_no;
@@ -68,12 +70,14 @@ public class ShipToVO {
 		this.reg_dt = reg_dt;
 	}
 
-	public int getShip_to() {
-		return ship_to;
+	
+
+	public int getShipto_no() {
+		return shipto_no;
 	}
 
-	public void setShip_to(int ship_to) {
-		this.ship_to = ship_to;
+	public void setShipto_no(int shipto_no) {
+		this.shipto_no = shipto_no;
 	}
 
 	public String getShipto_nm() {
@@ -91,13 +95,21 @@ public class ShipToVO {
 	public void setUpd_dt(String upd_dt) {
 		this.upd_dt = upd_dt;
 	}
+	
+	public String getPost_code() {
+		return post_code;
+	}
+
+	public void setPost_code(String post_code) {
+		this.post_code = post_code;
+	}
 
 	@Override
 	public String toString() {
 		return "ShipToVO [user_no=" + user_no + ", receiver_nm=" + receiver_nm + ", shipto_addr1=" + shipto_addr1
 				+ ", shipto_addr2=" + shipto_addr2 + ", receiver_tel=" + receiver_tel + ", reg_dt=" + reg_dt
-				+ ", ship_to=" + ship_to + ", shipto_nm=" + shipto_nm + ", upd_dt=" + upd_dt + "]";
+				+ ", shipto_no=" + shipto_no + ", shipto_nm=" + shipto_nm + ", upd_dt=" + upd_dt + ", post_code="
+				+ post_code + "]";
 	}
-	
-	
+
 }

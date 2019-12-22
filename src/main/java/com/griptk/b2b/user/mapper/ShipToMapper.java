@@ -6,5 +6,7 @@ public interface ShipToMapper {
 	
 	
 	int addShippingInfo(ShipToVO vo);
+	
+	int changeShipTo(ShipToVO vo);
 
 }

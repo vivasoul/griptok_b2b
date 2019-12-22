@@ -120,7 +120,7 @@ function openDaumZipAddress() {
 			jQuery("#post_code").val(data.postcode1+"-"+data.postcode2);
 
 			if(data.postcode1==""){
-				jQuery("#postcode1").val(data.zonecode);
+				jQuery("#post_code").val(data.zonecode);
 			}
 			
 			jQuery("#address").val(data.address);
