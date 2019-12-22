@@ -27,11 +27,15 @@ public interface UserMapper {
 	
 	int insertImgInfo(ImageVO imgVo);
 	
+	int updateImgInfo(ImageVO imgVo);
+	
 	int getImgNo();
 	
 	UserVO getUserInfo(int user_no);
 	
-	int signUpUser(UserVO userVo);
+	int signUpUser(UserVO userVo); 
+	
+	int updateUser(UserVO userVo);
 	
 	int insertLoginInfo(UserVO userVo);
 	

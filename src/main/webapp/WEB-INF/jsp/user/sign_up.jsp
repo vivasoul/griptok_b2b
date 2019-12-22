@@ -39,7 +39,7 @@
 			   </div>
                <div class="col-sm-12 input-group custom"><input id="passwd" name="passwd" type="password" placeholder="비밀번호"  class="form-control input-sm" required></div>
                <div class="col-sm-12 input-group custom"><input id="passwd_check" name="passwd_check" type="password" placeholder="비밀번호 확인"  class="form-control input-sm" required></div>
-               <div class="col-sm-12 input-group custom"><input id="contact_tel" name="contact_tel" type="text" placeholder="전화번호" class="form-control input-sm" required></div>
+               <div class="col-sm-12 input-group custom"><input id="contact_tel" name="contact_tel" maxlength="13" type="text" placeholder="전화번호" class="form-control input-sm" required></div>
             </div>
             <div class="col-sm-8">
             	<span class="input_chk">
@@ -100,7 +100,7 @@
             </div>
             <div class="col-sm-4">
               <div class="col-sm-12 input-group custom"><input type="text" id="manger_nm" name="manager_nm" placeholder="담당자명" class="form-control input-sm" required></div>
-              <div class="col-sm-12 input-group custom"><input type="text" id="manager_tel" name="manager_tel" placeholder="담당자 휴대전화"  class="form-control input-sm" required></div>
+              <div class="col-sm-12 input-group custom"><input type="text" id="manager_tel" maxlength="13" name="manager_tel" placeholder="담당자 휴대전화"  class="form-control input-sm" required></div>
               <div class="col-sm-12 input-group custom"><input type="text" id="manager_email" name="manager_email" placeholder="담당자 이메일" class="form-control input-sm" required></div>
             </div>
             <div class="col-sm-4">

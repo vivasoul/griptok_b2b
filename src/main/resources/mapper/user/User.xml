@@ -40,6 +40,19 @@
 		
 	</insert>
 	
+	<insert id="updateImgInfo" parameterType="com.griptk.b2b.user.domain.UserVO" >
+		UPDATE tb_img_file_info
+		SET file_nm=#{file_nm},
+			file_path=#{file_path},
+			file_size=#{file_size},
+			file_format=#{file_format},
+			img_width=#{img_width},
+			img_height=#{img_height}
+		WHERE 
+			img_no = (SELECT biz_img_no FROM tb_user WHERE user_no = #{user_no})
+		
+	</insert>
+	
 	<select id="getImgNo" resultType="Integer">
 		SELECT LAST_INSERT_ID();
 	</select>
@@ -109,6 +122,27 @@
 			#{biz_img_no} 
 		)
 	</insert>
+	
+	<insert id="updateUser" parameterType="com.griptk.b2b.user.domain.UserVO" >
+		UPDATE tb_user
+		SET company_nm = #{company_nm},
+			biz_reg_number= #{biz_reg_number} 
+			ceo_nm= #{ceo_nm},
+			biz_category= #{biz_category},
+			post_code= #{post_code},
+			biz_addr_1= #{biz_addr_1},
+			biz_addr_2= #{biz_addr_2},
+			contact_tel= #{contact_tel},
+			tax_email= #{tax_email},
+			manager_nm= #{manager_nm},
+			manager_tel= #{manager_tel},
+			manager_email= #{manager_email},
+			upd_dt = NOW(),
+			biz_img_no =#{biz_img_no}
+		WHERE
+			user_no = #{user_no}	
+	</insert>
+	
 	
 	<insert id="insertLoginInfo" parameterType="com.griptk.b2b.user.domain.UserVO">
 		INSERT INTO tb_login(

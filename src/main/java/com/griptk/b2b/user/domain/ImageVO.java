@@ -17,6 +17,8 @@ public class ImageVO {
 	private int img_width;
 	
 	private int img_height;
+	
+	private int user_no;
 
 	public int getImg_no() {
 		return img_no;
@@ -80,6 +82,14 @@ public class ImageVO {
 
 	public void setImg_height(int img_height) {
 		this.img_height = img_height;
+	}
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
 	}
 
 	@Override

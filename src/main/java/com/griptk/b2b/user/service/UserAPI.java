@@ -358,6 +358,53 @@ public class UserAPI {
 		return resp;
 	}
 	
+	@PostMapping("/info_change/change")
+	public void griptokInfoChange(
+			@RequestPart (value="real_file") MultipartFile real_file,
+			@ModelAttribute UserVO vo,
+			HttpServletRequest request,
+	        HttpServletResponse response) {
+
+		
+		System.out.println(vo.toString());
+		
+		int result = 1;
+		
+		try{
+			ImageVO imgVo = uploadFile(real_file);
+			
+			int img_result = mapper.updateImgInfo(imgVo);
+			
+			int img_no = mapper.getImgNo();
+			
+			vo.setBiz_img_no(img_no);
+			
+			String new_temp_password = passwordEncoder.encode(vo.getPasswd());
+			
+			vo.setPasswd(new_temp_password);
+			
+			int user_result = mapper.updateUser(vo);
+
+			if(img_result==0){
+				result=-1;
+			}else if(user_result==0){
+				result=-2;
+			}
+			request.getSession().setAttribute("info_changed", "info_changed");
+			response.sendRedirect("/login");
+		}catch(Exception e){
+			result = -1;
+			try{
+				request.getSession().setAttribute("info_changed", "failed");
+				response.sendRedirect("/info");
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+		}
+		
+		
+	}
+
 	private void sendTempPassword(String email, String password) throws Exception{
 		String title = "Sending a temporary passowrd to access the solution, Griptok";
 		StringBuilder sb = new StringBuilder();

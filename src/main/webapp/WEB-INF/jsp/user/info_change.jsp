@@ -21,77 +21,78 @@ var user_no = "<%= session.getAttribute( "user_no" ) %>";
 		<br>	
 		<h5 class="bolded">기본정보(필수 입력사항)</h5>
 		<br>
-	
-		<table id="info_change_table">
-			<colgroup>
-		       <col width="20%">
-		       <col width="40%">
-		       <col width="20%">
-		       <col width="20%">
-		    </colgroup>
-			<tbody>
-			<tr>
-				<td class="grey_back_td bolded">아이디</td>
-				<td colspan="3"><input type="text" id="user_id"/></td>
-			</tr>
-			<tr>
-				<td class="grey_back_td bolded">비밀번호</td>
-				<td colspan="3"><button data-toggle="modal" data-target="#pwChangeModal" class="btn-primary btn-sm text-sm" type="button">비밀번호 변경</button></td>
-			</tr>
-			<tr>
-				<td class="grey_back_td bolded">회사명</td>
-				<td><input type="text" id="company_nm"/></td>
-				<td class="grey_back_td bolded">사업자 등록번호</td>
-				<td><input type="text" id="biz_reg_number"/></td>
-			</tr>
-			<tr>
-				<td class="grey_back_td bolded">사업자 등록번호 사본</td>
-				<td colspan="3">
-					<div class="col-sm-12 input-group custom">
-	              	<div class="input-group input-file">
-			    		<input id="file_nm" name="file_nm" type="text" class="form-control" placeholder='Choose a file...' />			
-			            <span class="input-group-btn">
-			        		<button class="btn btn-default btn-choose" type="button">Choose</button>
-			    		</span>
-					</div>
-	              </div>
-                </td>
-			</tr>
-			<tr>
-				<td class="grey_back_td bolded">대표자</td>
-				<td><input type="text" id="ceo_nm"/></td>
-				<td class="grey_back_td bolded">업태/업종</td>
-				<td><input type="text" id="biz_category"/></td>
-			</tr>
-			<tr>
-				<td class="grey_back_td bolded">주소</td>
-				<td colspan="3">
-					<input type="text" id="addr"/>
-					<p>
-					입력하신 주소는 기본 배송지로 입력됩니다. <br>
-					회원가입시 기입된 주소는 사업자 등록증 소재 주소 입니다.<br>
-					사업자 등록증과 배송 주소가 다를 경우  마이페이지 배송지관리에서 수정 및 추가가 가능합니다<br>
-					</p>
-				</td>
-			</tr>	
-			<tr>
-				<td class="grey_back_td bolded">연락처</td>
-				<td><input type="text" id="contact_tel"/></td>
-				<td class="grey_back_td bolded">세금계산서발행 이메일</td>
-				<td><input type="text" id="tax_email"/></td>
-			</tr>
-			<tr>
-				<td class="grey_back_td bolded">담당자명</td>
-				<td><input type="text" id="manager_nm"/></td>
-				<td class="grey_back_td bolded">담당자 연락처</td>
-				<td><input type="text" id="manager_tel"/></td>
-			</tr>
-			<tr>
-				<td class="grey_back_td bolded">담당자 이메일</td>
-				<td colspan="3"><input type="text" id="manager_email"/></td>
-			</tr>	
-			</tbody>
-		</table>
+		<form id="info_change_form" method="post" action="/info_change/send" enctype="multipart/form-data">
+			<table id="info_change_table">
+				<colgroup>
+			       <col width="20%">
+			       <col width="40%">
+			       <col width="20%">
+			       <col width="20%">
+			    </colgroup>
+				<tbody>
+				<tr>
+					<td class="grey_back_td bolded">아이디</td>
+					<td colspan="3"><input type="text" id="user_id"/></td>
+				</tr>
+				<tr>
+					<td class="grey_back_td bolded">비밀번호</td>
+					<td colspan="3"><button data-toggle="modal" data-target="#pwChangeModal" class="btn-primary btn-sm text-sm" type="button">비밀번호 변경</button></td>
+				</tr>
+				<tr>
+					<td class="grey_back_td bolded">회사명</td>
+					<td><input type="text" id="company_nm"/></td>
+					<td class="grey_back_td bolded">사업자 등록번호</td>
+					<td><input type="text" maxlength="12" id="biz_reg_number"/></td>
+				</tr>
+				<tr>
+					<td class="grey_back_td bolded">사업자 등록번호 사본</td>
+					<td colspan="3">
+						<div class="col-sm-12 input-group custom">
+		              	<div class="input-group input-file">
+				    		<input id="file_nm" name="file_nm" type="text" class="form-control" placeholder='Choose a file...' />			
+				            <span class="input-group-btn">
+				        		<button class="btn btn-default btn-choose" type="button">Choose</button>
+				    		</span>
+						</div>
+		              </div>
+	                </td>
+				</tr>
+				<tr>
+					<td class="grey_back_td bolded">대표자</td>
+					<td><input type="text" id="ceo_nm"/></td>
+					<td class="grey_back_td bolded">업태/업종</td>
+					<td><input type="text" id="biz_category"/></td>
+				</tr>
+				<tr>
+					<td class="grey_back_td bolded">주소</td>
+					<td colspan="3">
+						<input type="text" id="addr"/>
+						<p>
+						입력하신 주소는 기본 배송지로 입력됩니다. <br>
+						회원가입시 기입된 주소는 사업자 등록증 소재 주소 입니다.<br>
+						사업자 등록증과 배송 주소가 다를 경우  마이페이지 배송지관리에서 수정 및 추가가 가능합니다<br>
+						</p>
+					</td>
+				</tr>	
+				<tr>
+					<td class="grey_back_td bolded">연락처</td>
+					<td><input type="text" maxlength="12" id="contact_tel"/></td>
+					<td class="grey_back_td bolded">세금계산서발행 이메일</td>
+					<td><input type="text" id="tax_email"/></td>
+				</tr>
+				<tr>
+					<td class="grey_back_td bolded">담당자명</td>
+					<td><input type="text" id="manager_nm"/></td>
+					<td class="grey_back_td bolded">담당자 연락처</td>
+					<td><input type="text" maxlength="13" id="manager_tel"/></td>
+				</tr>
+				<tr>
+					<td class="grey_back_td bolded">담당자 이메일</td>
+					<td colspan="3"><input type="text" id="manager_email"/></td>
+				</tr>	
+				</tbody>
+			</table>
+		</form>
       	<br>
       	<br>
       	<br>
