@@ -7,6 +7,8 @@
 <head>
 <script src="./common/js/common.js"></script>
 <script src="./lib/js/jquery.min.js"></script>
+<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/shopping/pointy-button.css">
 <link rel="stylesheet" href="./css/shopping/plus-minus-div.css">
@@ -14,7 +16,9 @@
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+<script src="./lib/bootbox/bootbox.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -322,7 +326,7 @@ $(document).ready(function() {
 						map(function(x){return cartTable.getRow($(x).attr('data-row-indice')).product_id});
 					
 					if(productIds.length == 0){
-						alert('삭제될 상품을 선택해주세요');
+						griptok.component.bootbox.growl('삭제될 상품을 선택해주세요','red');
 					}else{
 						if(confirm('선택된 상품들을 삭제하시겠어요?')){
 							const nowRows = cartTable.getRows().toArray();
@@ -341,9 +345,9 @@ $(document).ready(function() {
 						map(function(x){return cartTable.getRow($(x).attr('data-row-indice')).product_id});
 					
 					if(productIds.length == 0){
-						alert('관심상품으로 등록할 상품을 선택해주세요.');
+						griptok.component.bootbox.growl('관심상품으로 등록할 상품을 선택해주세요.','red');
 					}else{
-						alert('관심상품으로 등록되었습니다.[아직 등록안됨.]');
+						griptok.component.bootbox.growl('관심상품으로 등록되었습니다.[아직 등록안됨.]');
 						console.log('ajax request needed to ACTUALLY INSERT interested records')
 						console.log(productIds);
 					}
@@ -458,7 +462,7 @@ $(document).ready(function() {
 				filter(function(x){return $(x).is(':checked')}).
 				map(function(x){return cartTable.getRow($(x).attr('data-row-indice'))});			
 			if(arr.length == 0){
-				alert('주문하실 상품들을 먼저 체크해주세요.')
+				griptok.component.bootbox.growl('주문하실 상품들을 먼저 체크해주세요.','red')
 			}else{				
 				toggle.buttons(btnId);
 				toggle.div();
@@ -535,6 +539,111 @@ $(document).ready(function() {
 	
 	$('#sel-shipto').on('change',function(){
 		toggle.postHandle.address();
+	})
+	
+	$('#btn-add-shipto').on('click',function(){
+		const $form = 
+			'<form id="add-shipto-form">	                                                                                        '	+
+			'	<div class="row">	                                                                                                '	+
+			'		<div class="col-md-12">	                                                                                        '	+
+			'			<div class="col-md-3">	                                                                                    '	+
+			'				배송지 이름	                                                                                                '	+
+			'			</div>	                                                                                                    '	+
+			'			<div class="col-md-6">	                                                                                    '	+
+			'				<input type="text" name="shipto_nm" class="form-control"/>	                                            '	+
+			'			</div>	                                                                                                    '	+
+			'		</div>	                                                                                                        '	+
+			'		<div class="col-md-12">	                                                                                        '	+
+			'			<div class="col-md-3">	                                                                                    '	+
+			'				받는 사람	                                                                                                '	+
+			'			</div>	                                                                                                    '	+
+			'			<div class="col-md-6">	                                                                                    '	+
+			'				<input type="text" name="receiver_nm" class="form-control"/>	                                        '	+
+			'			</div>	                                                                                                    '	+
+			'		</div>	                                                                                                        '	+
+			'		<div class="col-md-12">	                                                                                        '	+
+			'			<div class="col-md-3">	                                                                                    '	+
+			'				주소	                                                                                                    '	+
+			'			</div>	                                                                                                    '	+
+			'			<div class="col-md-6">	                                                                                    '	+
+			'				<input type="text" name="shipto_addr2" class="form-control"/>	                                        '	+
+			'			</div>	                                                                                                    '	+
+			'			<div class="col-md-3">	                                                                                    '	+
+			'				<input type="button" id="btn-postcode" class="form-control btn btn-sm btn-primary" value="우편번호 찾기"/>	'	+	
+			'				<input type="hidden" name="post_code"/>                                                                 '	+
+			'				<input type="hidden" name="shipto_addr1"/>                                                             '	+
+			'			</div>                                                                                                      '	+
+			'		</div>                                                                                                          '	+
+			'		<div class="col-md-12">                                                                                         '	+
+			'			<div class="col-md-3">                                                                                      '	+
+			'				휴대전화                                                                                                   														'	+
+			'			</div>                                                                                                      '	+
+			'			<div class="col-md-6">                                                                                      '	+
+			'				<input type="text" class="form-control" name="receiver_tel"/>                                           '	+
+			'			</div>                                                                                                      '	+
+			'		</div>                                                                                                          '	+
+			'	</div>                                                                                                              '	+
+			'</form>                                                                                                                '	;
+		
+		griptok.component.bootbox.confirm({
+			title : '신규 배송지 추가하기',
+			message : $form,
+			callback : function(result){
+				if(!result){
+					return;
+				}else{
+					const validationAndAjax = function(){
+						const $f =  $('#add-shipto-form'),f = $f[0];
+						console.log($f.serializeArray());
+						console.log('do some validation and ajax to save the result.');
+						console.log('This is an example validation that checks if any named parameter is empty string.');
+						
+						const emptyValues = $f.serializeArray().
+						map(function(x){return x.value;}).
+						filter(function(x){return x === ''});
+						
+						if(f.post_code.value == ''){
+							return 'P';
+						}else if(emptyValues.length > 0){
+							return 'E';
+						}else{
+							return 'T';
+						}
+					}
+					
+					if(validationAndAjax() === 'P'){
+						griptok.component.bootbox.growl('우편번호를 등록해주세요','red');
+						return false;
+					}else if(validationAndAjax() === 'E'){
+						griptok.component.bootbox.growl('빈칸을 채워주세요.','red');
+						return false;
+					}else{
+						griptok.component.bootbox.growl('배송지가 추가되었습니다.','transparent');
+						return true;
+					}
+				}
+			}
+		}).
+		init(function(){
+			$('#btn-postcode').on('click',function(){
+				new daum.Postcode({
+					oncomplete:function(data) {
+						const $f =  $('#add-shipto-form'),f = $f[0];
+						f.post_code.value = data.postcode1+"-"+data.postcode2;
+						f.shipto_addr1.value = data.address;
+						griptok.component.bootbox.growl('우편번호가 성공적으로 등록되었습니다.','transparent');
+					}
+				}).open();
+			});
+		})
+	});
+	
+	$('#btn-transfer').on('click',function(){
+		griptok.component.bootbox.alert({
+			title : "실시간 계좌 이체",
+			message : "우리은행 1005-182-103721 주식회<br>사 아이버스터 입금시 업체명으로<br> 입금해주세요",
+			size : "big"
+		});
 	})
 });
 </script>
