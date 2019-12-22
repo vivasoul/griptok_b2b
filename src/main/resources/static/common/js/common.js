@@ -252,6 +252,7 @@ griptok.component.bootbox = {
 		confirm : function(pOptions){
 			const defaultCallback = function(result){
 				console.log('no callback was defined for bootbox.confirm. result = ' + result);
+				return result;
 			}
 			
 			const message = pOptions.message === undefined ? '진행하시겠어요?' : pOptions.message;
