@@ -5,7 +5,7 @@
 <meta charset="EUC-KR">
 <script src="./lib/js/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./lib/css/info_change.css">
+<link rel="stylesheet" href="./css/user/info_change.css">
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>

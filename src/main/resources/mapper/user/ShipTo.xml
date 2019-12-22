@@ -3,16 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.user.mapper.ShipToMapper">
 	
-	<select id="getShippingInfo" parameterType="Integer" resultType="com.griptk.b2b.user.domain.UserVO">
+	<select id="getShippingInfo" parameterType="Integer" resultType="java.util.HashMap">
 		SELECT user_no, 
 			receiver_nm,
-			shipto_addr1,
-			shipto_addr2,
+			CONCAT('(', post_code, ') ', shipto_addr1, ' ', shipto_addr2) as addr,
 			receiver_tel,
 			reg_dt,
 			shipto_no,
 			shipto_nm,
-			upd_dt 
+			upd_dt
 		FROM
 			tb_shipto_addr
 		WHERE
