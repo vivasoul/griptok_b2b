@@ -9,6 +9,8 @@ import com.griptk.b2b.common.domain.MenuVO;
 
 public interface MenuMapper {
 	List<MenuVO> listInClientRoot(String menu_auth);
+	List<MenuVO> listMenuByParent(MenuVO condition);
+	
 	List<MenuVO> list();
 	@MapKey("menu_url")
 	Map<String, MenuVO> listWithUrl();	

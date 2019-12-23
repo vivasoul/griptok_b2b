@@ -18,6 +18,13 @@ public class MenuAPI {
 		return mapper.listInClientRoot(menu_auth);
 	}
 	
+	public List<MenuVO> getMenuByParent(String p_menu_id, String menu_auth){
+		MenuVO condition = new MenuVO();
+		condition.setP_menu_id(p_menu_id);
+		condition.setMenu_auth(menu_auth);
+		return mapper.listMenuByParent(condition);
+	}	
+	
 	public List<MenuVO> getAllMenus(){
 		return mapper.list();
 	}
