@@ -1,33 +1,41 @@
 package com.griptk.b2b.user.service;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserController {
-	@GetMapping("/login")
-	public String goLoginPage() {
-		return "user/login";
+	
+	@RequestMapping("/login")
+	public String goLoginPage(Model model) {
+		model.addAttribute("content_page", "user/login");
+		return "_template/login";
 	}
 	
-	@GetMapping("/register")
-	public String goRegisterPage() {
-		return "user/sign_up";
+	@GetMapping("/sign-up")
+	public String goRegisterPage(Model model) {
+		model.addAttribute("content_page","user/sign_up");
+		return "_template/login";
 	}
 	
-	@GetMapping("/withdrawal")
-	public String goWithdrawlPage() {
-		return "user/withdrawal";
+	@GetMapping("/user_bye")
+	public String goWithdrawlPage(Model model) {
+		model.addAttribute("content_page","user/withdrawal");
+		return "_template/main";
 	}
 	
-	@GetMapping("/info")
-	public String goInfoChangelPage() {
-		return "user/info_change";
+	@GetMapping("/user_edit")
+	public String goInfoChangelPage(Model model) {
+		model.addAttribute("content_page","user/info_change");
+		return "_template/main";
 	}
 	
-	@GetMapping("/shipTo")
-	public String goShipToPage() {
-		return "shipto/list";
+	@GetMapping("/shipto")
+	public String goShipToPage(Model model) {
+		model.addAttribute("content_page","shipto/list");
+		return "_template/main";
 	}
 
 

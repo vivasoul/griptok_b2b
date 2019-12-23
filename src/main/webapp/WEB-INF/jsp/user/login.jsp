@@ -55,7 +55,7 @@
                                         </div>
                                         <div data-toggle="modal" data-target="#idFinderModal" class="login_float"> ●아이디찾기</div>
 										<div data-toggle="modal" data-target="#pwdFinderModal" class="login_float"> ●비밀번호찾기</div>
-										<div onclick="location.href='/register'"  class="login_float"> ●회원가입</div>
+										<div onclick="location.href='/sign-up'"  class="login_float"> ●회원가입</div>
                                     </div>
                                 </div>    
                         </div>                     
@@ -422,8 +422,7 @@ $("#btn_login").bind("click",function(){
 	        		alert("아이디 또는 비밀번호가 올바르지 않습니다.")
 	        	}else{
 	        		if(aprv_status=="A"){
-		        		alert("페이지이동");
-		        		location.href="/info";
+		        		location.href="/main";
 	        		}else if(aprv_status=="W"){
 	        			alert("탈퇴한 아이디입니다.");
 	        		}else{

@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%	
 	String content_page = (String) request.getAttribute("content_page");
+	content_page = "/WEB-INF/jsp/"+content_page+".jsp";
 %>    
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/_template/login/header.jsp" flush="false" />
-<jsp:include page=<%="/WEB-INF/jsp/"+content_page+".jsp" %> flush="false" />
+<jsp:include page="<%=content_page%>"  flush="false" />
 <jsp:include page="/WEB-INF/jsp/_template/login/footer.jsp" flush="false" />
 </body>
 </html>
