@@ -6,6 +6,8 @@ public class ShipToVO {
 	
 	private String receiver_nm;
 	
+	private String addr;
+	
 	private String shipto_addr1;
 	
 	private String shipto_addr2;
@@ -36,6 +38,14 @@ public class ShipToVO {
 
 	public void setReceiver_nm(String receiver_nm) {
 		this.receiver_nm = receiver_nm;
+	}
+	
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
 	public String getShipto_addr1() {
@@ -106,10 +116,12 @@ public class ShipToVO {
 
 	@Override
 	public String toString() {
-		return "ShipToVO [user_no=" + user_no + ", receiver_nm=" + receiver_nm + ", shipto_addr1=" + shipto_addr1
-				+ ", shipto_addr2=" + shipto_addr2 + ", receiver_tel=" + receiver_tel + ", reg_dt=" + reg_dt
-				+ ", shipto_no=" + shipto_no + ", shipto_nm=" + shipto_nm + ", upd_dt=" + upd_dt + ", post_code="
-				+ post_code + "]";
+		return "ShipToVO [user_no=" + user_no + ", receiver_nm=" + receiver_nm + ", addr=" + addr + ", shipto_addr1="
+				+ shipto_addr1 + ", shipto_addr2=" + shipto_addr2 + ", receiver_tel=" + receiver_tel + ", reg_dt="
+				+ reg_dt + ", shipto_no=" + shipto_no + ", shipto_nm=" + shipto_nm + ", upd_dt=" + upd_dt
+				+ ", post_code=" + post_code + "]";
 	}
+
+	
 
 }

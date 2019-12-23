@@ -1,0 +1,46 @@
+.login_top_cover{
+	 overflow:hidden;
+	 text-align: center;
+}
+
+.login_top{
+	float:left;
+}
+
+.login_float{
+	padding-right : 10px;
+	cursor:pointer;
+	float:left;
+}
+
+.bolded{
+	font-weight:bold;
+}
+
+.container.custom-container {
+  padding-top: 100px;
+}
+
+.grey_back_title{
+	background-color:#D3D3D3;
+	padding : 10px 10px 10px 10px;	
+}
+
+.grey_back_td{
+	background-color:#D3D3D3;	
+	text-align:center;
+}
+
+#info_change_table td{
+	padding : 10px 10px 10px 10px;
+	border : 1px solid #808080; 
+}
+
+#info_change_table{
+	width:100%;
+	
+}
+
+.input_ninty{
+	width:80%;	
+}

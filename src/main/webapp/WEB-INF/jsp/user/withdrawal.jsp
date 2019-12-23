@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 <script src="./lib/js/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./lib/css/withdrawal.css">
+<link rel="stylesheet" href="./css/user/withdrawal.css">
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <script>
 var user_no = "<%= session.getAttribute( "user_no" ) %>";
