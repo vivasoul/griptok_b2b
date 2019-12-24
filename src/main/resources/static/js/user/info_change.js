@@ -114,7 +114,6 @@ $("#btn_passwd_change").bind("click",function(){
 });
 
 
-//company_nm_check button bind
 $("#shipto_change").bind("click",function(){
 	if(emptyCheck("post_code")&&emptyCheck("shipto_addr_1")&&emptyCheck("shipto_addr_2")&&emptyCheck("shipto_nm")&&emptyCheck("receiver_nm")&&emptyCheck("receiver_tel")){
 	    $.ajax({

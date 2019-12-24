@@ -11,6 +11,13 @@ public interface ShipToMapper {
 	
 	ArrayList<ShipToVO> getShippingInfo(int user_no);
 	
+	ShipToVO getSpecificShippingInfo(ShipToVO vo);
+	
 	int changeShipTo(ShipToVO vo);
+	
+	int deleteShippingInfo(ShipToVO vo);
 
+	int clearAllShipping(int user_no);
+	
+	int updateMainShipping(ShipToVO vo);
 }

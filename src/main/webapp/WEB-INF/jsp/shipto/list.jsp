@@ -21,21 +21,90 @@
 		<h3 class="grey_back_title">배송지 관리</h3>
 		<br>	
 		<div class="row">
-			<table id="example" class="table table-striped table-bordered hover">
+			<button onclick="changeDefaultShipping()" class="btn-primary btn-sm text-sm" type="button">기본 배송지로 설정</button>
+			<button onclick="deleteShipping()" class="btn-primary btn-sm text-sm" type="button">삭제</button>
+			<button onclick="addShipping()" class="btn-primary btn-sm text-sm" type="button">배송지 추가</button>
+		</div>
+		<div class="row">
+			<table id="shipto-tbl" class="table table-striped table-bordered hover">
 				<thead>
 					<tr>
-						<th data-column = "shipto_no">선택</th>
+						<th data-column = "user_no">선택</th>
 						<th data-column = "shipto_nm">배송지 이름</th>
 						<th data-column = "addr">배송지 주소</th>
 						<th data-column = "receiver_nm">받는 사람</th>
 						<th data-column = "receiver_tel">휴대폰번호</th>
-						<th data-column = "user_no">비고</th>
+						<th data-column = "shipto_no">비고</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
 			</table>
 		</div>
 	</div>
+<div class="modal fade" id="addrModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h3>기본 배송지</h3>
+            <br>            
+        <div class="tab-content clearfix">
+          <br>
+          <fieldset>
+           <div class="form-group">
+	            <div class="col-sm-11 input-group">
+	            <input type="hidden" id="shipto_no" name="shipto_no"/>
+          		<input type="text" id="shipto_nm" name="shipto_nm" placeholder="배송지 이름" class="form-control input-lg">
+	          </div>
+            </div>
+            <div class="form-group">
+	            <div class="col-sm-11 input-group">
+          		<input type="text" id="receiver_nm" name="receiver_nm" placeholder="받는 사람" class="form-control input-lg">
+	          </div>
+            </div>
+            <div class="form-group">
+	            <div class="col-sm-11 input-group">
+          		<input type="text" id="receiver_tel" name="receiver_tel" maxlength="13" placeholder="휴대전화" class="form-control input-lg">
+	          </div>
+            </div>
+            <div class="form-group">
+	            <div class="col-sm-12 input-group">
+          		<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" class="form-control input-lg">
+	        	<span class="input-group-btn" style="width:0;">
+		        	<button onclick="openDaumZipAddress()" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
+			    </span>
+	          </div>
+            </div>
+            <div class="form-group">
+            	<div class="col-sm-11 input-group">
+	                <input type="text" id="shipto_addr1" name="shipto_addr_1" placeholder="주소" class="form-control input-lg" readonly="readonly" required>
+              </div>
+            </div>
+            <div class="form-group">
+            	<div class="col-sm-11 input-group">
+	                <input type="text" id="shipto_addr2" name="shipto_addr_2" placeholder="세부주소" class="form-control input-lg" required>
+              </div>
+            </div>
+          </fieldset>
+          <hr>
+          <div class="tab-content">
+            <div class="tab-pane fade in active text-center">
+            <div class="col-sm-6">
+              <button id="shipto_change_close" class="btn btn-warning btn-lg btn-block" data-dismiss="modal"><i class="fa fa-plus"></i> 취소</button>
+             </div> 
+             <div class="col-sm-6">
+              <button id="shipto_change" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="./js/user/shipto.js"></script>
 </body>
 </html>

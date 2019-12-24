@@ -84,7 +84,7 @@
 		LEFT OUTER JOIN
 			tb_shipto_addr s
 		ON
-			(u.user_no = s.user_no AND s.shipto_no = 1)
+			(u.user_no = s.user_no AND s.main_shipping = 'Y')
 		WHERE
 			u.user_no = #{user_no}
 	</select>
