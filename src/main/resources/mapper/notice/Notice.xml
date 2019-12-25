@@ -2,5 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.notice.mapper.NoticeMapper">
+	<select id="listNotice" resultType="com.griptk.b2b.notice.domain.NoticeVO">
+		WITH t AS(
+			SELECT notice_no,count(user_no) as view_cnt
+			FROM tb_notice_hist
+			GROUP BY notice_no
+		)
+		SELECT 
+			a.notice_no,a.title,a.reg_dt,
+			b.cd_nm AS category,
+			IFNULL(t.view_cnt,0) AS view_cnt
+		FROM tb_notice a
+		INNER JOIN tb_code b
+		ON (a.category = b.cd AND b.div_cd = 'NOTICE_CATEGORY_CODE')
+		LEFT JOIN t
+		ON a.notice_no = t.notice_no
+		ORDER BY reg_dt DESC
+	</select>
 	
+	<select id="selectNotice" parameterType="int" resultType="com.griptk.b2b.notice.domain.NoticeDetailVO">
+		WITH t AS(
+			SELECT notice_no,count(user_no) as view_cnt
+			FROM tb_notice_hist
+			GROUP BY notice_no
+		)
+		SELECT 
+			a.notice_no,a.title,a.reg_dt,CONVERT(content USING utf8) AS content,
+			b.cd_nm AS category,
+			IFNULL(t.view_cnt,0) AS view_cnt
+		FROM tb_notice a
+		INNER JOIN tb_code b
+		ON (a.category = b.cd AND b.div_cd = 'NOTICE_CATEGORY_CODE')
+		LEFT JOIN t
+		ON a.notice_no = t.notice_no
+		WHERE 1=1
+		AND a.notice_no = #{notice_no}
+	</select>
+	
+	<insert id="updateNoticeHist" parameterType="com.griptk.b2b.notice.domain.NoticeVO" >
+		INSERT INTO tb_notice_hist(
+			notice_no,
+			user_no,
+			read_dt
+		)
+		VALUES (
+			#{notice_no}, 
+			#{user_no},
+			NOW()
+		)
+		ON DUPLICATE KEY UPDATE
+			read_dt = NOW()
+	</insert>
 </mapper>
