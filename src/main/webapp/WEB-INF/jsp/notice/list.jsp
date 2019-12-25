@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,58 +31,46 @@
 						<th data-column = "view_count">조회수</th>
 					</tr>
 				</thead>
-				<tbody></tbody>
+				<tbody>
+					<c:forEach var="each" items="${arr }">
+						<tr data-row-id="${each.notice_no }">
+							<td>${each.category }</td>
+							<td>${each.title }</td>
+							<td>${each.reg_dt }</td>
+							<td>${each.view_cnt }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>
 <script>
 $(document).ready(function() {
-	const get_query = function(){
-		//replace with ajax later
-		const originalData = [
-			{
-				"notice_no" : 1,
-				"category": "이벤트",
-			  	"title": "상품 관련 공지 입니다.",
-			  	"reg_dt": "2011/04/25",
-			  	"view_count" : 4,
-			},
-			{
-				"notice_no" : 20,
-				"category": "일반",
-			  	"title": "행사 관련 공지 입니다.",
-			  	"reg_dt": "2011/03/25",
-			  	"view_count" : 499,
-			},
-		]
-		return griptok.wrangle.mockdata(originalData,10,['notice_no','title','view_count']);
-	}
-	
-	// initial data : later replace with API
-	const initData = get_query();
 	// DataTable initialisation 
 	const exampleTable = griptok.component.datatable('example');
-	exampleTable.create(initData);
-	
+	exampleTable.create(null);
+	const initData = exampleTable.getRows();
 	/****************************************
 	* EVENT TRIGGER START
 	*****************************************/
 	$('#sel-category').on('change',function(){
 		const optionValue = $(this).val();
-		
 		//replace with ajax later
 		const filtered = initData.filter(function(x){
 			return (x['category'] === optionValue) ? true : (optionValue === '전체' ? true:false)
 		})
-		
 		exampleTable.reload(filtered);
 	});
 	
 	$('#example tbody').on('click','tr',function(){
-		const rowdata = exampleTable.selectedRow(this);
-		const noticeId = rowdata.notice_no;
+		const noticeId = $(this).attr('data-row-id');
 		const _url = 'notice/view?id=' + noticeId;
-		window.location.href = _url;
+		$.ajax({
+			url : 'notice/'+noticeId,
+			complete : function() {
+				window.location.href = _url;   
+		    }
+		});
 	})
 	/****************************************
 	* EVENT TRIGGER END
