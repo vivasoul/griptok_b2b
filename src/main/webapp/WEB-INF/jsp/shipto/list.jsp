@@ -23,7 +23,7 @@
 		<div class="row">
 			<button onclick="changeDefaultShipping()" class="btn-primary btn-sm text-sm" type="button">기본 배송지로 설정</button>
 			<button onclick="deleteShipping()" class="btn-primary btn-sm text-sm" type="button">삭제</button>
-			<button onclick="addShipping()" class="btn-primary btn-sm text-sm" type="button">배송지 추가</button>
+			<button onclick="addShipping()" data-toggle="modal" data-target="#addrModal" class="btn-primary btn-sm text-sm" type="button">배송지 추가</button>
 		</div>
 		<div class="row">
 			<table id="shipto-tbl" class="table table-striped table-bordered hover">
@@ -45,7 +45,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-            <h3>기본 배송지</h3>
+            <h3 id="modal_title">배송지 변경</h3>
             <br>            
         <div class="tab-content clearfix">
           <br>
@@ -93,7 +93,8 @@
              </div> 
              <div class="col-sm-6">
               <button id="shipto_change" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
-              </div>
+              <button id="shipto_add" style="display:hidden;" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
+             </div>
             </div>
           </div>
         </div>

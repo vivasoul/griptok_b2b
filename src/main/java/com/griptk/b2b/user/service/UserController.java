@@ -37,6 +37,10 @@ public class UserController {
 		model.addAttribute("content_page","shipto/list");
 		return "_template/main";
 	}
+//	@GetMapping("/shipto")
+//	public String goShipToPage() {
+//		return "shipto/list";
+//	}
 
 
 }

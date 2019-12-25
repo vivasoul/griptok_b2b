@@ -10,7 +10,8 @@
 			receiver_tel,
 			reg_dt,
 			shipto_no,
-			shipto_nm,
+			(CASE WHEN main_shipping='Y' THEN CONCAT('(기본배송지)\n',shipto_nm) 
+			ELSE shipto_nm END) as shipto_nm,
 			upd_dt
 		FROM
 			tb_shipto_addr
@@ -37,13 +38,22 @@
 			shipto_no = #{shipto_no}
 	</select>
 	
-	<select id="deleteShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO">
+	<delete id="deleteShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO">
 		DELETE FROM
 			tb_shipto_addr
 		WHERE
 			user_no = #{user_no}
 		AND 
 			shipto_no = #{shipto_no}
+	</delete>
+	
+	<select id="selectMaxShiptoNo" parameterType="Integer" resultType="Integer">
+		SELECT 
+			max(shipto_no)
+		FROM 
+			tb_shipto_addr
+		WHERE
+			user_no = #{user_no}	
 	</select>
 	
 	<insert id="addShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO" >
@@ -57,7 +67,8 @@
 			shipto_no,
 			shipto_nm,
 			upd_dt,
-			post_code 
+			post_code,
+			main_shipping 
 		)
 		VALUES (
 			#{user_no}, 
@@ -69,7 +80,8 @@
 			#{shipto_no},
 			#{shipto_nm},
 			NOW(),
-			#{post_code}
+			#{post_code},
+			'N'
 		)
 	</insert>
 	
@@ -86,7 +98,8 @@
 			shipto_no,
 			shipto_nm,
 			upd_dt,
-			post_code
+			post_code,
+			main_shipping
 		)
 		VALUES (
 			#{user_no}, 
@@ -98,7 +111,8 @@
 			#{shipto_no},
 			#{shipto_nm},
 			NOW(),
-			#{post_code}
+			#{post_code},
+			'N'
 		)
 		ON DUPLICATE KEY UPDATE
 			receiver_nm = #{receiver_nm},

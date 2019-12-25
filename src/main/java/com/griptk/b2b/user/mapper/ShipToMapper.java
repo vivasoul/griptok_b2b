@@ -20,4 +20,7 @@ public interface ShipToMapper {
 	int clearAllShipping(int user_no);
 	
 	int updateMainShipping(ShipToVO vo);
+	
+	int selectMaxShiptoNo(int user_no);
+	
 }
