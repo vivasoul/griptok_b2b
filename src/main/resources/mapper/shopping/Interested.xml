@@ -2,13 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.shopping.mapper.InterestedMapper">
-	<select id="getInterestedInfo" parameterType="Integer" resultType="com.griptk.b2b.shopping.domain.InterestedVO">
-		SELECT file_path,
-			title,
-			retail_price,
-			sales_price,
+	<select id="getInterestedInfo" parameterType="Integer" resultType="java.util.HashMap">
+		SELECT
+ 			p.product_id,
+			CONCAT(info.file_path,'/',info.file_nm,'.',file_format) as file_path,
+			p.title,
+			p.retail_price,
+			p.sales_price
 		FROM
 			tb_product p
+		INNER JOIN
+			tb_product_img im
+		ON 
+			p.product_id = im.product_id
+		INNER JOIN
+			tb_img_file_info info
+		ON 
+			im.img_no = info.img_no
 		INNER JOIN
 			tb_interested_list l
 		ON 
@@ -17,8 +27,31 @@
 			l.user_no = #{user_no}
 	</select>
 	
-<!-- 	<insert id="addToCart" parameterType="com.griptk.b2b.shopping.domain.InterestedVO"> -->
-		
-<!-- 	</insert> -->
+	<insert id="addToCart" parameterType="com.griptk.b2b.shopping.domain.InterestedVO">
+		INSERT INTO tb_carted_list
+		(
+			user_no,
+			product_id,
+			carted_cnt,
+			reg_dt
+		)
+		VALUES
+		(
+			#{user_no},
+			#{product_id},
+			1,
+			NOW()
+		)		
+		ON DUPLICATE KEY UPDATE
+			carted_cnt = carted_cnt+1
+	</insert>
+	
+	<delete id="deleteFromInterested" parameterType="com.griptk.b2b.shopping.domain.InterestedVO">
+		DELETE FROM tb_interested_list
+		WHERE
+			user_no = #{user_no}
+		AND
+			product_id = #{product_id}		
+	</delete>
 	
 </mapper>

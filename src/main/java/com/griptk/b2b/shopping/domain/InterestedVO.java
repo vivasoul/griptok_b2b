@@ -15,7 +15,7 @@ public class InterestedVO {
 	private int sales_price;
 	
 	private String file_path;
-
+	
 	public int getUser_no() {
 		return user_no;
 	}

@@ -331,27 +331,6 @@ function emptyCheck(input_id){
 	}
 }
 
-function openDaumZipAddress() {
-
-	new daum.Postcode({
-
-		oncomplete:function(data) {
-			jQuery("#post_code").val(data.postcode1+"-"+data.postcode2);
-
-			if(data.postcode1==""){
-				jQuery("#post_code").val(data.zonecode);
-			}
-			
-			jQuery("#shipto_addr1").val(data.address);
-
-			jQuery("#shipto_addr2").focus();
-
-		}
-
-	}).open();
-
-}
-
 var receiver_tel = document.getElementById("receiver_tel");
 receiver_tel.onfocusout = validateRegex;
 receiver_tel.onkeyup = autoHypenPhone;
