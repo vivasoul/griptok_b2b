@@ -110,9 +110,9 @@ jQuery(document).ready(function(){
 				<span class="detail-summary-2">총 상품 금액</span>
 				<span class="detail-summary-3 data-total-amount"></span></div>
 			<div class="gtk-detail-btn-group"><!-- 
-				 --><button type="button" id="goto-cart-btn">장바구니</button>
-				 	<button type="button" id="goto-buy-btn">바로구매</button>
-				 	<button type="button" id="goto-interset-btn">관심상품</button><!--
+				 --><button type="button" class="gtk-btn" id="goto-cart-btn">장바구니</button>
+				 	<button type="button" class="gtk-btn gtk-btn-blue" id="goto-buy-btn">바로구매</button>
+				 	<button type="button" class="gtk-btn" id="goto-interset-btn">관심상품</button><!--
 			 --></div>
 			 <input id="sales-price" type="hidden" value="0" />
 		</div>

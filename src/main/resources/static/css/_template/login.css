@@ -1,0 +1,38 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body {
+	margin: 1%;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+#loginbox { margin-top:25px;margin-bottom:100px }
+#loginbox .row{ margin-bottom:25px; }
+#loginbox .input-group input { border:color:#333;border:2px solid #7F7F7F }
+.login_top img { width:450px; }
+.login_top .gtk-login-summary { display:inline-block; vertical-align:middle; }
+.bottom_menu { 
+	margin-top:15px;
+}
+.bottom_menu>a {
+	 display:inline-block;
+	 width:250px;
+	 height:45px;
+	 box-shadow: 
+	    2px 0 0 0 #CCC, 
+	    0 2px 0 0 #CCC, 
+	    2px 2px 0 0 #CCC,   /* Just to fix the corner */
+		    2px 0 0 0 #CCC inset, 
+		    0 2px 0 0 #CCC inset;
+	 padding-top:12px;
+	 text-align:center;
+	 text-decoration:none;
+	 color:#333;
+	 font-weight:700;
+}
+.bottom_menu>a:hover {
+	background-color:#999;
+	color:#FFF;
+}
+.bottom_copyright {
+		padding-top:10px;
+		text-align:center; 
+}
