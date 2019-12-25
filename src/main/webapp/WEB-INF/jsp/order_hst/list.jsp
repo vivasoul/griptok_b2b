@@ -101,7 +101,7 @@ $(document).ready(function() {
 			{
 				"targets": [1], 
 				render: function (pOrderNo) { 
-					return '<a href="order_hst/' + pOrderNo + '">' + pOrderNo +'</a>'; 
+					return '<a href="ordered/view?id=' + pOrderNo + '">' + pOrderNo +'</a>'; 
 				} 
 			}
 		]
