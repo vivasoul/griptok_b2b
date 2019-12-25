@@ -23,13 +23,14 @@ public class ShipToAPI {
 	@Autowired
 	private ShipToMapper mapper;
 	
-	@PostMapping("/Shipping/add")
+	@PostMapping("/shipto/add")
 	public Map<String, Object> addShippingInfo(
 			@RequestBody ShipToVO vo,
 	        HttpServletResponse response) {
 		
+		int shipto_no = mapper.selectMaxShiptoNo(vo.getUser_no());
+		vo.setShipto_no(shipto_no+1);
 		int result = mapper.addShippingInfo(vo);
-		
 		
 		Map<String, Object> resp = new HashMap<String, Object>();
 		resp.put("result", result);
@@ -88,6 +89,26 @@ public class ShipToAPI {
 		resp.put("result", result);
 		return resp;
 	}
+	
+	@PostMapping("/shipto/delete/bulk")
+	public Map<String, Object> deleteBulkShippingInfo(
+			@RequestParam("user_no") int user_no,
+			@RequestParam(value="shipto_no_arr[]") Integer[] shipto_no_arr,
+	        HttpServletResponse response) {
+		
+		int result= 1;
+		for(int shipto_no : shipto_no_arr) {
+			ShipToVO vo = new ShipToVO();
+			vo.setUser_no(user_no);
+			vo.setShipto_no(shipto_no);
+			result = mapper.deleteShippingInfo(vo);
+		}
+		
+		Map<String, Object> resp = new HashMap<String, Object>();
+		resp.put("result", result);
+		return resp;
+	}
+	
 	
 	@PostMapping("/shipto/default/{shipto_no}")
 	public Map<String, Object> changeDefaultShipping(
