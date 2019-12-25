@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-12" role="navigation">
+		<div class="col-sm-12 gtk-top-hr-dash" role="navigation">
 			<nav class="nav bottom_menu"><!-- 
 			--><a href="#">About Us</a><!-- 
 			   --><a href="#">Privacy Policy(개인 정보 정책)</a><!--

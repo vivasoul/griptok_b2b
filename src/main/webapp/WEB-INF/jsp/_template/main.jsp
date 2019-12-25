@@ -13,6 +13,7 @@
 <script src="/lib/js/jquery.min.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/_template/main.css">
 </head>
 <body>

@@ -13,13 +13,14 @@
 .gtk-detail-summary .detail-summary-2 { font-size:13px;font-weight:700; }
 .gtk-detail-summary .detail-summary-3 { padding-left:10px; font-family:Tahoma,'Nanum Gothic', sans-serif;font-size:27px;font-weight:700;color:#C00000; }
 .gtk-detail .gtk-detail-btn-group { margin-bottom:50px;text-align:center }
+/*
 .gtk-detail .gtk-detail-btn-group button { 
 		background-color:#D0CECE;color:#FFF;
 		width:120px;height:45px;border:1px solid transparent;
 		font-size:15px;font-weight:700;
 }
 .gtk-detail .gtk-detail-btn-group #goto-buy-btn { background-color:#5B9BD5; }
-
+*/
 .gtk-detail .gtk-detail-images { margin-bottom:35px; }
 .gtk-detail-images .gtk-detail-images-big { margin-bottom:5px; }
 .gtk-detail-images .gtk-detail-images-big img{ width:50%;max-width:350px; }
