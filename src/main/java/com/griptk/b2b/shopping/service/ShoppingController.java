@@ -19,8 +19,10 @@ public class ShoppingController {
 	 *	VIEW : jsp/interested
 	 *****************************************************************************************/
 	@GetMapping("/interested")
-	public String list() {
-		return "interested/list";
+	public String list(Model model) {
+		String viewPath = "interested/list";
+		model.addAttribute("content_page", viewPath);
+		return "_template/main";
 	}
 	/*****************************************************************************************
 	 *	VIEW : jsp/order_hst

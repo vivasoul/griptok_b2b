@@ -97,9 +97,9 @@ public class ShipToAPI {
 	        HttpServletResponse response) {
 		
 		int result= 1;
+		ShipToVO vo = new ShipToVO();
+		vo.setUser_no(user_no);
 		for(int shipto_no : shipto_no_arr) {
-			ShipToVO vo = new ShipToVO();
-			vo.setUser_no(user_no);
 			vo.setShipto_no(shipto_no);
 			result = mapper.deleteShippingInfo(vo);
 		}
