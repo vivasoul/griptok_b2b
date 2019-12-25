@@ -80,7 +80,7 @@ $(document).ready(function() {
 	$('#example tbody').on('click','tr',function(){
 		const rowdata = exampleTable.selectedRow(this);
 		const qnaId = rowdata.board_no;
-		const _url = 'qna/' + qnaId;
+		const _url = 'qna/view?id=' + qnaId;
 		window.location.href = _url;
 	})
 	/****************************************

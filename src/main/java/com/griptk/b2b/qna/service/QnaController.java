@@ -13,8 +13,10 @@ import com.griptk.b2b.qna.domain.QnaVO;
 public class QnaController {
 	
 	@GetMapping("/qna")
-	public String list() {
-		return "qna/list";
+	public String list(Model model) {
+		String viewPath = "qna/list";
+		model.addAttribute("content_page", viewPath);
+		return "_template/main";
 	}
 	
 	@RequestMapping("/qna/view")
@@ -35,8 +37,11 @@ public class QnaController {
 		return "_template/main";
 	}
 	
-	@GetMapping("/qna/write")
-	public String write() {
-		return "qna/write";
+	@GetMapping("/qna/edit")
+	public String write(Model model) {
+		String viewPath = "qna/write";
+		model.addAttribute("content_page", viewPath);
+		
+		return "_template/main";
 	}
 }

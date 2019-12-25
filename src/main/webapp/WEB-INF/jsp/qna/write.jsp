@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,19 +12,19 @@
 	<div class="row">
 		<table class="table thead-light table-hover">
 			<tr>
-				<th class="col-md-2">Á¦¸ñ</th>
+				<th class="col-md-2">ì œëª©</th>
 				<td>
 					<input type="text" name="title" class="form-control"/>
 				</td>
 			</tr>
 			<tr>
-				<th class="col-md-2">³»¿ë</th>
+				<th class="col-md-2">ë‚´ìš©</th>
 				<td>
 					<textarea rows="10" cols="10" name="content" class="form-control"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<th class="col-md-2">ºñ¹Ğ¹øÈ£</th>
+				<th class="col-md-2">ë¹„ë°€ë²ˆí˜¸</th>
 				<td>
 					<input type="password" name="passwd" class="form-control"/>
 				</td>
@@ -32,8 +32,8 @@
 		</table>
 	</div>
 	<div class="row">
-		<input type="button" id="btn_cancel" value="Ãë¼Ò">
-		<input type="button" id="btn_insert" value="È®ÀÎ">
+		<input type="button" id="btn_cancel" value="ì·¨ì†Œ">
+		<input type="button" id="btn_insert" value="í™•ì¸">
 	</div>
 	</form>
 </div>
@@ -53,7 +53,7 @@ $(document).ready(function() {
 		const sendData = $f.serializeArray();
 		console.log('form validation check is not ready.');
 		console.log(sendData);
-		alert('¼º°øÀûÀ¸·Î µî·ÏÇÏ¿´½À´Ï´Ù');
+		alert('ì„±ê³µì ìœ¼ë¡œ ë“±ë¡í•˜ì˜€ìŠµë‹ˆë‹¤');
 		window.location.href = '../qna';
 	});
 	/****************************************

@@ -98,7 +98,7 @@ $(document).ready(function() {
 	})
 	
 	$('#btn_write').on('click',f,function(){
-		window.location.href = '../qna/write';
+		window.location.href = '../qna/edit';
 	});
 	
 	$('#btn_edit').on('click',f,function(){
