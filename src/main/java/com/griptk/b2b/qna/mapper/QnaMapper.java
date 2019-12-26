@@ -1,5 +1,12 @@
 package com.griptk.b2b.qna.mapper;
 
-public interface QnaMapper {
+import java.util.List;
 
+import com.griptk.b2b.qna.domain.QnaVO;
+
+public interface QnaMapper {
+	List<QnaVO> listQna(int user_no);
+	QnaVO selectQna(int qna_no);
+	int edit(QnaVO qnaVo);
+	int insert(QnaVO qnaVo);
 }

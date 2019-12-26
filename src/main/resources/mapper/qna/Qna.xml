@@ -2,5 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.qna.mapper.QnaMapper">
+	<select id="listQna" parameterType="int" resultType="com.griptk.b2b.qna.domain.QnaVO">
+		SELECT 
+			qna_no,
+			user_no,
+			title,
+			req_dt,
+			<![CDATA[
+			IF(ISNULL(answ_dt),'답변 준비중',IF(answ_dt < req_dt,'답변 준비중','답변 완료')) as proc_yn
+ 			]]>		
+		FROM tb_qna_board
+		WHERE user_no = #{user_no}
+		ORDER BY req_dt DESC
+	</select>
 	
+	<select id="selectQna" parameterType="int" resultType="com.griptk.b2b.qna.domain.QnaVO">
+		SELECT 
+			qna_no,
+			user_no,
+			title,
+			CONVERT(content USING utf8) AS content,
+			req_dt,
+			<![CDATA[
+			IF(ISNULL(answ_dt),'답변 준비중',IF(answ_dt < req_dt,'답변 준비중','답변 완료')) as proc_yn
+ 			]]>		
+		FROM tb_qna_board
+		WHERE qna_no = #{qna_no}
+		ORDER BY req_dt DESC
+	</select>
+	
+	<update id="edit" parameterType="com.griptk.b2b.qna.domain.QnaVO">
+		UPDATE tb_qna_board
+		SET 
+			content = #{content},
+			req_dt = NOW(),
+			upd_dt = NOW()
+		WHERE 
+			qna_no = #{qna_no}
+	</update>
+	
+	<insert id="insert" parameterType="com.griptk.b2b.qna.domain.QnaVO">
+		INSERT INTO tb_qna_board 
+			(user_no,title,content,passwd,reg_dt,upd_dt,req_dt) 
+		VALUES (
+			#{user_no},#{title},#{content},#{passwd},NOW(),NOW(),NOW()
+		)
+	</insert>
 </mapper>

@@ -1,24 +1,27 @@
 package com.griptk.b2b.qna.domain;
 
 public class QnaDetailVO {
-	private int board_no;
+	private int qna_no;
 	private String answer;
 	
 	public QnaDetailVO() {
 		
 	}
 	
-	public QnaDetailVO(int board_no,String answer) {
-		this.board_no = board_no;
+	public QnaDetailVO(int qna_no,String answer) {
+		this.qna_no = qna_no;
 		this.answer = answer;
 	}
 	
-	public int getBoard_no() {
-		return board_no;
+	
+	public int getQna_no() {
+		return qna_no;
 	}
-	public void setBoard_no(int board_no) {
-		this.board_no = board_no;
+
+	public void setQna_no(int qna_no) {
+		this.qna_no = qna_no;
 	}
+
 	public String getAnswer() {
 		return answer;
 	}
@@ -29,6 +32,6 @@ public class QnaDetailVO {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "board_no : " + board_no + " ,answer : " + answer;
+		return "qna_no : " + qna_no + " ,answer : " + answer;
 	}
 }

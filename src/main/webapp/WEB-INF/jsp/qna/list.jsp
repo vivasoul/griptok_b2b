@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,46 +24,31 @@
 			<table id="example" class="table table-striped table-bordered hover">
 				<thead>
 					<tr>
-						<th data-column = "board_no">번호</th>
+						<th data-column = "qna_no">번호</th>
 						<th data-column = "title">문의내용</th>
-						<th data-column = "reg_dt">문의일자</th>
+						<th data-column = "req_dt">문의일자</th>
 						<th data-column = "proc_yn">처리여부</th>
 					</tr>
 				</thead>
-				<tbody></tbody>
+				<tbody>
+					<c:forEach var="each" items="${arr }">
+						<tr data-row-id="${each.qna_no }">
+							<td>${each.qna_no }</td>
+							<td>${each.title }</td>
+							<td>${each.req_dt }</td>
+							<td>${each.proc_yn }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>
 <script>
 $(document).ready(function() {
-	const get_query = function(){
-		//replace with ajax later
-		const originalData = [
-			{
-			  "board_no": "1",
-			  "title": "답변완료됬나요",
-			  "reg_dt": "2011/04/25",
-				  "content" : "답변완료됬군요./n 오케이.",
-				"proc_yn": "답변 완료"
-			},
-			{
-				"board_no": "2",
-				"title": "답변준비중이신가요",
-				"reg_dt": "2011/04/28",
-				"content": "답변완료됬군요./n 오케이.",
-				"proc_yn": "답변 준비중"
-			},
-		]
-		return griptok.wrangle.mockdata(originalData,100,['board_no','title','content']);
-	}
-	
-	// initial data : later replace with API
-	const initData = get_query();
 	// DataTable initialisation 
 	const exampleTable = griptok.component.datatable('example');
-	exampleTable.create(initData);
-	
-	
+	exampleTable.create(null);
+	const initData = exampleTable.getRows();
 	/****************************************
 	* EVENT TRIGGER START
 	*****************************************/
@@ -78,8 +64,7 @@ $(document).ready(function() {
 	});
 	
 	$('#example tbody').on('click','tr',function(){
-		const rowdata = exampleTable.selectedRow(this);
-		const qnaId = rowdata.board_no;
+		const qnaId = $(this).attr('data-row-id');
 		const _url = 'qna/view?id=' + qnaId;
 		window.location.href = _url;
 	})

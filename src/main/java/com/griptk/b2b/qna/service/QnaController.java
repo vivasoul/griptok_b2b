@@ -1,5 +1,8 @@
 package com.griptk.b2b.qna.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,29 +11,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.griptk.b2b.qna.domain.QnaDetailVO;
 import com.griptk.b2b.qna.domain.QnaVO;
+import com.griptk.b2b.qna.mapper.QnaMapper;
 
 @Controller
 public class QnaController {
+	
+	@Autowired
+	QnaMapper qnaMapper;
 	
 	@GetMapping("/qna")
 	public String list(Model model) {
 		String viewPath = "qna/list";
 		model.addAttribute("content_page", viewPath);
+		// TO-DO : GET USER_NO FROM SESSION.
+		int user_no = 13;
+		List<QnaVO> arr = qnaMapper.listQna(user_no);
+		model.addAttribute("arr",arr);
 		return "_template/main";
 	}
 	
 	@RequestMapping("/qna/view")
-	public String detail(Model model,@RequestParam("id") String qnaId) {
+	public String detail(Model model,@RequestParam("id") int qna_no) {
 		String viewPath = "qna/detail";
 		model.addAttribute("content_page", viewPath);
 		
-		//[TO-DO]query detail data and setAttribute in mav. Create temporary data in detail.jsp for now.
-		QnaVO qnaVo = new QnaVO(12,"이건 제목입니다.","이러쿵저러쿵에 대해서 질문해도 되죠?","2019-12-04","답변 완료");
+		QnaVO qnaVo = qnaMapper.selectQna(qna_no);
 		model.addAttribute("detailObject",qnaVo);
 		
 		//[TO-DO]query answer data and setAttribute in mav. NO DATABASE AVAILABLE ATM FOR ANSWERS.
-//		QnaDetailVO qdv = new QnaDetailVO(12, null);
-		QnaDetailVO qdv = new QnaDetailVO(12, "이러쿵저러쿵에 대한 관리자의 답변입니다.");
+		QnaDetailVO qdv = new QnaDetailVO(12, "이러쿵저러쿵에 대한 관리자의 답변입니다.현재 테이블이 없군요.");
 		
 		model.addAttribute("answerObject",qdv);
 		
