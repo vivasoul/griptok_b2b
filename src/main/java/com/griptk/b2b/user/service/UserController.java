@@ -41,6 +41,8 @@ public class UserController {
 //	public String goShipToPage() {
 //		return "shipto/list";
 //	}
-
-
+	@GetMapping("/mypage")
+	public String goToMyPage(Model model) {
+		return "redirect:/ordered";
+	}
 }

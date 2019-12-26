@@ -7,6 +7,8 @@ public class MenuVO{
 	private String menu_url;
 	private String menu_auth;
 	private String template_id;
+	private String menu_path;
+	private String id_path;
 	public String getMenu_id() {
 		return menu_id;
 	}
@@ -43,9 +45,22 @@ public class MenuVO{
 	public void setTemplate_id(String template_id) {
 		this.template_id = template_id;
 	}
+	public String getMenu_path() {
+		return menu_path;
+	}
+	public void setMenu_path(String menu_path) {
+		this.menu_path = menu_path;
+	}
+	public String getId_path() {
+		return id_path;
+	}
+	public void setId_path(String id_path) {
+		this.id_path = id_path;
+	}
 	@Override
 	public String toString() {
 		return "MenuVO [menu_id=" + menu_id + ", menu_nm=" + menu_nm + ", p_menu_id=" + p_menu_id + ", menu_url="
-				+ menu_url + ", menu_auth=" + menu_auth + ", template_id=" + template_id + "]";
+				+ menu_url + ", menu_auth=" + menu_auth + ", template_id=" + template_id + ", menu_path=" + menu_path
+				+ ", id_path=" + id_path + "]";
 	}
 }

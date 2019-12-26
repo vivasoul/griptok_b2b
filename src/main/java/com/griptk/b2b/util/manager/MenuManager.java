@@ -2,8 +2,7 @@ package com.griptk.b2b.util.manager;
 
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Set;
 
 import com.griptk.b2b.common.domain.MenuVO;
 import com.griptk.b2b.common.service.MenuAPI;
@@ -14,7 +13,6 @@ public class MenuManager {
 	private Map<String, MenuVO> menu_map;
 	
 	private MenuAPI api;
-	
 
 	public MenuManager(MenuAPI api) {
 		this.api = api;
@@ -49,5 +47,19 @@ public class MenuManager {
 		MenuVO menu = getMenuFromURL(url);
 		if(menu == null)	return null;		
 		else				return getMenuFromURL(url).getMenu_nm();
+	}
+	
+	public String getPathFromURL(String url) {
+		MenuVO menu = getMenuFromURL(url);
+		if(menu == null)	return null;		
+		else				return getMenuFromURL(url).getMenu_path();
+	}	
+	
+	public Set<String> listURLSet(){
+		return menu_map.keySet();
+	}
+	
+	public List<MenuVO> listSubMenu(String p_menu_id, String menu_auth) {
+		return api.getMenuByParent(p_menu_id, menu_auth);
 	}
 }

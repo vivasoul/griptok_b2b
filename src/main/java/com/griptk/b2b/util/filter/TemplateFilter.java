@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.griptk.b2b.common.domain.MenuVO;
 import com.griptk.b2b.util.manager.CategoryManager;
 import com.griptk.b2b.util.manager.MenuManager;
 
@@ -36,13 +37,25 @@ public class TemplateFilter implements Filter{
 		
 		request.setAttribute("top_menus", menuMng.getLogined());
 		
-		String template = menuMng.getTemplateFromURL(url);
+		MenuVO menu = menuMng.getMenuFromURL(url);
+		
+		String template = menu.getTemplate_id();
+		String menu_path = menu.getMenu_path();
+		String id_path = menu.getId_path();
+		String title = menu.getMenu_nm();
+		
+		request.setAttribute("page_title",title);
+		request.setAttribute("page_path",menu_path);
 		
 		if(template != null) {
 			switch(template) {
 				case ITemplateType.LOGIN_TEMPLATE:
 					break;
 				case ITemplateType.MAIN_TEMPLATE:
+					if(id_path.indexOf("mypage") > -1) {
+						request.setAttribute("side_title", title);
+						request.setAttribute("side_menus", menuMng.listSubMenu("mypage", "L"));
+					}
 					request.setAttribute("brands_filter", categoryMng.getParentBrands());
 					request.setAttribute("crafts_filter", categoryMng.getCrafts());				
 					break;

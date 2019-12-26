@@ -1,5 +1,7 @@
 package com.griptk.b2b.util.filter;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +18,10 @@ public class UtilFilterBean {
     public FilterRegistrationBean<TemplateFilter> registerTemplateFilter(MenuManager menuMng, CategoryManager categoryMng){
         FilterRegistrationBean<TemplateFilter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new TemplateFilter(menuMng, categoryMng));
-        bean.addUrlPatterns("/*");
+        //bean.addUrlPatterns("/*");
+        Set<String> urlPatterns = menuMng.listURLSet();
+        urlPatterns.remove("/mypage");
+        bean.setUrlPatterns(urlPatterns);
         return bean;
     } 
 }
