@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRIPTOK B2B SHOPPING MALL</title>
 <script src="/lib/js/jquery.min.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
