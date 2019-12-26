@@ -71,6 +71,53 @@ griptok.date.manipulate = function(pDate,pOptions){
 }
 
 /*
+object : griptok form util wrapper
+object-name : griptok
+module-depth : 2
+*/
+griptok.form = {};
+
+/*
+object : griptok form util function
+object-name : form.toJSON
+explanation : convert to named values of the form into json object used for @RequestBody in spring serverside
+module-depth : 3
+*/
+griptok.form.toJSON = function($param_f){
+	const $f = $param_f instanceof jQuery ? $param_f : $($param_f);
+	
+	const jsonObj = $f.serializeArray().map(function(x){
+	    const obj = {};
+	    obj[x.name] = x.value;
+	    return obj;
+	}).reduce(function(x,y){return $.extend(x,y)});
+	
+	return JSON.stringify(jsonObj);
+}
+
+/*
+object : griptok form util function
+object-name : form.validateSimple
+explanation : check if named element with 'required' tag has value mapped to it. Creates message if otherwise.
+module-depth : 3
+*/
+griptok.form.validateSimple = function($param_f){
+	const $f = $param_f instanceof jQuery ? $param_f : $($param_f);
+	const resultObj = {isValid : true,message : ''};
+	
+	$f.find( 'select, textarea, input').each(function(){
+        if($(this).prop('required')){
+        	if(!$( this ).val()){
+        		const label = $( this ).attr('data-label') === undefined ? '':$( this ).attr('data-label');
+                resultObj.isValid = false;
+                resultObj.message = label + " 값을 입력해주세요.";
+            }
+        }
+    });
+	return resultObj;
+}
+
+/*
 object : griptok wrangle wrapper
 object-name : griptok
 module-depth : 2
@@ -237,11 +284,13 @@ griptok.component.bootbox = {
 			const size = pOptions.size === undefined ? 'small' : pOptions.size;
 			const title = pOptions.title === undefined ? '' : pOptions.title;
 			const message = pOptions.message === undefined ? '' : pOptions.message;
+			const callback = pOptions.callback === undefined ? function(){} : pOptions.callback;
 			
 			return bootbox.alert({
 				title : title,
 				size : size,
 				message : message,
+				callback : callback,
 				buttons : {
 					ok : {
 						label : '<i class="fa fa-check"></i> 확인'
