@@ -24,7 +24,7 @@
 				<tr>
 					<td class="col-md-4">
 						<div class="col-md-3"><font style="font-weight: bold">주문일자</font></div>
-						<div class="col-md-9">${one.reg_dt } </div>
+						<div class="col-md-9">${one.order_dt } </div>
 					</td>
 					<td class="col-md-6">
 						<div class="col-md-3"><font style="font-weight: bold">주문 번호</font></div>
@@ -52,11 +52,11 @@
 					</tr>
 					<tr>
 						<th>주문자</th>
-						<td>${one.sender}/${one.contact_tel}/${one.tax_email}</td>
+						<td>${one.sender}</td>
 					</tr>
 					<tr>
 						<th>받는사람</th>
-						<td>${one.receiver_nm}</td>
+						<td>${one.receiver}</td>
 					</tr>
 					<tr>
 						<th>출고시 참고사항</th>
@@ -74,7 +74,7 @@
 			<table id="example" class="table table-striped table-bordered hover">
 				<thead>
 					<tr>
-						<th data-column = "reg_dt">주문일자</th>
+						<th data-column = "order_dt">주문일자</th>
 						<th data-column = "order_no">주문번호</th>
 						<th data-column = "title">상품명</th>
 						<th data-column = "order_cnt">수량</th>
@@ -84,7 +84,7 @@
 				<tbody>
 					<c:forEach var="each" items="${arr }">
 						<tr>
-							<td>${one.reg_dt }</td>
+							<td>${one.order_dt }</td>
 							<td>${each.order_no }</td>
 							<td>${each.title }</td>
 							<td>${each.order_cnt }개</td>

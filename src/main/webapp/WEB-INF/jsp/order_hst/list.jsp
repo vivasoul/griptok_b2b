@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,52 +52,25 @@
 						<th data-column = "order_status">배송단계</th>
 					</tr>
 				</thead>
-				<tbody></tbody>
+				<tbody>
+				<c:forEach var="each" items="${arr }">
+					<tr data-row-id="${each.order_no }">
+						<td>${each.reg_dt }</td>
+						<td>${each.order_no }</td>
+						<td>${each.order_title }</td>
+						<td><fmt:formatNumber value="${each.tot_order_cost}" pattern="#,###" />원</td>
+						<td>${each.order_status }</td>
+					</tr>
+				</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>
 <script>
 $(document).ready(function() {
-	const get_query = function(){
-		//replace with ajax later
-		const originalData = [
-			{
-				"reg_dt": "2019/12/01",
-			  	"order_no": "20191201a",
-			  	"order_title": "진행중인 주문 제목 ",
-				"tot_order_cost" : "20000원",
-				"order_status": "진행중인주문"
-			},
-			{
-				"reg_dt": "2019/12/04",
-			  	"order_no": "20191204b",
-			  	"order_title": "완료된 주문 제목 ",
-				"tot_order_cost" : "30000원",
-				"order_status": "완료된주문"
-			},
-			{
-				"reg_dt": "2019/10/04",
-			  	"order_no": "20191004c",
-			  	"order_title": "완료된 주문 제목 3달이내 ",
-				"tot_order_cost" : "70000원",
-				"order_status": "완료된주문"
-			},
-			{
-				"reg_dt": "2019/07/04",
-			  	"order_no": "20190704d",
-			  	"order_title": "완료된 주문 제목 12달이내 ",
-				"tot_order_cost" : "50000원",
-				"order_status": "완료된주문"
-			},
-		]
-		return griptok.wrangle.mockdata(originalData,10,['order_no','order_title','order_no']);
-	}
-	
-	// initial data : later replace with API
-	const initData = get_query();
 	// DataTable initialisation 
 	const exampleTable = griptok.component.datatable('example');
-	exampleTable.create(initData,{
+	exampleTable.create(null,{
 		columnDefs: [
 			{
 				"targets": [1], 
@@ -107,15 +81,14 @@ $(document).ready(function() {
 		]
 	});
 	
+	const initData = exampleTable.getRows();
 	/****************************************
 	* EVENT TRIGGER START
 	*****************************************/
 	$('#sel-order-status').on('change',function(){
 		const optionValue = $(this).val();
 		
-		//replace with ajax later
-		const useData = $('#example').DataTable().rows().data();
-		const filtered = useData.filter(function(x){
+		const filtered = initData.filter(function(x){
 			return (x['order_status'] === optionValue) ? true : (optionValue === '전체상태' ? true:false)
 		})
 		
