@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="./common/js/util.js" charset="utf-8"></script>
 <script>
 	var user_no = "<%= session.getAttribute( "user_no" ) %>";
 </script>
@@ -70,7 +71,7 @@
 	            <div class="col-sm-12 input-group">
           		<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" class="form-control input-lg">
 	        	<span class="input-group-btn" style="width:0;">
-		        	<button onclick="openDaumZipAddress()" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
+		        	<button onclick="openDaumZipAddress('post_code', 'shipto_addr1', 'shipto_addr2')" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
 			    </span>
 	          </div>
             </div>

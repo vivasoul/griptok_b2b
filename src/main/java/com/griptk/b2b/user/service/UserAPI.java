@@ -109,15 +109,8 @@ public class UserAPI {
 			imag_file.delete();
 		}
 		
-		try {
-			mf.transferTo(imag_file); // 파일을 위에 지정 경로로 업로드
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		mf.transferTo(imag_file); // 파일을 위에 지정 경로로 업로드
 		
 		BufferedImage bimg = ImageIO.read(imag_file);
 		int width          = bimg.getWidth();
@@ -182,12 +175,12 @@ public class UserAPI {
 				result=-2;
 			}
 			request.getSession().setAttribute("registered", "registered");
-			response.sendRedirect("/register");
+			response.sendRedirect("/login");
 		}catch(Exception e){
 			result = -1;
 			try{
 				request.getSession().setAttribute("registered", "failed");
-				response.sendRedirect("/register");
+				response.sendRedirect("/sign-up");
 			}catch(Exception ex){
 				ex.printStackTrace();
 			}
@@ -412,9 +405,9 @@ public class UserAPI {
 	
 	
 	private void sendTempPassword(String email, String password) throws Exception{
-		String title = "Sending a temporary passowrd to access the solution, Griptok";
+		String title = "Griptok의 임시 비밀번호가 발급되었습니다.";
 		StringBuilder sb = new StringBuilder();
-		  sb.append("This is your temporary password:<br/><input type='text' value='")
+		  sb.append("아래 임시 비밀번호를 확인해주세요 :<br/><input type='text' value='")
 		  	.append(password)
 		  	.append("'/>");
 		mailSender.send(email, title, sb.toString());

@@ -7,6 +7,7 @@
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./css/user/info_change.css">
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+<script src="./common/js/util.js" charset="utf-8"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 var user_no = "<%= session.getAttribute( "user_no" ) %>";
@@ -192,18 +193,18 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 	            <div class="col-sm-12 input-group">
           		<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" class="form-control input-lg">
 	        	<span class="input-group-btn" style="width:0;">
-		        	<button onclick="openDaumZipAddress()" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
+		        	<button onclick="openDaumZipAddress('post_code', 'shipto_addr_1', 'shipto_addr_2')" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
 			    </span>
 	          </div>
             </div>
             <div class="form-group">
             	<div class="col-sm-11 input-group">
-	                <input type="text" id="shipto_addr1" name="shipto_addr_1" placeholder="주소" class="form-control input-lg" readonly="readonly" required>
+	                <input type="text" id="shipto_addr_1" name="shipto_addr_1" placeholder="주소" class="form-control input-lg" readonly="readonly" required>
               </div>
             </div>
             <div class="form-group">
             	<div class="col-sm-11 input-group">
-	                <input type="text" id="shipto_addr2" name="shipto_addr_2" placeholder="세부주소" class="form-control input-lg" required>
+	                <input type="text" id="shipto_addr_2" name="shipto_addr_2" placeholder="세부주소" class="form-control input-lg" required>
               </div>
             </div>
           </fieldset>

@@ -66,29 +66,6 @@ $(document).ready(function() {
     });
 });
 
-
-
-function openDaumZipAddress() {
-
-	new daum.Postcode({
-
-		oncomplete:function(data) {
-			jQuery("#post_code").val(data.postcode1+"-"+data.postcode2);
-
-			if(data.postcode1==""){
-				jQuery("#post_code").val(data.zonecode);
-			}
-			
-			jQuery("#shipto_addr1").val(data.address);
-
-			jQuery("#shipto_addr2").focus();
-
-		}
-
-	}).open();
-
-}
-
 //company_nm_check button bind
 $("#btn_passwd_change").bind("click",function(){
 	if(emptyCheck("old_passwd")&&emptyCheck("new_passwd")&&emptyCheck("new_passwd_check")){

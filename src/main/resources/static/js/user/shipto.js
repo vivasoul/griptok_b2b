@@ -236,27 +236,6 @@ $('#example tbody').on('change', 'input[type="checkbox"]', function(){
    });
 
 
-function openDaumZipAddress() {
-
-	new daum.Postcode({
-
-		oncomplete:function(data) {
-			jQuery("#post_code").val(data.postcode1+"-"+data.postcode2);
-
-			if(data.postcode1==""){
-				jQuery("#post_code").val(data.zonecode);
-			}
-			
-			jQuery("#shipto_addr1").val(data.address);
-
-			jQuery("#shipto_addr2").focus();
-
-		}
-
-	}).open();
-
-}
-
 $("#shipto_change").bind("click",function(){
 	if(emptyCheck("post_code")&&emptyCheck("shipto_addr_1")&&emptyCheck("shipto_addr_2")&&emptyCheck("shipto_nm")&&emptyCheck("receiver_nm")&&emptyCheck("receiver_tel")){
 	    $.ajax({

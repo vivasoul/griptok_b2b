@@ -92,10 +92,10 @@
 			    --><button id="biz_reg_number_check" class="gtk-btn gtk-btn-sm gtk-btn-blue" type="button">중복확인</button><!-- 
               --></div>
               <div class="col-sm-12 input-group custom input-file"><!-- 
-	    		--><input id="file_nm" name="file_nm" type="text" class="form-control input-sm" placeholder='사업자등록증 사본 등록' required/><!-- 
+	    		--><input id="file_nm" name="file_nm" type="text" class="form-control input-sm" placeholder='사업자등록증 사본 등록' readonly="readonly" required/><!-- 
 	        	--><button class="gtk-btn gtk-btn-sm gtk-btn-blue btn-choose" type="button">찾아보기</button><!-- 
               --></div>
-              <div class="col-sm-12 input-group no-addon custom"><input type="text" id="ceo_nm" name="ceo_nm" placeholder="대표자명"  class="form-control input-sm"></div>
+              <div class="col-sm-12 input-group no-addon custom"><input type="text" id="ceo_nm" name="ceo_nm" placeholder="대표자명"  class="form-control input-sm" required></div>
             </div>
             <div class="col-sm-4">
               <div class="col-sm-12 input-group no-addon custom"><input type="text" id="manger_nm" name="manager_nm" placeholder="담당자명" class="form-control input-sm" required></div>
@@ -108,7 +108,7 @@
 	          </div>
               <div class="col-sm-12 input-group custom">
           		<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" class="form-control input-sm">
-		        <button onclick="openDaumZipAddress()" class="gtk-btn gtk-btn-sm gtk-btn-blue" type="button">주소찾기</button>
+		        <button onclick="openDaumZipAddress('post_code', 'address', 'address_etc', true)" class="gtk-btn gtk-btn-sm gtk-btn-blue" type="button">주소찾기</button>
 	          </div>
               <div class="col-sm-12 input-group no-addon custom"><input type="text" id="address" name="biz_addr_1" placeholder="주소" class="form-control input-sm" readonly="readonly" required></div>
               <div class="col-sm-12 input-group no-addon custom"><input type="text" id="address_etc" name="biz_addr_2" placeholder="세부주소" class="form-control input-sm" required></div>
@@ -127,4 +127,6 @@
 </div>
 <!-- div container -->
 </div>
+<script src="./common/js/util.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>  
 <script src="./js/user/sign_up.js" charset="utf-8"></script>
