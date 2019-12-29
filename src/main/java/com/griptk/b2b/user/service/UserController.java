@@ -1,5 +1,7 @@
 package com.griptk.b2b.user.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,5 +46,11 @@ public class UserController {
 	@GetMapping("/mypage")
 	public String goToMyPage(Model model) {
 		return "redirect:/ordered";
+	}
+	
+	@RequestMapping("/sign-out")
+	public String goSignOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
 	}
 }
