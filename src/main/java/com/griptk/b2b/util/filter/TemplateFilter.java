@@ -32,10 +32,11 @@ public class TemplateFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		boolean isLogined = ((HttpServletRequest)request).getSession().getAttribute("user_no") != null;
 		
-		String url = ((HttpServletRequest)request).getRequestURI();		
-		
-		request.setAttribute("top_menus", menuMng.getLogined());
+		String url = ((HttpServletRequest)request).getRequestURI();
+
+		request.setAttribute("top_menus", isLogined ? menuMng.getLogined() : menuMng.getNotLogined());
 		
 		MenuVO menu = menuMng.getMenuFromURL(url);
 		
@@ -54,7 +55,7 @@ public class TemplateFilter implements Filter{
 				case ITemplateType.MAIN_TEMPLATE:
 					if(id_path.indexOf("mypage") > -1) {
 						request.setAttribute("side_title", "마이페이지");
-						request.setAttribute("side_menus", menuMng.listSubMenu("mypage", "L"));
+						request.setAttribute("side_menus", menuMng.listSubMenu("mypage", isLogined ? "L" : "N"));
 					}
 					request.setAttribute("brands_filter", categoryMng.getParentBrands());
 					request.setAttribute("crafts_filter", categoryMng.getCrafts());				
