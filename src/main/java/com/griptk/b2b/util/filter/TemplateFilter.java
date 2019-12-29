@@ -53,7 +53,7 @@ public class TemplateFilter implements Filter{
 					break;
 				case ITemplateType.MAIN_TEMPLATE:
 					if(id_path.indexOf("mypage") > -1) {
-						request.setAttribute("side_title", title);
+						request.setAttribute("side_title", "마이페이지");
 						request.setAttribute("side_menus", menuMng.listSubMenu("mypage", "L"));
 					}
 					request.setAttribute("brands_filter", categoryMng.getParentBrands());

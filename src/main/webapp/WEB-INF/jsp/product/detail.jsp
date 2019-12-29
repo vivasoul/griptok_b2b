@@ -1,75 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<script type="text/javascript" src="/js/product/detail.js"></script>
 <link rel="stylesheet" href="/css/product/detail.css" />
 <script type="text/javascript">
-const currency_formatter = function(amount, unit) {
-	let input = amount;
-	const format_arr = [];
-
-	while(input > 999){
-		const rest = input % 1000;
-		
-		if(rest < 10) format_arr.push("00"+rest);
-		else if(rest < 100) format_arr.push("0"+rest);
-		else				format_arr.push(""+rest);
-		
-		input = (input - rest)/1000;
-	}
-	format_arr.push(""+input);
-	
-	return format_arr.reverse().join(",")+unit;
-};
-
-const updateCount = function(cnt) {
-	const _cnt = Number(cnt) || 0;
-	const $sum = jQuery("#gtk-detail-main .gtk-detail-summary");
-	const price = Number(jQuery("#sales-price").val()) || 0;
-	$sum.find(".data-total-count").text(cnt);
-	$sum.find(".data-total-amount").text(currency_formatter(_cnt*price,'원'));
-};
-
-const renderData = function(data) {
-	const $body = jQuery("#gtk-detail-main");
-	
-	$body.find(".data-id").text(data.product_id);
-	$body.find(".data-title").text(data.title);
-	$body.find(".data-retail-price").text(currency_formatter(data.retail_price,'원'));
-	$body.find(".data-sales-price").text(currency_formatter(data.sales_price,'원'));
-	jQuery("#sales-price").val(data.sales_price);
-	const len = data.images.length;
-	if(len){
-		for(let i=0; i<len; i++){
-			if(i == 0){
-				const f_img = document.createElement("img");
-				f_img.src = data.images[i];
-				$body.find(".gtk-detail-images-big").append(f_img);
-			}
-			const img = document.createElement("img");
-			img.src = data.images[i];
-			$body.find(".gtk-detail-images-thumbs").append(img);			
-		}
-	}
-	updateCount(1);
-};
-
-
-
-const loadData = function() {
-	jQuery.ajax({
-		  url: "/products/<%=request.getAttribute("product_id").toString()%>",
-		  method: "GET",
-		  dataType: "json"
-		}).done(function(data){
-			renderData(data);
-			jQuery("#gtk-detail-main").prop("data",data);
-		}).fail(function(e){
-			console.log(e);
-		}).always(function(){
-			
-		});
-}
-
 jQuery(document).ready(function(){
-	loadData();
+	loadData("<%=request.getAttribute("product_id").toString()%>");
 	jQuery(".gtk-detail-images-thumbs").on("click", "img", function(e){
 		jQuery(".gtk-detail-images-big>img").prop("src", e.target.src);
 	});

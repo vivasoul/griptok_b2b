@@ -25,6 +25,7 @@
 .gtk-detail-images .gtk-detail-images-big { margin-bottom:5px; }
 .gtk-detail-images .gtk-detail-images-big img{ width:50%;max-width:350px; }
 .gtk-detail-images .gtk-detail-images-thumbs img{ width:50px;margin-right:5px; }
+.gtk-detail-images .gtk-detail-images-thumbs img:hover { cursor:pointer; }
 
 .gtk-description-header{ padding-bottom:5px;font-size:18px;font-weight:700;border-bottom:3px solid #999; }
 .gtk-description-body { min-height:150px; }
