@@ -17,11 +17,11 @@
 			</div>
 			<div class="row">
 				<div class="media-object col-sm-8">
-					<div class="col-sm-12 input-group">
+					<div class="col-sm-12 input-group no-addon">
 						<input id="login_user_id" name="user_id" type="text"
 							placeholder="아이디" class="form-control input-lg">
 					</div>
-					<div class="col-sm-12 input-group">
+					<div class="col-sm-12 input-group no-addon">
 						<input id="login_passwd" name="passwd" type="password"
 							placeholder="비밀번호" class="form-control input-lg">
 					</div>
