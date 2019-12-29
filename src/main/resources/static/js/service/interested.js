@@ -14,14 +14,16 @@ $(document).ready(function() {
 const update = {
 		clicked : {
 			remove : function(indice){
+				console.log(indice);
 				var confirmed = confirm("정말로 해당 상품을 관심상품에서 삭제 하시겠습니까?")
 				if(confirmed){
 					$.ajax({
-				        url : "/interested/delete/"+indice,
-				        type: "post",
-				        data : { "user_no" : user_no},
+				        url : "/interesteds",
+				        type: "DELETE",
+				        data : { "user_no" : user_no,
+				        	"product_id_arr" : [indice]},
 				        success : function(responseData){
-				        	var result = responseData.result;
+				        	var result = responseData;
 				        	if(result==1){
 				        		alert("삭제 되었습니다.");
 				        		loadMainInterestedList(true);
@@ -38,11 +40,12 @@ const update = {
 					return;
 				}
 				$.ajax({
-			        url : "/interested/add/"+indice,
+			        url : "/interesteds",
 			        type: "post",
-			        data : { "user_no" : user_no},
+			        data : { "user_no" : user_no,
+			        	"product_id_arr" : [indice]},
 			        success : function(responseData){
-			        	var result = responseData.result;
+			        	var result = responseData;
 			        	if(result==1){
 			        		alert("장바구니에 담겼습니다.");
 			        	}else{
@@ -58,16 +61,16 @@ const update = {
 function loadMainInterestedList(reload){
 	
 		$.ajax({
-	        url : "/interested/info",
-	        type: "post",
-	        data : {"user_no" : user_no},
+	        url : "/interesteds",
+	        type: "get",
 	        success : function(responseData){
+	        	console.log(responseData);
 	        	if(reload){
 	        		table.clear().draw();
-	        		table.rows.add(responseData.result); // Add new data
+	        		table.rows.add(responseData); // Add new data
 	        		table.columns.adjust().draw(); // Redraw the DataTable
 	        	}else{
-		        	table = interestedTable.create(responseData.result,  {
+		        	table = interestedTable.create(responseData,  {
 		        		"lengthChange": false,
 		        		columnDefs: [
 		        			{"className": "dt-body-center", "targets": [0,2,3]},
@@ -121,13 +124,13 @@ function deleteInterested(){
 			return false;
 		}
 		$.ajax({
-	        url : "/interested/delete/bulk",
-	        type: "post",
+	        url : "/interesteds",
+	        type: "DELETE",
 	        data : { "user_no" : user_no,
 	        		 "product_id_arr" : checkedIndices
 	        	   },
 	        success : function(responseData){
-	        	var result = responseData.result;
+	        	var result = responseData;
 	        	console.log(result);
 	        	if(result==1){
 	        		alert("삭제되었습니다.");
@@ -155,13 +158,13 @@ function addToCart(){
 			return false;
 		}
 		$.ajax({
-	        url : "/interested/add/bulk",
+	        url : "/interesteds",
 	        type: "post",
 	        data : { "user_no" : user_no,
 	        		 "product_id_arr" : checkedIndices
 	        	   },
 	        success : function(responseData){
-	        	var result = responseData.result;
+	        	var result = responseData;
 	        	console.log(result);
 	        	if(result==1){
 	        		alert("장바구니에 상품을 담았습니다.");

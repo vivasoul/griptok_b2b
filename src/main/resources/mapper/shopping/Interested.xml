@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.shopping.mapper.InterestedMapper">
-	<select id="getInterestedInfo" parameterType="Integer" resultType="java.util.HashMap">
+	<select id="listInterested" parameterType="Integer" resultType="java.util.HashMap">
 		SELECT
  			p.product_id,
 			CONCAT(info.file_path,'/',info.file_nm,'.',file_format) as file_path,
 			p.title,
 			p.retail_price,
-			p.sales_price
+			p.sales_price,
+			#{user_no} as user_no
 		FROM
 			tb_product p
 		INNER JOIN

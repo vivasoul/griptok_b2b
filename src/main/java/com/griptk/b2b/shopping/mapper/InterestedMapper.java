@@ -1,6 +1,6 @@
 package com.griptk.b2b.shopping.mapper;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.griptk.b2b.shopping.domain.InterestedVO;
 
@@ -10,6 +10,6 @@ public interface InterestedMapper {
 	
 	int deleteFromInterested(InterestedVO vo);
 	
-	ArrayList<InterestedVO> getInterestedInfo(int user_no);
+	List<InterestedVO> listInterested(int user_no);
 
 }
