@@ -1,5 +1,6 @@
 package com.griptk.b2b.common.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,12 @@ public class MenuAPI {
 	}
 	
 	public Map<String, MenuVO> getMenusWithURL(){
-		return mapper.listWithUrl();
+		Map<String, MenuVO> clientMenus = mapper.listWithUrl_Client();
+		Map<String, MenuVO> adminMenus  = mapper.listWithUrl_Admin();
+		Map<String, MenuVO> menus = new HashMap<>();
+		menus.putAll(clientMenus);
+		menus.putAll(adminMenus);
+		return menus;
 	}
 	
 	public List<MenuVO> getSideMenuByBrand(int p_brand_no){

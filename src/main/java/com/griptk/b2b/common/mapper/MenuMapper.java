@@ -13,7 +13,10 @@ public interface MenuMapper {
 	
 	List<MenuVO> list();
 	@MapKey("menu_url")
-	Map<String, MenuVO> listWithUrl();	
+	Map<String, MenuVO> listWithUrl_Client();
+	
+	@MapKey("menu_url")
+	Map<String, MenuVO> listWithUrl_Admin();	
 	
 	List<MenuVO> listMenusByBrand(int p_brand_no);
 	List<MenuVO> listMenusByCraft(int craft_no);

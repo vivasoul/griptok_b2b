@@ -37,7 +37,7 @@
 		FROM tb_menu WHERE 1=1	
 	</select>	
 	
-	<select id="listWithUrl" resultType="com.griptk.b2b.common.domain.MenuVO">
+	<select id="listWithUrl_Client" resultType="com.griptk.b2b.common.domain.MenuVO">
 	<![CDATA[
 		WITH RECURSIVE MENUS AS (
 			SELECT 
@@ -50,6 +50,7 @@
 				menu_nm AS menu_path, menu_id AS id_path,
 				menu_id AS root_id
 			FROM MENUS
+			WHERE menu_id = 'client_root'
 			UNION ALL
 			SELECT 
 				a.menu_id, a.p_menu_id, 
@@ -67,6 +68,34 @@
 		WHERE root_id = 'client_root'
 	]]>	
 	</select>
+	
+	<select id="listWithUrl_Admin" resultType="com.griptk.b2b.common.domain.MenuVO">
+	<![CDATA[
+		WITH RECURSIVE P_MENUS AS (
+			SELECT 
+				menu_id, p_menu_id, 
+				menu_nm AS menu_path, menu_id AS id_path,
+				menu_id AS root_id
+			FROM tb_menu
+			WHERE menu_id = 'admin_root'
+			UNION ALL
+			SELECT 
+				a.menu_id, a.p_menu_id, 
+				CONCAT(b.menu_path,' > ',a.menu_nm) AS menu_path, CONCAT(b.id_path,',',a.menu_id) AS menu_path, 
+				b.root_id AS root_id
+			FROM tb_menu a
+			INNER JOIN P_MENUS b ON a.p_menu_id = b.menu_id
+		)
+		SELECT 
+			ref.menu_id, ref.p_menu_id, ref.menu_url, 
+			ref.menu_nm, ref.menu_auth, ref.template_id,
+			src.menu_path,src.id_path
+		FROM P_MENUS src
+		INNER JOIN tb_menu ref ON src.menu_id = ref.menu_id
+		WHERE root_id = 'admin_root'
+		AND menu_url != ''
+	]]>	
+	</select>	
 	
 	<select id="listMenusByBrand" resultType="com.griptk.b2b.common.domain.MenuVO">
 	<![CDATA[

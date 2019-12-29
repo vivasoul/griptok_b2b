@@ -34,12 +34,9 @@ public class TemplateFilter implements Filter{
 			throws IOException, ServletException {
 		boolean isLogined = ((HttpServletRequest)request).getSession().getAttribute("user_no") != null;
 		
-		String url = ((HttpServletRequest)request).getRequestURI();
-
-		request.setAttribute("top_menus", isLogined ? menuMng.getLogined() : menuMng.getNotLogined());
+		String url = ((HttpServletRequest)request).getRequestURI();		
 		
 		MenuVO menu = menuMng.getMenuFromURL(url);
-		
 		String template = menu.getTemplate_id();
 		String menu_path = menu.getMenu_path();
 		String id_path = menu.getId_path();
@@ -53,6 +50,7 @@ public class TemplateFilter implements Filter{
 				case ITemplateType.LOGIN_TEMPLATE:
 					break;
 				case ITemplateType.MAIN_TEMPLATE:
+					request.setAttribute("top_menus", isLogined ? menuMng.getLogined() : menuMng.getNotLogined());
 					if(id_path.indexOf("mypage") > -1) {
 						request.setAttribute("side_title", "마이페이지");
 						request.setAttribute("side_menus", menuMng.listSubMenu("mypage", isLogined ? "L" : "N"));
@@ -60,6 +58,9 @@ public class TemplateFilter implements Filter{
 					request.setAttribute("brands_filter", categoryMng.getParentBrands());
 					request.setAttribute("crafts_filter", categoryMng.getCrafts());				
 					break;
+				case ITemplateType.ADMIN_TEMPLATE:
+					/* Need to update to top menus for admin only */
+					request.setAttribute("side_menus", menuMng.listSubMenu("admin_root", "L"));
 				default:
 					//DO NOTHING
 			}
