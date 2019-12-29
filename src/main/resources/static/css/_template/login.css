@@ -1,9 +1,3 @@
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-body {
-	margin: 1%;
-	font-family: 'Nanum Gothic', sans-serif;
-}
 #gtk-signup-title { font-size:30px;font-weight:400;padding-bottom:10px; }
 .gtk-login-process-box .gtk-process-bar { min-width:300px; }
 .gtk-login-process-box .gtk-process-bar button{ width:90%; }
