@@ -53,4 +53,9 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/main";
 	}
+	
+	@RequestMapping("/")
+	public String goFirst() {
+		return "redirect:/main";
+	}	
 }
