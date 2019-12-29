@@ -50,10 +50,10 @@ const thumbnailGenerator = function(data) {
 		price_div.className = "thumb-price";
 			const base_span = document.createElement("span");
 			base_span.className = "base-price";
-			base_span.innerHTML = currency_formatter(data.retail_price,"¿ø");
+			base_span.innerHTML = currency_formatter(data.retail_price,"ì›");
 			const real_span = document.createElement("span");
 			real_span.className = "real-price"; 
-			real_span.innerHTML = currency_formatter(data.sales_price,"¿ø");
+			real_span.innerHTML = currency_formatter(data.sales_price,"ì›");
 		price_div.appendChild(base_span);
 		price_div.appendChild(real_span);	
 		

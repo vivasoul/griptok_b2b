@@ -1,16 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12 gtk-top-hr-dash" role="navigation">
 			<nav class="nav bottom_menu"><!-- 
 			--><a href="#">About Us</a><!-- 
-			   --><a href="#">Privacy Policy(°³ÀÎ Á¤º¸ Á¤Ã¥)</a><!--
-			   --><a href="#">Terms of Use(ÀÌ¿ë¾à°ü)</a><!--
+			   --><a href="#">Privacy Policy(ê°œì¸ ì •ë³´ ì •ì±…)</a><!--
+			   --><a href="#">Terms of Use(ì´ìš©ì•½ê´€)</a><!--
 			--></nav>
 		</div>
 		<div class="col-sm-12 bottom_copyright">
-			Copyright ¨Ï 2019 iburster Griptok All rights reserved.
+			Copyright â“’ 2019 iburster Griptok All rights reserved.
 		</div>
 	</div>
 </div>

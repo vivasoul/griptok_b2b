@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/product/list.css" />
 <script type="text/javascript" src= "/js/product/list.js"></script>
 <script type="text/javascript">
@@ -17,15 +16,15 @@ jQuery(document).ready(function(){
 			</div>
 		</div>
 	</div>
-	<div class="row"><div class="col-sm-12"><div class="event-header">�Ż�ǰ</div></div></div>
+	<div class="row"><div class="col-sm-12"><div class="event-header">신상품</div></div></div>
 	<div class="row">
 		<div class="col-sm-12 product-list" id="new-product-list"></div>
 	</div>
-	<div class="row"><div class="col-sm-12"><div class="event-header">����Ʈ ��ǰ</div></div></div>
+	<div class="row"><div class="col-sm-12"><div class="event-header">베스트 상품</div></div></div>
 	<div class="row">
 		<div class="col-sm-12 product-list" id="best-product-list"></div>
 	</div>
-	<div class="row"><div class="col-sm-12"><div class="event-header">Ư�� ��ǰ(<span></span>)</div></div></div>
+	<div class="row"><div class="col-sm-12"><div class="event-header">특가 상품(<span></span>)</div></div></div>
 	<div class="row">
 		<div class="col-sm-12 product-list" id="special-product-list"></div>
 	</div>

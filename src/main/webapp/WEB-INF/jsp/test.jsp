@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <div style="display:block; min-height:700px;" >
-ев╫╨ф╝©║©К~
+М┘▄Л┼╓М┼╦Л≈░Л ╘~
 </div>

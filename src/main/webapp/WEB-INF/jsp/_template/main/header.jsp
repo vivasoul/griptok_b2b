@@ -1,6 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@page import="org.springframework.ui.Model"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.griptk.b2b.common.domain.MenuVO" %>
 <%@ page import="com.griptk.b2b.product.domain.*" %>
@@ -26,9 +25,9 @@
 	<div class="row">
 		<div class="col-sm-7">
 			<nav class="nav cat_filter left_filter">
-			  <a class="nav-link" href="/main/all">��ü ��ǰ(All)</a><!--
+			  <a class="nav-link" href="/main/all">전체 상품(All)</a><!--
 			  --><%for(CraftTypeVO craft: crafts_filter){ %><a class="nav-link" href="/main/craft?p_id=<%=craft.getCraft_no()%>"><%=craft.getCraft_nm()%></a><%}%><!-- 
-		   --><a class="nav-link" href="/main/dc">Ư����ǰ</a>
+		   --><a class="nav-link" href="/main/dc">특가상품</a>
 			</nav>			
 		</div>
 		<div class="col-sm-5">

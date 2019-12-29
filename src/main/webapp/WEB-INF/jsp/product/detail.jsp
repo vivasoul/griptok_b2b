@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/product/detail.css" />
 <script type="text/javascript">
 const currency_formatter = function(amount, unit) {
@@ -25,7 +24,7 @@ const updateCount = function(cnt) {
 	const $sum = jQuery("#gtk-detail-main .gtk-detail-summary");
 	const price = Number(jQuery("#sales-price").val()) || 0;
 	$sum.find(".data-total-count").text(cnt);
-	$sum.find(".data-total-amount").text(currency_formatter(_cnt*price,'¿ø'));
+	$sum.find(".data-total-amount").text(currency_formatter(_cnt*price,'ì›'));
 };
 
 const renderData = function(data) {
@@ -33,8 +32,8 @@ const renderData = function(data) {
 	
 	$body.find(".data-id").text(data.product_id);
 	$body.find(".data-title").text(data.title);
-	$body.find(".data-retail-price").text(currency_formatter(data.retail_price,'¿ø'));
-	$body.find(".data-sales-price").text(currency_formatter(data.sales_price,'¿ø'));
+	$body.find(".data-retail-price").text(currency_formatter(data.retail_price,'ì›'));
+	$body.find(".data-sales-price").text(currency_formatter(data.sales_price,'ì›'));
 	jQuery("#sales-price").val(data.sales_price);
 	const len = data.images.length;
 	if(len){
@@ -101,23 +100,23 @@ jQuery(document).ready(function(){
 			<div class="gtk-detail-images-thumbs"></div>
 		</div>
 		<div class="col-sm-6">
-			<div class="gtk-detail-id">»óÇ° ¹øÈ£:<span class="data-id"></span></div>
+			<div class="gtk-detail-id">ìƒí’ˆ ë²ˆí˜¸:<span class="data-id"></span></div>
 			<div class="gtk-detail-title data-title"></div>
 			<div class="gtk-detail-price"><span class="data-retail-price"></span><span class="data-sales-price"></span></div>
-			<div class="gtk-detail-quantity">¼ö·®<button class="quantity-down-btn">-</button><input class="input-quantity" type="text" value="1"/><button class="quantity-up-btn">+</button></div>
+			<div class="gtk-detail-quantity">ìˆ˜ëŸ‰<button class="quantity-down-btn">-</button><input class="input-quantity" type="text" value="1"/><button class="quantity-up-btn">+</button></div>
 			<div class="gtk-detail-summary">
-				<span class="detail-summary-1">ÃÑ ¼ö·® <span class="data-total-count"></span>°³</span> / 
-				<span class="detail-summary-2">ÃÑ »óÇ° ±İ¾×</span>
+				<span class="detail-summary-1">ì´ ìˆ˜ëŸ‰ <span class="data-total-count"></span>ê°œ</span> / 
+				<span class="detail-summary-2">ì´ ìƒí’ˆ ê¸ˆì•¡</span>
 				<span class="detail-summary-3 data-total-amount"></span></div>
 			<div class="gtk-detail-btn-group"><!-- 
-				 --><button type="button" class="gtk-btn" id="goto-cart-btn">Àå¹Ù±¸´Ï</button>
-				 	<button type="button" class="gtk-btn gtk-btn-blue" id="goto-buy-btn">¹Ù·Î±¸¸Å</button>
-				 	<button type="button" class="gtk-btn" id="goto-interset-btn">°ü½É»óÇ°</button><!--
+				 --><button type="button" class="gtk-btn" id="goto-cart-btn">ì¥ë°”êµ¬ë‹ˆ</button>
+				 	<button type="button" class="gtk-btn gtk-btn-blue" id="goto-buy-btn">ë°”ë¡œêµ¬ë§¤</button>
+				 	<button type="button" class="gtk-btn" id="goto-interset-btn">ê´€ì‹¬ìƒí’ˆ</button><!--
 			 --></div>
 			 <input id="sales-price" type="hidden" value="0" />
 		</div>
 	</div>
-	<div class="row gtk-detail"><div class="col-sm-12 gtk-description-header">»óÇ° »ó¼¼ ¼³¸í</div></div>
+	<div class="row gtk-detail"><div class="col-sm-12 gtk-description-header">ìƒí’ˆ ìƒì„¸ ì„¤ëª…</div></div>
 	<div class="row gtk-detail">
 		<div class="col-sm-12 gtk-description-body">
 		</div>

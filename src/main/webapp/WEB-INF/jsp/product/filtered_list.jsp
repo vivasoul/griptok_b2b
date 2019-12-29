@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/product/list.css" />
 <script type="text/javascript" src= "/js/product/list.js"></script>
 <script type="text/javascript">
@@ -8,7 +8,7 @@ jQuery(document).ready(function(){
 </script>    
 <div class="container-fluid main-shopping-list">
 	<div class="row">
-		<div class="col-sm-12 griptok-main-sort"><a href="#">�α⵵��</a> / <a href="#">�������ݼ�</a> / <a href="#">�ֽŵ�ϼ�</a></div>
+		<div class="col-sm-12 griptok-main-sort"><a href="#">인기도순</a> / <a href="#">낮은가격순</a> / <a href="#">최신등록순</a></div>
 	</div>	
 	<div class="row">
 		<div class="col-sm-12 product-list" id="filtered-product-list"></div>
