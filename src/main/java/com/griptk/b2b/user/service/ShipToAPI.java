@@ -26,12 +26,10 @@ public class ShipToAPI {
 	@PostMapping("")
 	public int addShippingInfo(
 			@RequestBody ShipToVO vo,HttpSession session) {
-		
-		int shipto_no = mapper.selectMaxShiptoNo(vo.getUser_no());
 		int user_no = (int) session.getAttribute("user_no");
-		vo.setShipto_no(shipto_no+1);
 		vo.setUser_no(user_no);
-		
+		int shipto_no = mapper.selectMaxShiptoNo(vo.getUser_no());
+		vo.setShipto_no(shipto_no+1);
 		return mapper.addShippingInfo(vo);
 	}
 	

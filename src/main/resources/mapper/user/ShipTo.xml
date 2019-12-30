@@ -68,7 +68,7 @@
 	
 	<select id="selectMaxShiptoNo" parameterType="Integer" resultType="Integer">
 		SELECT 
-			max(shipto_no)
+			IFNULL(max(shipto_no),0)
 		FROM 
 			tb_shipto_addr
 		WHERE
