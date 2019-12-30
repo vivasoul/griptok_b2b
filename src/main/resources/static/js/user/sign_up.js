@@ -1,3 +1,8 @@
+$(document).ready(function() {
+	if(registered=="failed"){
+		alert("회원가입에 실패하였습니다.");
+	}
+});
 var validation_check = {
 	id_checked : false,
 	biz_reg_number_checked: false,
@@ -84,13 +89,10 @@ function bs_input_file() {
 $("#id_check").bind("click", function() {
 	if (emptyCheck("user_id")) {
 		$.ajax({
-			url : "/sign_up/check/id",
-			type : "post",
-			data : {
-				"user_id" : $("#user_id").val()
-			},
+			url : "/sign_up/check/"+$("#user_id").val(),
+			type : "get",
 			success : function(responseData) {
-				if (responseData.result == 0) {
+				if (responseData == 0) {
 					alert("사용가능한 Id입니다.");
 					validation_check.id_checked = true;
 				} else {
@@ -107,13 +109,10 @@ $("#id_check").bind("click", function() {
 $("#company_nm_check").bind("click", function() {
 	if (emptyCheck("company_nm")) {
 		$.ajax({
-			url : "/sign_up/check/company_nm",
-			type : "post",
-			data : {
-				"company_nm" : $("#company_nm").val()
-			},
+			url : "/sign_up/check/"+$("#company_nm").val(),
+			type : "get",
 			success : function(responseData) {
-				if (responseData.result == 0) {
+				if (responseData == 0) {
 					validation_check.company_nm_checked = true;
 					alert("사용가능한 회사명입니다.");
 				} else {
@@ -130,13 +129,10 @@ $("#company_nm_check").bind("click", function() {
 $("#biz_reg_number_check").bind("click", function() {
 	if (emptyCheck("biz_reg_number")) {
 		$.ajax({
-			url : "/sign_up/check/biz_reg_number",
-			type : "post",
-			data : {
-				"biz_reg_number" : $("#biz_reg_number").val()
-			},
+			url : "/sign_up/check/"+$("#biz_reg_number").val(),
+			type : "get",
 			success : function(responseData) {
-				if (responseData.result == 0) {
+				if (responseData == 0) {
 					alert("사용가능한 사업자번호입니다.");
 					validation_check.biz_reg_number_checked = true;
 				} else {

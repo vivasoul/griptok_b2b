@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+
+<script>
+	var registered = "<%= session.getAttribute( "registered" ) %>";
+</script>
+<%
+	session.invalidate();
+%>
+
 <div class="container-fluid custom-container">
 	<div class="row">
 		<div class="mainbox col-sm-12">

@@ -6,20 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,7 +51,7 @@ public class UserAPI {
 	// id_check
 	@GetMapping(path="/sign_up/check/id/{user_id}")
 	public int checkUserId(
-			@RequestParam("user_id") String user_id) {
+			@PathVariable("user_id") String user_id) {
 		
 		return mapper.checkUserId(user_id);
 	}
@@ -66,9 +66,9 @@ public class UserAPI {
 	}
 	
 	// biz_reg_number check	
-	@GetMapping("/sign_up/check/biz_reg_number")
+	@GetMapping("/sign_up/check/{biz_reg_number}")
 	public int checkBizRegNumber(
-			@RequestParam("biz_reg_number") String biz_reg_number) {
+			@PathVariable("biz_reg_number") String biz_reg_number) {
 		
 		return mapper.checkBizRegNumber(biz_reg_number);
 	}
@@ -118,14 +118,13 @@ public class UserAPI {
 	}
 	
 	// sign_up
+	@Transactional
 	@PostMapping("/sign_up/sign_up")
 	public void griptokSignUp(
 			@RequestPart (value="real_file") MultipartFile real_file,
 			@ModelAttribute UserVO vo,
-			HttpServletRequest request,
+			HttpSession session,
 	        HttpServletResponse response) {
-		
-		System.out.println(vo.toString());
 		
 		int result = 1;
 		
@@ -142,24 +141,18 @@ public class UserAPI {
 			String new_temp_password = passwordEncoder.encode(vo.getPasswd());
 			
 			vo.setPasswd(new_temp_password);
-			
+
 			int user_result = mapper.signUpUser(vo);
 			
 			int login_result = mapper.insertLoginInfo(vo);
 
-			if(img_result==0){
-				result=-1;
-			}else if(user_result==0){
-				result=-2;
-			}else if(login_result==0){
-				result=-2;
-			}
-			request.getSession().setAttribute("registered", "registered");
+			session.setAttribute("registered", "registered");
 			response.sendRedirect("/login");
 		}catch(Exception e){
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			result = -1;
 			try{
-				request.getSession().setAttribute("registered", "failed");
+				session.setAttribute("registered", "failed");
 				response.sendRedirect("/sign-up");
 			}catch(Exception ex){
 				ex.printStackTrace();

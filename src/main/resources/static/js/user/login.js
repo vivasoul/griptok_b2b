@@ -38,6 +38,10 @@ function form_checker(_vals, highlight_needed){
 }
 
 $(document).ready(function(){
+	if(registered=="registered"){
+		alert("회원가입에 성공하였습니다.");
+	}
+	
 	// 로그인 버튼 클릭
 	$("#btn_login").bind("click",function(){
 		var checker_vals = ["login_user_id", "login_passwd"];
