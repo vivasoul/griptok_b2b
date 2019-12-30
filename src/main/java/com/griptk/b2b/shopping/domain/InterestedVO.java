@@ -1,5 +1,7 @@
 package com.griptk.b2b.shopping.domain;
 
+import java.util.Arrays;
+
 public class InterestedVO {
 	
 	private int user_no;
@@ -15,6 +17,8 @@ public class InterestedVO {
 	private int sales_price;
 	
 	private String file_path;
+	
+	private Integer[] product_id_arr;
 	
 	public int getUser_no() {
 		return user_no;
@@ -71,18 +75,20 @@ public class InterestedVO {
 	public void setFile_path(String file_path) {
 		this.file_path = file_path;
 	}
+	
+	public Integer[] getProduct_id_arr() {
+		return product_id_arr;
+	}
+
+	public void setProduct_id_arr(Integer[] product_id_arr) {
+		this.product_id_arr = product_id_arr;
+	}
 
 	@Override
 	public String toString() {
 		return "InterestedVO [user_no=" + user_no + ", product_id=" + product_id + ", reg_dt=" + reg_dt + ", title="
 				+ title + ", retail_price=" + retail_price + ", sales_price=" + sales_price + ", file_path=" + file_path
-				+ "]";
+				+ ", product_id_arr=" + Arrays.toString(product_id_arr) + "]";
 	}
-	
-	
-
-	
-	
-	
 
 }

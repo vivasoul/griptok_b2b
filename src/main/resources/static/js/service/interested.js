@@ -20,8 +20,10 @@ const update = {
 					$.ajax({
 				        url : "/interesteds",
 				        type: "DELETE",
-				        data : { "user_no" : user_no,
-				        	"product_id_arr" : [indice]},
+				        data : JSON.stringify({ 
+			    	    	"product_id_arr" : [indice]
+			    	    }),
+				     	contentType: "application/json", 
 				        success : function(responseData){
 				        	var result = responseData;
 				        	if(result==1){
@@ -42,8 +44,10 @@ const update = {
 				$.ajax({
 			        url : "/interesteds",
 			        type: "post",
-			        data : { "user_no" : user_no,
-			        	"product_id_arr" : [indice]},
+			        data : JSON.stringify({ 
+		    	    	"product_id_arr" : [indice]
+		    	    }),
+			     	contentType: "application/json",
 			        success : function(responseData){
 			        	var result = responseData;
 			        	if(result==1){
@@ -83,16 +87,29 @@ function loadMainInterestedList(reload){
 		        				} 
 		        			},
 		        			{
+		        				"targets": [1],
+		        				data : 'img',
+		        				render: function (title,type,row) {
+		        					return '<img src = "/img/product/test/' + row.file_path + '" width="80" height="80"/> ' + title; 
+		        				} 
+		        			},
+		        			{
+		        				"targets": [2],
+		        				render: function (retail_price,type,row) {
+		        					return '<strike class="sm-txt">'+currency_formatter(retail_price,'원')+'</strike><p class="bolded">'+ currency_formatter(row.sales_price,'원')+'</p>'; 
+		        				} 
+		        			},
+		        			{
 		        				"targets": [3], 
 		        				render: function (product_id,type,row,obj) { 
 		        					const btnDiv = 
 		        						'<div class="row">' +
-		        							'<div class="col-md-offset-3">' + 
+		        							'<div>' + 
 		        							'<button class="btn btn-primary form-group js-change-now" data-toggle="modal" data-target="#addrModal"  data-row-indice="'+product_id+'">장바구니 담기</button>' +
 		        							'</div>' +
 		        						'</div>' + 
 		        						'<div class="row">' +
-		        							'<div class="col-md-offset-3">' + 
+		        							'<div>' + 
 		        							'<button class="btn btn-secondary-outline form-group js-delete-now" data-row-indice="'+product_id+'">삭제</button>' +
 		        							'</div>' + 
 		        						'</div>' 
@@ -125,10 +142,11 @@ function deleteInterested(){
 		}
 		$.ajax({
 	        url : "/interesteds",
-	        type: "DELETE",
-	        data : { "user_no" : user_no,
-	        		 "product_id_arr" : checkedIndices
-	        	   },
+	        type: "delete",
+    	    data : JSON.stringify({ 
+    	    	"product_id_arr" : checkedIndices
+    	    }),
+	     	contentType: "application/json", 
 	        success : function(responseData){
 	        	var result = responseData;
 	        	console.log(result);
@@ -160,9 +178,10 @@ function addToCart(){
 		$.ajax({
 	        url : "/interesteds",
 	        type: "post",
-	        data : { "user_no" : user_no,
-	        		 "product_id_arr" : checkedIndices
-	        	   },
+	        data : JSON.stringify({ 
+    	    	"product_id_arr" : checkedIndices
+    	    }),
+	     	contentType: "application/json",
 	        success : function(responseData){
 	        	var result = responseData;
 	        	console.log(result);

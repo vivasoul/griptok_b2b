@@ -17,12 +17,19 @@
 <body>
 
 	<div class="container">
-		<h3 class="grey_back_title">관심상품 관리</h3>
-		<br>	
+		<div class="row">
+			<div class="margin-bottom-lg">
+				<div class="col-md-12" style="background-color: LightGray">
+					<font class="bolded">관심상품 목록</font>
+				</div>
+			</div>
+		</div>	
+		<br>
 		<div class="row">
 			<button onclick="addToCart()" class="btn-primary btn-sm text-sm" type="button">장바구니 담기</button>
-			<button onclick="deleteInterested()" class="btn-primary btn-sm text-sm" type="button">삭제</button>
+			<button onclick="deleteInterested()" class="btn-sm text-sm" type="button">삭제</button>
 		</div>
+		<br>
 		<div class="row">
 			<table id="interested-tbl" class="table table-striped table-bordered hover">
 				<thead>

@@ -19,13 +19,26 @@
 <body>
 
 	<div class="container">
-		<h3 class="grey_back_title">배송지 관리</h3>
+		<div class="row">
+			<div class="margin-bottom-lg">
+				<div class="col-md-12" style="background-color: LightGray">
+					<font class="bolded">배송지관리</font>
+				</div>
+			</div>
+		</div>	
 		<br>	
 		<div class="row">
-			<button onclick="changeDefaultShipping()" class="btn-primary btn-sm text-sm" type="button">기본 배송지로 설정</button>
-			<button onclick="deleteShipping()" class="btn-primary btn-sm text-sm" type="button">삭제</button>
-			<button onclick="addShipping()" data-toggle="modal" data-target="#addrModal" class="btn-primary btn-sm text-sm" type="button">배송지 추가</button>
+			<div class="margin-bottom-lg">
+				<div class="col-md-11 nopadding">
+					<button onclick="changeDefaultShipping()" class="btn-primary btn-sm text-sm" type="button">기본 배송지로 설정</button>
+					<button onclick="deleteShipping()" class="btn-sm text-sm" type="button">삭제</button>
+				</div>
+				<div class="col-md-1 nopadding">
+					<button onclick="addShipping()" data-toggle="modal" data-target="#addrModal" class="btn-sm text-sm" type="button">배송지 추가</button>
+				</div>
+			</div>
 		</div>
+		<br>
 		<div class="row">
 			<table id="shipto-tbl" class="table table-striped table-bordered hover">
 				<thead>

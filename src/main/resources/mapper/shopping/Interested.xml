@@ -5,7 +5,7 @@
 	<select id="listInterested" parameterType="Integer" resultType="java.util.HashMap">
 		SELECT
  			p.product_id,
-			CONCAT(info.file_path,'/',info.file_nm,'.',file_format) as file_path,
+			CONCAT(info.file_nm,'.',file_format) as file_path,
 			p.title,
 			p.retail_price,
 			p.sales_price,

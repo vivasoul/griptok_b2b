@@ -26,8 +26,8 @@ $(document).ready(function() {
 </head>
 <body>
 
- <div class="custom-container container">    
-		<div class="mainbox col-sm-10 col-sm-offset-2">
+ <div class="custom-container container-fluid">    
+		<div class="mainbox col-sm-12">
 			<h3 class="grey_back_title">회원탈퇴</h3>
 			<br>
 			<h5 class="bolded">그립톡 B2B 사이트 회원 탈퇴를 원하시나요</h5>

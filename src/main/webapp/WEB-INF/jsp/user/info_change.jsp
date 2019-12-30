@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
 <script src="./lib/js/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./css/user/info_change.css">
@@ -25,8 +24,8 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 
 <body>
 
- <div class="custom-container container">    
-		<div class="mainbox col-sm-10 col-sm-offset-2">
+ <div class="custom-container container-fluid">    
+		<div class="mainbox col-sm-12">
 			<h3 class="grey_back_title">회원정보 수정</h3>
 		<br>	
 		<h5 class="bolded">기본정보(필수 입력사항)</h5>

@@ -37,10 +37,11 @@
 	font-weight:bold;
 }
 
-#withdraw_table td{
-	padding : 10px 10px 10px 10px;
-	border : 1px solid #808080; 
+#shipto-tbl td{
+	vertical-align: middle; 
 }
-#withdraw_table{
-	width:100%
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
 }

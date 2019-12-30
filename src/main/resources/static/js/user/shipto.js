@@ -74,7 +74,7 @@ function loadMainShippingList(reload){
 		        	table = shiptoTable.create(responseData.result,  {
 		        		"lengthChange": false,
 		        		columnDefs: [
-		        			{"className": "dt-body-center", "targets": [0,3,4]},
+		        			{"className": "dt-body-center", "targets": [0,1,3,4]},
 		        			{"className": "dt-head-center", "targets": "_all"},
 		        			{
 		        				"targets": [0],
