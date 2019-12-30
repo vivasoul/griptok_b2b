@@ -7,13 +7,6 @@ $(document).ready(function() {
 	}
 	
 	loadMainShippingList();
-//	else if(info_changed!="null"){
-//		if(info_changed=="failed"){
-//			alert("정보 변경에 실패하였습니다.");
-//		}else{
-//			alert("정보 변경에 성공하였습니다.");
-//		}
-//	}
 	
 });
 
@@ -25,11 +18,14 @@ const update = {
 				if(confirmed){
 					$('#shipto_no').val(indice);
 					$.ajax({
-				        url : "/shipto/delete/"+indice,
-				        type: "post",
-				        data : { "user_no" : user_no},
+				        url : "/shiptos",
+				        type: "delete",
+				        data : JSON.stringify({ 
+			    	    	"shipto_no_arr" : [indice]
+			    	    }),
+				     	contentType: "application/json", 
 				        success : function(responseData){
-				        	var result = responseData.result;
+				        	var result = responseData;
 				        	if(result==1){
 				        		alert("삭제 되었습니다.");
 				        		loadMainShippingList(true);
@@ -45,11 +41,10 @@ const update = {
 				$('#shipto_no').val(indice);
 				$('#modal_title').html("배송지 정보 변경");
 				$.ajax({
-			        url : "/shipto/info/"+indice,
-			        type: "post",
-			        data : { "user_no" : user_no},
+			        url : "/shiptos/"+indice,
+			        type: "get",
 			        success : function(responseData){
-			        	var result = responseData.result;
+			        	var result = responseData;
 			        	$('#shipto_add').css("display", "none");
 			        	$('#shipto_change').css("display", "");
 			        	loadShippingdata(result);
@@ -62,16 +57,15 @@ const update = {
 function loadMainShippingList(reload){
 	
 		$.ajax({
-	        url : "/shipto/info",
-	        type: "post",
-	        data : {"user_no" : user_no},
+	        url : "/shiptos",
+	        type: "get",
 	        success : function(responseData){
 	        	if(reload){
 	        		table.clear().draw();
-	        		table.rows.add(responseData.result); // Add new data
+	        		table.rows.add(responseData); // Add new data
 	        		table.columns.adjust().draw(); // Redraw the DataTable
 	        	}else{
-		        	table = shiptoTable.create(responseData.result,  {
+		        	table = shiptoTable.create(responseData,  {
 		        		"lengthChange": false,
 		        		columnDefs: [
 		        			{"className": "dt-body-center", "targets": [0,1,3,4]},
@@ -138,11 +132,11 @@ function changeDefaultShipping(){
 		console.log(checkedIndices);
 		var indice = checkedIndices[0].shipto_no;
 		$.ajax({
-	        url : "/shipto/default/"+indice,
-	        type: "post",
-	        data : { "user_no" : user_no},
+	        url : "/shiptos/default/"+indice,
+	        type: "put",
+	     	contentType: "application/json", 
 	        success : function(responseData){
-	        	var result = responseData.result;
+	        	var result = responseData;
 	        	if(result==1){
 	        		alert("기본 배송지 설정이 완료되었습니다.");
 	        		loadMainShippingList(true);
@@ -170,13 +164,14 @@ function deleteShipping(){
 			return false;
 		}
 		$.ajax({
-	        url : "/shipto/delete/bulk",
-	        type: "post",
-	        data : { "user_no" : user_no,
-	        		 "shipto_no_arr" : checkedIndices
-	        	   },
+	        url : "/shiptos",
+	        type: "delete",
+    	    data : JSON.stringify({ 
+    	    	"shipto_no_arr" : checkedIndices
+    	    }),
+	     	contentType: "application/json", 	   
 	        success : function(responseData){
-	        	var result = responseData.result;
+	        	var result = responseData;
 	        	if(result==1){
 	        		alert("삭제되었습니다.");
 	        		loadMainShippingList(true);
@@ -239,8 +234,8 @@ $('#example tbody').on('change', 'input[type="checkbox"]', function(){
 $("#shipto_change").bind("click",function(){
 	if(emptyCheck("post_code")&&emptyCheck("shipto_addr_1")&&emptyCheck("shipto_addr_2")&&emptyCheck("shipto_nm")&&emptyCheck("receiver_nm")&&emptyCheck("receiver_tel")){
 	    $.ajax({
-	        url : "/shipto/change",
-	        type: "post",
+	        url : "/shiptos",
+	        type: "put",
 	        data : JSON.stringify({ 
 	        		 "receiver_nm" : $("#receiver_nm").val(),
 	        	     "receiver_tel" : $("#receiver_tel").val(),
@@ -253,7 +248,7 @@ $("#shipto_change").bind("click",function(){
 	        		}),
 	    	contentType: "application/json",
 	        success : function(responseData){
-	        	if(responseData.result==0){
+	        	if(responseData==0){
 	        		alert("배송지 변경에 실패했습니다.");
 	        	}else{
 	        		alert("배송지 정보가 업데이트 되었습니다.");
@@ -270,7 +265,7 @@ $("#shipto_change").bind("click",function(){
 $("#shipto_add").bind("click",function(){
 	if(emptyCheck("post_code")&&emptyCheck("shipto_addr_1")&&emptyCheck("shipto_addr_2")&&emptyCheck("shipto_nm")&&emptyCheck("receiver_nm")&&emptyCheck("receiver_tel")){
 	    $.ajax({
-	        url : "/shipto/add",
+	        url : "/shiptos",
 	        type: "post",
 	        data : JSON.stringify({ 
 	        		 "receiver_nm" : $("#receiver_nm").val(),
@@ -284,7 +279,7 @@ $("#shipto_add").bind("click",function(){
 	        		}),
 	    	contentType: "application/json",
 	        success : function(responseData){
-	        	if(responseData.result==0){
+	        	if(responseData==0){
 	        		alert("배송지 추가에 실패하였습니다.");
 	        	}else{
 	        		alert("배송지 추가에 성공하였습니다.");

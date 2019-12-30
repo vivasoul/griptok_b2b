@@ -1,6 +1,6 @@
 package com.griptk.b2b.user.mapper;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.griptk.b2b.user.domain.ShipToVO;
 
@@ -9,7 +9,7 @@ public interface ShipToMapper {
 	
 	int addShippingInfo(ShipToVO vo);
 	
-	ArrayList<ShipToVO> getShippingInfo(int user_no);
+	List<ShipToVO> getShippingInfo(int user_no);
 	
 	ShipToVO getSpecificShippingInfo(ShipToVO vo);
 	

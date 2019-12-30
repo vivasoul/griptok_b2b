@@ -1,5 +1,7 @@
 package com.griptk.b2b.user.domain;
 
+import java.util.Arrays;
+
 public class ShipToVO {
 	
 	private int user_no;
@@ -26,6 +28,8 @@ public class ShipToVO {
 	
 	private String main_shipping;
 
+	private Integer[] shipto_no_arr;
+	
 	public int getUser_no() {
 		return user_no;
 	}
@@ -124,12 +128,23 @@ public class ShipToVO {
 		this.main_shipping = main_shipping;
 	}
 
+	public Integer[] getShipto_no_arr() {
+		return shipto_no_arr;
+	}
+
+	public void setShipto_no_arr(Integer[] shipto_no_arr) {
+		this.shipto_no_arr = shipto_no_arr;
+	}
+
 	@Override
 	public String toString() {
 		return "ShipToVO [user_no=" + user_no + ", receiver_nm=" + receiver_nm + ", addr=" + addr + ", shipto_addr1="
 				+ shipto_addr1 + ", shipto_addr2=" + shipto_addr2 + ", receiver_tel=" + receiver_tel + ", reg_dt="
 				+ reg_dt + ", shipto_no=" + shipto_no + ", shipto_nm=" + shipto_nm + ", upd_dt=" + upd_dt
-				+ ", post_code=" + post_code + ", main_shipping=" + main_shipping + "]";
+				+ ", post_code=" + post_code + ", main_shipping=" + main_shipping + ", shipto_no_arr="
+				+ Arrays.toString(shipto_no_arr) + "]";
 	}
+
+	
 	
 }
