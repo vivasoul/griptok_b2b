@@ -85,7 +85,7 @@ $(document).ready(function(){
 		        	   }),
 		     	contentType: "application/json",
 		        success : function(responseData){
-		        	var user_id = responseData.result;
+		        	var user_id = responseData;
 		        	if(user_id==null){
 		        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
 		        	}else{
@@ -112,7 +112,8 @@ $(document).ready(function(){
 		        	   }),
 		   	    contentType: "application/json",
 		        success : function(responseData){
-		        	var user_id = responseData.result;
+		        	console.log(responseData);
+		        	var user_id = responseData;
 		        	if(user_id==null){
 		        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
 		        	}else{
@@ -140,7 +141,7 @@ $(document).ready(function(){
 	     	contentType: "application/json",
 	        success : function(responseData){
 	        	console.log(responseData);
-	        	var result = responseData.result;
+	        	var result = responseData;
 	        	if(result==null){
 	        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
 	        	}else{
@@ -170,7 +171,7 @@ $(document).ready(function(){
 	        	   }),
 	   	    contentType: "application/json",
 	        success : function(responseData){
-	        	var result = responseData.result;
+	        	var result = responseData;
 	        	if(result==null){
 	        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
 	        	}else{

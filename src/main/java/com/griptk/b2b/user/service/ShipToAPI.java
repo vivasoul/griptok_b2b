@@ -33,12 +33,6 @@ public class ShipToAPI {
 		return mapper.addShippingInfo(vo);
 	}
 	
-	@PutMapping("")
-	public int shiptToChange(
-			@RequestBody ShipToVO vo) {
-		return mapper.changeShipTo(vo);
-	}
-	
 	
 	@GetMapping("")
 	public List<ShipToVO> getShippingInfo(
@@ -57,6 +51,16 @@ public class ShipToAPI {
 		vo.setUser_no(user_no);
 		vo.setShipto_no(shipto_no);
 		return mapper.getSpecificShippingInfo(vo);
+	}
+	
+	@GetMapping("/main")
+	public ShipToVO getMainShippingInfo(
+			HttpSession session) {
+		
+		int user_no = (int) session.getAttribute("user_no");
+		ShipToVO vo = new ShipToVO();
+		vo.setUser_no(user_no);
+		return mapper.getMainShippingInfo(vo);
 	}
 	
 	@DeleteMapping("")
@@ -88,6 +92,16 @@ public class ShipToAPI {
 		int result = mapper.clearAllShipping(user_no);
 		result = mapper.updateMainShipping(vo);
 		return result;
+	}
+	
+	@PutMapping("")
+	public int shiptToChange(
+			@RequestBody ShipToVO vo,
+	        HttpSession session) {
+		
+		int user_no = (int) session.getAttribute("user_no");
+		vo.setUser_no(user_no);
+		return mapper.changeShipTo(vo);
 	}
 	
 }

@@ -7,21 +7,6 @@
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./css/user/withdrawal.css">
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
-<script>
-var user_no = "<%= session.getAttribute( "user_no" ) %>";
-
-$(document).ready(function() {
-	$.ajax({
-        url : "/withdraw/load",
-        type: "post",
-        data : {"user_no" : user_no},
-        success : function(responseData){
-        	$("#user_id").html(responseData.user_id);
-        }
-    });
-});
-</script>
-
 
 </head>
 <body>

@@ -6,12 +6,13 @@ import com.griptk.b2b.user.domain.ShipToVO;
 
 public interface ShipToMapper {
 	
-	
 	int addShippingInfo(ShipToVO vo);
 	
 	List<ShipToVO> getShippingInfo(int user_no);
 	
 	ShipToVO getSpecificShippingInfo(ShipToVO vo);
+	
+	ShipToVO getMainShippingInfo(ShipToVO vo);
 	
 	int changeShipTo(ShipToVO vo);
 	

@@ -38,6 +38,25 @@
 			shipto_no = #{shipto_no}
 	</select>
 	
+	<select id="getMainShippingInfo"  parameterType="com.griptk.b2b.user.domain.ShipToVO"  resultType="com.griptk.b2b.user.domain.ShipToVO">
+		SELECT user_no, 
+			receiver_nm,
+			post_code,
+			shipto_addr1, 
+			shipto_addr2,
+			receiver_tel,
+			reg_dt,
+			shipto_no,
+			shipto_nm,
+			upd_dt
+		FROM
+			tb_shipto_addr
+		WHERE
+			user_no = #{user_no}
+		AND
+			main_shipping = 'Y'
+	</select>
+
 	<delete id="deleteShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO">
 		DELETE FROM
 			tb_shipto_addr
@@ -121,6 +140,7 @@
 			receiver_tel = #{receiver_tel},
 			shipto_nm = #{shipto_nm},
 			post_code = #{post_code},
+			main_shipping = #{main_shipping},
 			upd_dt = NOW()
 	</insert>
 	

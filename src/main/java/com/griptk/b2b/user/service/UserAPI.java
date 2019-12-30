@@ -2,20 +2,22 @@ package com.griptk.b2b.user.service;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.griptk.b2b.user.domain.ImageVO;
+import com.griptk.b2b.user.domain.PasswdVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.domain.WithdrawalVO;
 import com.griptk.b2b.user.mapper.UserMapper;
@@ -46,49 +49,28 @@ public class UserAPI {
 	private PasswordGenerator passwordGenerator;
 	
 	// id_check
-	@PostMapping(path="/sign_up/check/id", produces="application/json")
-	public Map<String, Object> checkUserId(
-			@RequestParam("user_id") String user_id,
-	        HttpServletResponse response) {
+	@GetMapping(path="/sign_up/check/id/{user_id}")
+	public int checkUserId(
+			@RequestParam("user_id") String user_id) {
 		
-		int result = mapper.checkUserId(user_id);
-		
-		Map<String, Object> resp = new HashMap<String, Object>();
-		
-		resp.put("result", result);
-		
-		return resp;
+		return mapper.checkUserId(user_id);
 	}
 	
 	// company_nm check
-	@PostMapping("/sign_up/check/company_nm")
-	public Map<String, Object> checkCompanyNm(
-			@RequestParam("company_nm") String company_nm,
-	        HttpServletResponse response) {
+	@GetMapping("/sign_up/check/company_nm/{company_nm}")
+	public int checkCompanyNm(
+			@PathVariable("company_nm") String company_nm) {
 		
-		int result = mapper.checkCompanyNm(company_nm);
-		
-		Map<String, Object> resp = new HashMap<String, Object>();
-		
-		resp.put("result", result);
-		
-		return resp;
+		return mapper.checkCompanyNm(company_nm);
 		
 	}
 	
 	// biz_reg_number check	
-	@PostMapping("/sign_up/check/biz_reg_number")
-	public Map<String, Object> checkBizRegNumber(
-			@RequestParam("biz_reg_number") String biz_reg_number,
-	        HttpServletResponse response) {
+	@GetMapping("/sign_up/check/biz_reg_number")
+	public int checkBizRegNumber(
+			@RequestParam("biz_reg_number") String biz_reg_number) {
 		
-		int result = mapper.checkBizRegNumber(biz_reg_number);
-		
-		Map<String, Object> resp = new HashMap<String, Object>();
-		
-		resp.put("result", result);
-		
-		return resp;
+		return mapper.checkBizRegNumber(biz_reg_number);
 	}
 	
 	public ImageVO uploadFile(
@@ -142,7 +124,6 @@ public class UserAPI {
 			@ModelAttribute UserVO vo,
 			HttpServletRequest request,
 	        HttpServletResponse response) {
-
 		
 		System.out.println(vo.toString());
 		
@@ -165,7 +146,6 @@ public class UserAPI {
 			int user_result = mapper.signUpUser(vo);
 			
 			int login_result = mapper.insertLoginInfo(vo);
-			
 
 			if(img_result==0){
 				result=-1;
@@ -191,23 +171,17 @@ public class UserAPI {
 	
 	// find Id
 	@PostMapping("/login/find/id")
-	public Map<String, Object> findId(
+	public String findId(
 			@RequestBody UserVO vo,
 	        HttpServletResponse response) {
+		return mapper.findId(vo);
 		
-		String result = mapper.findId(vo);
-		
-		Map<String, Object> resp = new HashMap<String, Object>();
-		
-		resp.put("result", result);
-		
-		return resp;
 	}
 	
 	
 	// find Passwd
 	@PostMapping("/login/find/passwd")
-	public Map<String, Object> findPasswd(
+	public int findPasswd(
 			@RequestBody UserVO vo,
 	        HttpServletResponse response) {
 		Map<String, Object> resp = new HashMap<String, Object>();
@@ -228,15 +202,13 @@ public class UserAPI {
 		}catch(Exception e) {
 			result =-1;
 		}
-		resp.put("result", result);
-		return resp;
+		return result;
 	}
 	
 	@PostMapping("/login/connect")
 	public Map<String, Object> login(
 			@RequestBody UserVO vo,
-			HttpServletRequest request,
-	        HttpServletResponse response) {
+			HttpSession session) {
 		
 		String passwd = vo.getPasswd();
 		String user_id = vo.getUser_id();
@@ -249,10 +221,9 @@ public class UserAPI {
 			if(!passwordEncoder.matches(passwd, encoded_password)) {
 				result = 0;
 			}else{
-				request.getSession().setAttribute("user_no", loginInfo.getUser_no());
+				session.setAttribute("user_no", loginInfo.getUser_no());
 			}
 			resp.put("aprv_status", loginInfo.getAprv_status());
-			resp.put("result", result);
 			return resp;
 		}catch(Exception e){
 			resp.put("result", 0);
@@ -261,114 +232,98 @@ public class UserAPI {
 	}
 	
 	@PostMapping("/passwd/check")
-	public Map<String, Object> passwordCheck(
+	public int passwordCheck(
 			@RequestBody UserVO vo,
-	        HttpServletResponse response) {
+	        HttpSession session) {
 		
 		String passwd = vo.getPasswd();
-		int user_no = vo.getUser_no();
+		int user_no = (int) session.getAttribute("user_no");
 		String encoded_password = mapper.getPassword(user_no);
 		int result = 1;
 		if(!passwordEncoder.matches(passwd, encoded_password)) {
 			result = 0;
 		}
-		Map<String, Object> resp = new HashMap<String, Object>();
-		resp.put("result", result);
-		return resp;
+		return result;
 	}
 	
-	@PostMapping("/passwd/change")
-	public Map<String, Object> passwordChange(
-			@RequestParam("old_passwd") String old_passwd,
-			@RequestParam("new_passwd") String new_passwd,
-			@RequestParam("user_no") int user_no,
-	        HttpServletResponse response) {
-		
+	@PutMapping("/passwd/change")
+	public int passwordChange(
+			@RequestBody PasswdVO vo,
+			HttpSession session
+	        ) {
+		int user_no = (int) session.getAttribute("user_no");
+		vo.setUser_no(user_no);
 		String encoded_password = mapper.getPassword(user_no);
 		int result = 1;
-		if(!passwordEncoder.matches(old_passwd, encoded_password)) {
+		if(!passwordEncoder.matches(vo.getOld_passwd(), encoded_password)) {
 			result = 0;
 		}else{
-			String new_temp_password = passwordEncoder.encode(new_passwd);
+			String new_temp_password = passwordEncoder.encode(vo.getNew_passwd());
 			UserVO resultVo = new UserVO();
 			resultVo.setPasswd(new_temp_password);
 			resultVo.setUser_no(user_no);
 			result = mapper.setPasswd(resultVo);
 		}
 		
-		Map<String, Object> resp = new HashMap<String, Object>();
-		resp.put("result", result);
-		return resp;
+		return result;
 	}
 	
 	// withdraw 
-	@PostMapping("/withdraw/load")
-	public Map<String, Object> withdrawLoad(
-			@RequestParam("user_no") int user_no,
-	        HttpServletResponse response) {
+	@GetMapping("/withdraw/load")
+	public String withdrawLoad(
+			HttpSession session) {
 		
+		int user_no = (int) session.getAttribute("user_no");
 		UserVO loginInfo = mapper.getUserInfo(user_no);
 		
-		Map<String, Object> resp = new HashMap<String, Object>();
-		resp.put("user_id", loginInfo.getUser_id());
-		return resp;
+		return loginInfo.getUser_id();
 	}
 	
 	// withdraw 
 	@PostMapping("/withdraw/send")
-	public Map<String, Object> withdrawFromSite(
-			@RequestBody WithdrawalVO vo,
-	        HttpServletResponse response) {
+	public int withdrawFromSite(
+			@RequestBody WithdrawalVO vo) {
 		
 		int result = mapper.insertWithdrawal(vo);
 		
-		result = mapper.updateStatus(vo);
-		
-		Map<String, Object> resp = new HashMap<String, Object>();
-		resp.put("result", result);
-		return resp;
+		return mapper.updateStatus(vo);
 	}
 	
-	// withdraw 
-	@PostMapping("/info_change/load")
-	public Map<String, Object> infoChangeLoad(
-			@RequestParam("user_no") int user_no,
-	        HttpServletResponse response) {
+	// info_change
+	@GetMapping("/info_change/load")
+	public UserVO infoChangeLoad(
+			HttpSession session) {
+		
+		int user_no = (int) session.getAttribute("user_no");
 		
 		UserVO loginInfo = mapper.getUserInfo(user_no);
 		
-		
-		Map<String, Object> resp = new HashMap<String, Object>();
-		resp.put("user_id", loginInfo.getUser_id());
-		resp.put("company_nm", loginInfo.getCompany_nm());
-		resp.put("ceo_nm", loginInfo.getCeo_nm());
-		resp.put("manager_nm", loginInfo.getManager_nm());
-		resp.put("manager_tel", loginInfo.getManager_tel());
-		resp.put("manager_email", loginInfo.getManager_email());
-		resp.put("biz_reg_number", loginInfo.getBiz_reg_number());
-		resp.put("biz_category", loginInfo.getBiz_category());
-		resp.put("file_nm", loginInfo.getFile_nm());
-		resp.put("biz_addr_1", loginInfo.getBiz_addr_1());
-		resp.put("biz_addr_2", loginInfo.getBiz_addr_2());
-		resp.put("post_code", loginInfo.getPost_code());
-		resp.put("contact_tel", loginInfo.getContact_tel());
-		resp.put("tax_email", loginInfo.getTax_email());
-		
-		return resp;
+//		Map<String, Object> resp = new HashMap<String, Object>();
+//		resp.put("user_id", loginInfo.getUser_id());
+//		resp.put("company_nm", loginInfo.getCompany_nm());
+//		resp.put("ceo_nm", loginInfo.getCeo_nm());
+//		resp.put("manager_nm", loginInfo.getManager_nm());
+//		resp.put("manager_tel", loginInfo.getManager_tel());
+//		resp.put("manager_email", loginInfo.getManager_email());
+//		resp.put("biz_reg_number", loginInfo.getBiz_reg_number());
+//		resp.put("biz_category", loginInfo.getBiz_category());
+//		resp.put("file_nm", loginInfo.getFile_nm());
+//		resp.put("biz_addr_1", loginInfo.getBiz_addr_1());
+//		resp.put("biz_addr_2", loginInfo.getBiz_addr_2());
+//		resp.put("post_code", loginInfo.getPost_code());
+//		resp.put("contact_tel", loginInfo.getContact_tel());
+//		resp.put("tax_email", loginInfo.getTax_email());
+//		
+		return loginInfo;
 	}
 	
 	@PostMapping("/info_change/change")
 	public void griptokInfoChange(
 			@RequestPart (value="real_file") MultipartFile real_file,
 			@ModelAttribute UserVO vo,
-			HttpServletRequest request,
-	        HttpServletResponse response) {
+			HttpSession session,
+			HttpServletResponse response) {
 
-		
-		System.out.println(vo.toString());
-		
-		System.out.println("checking");
-		System.out.println(real_file.isEmpty());
 		
 		int result = 1;
 		
@@ -388,12 +343,12 @@ public class UserAPI {
 			}else if(user_result==0){
 				result=-2;
 			}
-			request.getSession().setAttribute("info_changed", "info_changed");
-			response.sendRedirect("/info");
+			session.setAttribute("info_changed", "info_changed");
+			response.sendRedirect("/user_edit");
 		}catch(Exception e){
 			result = -1;
 			try{
-				request.getSession().setAttribute("info_changed", "failed");
+				session.setAttribute("info_changed", "failed");
 				response.sendRedirect("/info");
 			}catch(Exception ex){
 				ex.printStackTrace();

@@ -75,7 +75,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				<tr>
 					<td class="grey_back_td bolded">주소</td>
 					<td colspan="3">
-						<input style="width:60%" type="text" id="addr"/><button data-toggle="modal" data-target="#addrModal" class="btn-primary btn-sm-offset-2" type="button">기본 배송지 변경</button>
+						<input style="width:60%" type="text" id="addr"/><button data-toggle="modal" data-target="#addrModal" class="btn-primary btn-sm-offset-2" onclick="loadMainShipping()" type="button">기본 배송지 변경</button>
 						<p>
 						입력하신 주소는 기본 배송지로 입력됩니다. <br>
 						회원가입시 기입된 주소는 사업자 등록증 소재 주소 입니다.<br>
@@ -175,6 +175,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
           <fieldset>
            <div class="form-group">
 	            <div class="col-sm-11 input-group">
+	            <input type="hidden" id="shipto_no" name="shipto_no"/>
           		<input type="text" id="shipto_nm" name="shipto_nm" placeholder="배송지 이름" class="form-control input-lg">
 	          </div>
             </div>
@@ -192,18 +193,18 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 	            <div class="col-sm-12 input-group">
           		<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" class="form-control input-lg">
 	        	<span class="input-group-btn" style="width:0;">
-		        	<button onclick="openDaumZipAddress('post_code', 'shipto_addr_1', 'shipto_addr_2')" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
+		        	<button onclick="openDaumZipAddress('post_code', 'shipto_addr1', 'shipto_addr2')" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
 			    </span>
 	          </div>
             </div>
             <div class="form-group">
             	<div class="col-sm-11 input-group">
-	                <input type="text" id="shipto_addr_1" name="shipto_addr_1" placeholder="주소" class="form-control input-lg" readonly="readonly" required>
+	                <input type="text" id="shipto_addr1" name="shipto_addr1" placeholder="주소" class="form-control input-lg" readonly="readonly" required>
               </div>
             </div>
             <div class="form-group">
             	<div class="col-sm-11 input-group">
-	                <input type="text" id="shipto_addr_2" name="shipto_addr_2" placeholder="세부주소" class="form-control input-lg" required>
+	                <input type="text" id="shipto_addr2" name="shipto_addr2" placeholder="세부주소" class="form-control input-lg" required>
               </div>
             </div>
           </fieldset>

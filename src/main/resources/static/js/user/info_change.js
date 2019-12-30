@@ -43,12 +43,8 @@ $(document).ready(function() {
 	}
 	$.ajax({
         url : "/info_change/load",
-        type: "post",
-        data : {"user_no" : user_no},
+        type: "get",
         success : function(responseData){
-        	console.log(responseData);
-        	
-        	
         	$("#user_id").val(responseData.user_id);
         	$("#ceo_nm").val(responseData.ceo_nm);
         	$("#company_nm").val(responseData.company_nm);
@@ -71,13 +67,14 @@ $("#btn_passwd_change").bind("click",function(){
 	if(emptyCheck("old_passwd")&&emptyCheck("new_passwd")&&emptyCheck("new_passwd_check")){
 	    $.ajax({
 	        url : "/passwd/change",
-	        type: "post",
-	        data : { "old_passwd" : $("#old_passwd").val(),
-	        	     "new_passwd" : $("#new_passwd").val(),
-	        	     "user_no" : user_no,
-	        		},
+	        type: "put",
+    		data : JSON.stringify({ 
+    			"old_passwd" : $("#old_passwd").val(),
+       	     	"new_passwd" : $("#new_passwd").val()
+    		}),
+	     	contentType: "application/json",		
 	        success : function(responseData){
-	        	if(responseData.result==0){
+	        	if(responseData==0){
 	        		alert("기존 비밀번호를 확인해주세요.");
 	        	}else{
 	        		alert("비밀번호 변경이 완료되었습니다.");
@@ -90,12 +87,34 @@ $("#btn_passwd_change").bind("click",function(){
 	}
 });
 
+function loadMainShipping(){
+	$.ajax({
+        url : "/shiptos/main",
+        type: "get",
+        success : function(responseData){
+        	var result = responseData;
+        	loadShippingdata(result);
+        }
+    });
+}
+
+function loadShippingdata(result){
+	$('#shipto_no').val(result.shipto_no);
+	$('#receiver_nm').val(result.receiver_nm);
+	$('#shipto_addr1').val(result.shipto_addr1);
+	$('#shipto_addr2').val(result.shipto_addr2)
+	$('#receiver_tel').val(result.receiver_tel);
+	$('#shipto_nm').val(result.shipto_nm);
+	$('#post_code').val(result.post_code);
+}
+
+
 
 $("#shipto_change").bind("click",function(){
 	if(emptyCheck("post_code")&&emptyCheck("shipto_addr_1")&&emptyCheck("shipto_addr_2")&&emptyCheck("shipto_nm")&&emptyCheck("receiver_nm")&&emptyCheck("receiver_tel")){
 	    $.ajax({
-	        url : "/shipto/change",
-	        type: "post",
+	        url : "/shiptos",
+	        type: "put",
 	        data : JSON.stringify({ 
 	        		 "receiver_nm" : $("#receiver_nm").val(),
 	        	     "receiver_tel" : $("#receiver_tel").val(),
@@ -103,8 +122,8 @@ $("#shipto_change").bind("click",function(){
 	        	     "post_code" : $("#post_code").val(),
 	        	     "shipto_addr1" : $("#shipto_addr1").val(),
 	        	     "shipto_addr2" : $("#shipto_addr2").val(),
-	        	     "user_no" : user_no,
-	        	     "shipto_no" : 1
+	        	     "shipto_no" : $("#shipto_no").val(),
+	        	     "main_shipping" : "Y"
 	        		}),
 	    	contentType: "application/json",
 	        success : function(responseData){
@@ -154,6 +173,9 @@ function validatePassword()
     }
 }
 
+
+
+
 function validateRegex(){
 	var regex_id = this.id;
 	var regex_type = /(?=.{6,})/;
@@ -183,6 +205,8 @@ function validateRegex(){
 		this.setCustomValidity('');
 	}
 }
+
+
 
 
 // ajax empty check
@@ -234,7 +258,7 @@ function checkAll(){
 }
 
 function checkEach(){
-	console.log("aa");
+	
 	if($("#termsService2").is(':checked')&&$("#termsService3").is(':checked')){
 		$("#termsService").prop("checked", true);
 		term_checked = true;	
