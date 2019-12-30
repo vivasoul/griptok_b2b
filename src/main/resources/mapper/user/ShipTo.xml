@@ -10,6 +10,7 @@
 			receiver_tel,
 			reg_dt,
 			shipto_no,
+			main_shipping,
 			(CASE WHEN main_shipping='Y' THEN CONCAT('(기본배송지)\n',shipto_nm) 
 			ELSE shipto_nm END) as shipto_nm,
 			upd_dt
