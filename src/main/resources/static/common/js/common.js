@@ -117,6 +117,28 @@ griptok.form.validateSimple = function($param_f){
 	return resultObj;
 }
 
+
+/*
+object : griptok form util function
+object-name : form.validateSimple
+explanation : check if named element with 'required' tag has value mapped to it. Creates message if otherwise.
+module-depth : 3
+*/
+griptok.form.bindData = function($param_f,param_data){
+	const $f = $param_f instanceof jQuery ? $param_f : $($param_f),f = $f[0];
+	
+	if(!param_data instanceof Object | !$f.is('form')){
+		return;
+	}else{
+		Object.keys(param_data).forEach(function(key){
+			const target = f[key];
+			if(target !== undefined){
+				target.value = param_data[key];
+			}
+		});
+	}
+}
+
 /*
 object : griptok wrangle wrapper
 object-name : griptok
@@ -212,11 +234,15 @@ griptok.component.datatable = function(p_tableId){
 		let tableId = $this.tableId;
 		let $table = $('#' + tableId);
 		let useOptions = $this.defaultOptions;
-
-		let columnOptions = $table.find('thead > tr > th').map(function(){return {data : this.getAttribute('data-column')}});
-
+		
+		let columnOptions = $table.find('thead > tr > th').map(function(){
+			return {
+				data : this.getAttribute('data-column'),
+				visible : this.getAttribute('data-visible') === 'false' ? false : true
+			}
+		});
 		useOptions = $.extend(useOptions, {columns : columnOptions});
-
+		
 		if(newOptions != undefined){
 		  useOptions = $.extend(useOptions, newOptions);
 		}
