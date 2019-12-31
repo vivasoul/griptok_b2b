@@ -64,13 +64,20 @@ $(document).ready(function() {
 	
 	$('#example tbody').on('click','tr',function(){
 		const noticeId = $(this).attr('data-row-id');
-		const _url = 'notice/view?id=' + noticeId;
-		$.ajax({
-			url : 'notice/'+noticeId,
-			complete : function() {
-				window.location.href = _url;   
-		    }
-		});
+		if(noticeId !== undefined){
+			const _url = 'notice/view?id=' + noticeId;
+			const send = {notice_no : noticeId};
+			
+			$.ajax({
+				url : '/notices',
+				data : JSON.stringify(send),	
+				type : 'PUT',
+				contentType : 'application/json',
+				complete : function() {
+					window.location.href = _url;   
+			    }
+			});
+		}
 	})
 	/****************************************
 	* EVENT TRIGGER END
