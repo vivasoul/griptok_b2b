@@ -1,26 +1,29 @@
 package com.griptk.b2b.shopping.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.griptk.b2b.shopping.domain.CartedVO;
 import com.griptk.b2b.shopping.domain.OrderDetailVO;
 import com.griptk.b2b.shopping.domain.OrderVO;
 import com.griptk.b2b.shopping.domain.OrderedVO;
+import com.griptk.b2b.shopping.mapper.CartMapper;
 import com.griptk.b2b.shopping.mapper.OrderMapper;
 
 @Controller
 public class ShoppingController {
 	@Autowired
 	OrderMapper orderMapper;
+	
+	@Autowired
+	CartMapper cartMapper;
 	/*****************************************************************************************
 	 *	VIEW : jsp/interested
 	 *****************************************************************************************/
@@ -71,7 +74,15 @@ public class ShoppingController {
 	public String cart_list(Model model) {
 		String viewPath = "cart/list";
 		model.addAttribute("content_page", viewPath);
+		
+		//TO-DO : get user_no from session.
+		int user_no = 13;
+		List<CartedVO> arr = cartMapper.listCarted(user_no);
+		model.addAttribute("arr",arr);
+		
 		return "_template/main";
 	}
+	
+	
 }
 

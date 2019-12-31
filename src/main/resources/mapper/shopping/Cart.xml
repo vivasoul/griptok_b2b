@@ -2,5 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.shopping.mapper.CartMapper">
+	<select id="listCarted" parameterType="int" resultType="com.griptk.b2b.shopping.domain.CartedVO">
+		SELECT 
+			a.product_id,
+			a.title,
+			c.carted_cnt,
+			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS img_file,
+			c.carted_cnt * a.sales_price as order_cost,
+			a.sales_price AS unit_price,
+			a.retail_price - a.sales_price AS unit_discount,
+			c.carted_cnt * (a.retail_price - a.sales_price) AS tot_discount,
+			'false' as checked
+		FROM tb_product a
+		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
+		INNER JOIN tb_carted_list c
+		ON (a.product_id = c.product_id AND c.user_no = #{user_no})
+	</select>
 	
+	
+	<delete id="deleteCarted" parameterType="com.griptk.b2b.shopping.domain.CartedVO">
+		DELETE
+		FROM tb_carted_list
+		WHERE user_no = #{user_no}
+		AND product_id IN
+		<foreach collection="product_ids" item="item" open="(" close=")" separator=",">#{item}</foreach>
+	</delete>
+	
+	<insert id="insertInterested" parameterType="com.griptk.b2b.shopping.domain.CartedVO">
+		INSERT INTO tb_interested_list
+		VALUES 
+		<foreach collection="product_ids" item="item" separator=",">
+		(#{user_no},#{item},NOW())
+		</foreach> 
+		ON DUPLICATE KEY
+		UPDATE reg_dt = NOW()
+	</insert>
+
 </mapper>
