@@ -8,6 +8,7 @@
 <script src="./common/js/common.js"></script>
 <script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/margin.css">
 
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
@@ -15,7 +16,7 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="margin-bottom-lg">
+			<div class="m-b-lg">
 				<div class="col-md-12" style="background-color: LightGray">
 					<font style="font-weight: bold">주문 배송 조회</font>
 				</div>

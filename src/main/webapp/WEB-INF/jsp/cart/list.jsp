@@ -6,9 +6,11 @@
 <html>
 <head>
 <script src="./common/js/common.js"></script>
+
 <script src="./lib/js/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="./css/margin.css">
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/shopping/pointy-button.css">
 <link rel="stylesheet" href="./css/shopping/plus-minus-div.css">
@@ -72,7 +74,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-md-12 pull-left">
+			<div class="col-md-12 pull-left m-b-xl">
 				<button class="btn btn-secondary-outline" id="btn-remove-all">선택 상품 삭제</button>
 				<button class="btn btn-secondary-outline" id="btn-interest-all">선택 상품 관심상품 등록</button>
 			</div>
@@ -120,10 +122,7 @@
 									<th style="width:20%;">배송지 선택</th>
 									<td>
 										<div class="col-md-7">
-											<select class="form-control" id="sel-shipto" name="shipto_no">
-<!-- 												<option value="shipto_no_1" data-recv-addr = "서울특별시 마포구 8길 19 포스코 3단지 303호">기본배송지</option> -->
-<!-- 												<option value="shipto_no_2" data-recv-addr = "부산광역시 아무개구 9-2 홍길동 아파트 1005호">부산배송지</option> -->
-											</select>
+											<select class="form-control" id="sel-shipto" name="shipto_no"></select>
 										</div>
 										<div class="col-md-5">
 											<input type="button" id="btn-add-shipto" class="btn btn-sm btn-primary form-control" value="신규배송지 추가하기"/>

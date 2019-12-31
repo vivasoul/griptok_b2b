@@ -6,6 +6,7 @@
 <script src="./common/js/common.js"></script>
 <script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/margin.css">
 
 <link rel="stylesheet" href="./css/user/shipto.css">
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
@@ -20,7 +21,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="margin-bottom-lg">
+			<div class="m-b-lg">
 				<div class="col-md-12" style="background-color: LightGray">
 					<font class="bolded">배송지관리</font>
 				</div>
@@ -28,7 +29,7 @@
 		</div>	
 		<br>	
 		<div class="row">
-			<div class="margin-bottom-lg">
+			<div class="m-b-lg">
 				<div class="col-md-11 nopadding">
 					<button onclick="changeDefaultShipping()" class="btn-primary btn-sm text-sm" type="button">기본 배송지로 설정</button>
 					<button onclick="deleteShipping()" class="btn-sm text-sm" type="button">삭제</button>

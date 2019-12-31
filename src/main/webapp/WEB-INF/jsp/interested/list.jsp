@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="./css/service/interested.css">
+<link rel="stylesheet" href="./css/margin.css">
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <script>
@@ -18,7 +19,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="margin-bottom-lg">
+			<div class="m-b-lg">
 				<div class="col-md-12" style="background-color: LightGray">
 					<font class="bolded">관심상품 목록</font>
 				</div>
