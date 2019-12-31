@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<table id="example2" class="table table-striped table-bordered hover">
 			<thead>

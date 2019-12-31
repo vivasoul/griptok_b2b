@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div style="background-color: LightGray">
 				<font style="font-weight: bold">주문 배송 조회/ 주문 상세 내역</font>

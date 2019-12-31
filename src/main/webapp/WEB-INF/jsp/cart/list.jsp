@@ -21,7 +21,7 @@
 <script src="./lib/bootbox/bootbox.min.js"></script>
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3" style="text-align: left;">
 				<div id="label-view-cart" class="js-view-label">

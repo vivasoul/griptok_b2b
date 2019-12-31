@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row pull-right">
 			<select class="form-control" id="sel-category">
 			  <option>전체</option>

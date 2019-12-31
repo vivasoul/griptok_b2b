@@ -12,7 +12,7 @@
 <script src="../lib/bootbox/bootbox.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 	<form id="qna-write-form">
 	<div class="row">
 		<table class="table thead-light table-hover">

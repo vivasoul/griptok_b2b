@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="margin-bottom-lg">
 				<div class="col-md-12" style="background-color: LightGray">

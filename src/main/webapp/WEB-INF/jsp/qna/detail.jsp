@@ -16,7 +16,7 @@
 <script src="../lib/bootbox/bootbox.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<table id="example" class="table table-striped table-bordered hover">
 			<thead>
