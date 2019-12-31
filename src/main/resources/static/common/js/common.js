@@ -291,7 +291,7 @@ module-depth : 3
 */
 griptok.component.bootbox = {
 		growl : function(message,pColor,pMilliseconds){
-			const milliseconds = pMilliseconds === undefined ? 2000 : pMilliseconds;
+			const milliseconds = pMilliseconds === undefined ? 1000 : pMilliseconds;
 			const useColor = pColor === undefined ? 'transparent' : pColor;
 			
 		    const dialog = bootbox.dialog({
