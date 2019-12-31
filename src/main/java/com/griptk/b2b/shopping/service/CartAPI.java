@@ -2,6 +2,8 @@ package com.griptk.b2b.shopping.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,18 +22,18 @@ public class CartAPI {
 	CartMapper cartMapper;
 	
 	@DeleteMapping("")
-	public int delete(Model model,@RequestBody CartedVO vo) {
+	public int delete(Model model,@RequestBody CartedVO vo,HttpSession session) {
 		
 		//TO-DO : get user_no from session.
-		int user_no = 13;
+		int user_no = (int) session.getAttribute("user_no");
 		vo.setUser_no(user_no);
 		return cartMapper.deleteCarted(vo);
 	}
 	
 	@PostMapping("")
-	public int insert(Model model,@RequestBody CartedVO vo) {
+	public int insert(Model model,@RequestBody CartedVO vo,HttpSession session) {
 		//TO-DO : get user_no from session.
-		int user_no = 13;
+		int user_no = (int) session.getAttribute("user_no");
 		vo.setUser_no(user_no);
 		return cartMapper.insertInterested(vo);
 	}

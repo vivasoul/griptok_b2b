@@ -2,6 +2,8 @@ package com.griptk.b2b.qna.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +22,11 @@ public class QnaController {
 	QnaMapper qnaMapper;
 	
 	@GetMapping("/qna")
-	public String list(Model model) {
+	public String list(Model model,HttpSession session) {
 		String viewPath = "qna/list";
 		model.addAttribute("content_page", viewPath);
 		// TO-DO : GET USER_NO FROM SESSION.
-		int user_no = 13;
+		int user_no = (int) session.getAttribute("user_no");
 		List<QnaVO> arr = qnaMapper.listQna(user_no);
 		model.addAttribute("arr",arr);
 		return "_template/main";

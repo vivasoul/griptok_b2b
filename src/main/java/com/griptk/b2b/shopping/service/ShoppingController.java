@@ -2,6 +2,8 @@ package com.griptk.b2b.shopping.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,11 +53,11 @@ public class ShoppingController {
 	}
 	
 	@GetMapping("/ordered/view")
-	public String hst_detail(Model model,@RequestParam("id") String order_no) {
+	public String hst_detail(Model model,@RequestParam("id") String order_no,HttpSession session) {
 		String viewPath = "order_hst/detail";
 		model.addAttribute("content_page", viewPath);
 		//TO-DO : get user_no from session.
-		int user_no = 13;
+		int user_no = (int) session.getAttribute("user_no");
 		OrderedVO dtoVo = new OrderedVO();
 		dtoVo.setUser_no(user_no);
 		dtoVo.setOrder_no(order_no);
@@ -71,12 +73,12 @@ public class ShoppingController {
 	 *	VIEW : jsp/cart
 	 *****************************************************************************************/
 	@GetMapping("/carted")
-	public String cart_list(Model model) {
+	public String cart_list(Model model,HttpSession session) {
 		String viewPath = "cart/list";
 		model.addAttribute("content_page", viewPath);
 		
 		//TO-DO : get user_no from session.
-		int user_no = 13;
+		int user_no = (int) session.getAttribute("user_no");
 		List<CartedVO> arr = cartMapper.listCarted(user_no);
 		model.addAttribute("arr",arr);
 		
