@@ -177,7 +177,6 @@ public class UserAPI {
 	public int findPasswd(
 			@RequestBody UserVO vo,
 	        HttpServletResponse response) {
-		Map<String, Object> resp = new HashMap<String, Object>();
 		int result = 1;
 		
 		try {
@@ -186,11 +185,11 @@ public class UserAPI {
 				result =-2;
 			}else {
 				String recipient_email = resultVo.getTax_email();
-				String temp_pass = passwordGenerator.generate(12);
-				sendTempPassword(recipient_email, temp_pass);
-				String new_temp_password = passwordEncoder.encode(temp_pass);
-				resultVo.setPasswd(new_temp_password);
-				result = mapper.setPasswd(resultVo);
+//				String temp_pass = passwordGenerator.generate(12);
+				sendTempPassword(recipient_email, resultVo.getUser_no(), resultVo.getPasswd());
+//				String new_temp_password = passwordEncoder.encode(temp_pass);
+//				resultVo.setPasswd(new_temp_password);
+//				result = mapper.setPasswd(resultVo);
 			}
 		}catch(Exception e) {
 			result =-1;
@@ -262,6 +261,29 @@ public class UserAPI {
 		return result;
 	}
 	
+	@PutMapping("/passwd/init")
+	public int passwordInit(
+			@RequestBody PasswdVO vo,
+			HttpSession session
+	        ) {
+		
+		int user_no = vo.getUser_no();
+		vo.setUser_no(user_no);
+		String encoded_password = mapper.getPassword(user_no);
+		int result = 1;
+		if(!vo.getInit_passwd().equals(encoded_password)) {
+			result = 0;
+		}else{
+			String new_temp_password = passwordEncoder.encode(vo.getNew_passwd());
+			UserVO resultVo = new UserVO();
+			resultVo.setPasswd(new_temp_password);
+			resultVo.setUser_no(user_no);
+			result = mapper.setPasswd(resultVo);
+		}
+		
+		return result;
+	}
+	
 	// withdraw 
 	@GetMapping("/withdraw/load")
 	public String withdrawLoad(
@@ -292,22 +314,6 @@ public class UserAPI {
 		
 		UserVO loginInfo = mapper.getUserInfo(user_no);
 		
-//		Map<String, Object> resp = new HashMap<String, Object>();
-//		resp.put("user_id", loginInfo.getUser_id());
-//		resp.put("company_nm", loginInfo.getCompany_nm());
-//		resp.put("ceo_nm", loginInfo.getCeo_nm());
-//		resp.put("manager_nm", loginInfo.getManager_nm());
-//		resp.put("manager_tel", loginInfo.getManager_tel());
-//		resp.put("manager_email", loginInfo.getManager_email());
-//		resp.put("biz_reg_number", loginInfo.getBiz_reg_number());
-//		resp.put("biz_category", loginInfo.getBiz_category());
-//		resp.put("file_nm", loginInfo.getFile_nm());
-//		resp.put("biz_addr_1", loginInfo.getBiz_addr_1());
-//		resp.put("biz_addr_2", loginInfo.getBiz_addr_2());
-//		resp.put("post_code", loginInfo.getPost_code());
-//		resp.put("contact_tel", loginInfo.getContact_tel());
-//		resp.put("tax_email", loginInfo.getTax_email());
-//		
 		return loginInfo;
 	}
 	
@@ -353,12 +359,16 @@ public class UserAPI {
 	}
 	
 	
-	private void sendTempPassword(String email, String password) throws Exception{
-		String title = "Griptok의 임시 비밀번호가 발급되었습니다.";
+	private void sendTempPassword(String email, int user_no, String password) throws Exception{
+		String title = "Griptok의 비밀번호 찾기 요청입니다.";
+		String host = "http://localhost/login?";
+		String detail = "init_no="+user_no+"&key="+password;
+		
 		StringBuilder sb = new StringBuilder();
-		  sb.append("아래 임시 비밀번호를 확인해주세요 :<br/><input type='text' value='")
-		  	.append(password)
-		  	.append("'/>");
+		  sb.append("아래 링크버튼을 통해 비밀번호를 재설정해 주세요.<br/><a href='")
+		  	.append(host)
+		  	.append(detail)
+		  	.append("'>비밀번호 재설정하러 가기</a>");
 		mailSender.send(email, title, sb.toString());
 	}
 		

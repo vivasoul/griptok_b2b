@@ -9,9 +9,12 @@
 	float:left;
 }
 
+.h_tag_left{
+	text-align : left;
+}
 
 .h_tag_center{
-	text-align : left;
+	text-align : center;
 }
     
 
@@ -34,4 +37,24 @@
 
 .notice{
 	font-size:20px;
+}
+
+.small_font{
+	font-size : 12px;
+}
+
+.hidden{
+	display:hidden;
+}
+
+.modal_border{
+	border-radius: 13px;  
+	border-style: solid;
+	border-width:thick;
+  	border-color: #c2cdd1;
+}
+
+.btn_blue{
+	color : white;
+	background-color : #5B9BD5;
 }

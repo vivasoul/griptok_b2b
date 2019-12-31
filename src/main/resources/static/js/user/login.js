@@ -38,9 +38,42 @@ function form_checker(_vals, highlight_needed){
 }
 
 $(document).ready(function(){
+
 	if(registered=="registered"){
 		alert("회원가입에 성공하였습니다.");
+	}else if(init_user_no!="null"&&key!="null"){
+		$('#init_user_no').val(init_user_no);
+		$('#init_passwd').val(key);
+		$('#pwchange_modal_poper').click();
 	}
+	
+	// 비밀번호 찾기
+	$("#btn_passwd_change").bind("click",function(){
+		if(emptyCheck("new_passwd")&&emptyCheck("new_passwd_check")){
+		    $.ajax({
+		        url : "/passwd/init",
+		        type: "put",
+	    		data : JSON.stringify({ 
+	    			"user_no" : $('#init_user_no').val(),
+	    			"init_passwd" : $("#init_passwd").val(),
+	       	     	"new_passwd" : $("#new_passwd").val()
+	    		}),
+		     	contentType: "application/json",		
+		        success : function(responseData){
+		        	if(responseData==0){
+		        		alert("정보가 올바르지 않습니다.");
+		        	}else{
+		        		alert("비밀번호 변경이 완료되었습니다. 새로운 비밀번호로 로그인해 주세요.");
+		        		$("#passwd_change_close").click();
+		        	}
+		        }
+		    });
+		}else{
+			alert("값을 채워주세요.");
+		}
+	});
+
+	
 	
 	// 로그인 버튼 클릭
 	$("#btn_login").bind("click",function(){
@@ -66,7 +99,7 @@ $(document).ready(function(){
 		        		}else if(aprv_status=="W"){
 		        			alert("탈퇴한 아이디입니다.");
 		        		}else{
-		        			alert("승인대기중입니다.");
+		        			$('#auth_modal_poper').click();
 		        		}
 		        	}
 		        }
