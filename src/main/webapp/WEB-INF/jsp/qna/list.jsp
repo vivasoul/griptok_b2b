@@ -65,8 +65,11 @@ $(document).ready(function() {
 	
 	$('#example tbody').on('click','tr',function(){
 		const qnaId = $(this).attr('data-row-id');
-		const _url = 'qna/view?id=' + qnaId;
-		window.location.href = _url;
+		
+		if(qnaId !== undefined){
+			const _url = 'qna/view?id=' + qnaId;
+			window.location.href = _url;
+		}
 	})
 	/****************************************
 	* EVENT TRIGGER END

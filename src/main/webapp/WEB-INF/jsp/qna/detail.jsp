@@ -118,8 +118,8 @@ $(document).ready(function() {
 				griptok.component.bootbox.growl('변경사항이 존재하지 않습니다.');
 			}else{
 				$.ajax({
-					url : '/qna/content',
-					type : 'POST',
+					url : '/qnas',
+					type : 'PUT',
 					contentType: 'application/json',
 					data : griptok.form.toJSON(f),
 					success : function(data){

@@ -59,7 +59,7 @@ $(document).ready(function() {
 		
 		if(checkValid.isValid){
 			$.ajax({
-				url : '/qna/insert',
+				url : '/qnas',
 				type : 'POST',
 				contentType: 'application/json',
 				data : griptok.form.toJSON($f),
