@@ -14,29 +14,28 @@
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/shopping/pointy-button.css">
 <link rel="stylesheet" href="./css/shopping/plus-minus-div.css">
+<link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
+<link rel="stylesheet" href="./css/shopping/cart.css">
 
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
-
-<link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
 <script src="./lib/bootbox/bootbox.min.js"></script>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3" style="text-align: left;">
-				<div id="label-view-cart" class="js-view-label">
-					<font style="font-weight: bold;font-size:20px;">장바구니</font>	
+			<div class="col-md-3 text-left">
+				<div id="label-view-cart" class="js-view-label font-size-large font-weight-bold">
+					<font>장바구니</font>
 				</div>
-				<div id="label-view-pay" class="js-view-label">
-					<font style="font-weight: bold;font-size:20px;">주문결제</font>
+				<div id="label-view-pay" class="js-view-label font-size-large font-weight-bold">
+					<font>주문결제</font>
 				</div>
 			</div>
-			<div class="col-md-9" style="text-align: right;">
-				<button id="btn-view-cart" class="btn btn-arrow-right js-view-btngroup">장바구니</button>
-				<button id="btn-view-pay" class="btn btn-arrow-right btn-secondary-outline js-view-btngroup">주문결제</button>
-				<button class="btn btn-arrow-right btn-secondary-outline" disabled>주문완료</button>
+			<div class="col-md-9 m-b-md text-right" id="div-process-status">
+				<button id="btn-view-cart" class="btn btn-arrow-right js-view-btngroup m-r-lg">장바구니</button>
+				<button id="btn-pay-highlight" class="btn btn-arrow-right btn-secondary-outline m-r-lg" disabled>주문결제</button>
+				<button class="btn btn-arrow-right btn-secondary-outline m-r-md" disabled>주문완료</button>
 			</div>
 		</div>
 		<div id="div-view-cart" class="row js-view-div">
@@ -44,8 +43,8 @@
 				<table id="cart-tbl" class="table table-striped table-bordered hover">
 					<thead>
 						<tr>
-							<th data-column="checked" style="width:10%;">선택</th>
-							<th data-column = "title" style="width:50%;">상품정보</th>
+							<th data-column="checked" class="w-10">선택</th>
+							<th data-column = "title" class="w-50">상품정보</th>
 							<th data-column = "carted_cnt">수량</th>
 							<th data-column = "order_cost">금액</th>
 							<th data-column="product_id">주문</th>
@@ -74,27 +73,38 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-md-12 pull-left m-b-xl">
-				<button class="btn btn-secondary-outline" id="btn-remove-all">선택 상품 삭제</button>
-				<button class="btn btn-secondary-outline" id="btn-interest-all">선택 상품 관심상품 등록</button>
+			<div class="col-md-12 pull-left m-b-md" id="div-all-action">
+				<button class="gtk-btn" id="btn-remove-all">선택 상품 삭제</button>
+				<button class="gtk-btn" id="btn-interest-all">선택 상품 관심상품 등록</button>
 			</div>
 			<div class="col-md-12">
-				<table class="table table-bordered table-striped">
+				<table id="cart-price-table" class="table border-top-2 border-bottom-2">
 					<thead>
 						<tr>
-							<th>총상품금액</th>
-							<th>총할인금액</th>
-							<th>결제 예정 금액</th>
+							<th class="border-right-1">총상품금액</th>
+							<th class="border-right-1">총할인금액</th>
+							<th class="border-none">결제 예정 금액</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" id="tot-original-price" readonly class="form-control"/></td>
-							<td><input type="text" id="tot-discount-price" readonly class="form-control"/></td>
-							<td><input type="text" id="tot-order-price" readonly class="form-control"/></td>
+							<td class="border-right-1">
+								<input type="text" id="tot-original-price" readonly class="form-control border-none bg-transparent"/> 
+							</td>
+							<td class="border-right-1">
+								<input type="text" id="tot-discount-price" readonly class="form-control border-none bg-transparent"/> 
+							</td>
+							<td>
+								<input type="text" id="tot-order-price" readonly class="form-control border-none bg-transparent font-size-large color-red"/>
+							</td>
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div class="col-md-12 m-b-md m-t-md text-center">
+				<button class="gtk-btn">취소</button>
+				<button class="gtk-btn gtk-btn-blue js-view-btngroup" id="btn-view-pay">주문하기</button>
+				<button class="gtk-btn">견적서 출력</button>
 			</div>
 		</div>
 		<div id="div-view-pay" class="row js-view-div">
@@ -102,7 +112,7 @@
 				<table id="pay-tbl" class="table table-striped table-bordered hover">
 					<thead>
 						<tr>
-							<th data-column = "title" style="width:50%;">상품정보</th>
+							<th data-column = "title" class="w-50">상품정보</th>
 							<th data-column = "carted_cnt">수량</th>
 							<th data-column = "order_cost">금액</th>
 						</tr>
@@ -111,44 +121,44 @@
 				</table>
 			</div>
 			<div class="col-md-6">
-				<div class="col-md-12" style="text-align: left;">
-					<font style="font-weight: bold;font-size:20px;">배송정보</font>	
+				<div class="col-md-12 text-left">
+					<font  class="font-weight-bold font-size-large">배송정보</font>	
 				</div>
 				<div class="col-md-12">
 					<form id="cart-shipto-form">
 						<table id= "order-detail-tbl" class="table table-bordered">
 							<tbody>
 								<tr>
-									<th style="width:20%;">배송지 선택</th>
+									<th>배송지 선택</th>
 									<td>
 										<div class="col-md-7">
 											<select class="form-control" id="sel-shipto" name="shipto_no"></select>
 										</div>
 										<div class="col-md-5">
-											<input type="button" id="btn-add-shipto" class="btn btn-sm btn-primary form-control" value="신규배송지 추가하기"/>
+											<input type="button" id="btn-add-shipto" class="gtk-btn gtk-btn-sm gtk-btn-blue" value="신규배송지 추가하기"/>
 										</div>
 									</td>
 								</tr>
 								<tr>
-									<th style="width:20%;">받는사람</th>
+									<th>받는사람</th>
 									<td>
 										<input type="text" name="receiver_nm" class="form-control" readonly/>
 									</td>
 								</tr>
 								<tr>
-									<th style="width:20%;">주소</th>
+									<th>주소</th>
 									<td>
 										<input type="text" name="addr" readonly class="form-control" readonly/>
 									</td>
 								</tr>
 								<tr>
-									<th style="width:20%;">휴대전화</th>
+									<th>휴대전화</th>
 									<td>
 										<input type="text" name="receiver_tel" class="form-control" readonly/>
 									</td>
 								</tr>
 								<tr>
-									<th style="width:20%;">배송 메모</th>
+									<th>배송 메모</th>
 									<td>
 										<input type="text" name="memo" value="" class="form-control"/>
 									</td>
@@ -159,20 +169,20 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="col-md-12" style="text-align: left;">
-					<font style="font-weight: bold;font-size:20px;">최종결제 정보</font>	
+				<div class="col-md-12 text-left">
+					<font class="font-weight-bold font-size-large">최종결제 정보</font>	
 				</div>
 				<div class="col-md-12">
-					<table id= "amount-confirm-tbl" class="table table-bordered" style="background-color:lightGray;">
+					<table id= "amount-confirm-tbl" class="table table-bordered">
 						<tbody>
 							<tr>
-								<th style="width:30%;">총 주문 금액</th>
+								<th>총 주문 금액</th>
 								<td>
 									<input type="text" id="final-original-price" readonly class="form-control"/>
 								</td>
 							</tr>
 							<tr>
-								<th style="width:30%;">총 할인 금액</th>
+								<th>총 할인 금액</th>
 								<td>
 									<input type="text" id="final-discount-price" readonly class="form-control"/>
 								</td>
@@ -180,7 +190,7 @@
 						</tbody>
 						<tfoot>
 							<tr>
-					            <th style="width:30%;">최종 결제 금액</th>
+					            <th>최종 결제 금액</th>
 					            <td>
 					            	<input type="text" id="final-order-price" readonly class="form-control"/>
 					            </td>
@@ -188,8 +198,8 @@
 						</tfoot>
 					</table>
 				</div>
-				<div class="col-md-12" style="text-align:center;">
-					<button id="btn-transfer" class="btn btn-primary">실시간 계좌이체</button>
+				<div class="col-md-12 text-center">
+					<button id="btn-transfer" class="gtk-btn gtk-btn-blue">실시간 계좌이체</button>
 				</div>
 			</div>
 		</div>
@@ -202,6 +212,12 @@ $(document).ready(function() {
 	const toggle = {
 		buttons : function(pBtnId){
 			$('.js-view-btngroup').each(function(i,e){
+				if(e.id === pBtnId && e.id === 'btn-view-pay'){
+					$('#btn-pay-highlight').addClass('btn-primary');					
+				}else{
+					$('#btn-pay-highlight').removeClass('btn-primary');
+				}
+				
 				if(e.id === pBtnId){
 					$(e).addClass('btn-primary');
 				}else{
@@ -480,14 +496,14 @@ $(document).ready(function() {
 				"targets": [4], 
 				render: function (product_id,type,row,obj) { 
 					const btnDiv = 
-						'<div class="row">' +
-							'<div class="col-md-offset-3">' + 
-							'<button class="btn btn-primary form-group js-buy-now" data-row-indice="'+obj.row+'">바로구매</button>' +
+						'<div class="row m-t-sm">' +
+							'<div class="text-center">' + 
+							'<button class="gtk-btn gtk-btn-sm gtk-btn-blue js-buy-now" data-row-indice="'+obj.row+'">바로구매</button>' +
 							'</div>' +
 						'</div>' + 
 						'<div class="row">' +
-							'<div class="col-md-offset-3">' + 
-							'<button class="btn btn-secondary-outline form-group js-delete-now" data-row-indice="'+obj.row+'">상품삭제</button>' +
+							'<div class="text-center">' + 
+							'<button class="gtk-btn gtk-btn-sm form-group js-delete-now" data-row-indice="'+obj.row+'">상품삭제</button>' +
 							'</div>' + 
 						'</div>' 
 

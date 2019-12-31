@@ -10,7 +10,7 @@
 .btn-arrow-left {
     padding-right: 36px;
 }
-.btn-arrow-right:before,
+/* .btn-arrow-right:before, */
 .btn-arrow-right:after,
 .btn-arrow-left:before,
 .btn-arrow-left:after { /* make two squares (before and after), looking similar to the button */
@@ -45,11 +45,11 @@
 }
 .btn-arrow-right:before,
 .btn-arrow-left:before { /* align the "before" square to the left */
-    left: -11px;
+    left: -9.7px;
 }
 .btn-arrow-right:after,
 .btn-arrow-left:after { /* align the "after" square to the right */
-    right: -11px;
+    right: -9.7px;
 }
 .btn-arrow-right:after,
 .btn-arrow-left:before { /* bring arrow pointers to front */

@@ -1,0 +1,69 @@
+.font-size-large {
+	font-size: 20px;
+}
+
+.font-weight-bold {
+	font-weight : bold;
+}
+
+.color-red {
+	color : red;
+}
+
+.w-10 {
+	width: 10%;
+}
+.w-20 {
+	width: 20%;
+}
+
+.border-top-2 {
+	border-top: 2px solid black;
+}
+
+.border-bottom-2 {
+	border-bottom: 2px solid black;
+}
+
+.border-right-1 {
+	border-right: 1px solid black;
+}
+
+.border-none {
+	border : none;
+}
+
+.bg-transparent {
+	background: transparent;
+}
+
+#cart-shipto-form > tbody > tr > th {
+	width : 20%;
+}
+
+#amount-confirm-tbl {
+	background-color:lightGray;
+}
+
+#amount-confirm-tbl > tbody > tr > th {
+	width : 30%;
+}
+
+#amount-confirm-tbl > tfoot > tr > th {
+	width : 30%;
+}
+
+#cart-tbl .gtk-btn-sm { width:100px; height:30px; font-size:13px; } 
+
+#order-detail-tbl .gtk-btn-sm { width:150px; height:30px; font-size:13px; } 
+
+#div-all-action .gtk-btn { width:150px; height:30px; font-size:13px; }
+
+#div-process-status .btn-primary {
+	background-color:#5B9BD5;
+	font-size:15px;
+	font-weight:700;
+	border:0px solid transparent;
+	color:#FFF;
+}
+
