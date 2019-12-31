@@ -208,20 +208,21 @@ public class UserAPI {
 		
 		UserVO loginInfo = mapper.getUserLoginInfo(user_id);
 		Map<String, Object> resp = new HashMap<String, Object>();
+		int result = 1;
 		try{
 			String encoded_password = loginInfo.getPasswd();
-			int result = 1;
 			if(!passwordEncoder.matches(passwd, encoded_password)) {
 				result = 0;
 			}else{
 				session.setAttribute("user_no", loginInfo.getUser_no());
 			}
 			resp.put("aprv_status", loginInfo.getAprv_status());
-			return resp;
 		}catch(Exception e){
-			resp.put("result", 0);
-			return resp;
+			result = 0;
+		}finally{
+			resp.put("result", result);
 		}
+		return resp;
 	}
 	
 	@PostMapping("/passwd/check")
