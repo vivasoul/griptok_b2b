@@ -36,12 +36,12 @@
       	   <div class="row">
             <div class="col-sm-4">
               <div class="col-sm-12 input-group custom"><!-- 
-			     --><input name="user_id" id="user_id" type="text" class="form-control" placeholder="아이디" required><!-- 
+			     --><input name="user_id" reg_id = "id" data-regex="T" id="user_id" type="text" class="form-control" placeholder="아이디" required><!-- 
 			     --><button id="id_check" class="gtk-btn gtk-btn-sm gtk-btn-blue" type="button">중복확인</button><!-- 
 			   --></div>
-              <div class="col-sm-12 input-group no-addon custom"><input id="passwd" name="passwd" type="password" placeholder="비밀번호"  class="form-control input-sm" required></div>
-              <div class="col-sm-12 input-group no-addon custom"><input id="passwd_check" name="passwd_check" type="password" placeholder="비밀번호 확인"  class="form-control input-sm" required></div>
-              <input id="contact_tel" name="contact_tel" maxlength="13" type="hidden" placeholder="전화번호" class="form-control input-sm" value="010-0000-0000">
+              <div class="col-sm-12 input-group no-addon custom"><input id="passwd" reg_id = "passwd" data-regex="T" name="passwd" type="password" placeholder="비밀번호"  class="form-control input-sm" required></div>
+              <div class="col-sm-12 input-group no-addon custom"><input id="passwd_check" name="passwd_check" reg_id = "passwd_check" data-keyup="P" parent_id="passwd" type="password" placeholder="비밀번호 확인"  class="form-control input-sm" required></div>
+              <input id="contact_tel" reg_id = "tel" data-regex="T" data-keyup="T" name="contact_tel" maxlength="13" type="hidden" placeholder="전화번호" class="form-control input-sm" value="010-0000-0000">
             </div>
             <div class="col-sm-8">
             	<span class="input_chk">
@@ -96,7 +96,7 @@
 			    --><button id="company_nm_check" class="gtk-btn gtk-btn-sm gtk-btn-blue" type="button">중복확인</button><!-- 
               --></div>
               <div class="col-sm-12 input-group custom"><!-- 
-              	--><input type="text" id="biz_reg_number" name="biz_reg_number" maxlength="12" placeholder="사업자등록번호"  class="form-control input-sm" required><!--
+              	--><input type="text" reg_id = "biz_reg_number" data-regex="T" data-keyup="B" id="biz_reg_number" name="biz_reg_number" maxlength="12" placeholder="사업자등록번호"  class="form-control input-sm" required><!--
 			    --><button id="biz_reg_number_check" class="gtk-btn gtk-btn-sm gtk-btn-blue" type="button">중복확인</button><!-- 
               --></div>
               <div class="col-sm-12 input-group custom input-file"><!-- 
@@ -107,12 +107,12 @@
             </div>
             <div class="col-sm-4">
               <div class="col-sm-12 input-group no-addon custom"><input type="text" id="manger_nm" name="manager_nm" placeholder="담당자명" class="form-control input-sm" required></div>
-              <div class="col-sm-12 input-group no-addon custom"><input type="text" id="manager_tel" maxlength="13" name="manager_tel" placeholder="담당자 휴대전화"  class="form-control input-sm" required></div>
-              <div class="col-sm-12 input-group no-addon custom"><input type="text" id="manager_email" name="manager_email" placeholder="담당자 이메일" class="form-control input-sm" required></div>
+              <div class="col-sm-12 input-group no-addon custom"><input type="text" reg_id="tel" data-regex="T" data-keyup="T" id="manager_tel" maxlength="13" name="manager_tel" placeholder="담당자 휴대전화"  class="form-control input-sm" required></div>
+              <div class="col-sm-12 input-group no-addon custom"><input type="text" reg_id="email" id="manager_email" data-regex="T" name="manager_email" placeholder="담당자 이메일" class="form-control input-sm" required></div>
             </div>
             <div class="col-sm-4">
 	          <div class="col-sm-12 input-group no-addon custom">
-	          		<input type="text" id="tax_email" name="tax_email" placeholder="세금계산서 발행 이메일" class="form-control input-sm" required>
+	          		<input type="text" reg_id = "email" id="tax_email" data-regex="T" name="tax_email" placeholder="세금계산서 발행 이메일" class="form-control input-sm" required>
 	          </div>
               <div class="col-sm-12 input-group custom">
           		<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" class="form-control input-sm">
