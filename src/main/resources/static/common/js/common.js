@@ -160,6 +160,53 @@ griptok.wrangle.seq_len = function(arrSize){
 	return intArr;
 };
 
+/*
+object : griptok wrangle function
+object-name : wrangle.flatten
+explanation : deeply flatten param array. <EX> [1,[3,[[2]]],[5,4,[6,[7,[8]]]]] -> [1, 3, 2, 5, 4, 6, 7, 8]
+module-depth : 3
+*/
+griptok.wrangle.flatten = function(p_arr){
+	const res = p_arr.map(function(x){
+    	if(Array.isArray(x)){
+        	return flatten(x.flat())
+        }else{
+        	return x
+        }
+    });
+	return res.flat();
+};
+
+/*
+object : griptok wrangle function
+object-name : wrangle.removeKey
+explanation : return object without a certain key <EX> griptok.wrangle.removeKey({a: 1,b: 2,c: 3},'a') -> {b:2,c:3}
+module-depth : 3
+*/
+griptok.wrangle.removeKey = function(object,key){
+  const {[key]: removeKey, ...otherKeys} = object;
+  return otherKeys;
+}
+
+/*
+object : griptok wrangle function
+object-name : wrangle.removeKeys
+explanation : return object without a certain key <EX> griptok.wrangle.removeKeys({a: 1,b: 2,c: 3},['a','b']) -> {c:3}
+module-depth : 3
+*/
+griptok.wrangle.removeKeys = function(object,keyArr){
+  const useArr = griptok.wrangle.flatten(keyArr);
+	  
+  if($.isArray(useArr) & useArr.length > 0){
+  	const reducedArr = useArr.slice(1);
+    const removed = useArr.shift();
+    const newObject = griptok.wrangle.removeKey(object,removed);
+    return griptok.wrangle.removeKeys(newObject,reducedArr);
+  }else{
+  	return object;
+  }
+}
+
 
 /*
 object : griptok wrangle function
@@ -229,7 +276,16 @@ griptok.component.datatable = function(p_tableId){
 		"autoWidth": true,
 		"searching": false,
 	};
-
+	
+	$this.customOptions = {
+		onRowClick : function(){
+			const rowIndex = $(this)[0]._DT_RowIndex;
+			const rowData = $this.getRow(rowIndex);
+			console.log('this is DEFAULT EVENT FOR datatable ROWCLICK.')
+			console.log(rowData);
+		}
+	};
+	
 	$this.create = function(p_data,newOptions){
 		let tableId = $this.tableId;
 		let $table = $('#' + tableId);
@@ -243,20 +299,36 @@ griptok.component.datatable = function(p_tableId){
 		});
 		useOptions = $.extend(useOptions, {columns : columnOptions});
 		
-		if(newOptions != undefined){
-		  useOptions = $.extend(useOptions, newOptions);
+		let rowClickEvent = newOptions['onRowClick'];
+		
+		$('#' + $this.tableId + ' tbody').unbind('click');
+		
+		if(rowClickEvent !== undefined &&  typeof rowClickEvent === 'function'){
+			$this.customOptions.onRowClick = rowClickEvent;
 		}
 		
-		if(p_data != null){
+		let datatableOptions = griptok.wrangle.removeKeys(newOptions,['onRowClick']);
+		
+		if(newOptions !== undefined){
+		  useOptions = $.extend(useOptions, datatableOptions);
+		}
+		
+		if(p_data !== null){
 			useOptions = $.extend(useOptions,{data : p_data});
 		}
 		
-		return $table.DataTable(useOptions);
+		const $returnTable = $table.DataTable(useOptions);
+		
+		$('#' + $this.tableId + ' tbody').on('click','tr',$this.customOptions.onRowClick);
+		
+		return $returnTable;
 	};
 	
 	$this.reload = function(new_data){
 		let $table = $('#' + $this.tableId);
 		$table.DataTable().clear().rows.add(new_data).draw();
+		$('#' + $this.tableId + ' tbody').unbind('click');
+		$('#' + $this.tableId + ' tbody').on('click','tr',$this.customOptions.onRowClick);
 	};
 	
 	$this.updateRow = function(new_data,indice){
