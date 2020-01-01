@@ -11,6 +11,7 @@
 
 <script src="../lib/datatable/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css">
+<link rel="stylesheet" href="../css/margin.css">
 
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/bootbox/bootbox.min.js"></script>
@@ -58,10 +59,10 @@
 			</table>
 		
 	</div>
-	<div class="row">
-		<input type="button" id="btn_list" value="목록">
-		<input type="button" id="btn_write" value="글쓰기">
-		<input type="button" id="btn_edit" value="수정">
+	<div class="row text-center m-b-md">
+		<input type="button" id="btn_list" class="gtk-btn gtk-btn-blue" value="목록">
+		<input type="button" id="btn_write" class="gtk-btn gtk-btn-blue" value="글쓰기">
+		<input type="button" id="btn_edit" class="gtk-btn gtk-btn-blue" value="수정">
 	</div>
 	</form>
 </div>

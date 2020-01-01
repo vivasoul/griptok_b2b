@@ -10,6 +10,7 @@
 
 <script src="../lib/datatable/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css">
+<link rel="stylesheet" href="../css/margin.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -42,8 +43,8 @@
 			</tr>
 		</table>
 	</div>
-	<div class="row text-center">
-		<input type="button" id="btn_list" value="목록" class="btn btn-primary col-md-push-6">
+	<div class="row text-center m-b-md">
+		<input type="button" id="btn_list" value="목록" class="gtk-btn gtk-btn-sm gtk-btn-blue col-md-push-6">
 	</div>
 </div>
 <script>
