@@ -40,13 +40,13 @@ public class ShoppingController {
 	 *	VIEW : jsp/order_hst
 	 *****************************************************************************************/
 	@GetMapping("/ordered")
-	public String hst_list(Model model) {
+	public String hst_list(Model model,HttpSession session) {
 		String viewPath = "order_hst/list";
 		model.addAttribute("content_page", viewPath);
 		
 		//TO-DO : get user_no from session.
-		int order_no = 13;
-		List<OrderDetailVO> arr = orderMapper.listOrder(order_no);
+		int user_no = (int) session.getAttribute("user_no");
+		List<OrderDetailVO> arr = orderMapper.listOrder(user_no);
 		model.addAttribute("arr",arr);
 		
 		return "_template/main";
