@@ -32,7 +32,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="each" items="${arr }">
-						<tr data-row-id="${each.qna_no }">
+						<tr>
 							<td>${each.qna_no }</td>
 							<td>${each.title }</td>
 							<td>${each.req_dt }</td>
@@ -47,7 +47,18 @@
 $(document).ready(function() {
 	// DataTable initialisation 
 	const exampleTable = griptok.component.datatable('example');
-	exampleTable.create(null);
+	exampleTable.create(null,{
+		onRowClick : function(){
+			const rowIndex = $(this)[0]._DT_RowIndex;
+			const rowData = exampleTable.getRow(rowIndex);
+			const qnaId = rowData.qna_no;
+			
+			if(qnaId !== undefined){
+				const _url = 'qna/view?id=' + qnaId;
+				window.location.href = _url;
+			}
+		}
+	});
 	const initData = exampleTable.getRows();
 	/****************************************
 	* EVENT TRIGGER START
@@ -59,18 +70,8 @@ $(document).ready(function() {
 		const filtered = initData.filter(function(x){
 			return (x['proc_yn'] === optionValue) ? true : (optionValue === '문의 전체' ? true:false)
 		})
-		
 		exampleTable.reload(filtered);
 	});
-	
-	$('#example tbody').on('click','tr',function(){
-		const qnaId = $(this).attr('data-row-id');
-		
-		if(qnaId !== undefined){
-			const _url = 'qna/view?id=' + qnaId;
-			window.location.href = _url;
-		}
-	})
 	/****************************************
 	* EVENT TRIGGER END
 	*****************************************/
