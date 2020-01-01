@@ -17,22 +17,22 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="m-b-lg">
-				<div class="col-md-12" style="background-color: LightGray">
+				<div class="col-md-12 m-t-sm" style="background-color: LightGray">
 					<font style="font-weight: bold">주문 배송 조회</font>
 				</div>
 				<div class="col-md-12">
-					<p>
+					<p class="m-t-sm m-b-md">
 						[주문번호]를 클릭하시면 주문 상세 내역 및 상품별 배송현황을 조회하실 수 있습니다<br>
 						배송지 변경, 구매 취소/변경, 반품/교환은 상세 주문 내역에서 바로 신청하실 수 있습니다
 					</p>
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row m-b-md">
 			<div class="pull-left">
-				<input type="button" value="1개월" class="btn btn-secondary-outline js-filter-month" data-month="-1"/>
-				<input type="button" value="3개월" class="btn btn-secondary-outline js-filter-month" data-month="-3"/>
-				<input type="button" value="12개월" class="btn btn-secondary-outline js-filter-month" data-month="-12"/>
+				<input type="button" value="1개월" class="gtk-btn gtk-btn-sm gtk-btn-line-white js-filter-month" data-month="-1"/>
+				<input type="button" value="3개월" class="gtk-btn gtk-btn-sm gtk-btn-line-white js-filter-month" data-month="-3"/>
+				<input type="button" value="12개월" class="gtk-btn gtk-btn-sm gtk-btn-line-white js-filter-month" data-month="-12"/>
 			</div>
 			<div class="pull-right">
 				<select class="form-control" id="sel-order-status">
@@ -42,7 +42,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row m-b-md">
 			<table id="example" class="table table-striped table-bordered hover">
 				<thead>
 					<tr>
@@ -55,7 +55,7 @@
 				</thead>
 				<tbody>
 				<c:forEach var="each" items="${arr }">
-					<tr data-row-id="${each.order_no }">
+					<tr>
 						<td>${each.reg_dt }</td>
 						<td>${each.order_no }</td>
 						<td>${each.order_title }</td>
