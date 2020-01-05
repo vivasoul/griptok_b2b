@@ -14,15 +14,15 @@ $(document).ready(function() {
 const update = {
 		clicked : {
 			remove : function(indice){
-				console.log(indice);
+				var product_list = listMaker("product_id", [indice]);
 				var confirmed = confirm("정말로 해당 상품을 관심상품에서 삭제 하시겠습니까?")
 				if(confirmed){
 					$.ajax({
 				        url : "/interesteds",
 				        type: "DELETE",
-				        data : JSON.stringify({ 
-			    	    	"product_id_arr" : [indice]
-			    	    }),
+				        data : JSON.stringify( 
+			    	    	product_list
+			    	    ),
 				     	contentType: "application/json", 
 				        success : function(responseData){
 				        	var result = responseData;
@@ -41,16 +41,17 @@ const update = {
 				if(!confirm("해당 상품을 장바구니에 담으시겠습니까?")){
 					return;
 				}
+				var product_list = listMaker("product_id", [indice]);
 				$.ajax({
-			        url : "/interesteds",
+			        url : "/carteds/fromInterested",
 			        type: "post",
-			        data : JSON.stringify({ 
-		    	    	"product_id_arr" : [indice]
-		    	    }),
+			        data : JSON.stringify( 
+		    	    	product_list
+		    	    ),
 			     	contentType: "application/json",
 			        success : function(responseData){
 			        	var result = responseData;
-			        	if(result==1){
+			        	if(result>=1){
 			        		alert("장바구니에 담겼습니다.");
 			        	}else{
 			        		alert("장바구니 담기에 실패하였습니다.");
@@ -68,7 +69,6 @@ function loadMainInterestedList(reload){
 	        url : "/interesteds",
 	        type: "get",
 	        success : function(responseData){
-	        	console.log(responseData);
 	        	if(reload){
 	        		table.clear().draw();
 	        		table.rows.add(responseData); // Add new data
@@ -133,7 +133,7 @@ function deleteInterested(){
 		filter(function(x){return $(x).is(':checked')}).
 		map(function(x){return interestedTable.getRow($(x).attr('data-row-indice')).product_id});
 	// ajax update
-	console.log(checkedIndices);
+	var product_list = listMaker("product_id", checkedIndices);
 	if(checkedIndices.length==0){
 		alert("삭제할 관심상품을 선택해 주세요.");
 	}else{
@@ -143,14 +143,12 @@ function deleteInterested(){
 		$.ajax({
 	        url : "/interesteds",
 	        type: "delete",
-    	    data : JSON.stringify({ 
-    	    	"product_id_arr" : checkedIndices
-    	    }),
-	     	contentType: "application/json", 
+    	    data :  JSON.stringify(product_list),
+    	    contentType: "application/json",
 	        success : function(responseData){
 	        	var result = responseData;
 	        	console.log(result);
-	        	if(result==1){
+	        	if(result>=1){
 	        		alert("삭제되었습니다.");
 	        		loadMainInterestedList(true);
 	        	}else{
@@ -168,7 +166,7 @@ function addToCart(){
 		filter(function(x){return $(x).is(':checked')}).
 		map(function(x){return interestedTable.getRow($(x).attr('data-row-indice')).product_id});
 	// ajax update
-	console.log(checkedIndices);
+	var product_list = listMaker("product_id", checkedIndices);
 	if(checkedIndices.length==0){
 		alert("장바구니에 담을 상품을 선택해 주세요.");
 	}else{
@@ -176,11 +174,11 @@ function addToCart(){
 			return false;
 		}
 		$.ajax({
-	        url : "/interesteds",
+	        url : "/carteds/fromInterested",
 	        type: "post",
-	        data : JSON.stringify({ 
-    	    	"product_id_arr" : checkedIndices
-    	    }),
+	        data : JSON.stringify( 
+    	    	product_list
+    	    ),
 	     	contentType: "application/json",
 	        success : function(responseData){
 	        	var result = responseData;

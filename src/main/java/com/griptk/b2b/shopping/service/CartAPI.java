@@ -43,5 +43,19 @@ public class CartAPI {
 			c.setUser_no(user_no);	
 		}
 		return cartMapper.addToCart(list);
-	}	
+	}
+	
+	/*
+	 * PAYLOAD EXAMPLE
+	 * [{"product_id": 1, "carted_cnt": 4},{"product_id": 2, "carted_cnt": 3}, ..]
+	 * */
+	@PostMapping("/fromInterested")
+	public int insertFromInterested(@ModelAttribute("user_no") int user_no ,@RequestBody List<CartedVO> list) {
+		System.out.println("Asdasdf" + user_no);
+		for(CartedVO c: list) {
+			c.setUser_no(user_no);	
+		}
+		return cartMapper.addToCartFromInterested(list);
+	}
+	
 }

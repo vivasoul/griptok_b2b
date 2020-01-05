@@ -44,4 +44,21 @@
 			carted_cnt = VALUES(carted_cnt),
 			reg_dt = VALUES(reg_dt)
 	</insert>
+	
+	<insert id="addToCartFromInterested" parameterType="List">
+		INSERT INTO tb_carted_list
+		(
+			user_no,
+			product_id,
+			carted_cnt,
+			reg_dt
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		(#{item.user_no},#{item.product_id},1, NOW())
+		</foreach>
+		ON DUPLICATE KEY UPDATE
+			carted_cnt = carted_cnt+1,
+			reg_dt = VALUES(reg_dt)
+	</insert>
 </mapper>

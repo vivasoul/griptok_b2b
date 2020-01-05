@@ -201,3 +201,14 @@ function bs_input_file() {
 						}
 					});
 }
+
+function listMaker(key, indices){
+	var list = [];
+	indices.forEach(function(val){
+		var obj = {};
+		obj[key] = val;
+		list.push(obj);
+	});
+	
+	return list;
+}
