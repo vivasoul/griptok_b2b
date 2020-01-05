@@ -2,67 +2,62 @@ package com.griptk.b2b.shopping.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.griptk.b2b.shopping.domain.InterestedVO;
 import com.griptk.b2b.shopping.mapper.InterestedMapper;
 
 @RestController
 @RequestMapping("/interesteds")
+@SessionAttributes({"user_no"})
 public class InterestedAPI {
 	
 	@Autowired
 	private InterestedMapper mapper;
 
 	@GetMapping("")
-	public List<InterestedVO> getShippingInfo(
-			HttpSession session) {
-		int user_no = (int) session.getAttribute("user_no");
+	public List<InterestedVO> listInterested(@ModelAttribute("user_no") int user_no) {
 		return mapper.listInterested(user_no);
 	}
 	
+	/*
+	 * PAYLOAD EXAMPLE
+	 * [{"product_id": 1},{"product_id": 2}, ..]
+	 * */	
 	@PostMapping("")
-	public int addToCartBulk(
-			HttpSession session,
-			@RequestBody InterestedVO vo) {
+	public int addToInterested(
+			@ModelAttribute("user_no") int user_no,
+			@RequestBody List<InterestedVO> list) {
 		
-		int result = 1;
-		int user_no = (int) session.getAttribute("user_no");
-		vo.setUser_no(user_no);
-		for(int product_id : vo.getProduct_id_arr()) {
-			vo.setProduct_id(product_id);
-			result = mapper.addToCart(vo);
-			result = mapper.deleteFromInterested(vo);
+		for(InterestedVO inter : list) {
+			inter.setUser_no(user_no);
 		}
-		
-		return result;
+		return mapper.insertInterested(list);
 	}
-
 	
+	/*
+	 * PAYLOAD EXAMPLE
+	 * [{"product_id": 1},{"product_id": 2}, ..]
+	 * */	
 	@DeleteMapping("")
 	public int deleteBulkInterestedInfo(
-			HttpSession session,
-			@RequestBody InterestedVO vo
+			@ModelAttribute("user_no") int user_no,
+			@RequestBody List<InterestedVO> list
 	        ) {
-		
-		int user_no = (int) session.getAttribute("user_no");
-		int result= 1;
-		vo.setUser_no(user_no);
-		for(int product_id : vo.getProduct_id_arr()) {
-			vo.setProduct_id(product_id);
-			result = mapper.deleteFromInterested(vo);
-		}
-		
-		return result;
+		return mapper.deleteFromInterested(user_no, list);
 	}
-
+	
+	@ModelAttribute("user_no")
+	private int getUserNo() {
+		return 27;
+	}
 }
