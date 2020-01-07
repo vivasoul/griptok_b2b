@@ -45,7 +45,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">비밀번호</td>
-					<td colspan="3"><button data-toggle="modal" data-target="#pwChangeModal" class="btn-primary btn-sm-offset-2" type="button">비밀번호 변경</button></td>
+					<td colspan="3"><button data-toggle="modal" data-target="#pwChangeModal" class="btn_blue btn-sm-offset-2" type="button">비밀번호 변경</button></td>
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">회사명</td>
@@ -75,8 +75,9 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				<tr>
 					<td class="grey_back_td bolded">주소</td>
 					<td colspan="3">
-						<input style="width:60%" type="text" id="addr"/><button data-toggle="modal" data-target="#addrModal" class="btn-primary btn-sm-offset-2" onclick="loadMainShipping()" type="button">기본 배송지 변경</button>
-						<p>
+						<input style="width:60%" type="text" id="addr"/><button data-toggle="modal" data-target="#addrModal" class="btn_blue btn-sm-offset-2" onclick="loadMainShipping()" type="button">기본 배송지 변경</button>
+						<p class="orange_font">
+						<br>
 						입력하신 주소는 기본 배송지로 입력됩니다. <br>
 						회원가입시 기입된 주소는 사업자 등록증 소재 주소 입니다.<br>
 						사업자 등록증과 배송 주소가 다를 경우  마이페이지 배송지관리에서 수정 및 추가가 가능합니다<br>
@@ -87,17 +88,17 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 					<td class="grey_back_td bolded">연락처</td>
 					<td><input type="text" maxlength="12" name="contact_tel" id="contact_tel" required/></td>
 					<td class="grey_back_td bolded">세금계산서발행 이메일</td>
-					<td><input type="text" name="tax_email" id="tax_email"/></td>
+					<td><input class="input_eighty" type="text" name="tax_email" id="tax_email"/></td>
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">담당자명</td>
 					<td><input type="text" name="manager_nm" id="manager_nm"/></td>
 					<td class="grey_back_td bolded">담당자 연락처</td>
-					<td><input type="text" maxlength="13" name="manager_tel" id="manager_tel" required/></td>
+					<td><input class="input_eighty" type="text" maxlength="13" name="manager_tel" id="manager_tel" required/></td>
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">담당자 이메일</td>
-					<td colspan="3"><input type="text" name="manager_email" id="manager_email" required/></td>
+					<td colspan="3"><input class="input_thirty" type="text" name="manager_email" id="manager_email" required/></td>
 				</tr>	
 				</tbody>
 			</table>
@@ -106,8 +107,8 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
       	<br>
       	<div class="row">
       		<div class="col-sm-12 submit" align="center">
-      			 <button id="info_change" class="btn-primary btn-lg" type="submit">확인</button>
-      			 <button class="btn-warning btn-lg" type="button">취소</button>
+      			 <button id="info_change" class="btn_blue btn-lg" type="submit">확인</button>
+      			 <button id="info_change_cancel" class="btn-lg" type="button">취소</button>
       		</div>
          </div>
          
@@ -148,10 +149,10 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
             <div class="col-sm-6">  
-              <button id="passwd_change_close" class="btn btn-warning btn-lg btn-block" data-dismiss="modal"><i class="fa fa-plus"></i> 취소</button>
+              <button id="passwd_change_close" class="btn btn-lg btn-block" data-dismiss="modal"><i class="fa fa-plus"></i> 취소</button>
             </div>
             <div class="col-sm-6">
-              <button id="btn_passwd_change" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
+              <button id="btn_passwd_change" class="btn btn_blue btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
             </div>
             </div>
           </div>
@@ -193,7 +194,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 	            <div class="col-sm-12 input-group">
           		<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" class="form-control input-lg">
 	        	<span class="input-group-btn" style="width:0;">
-		        	<button onclick="openDaumZipAddress('post_code', 'shipto_addr1', 'shipto_addr2')" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
+		        	<button onclick="openDaumZipAddress('post_code', 'shipto_addr1', 'shipto_addr2')" class="btn_blue btn-lg text-sm" type="button">주소찾기</button>
 			    </span>
 	          </div>
             </div>
@@ -212,10 +213,10 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
             <div class="col-sm-6">
-              <button id="shipto_change_close" class="btn btn-warning btn-lg btn-block" data-dismiss="modal"><i class="fa fa-plus"></i> 취소</button>
+              <button id="shipto_change_close" class="btn btn-lg btn-block" data-dismiss="modal"><i class="fa fa-plus"></i> 취소</button>
              </div> 
              <div class="col-sm-6">
-              <button id="shipto_change" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
+              <button id="shipto_change" class="btn btn_blue btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
               </div>
             </div>
           </div>

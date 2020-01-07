@@ -18,7 +18,6 @@ $(document).ready(function() {
     });
 });
 
-//user_id_check button bind
 $("#withdraw").bind("click",function(){
 	
 	
@@ -70,3 +69,6 @@ $("#withdraw").bind("click",function(){
 });
 
 
+$("#withdraw_cancel").bind("click",function(){
+	location.href="/main";
+});

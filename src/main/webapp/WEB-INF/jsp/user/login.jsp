@@ -270,7 +270,7 @@
 		</div>
 	</div>
 </div>
-</div>
+
 <div class="modal fade" id="authModal" role="dialog">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content modal_border">

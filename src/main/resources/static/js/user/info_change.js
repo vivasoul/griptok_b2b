@@ -62,7 +62,11 @@ $(document).ready(function() {
     });
 });
 
-//company_nm_check button bind
+$("#info_change_cancel").bind("click",function(){
+	location.href="/main"
+});
+
+
 $("#btn_passwd_change").bind("click",function(){
 	if(emptyCheck("old_passwd")&&emptyCheck("new_passwd")&&emptyCheck("new_passwd_check")){
 	    $.ajax({

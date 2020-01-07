@@ -30,6 +30,10 @@ $("#id_check").bind("click", function() {
 	}
 });
 
+$("#sign_up_cancel").bind("click", function(){
+	location.href="/main";
+})
+
 // company_nm_check button bind
 $("#company_nm_check").bind("click", function() {
 	if (emptyCheck("company_nm")) {

@@ -126,7 +126,7 @@
            </div>
            <div class="row">
            		<div class="col-sm-12 submit gtk-login-btn-group">
-           			 <button class="gtk-btn gtk-btn-lg" type="button">취소</button>
+           			 <button id="sign_up_cancel" class="gtk-btn gtk-btn-lg" type="button">취소</button>
            			 <button id="sign_up" class="gtk-btn gtk-btn-lg gtk-btn-blue" type="submit">가입하기</button>
            		</div>
            </div>
