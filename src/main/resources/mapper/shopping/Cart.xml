@@ -41,7 +41,7 @@
 		(#{item.user_no},#{item.product_id},#{item.carted_cnt}, NOW())
 		</foreach>
 		ON DUPLICATE KEY UPDATE
-			carted_cnt = VALUES(carted_cnt),
+			carted_cnt = (CASE WHEN VALUES(carted_cnt) = 0 THEN carted_cnt + 1 ELSE VALUES(carted_cnt) END),
 			reg_dt = VALUES(reg_dt)
 	</insert>
 	
