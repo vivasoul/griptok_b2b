@@ -93,5 +93,13 @@ body {
 }
 .gtk-process-bar.gtk-process-active button{  background-image:url(/img/common/process_bar_active_c.png);color:#FFF; }
 
+.gtk-process-bar.gtk-process-bar-sm button{ 
+	width:200px;height:40px;
+    background-image:url(/img/common/process_bar_sm_c.png);
+	font-size:13px; font-weight:700;
+
+}
+.gtk-process-bar-sm.gtk-process-active button{  background-image:url(/img/common/process_bar_sm_active_c.png);color:#FFF; }
+
 /**/
 .gtk-top-hr-dash { border-top:2px dashed #CCC }
