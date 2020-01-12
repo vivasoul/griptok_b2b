@@ -16,6 +16,19 @@
 		ORDER BY req_dt DESC
 	</select>
 	
+	<select id="listAll" resultType="com.griptk.b2b.qna.domain.QnaVO">
+		SELECT 
+			qna_no,
+			user_no,
+			title,
+			req_dt,
+			<![CDATA[
+			IF(ISNULL(answ_dt),'답변 준비중',IF(answ_dt < req_dt,'답변 준비중','답변 완료')) as proc_yn
+ 			]]>	
+		FROM tb_qna_board
+		ORDER BY req_dt DESC
+	</select>
+	
 	<select id="selectQna" parameterType="int" resultType="com.griptk.b2b.qna.domain.QnaVO">
 		SELECT 
 			qna_no,

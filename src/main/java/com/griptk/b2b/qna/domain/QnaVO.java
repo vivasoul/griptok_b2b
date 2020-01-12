@@ -12,6 +12,7 @@ public class QnaVO {
 	private String proc_yn;
 	private String upd_dt;
 	private String answ_dt;
+	private String isViewYN;
 	
 	public QnaVO() {
 		
@@ -99,5 +100,14 @@ public class QnaVO {
 
 	public void setProc_yn(String proc_yn) {
 		this.proc_yn = proc_yn;
-	}	
+	}
+
+	public String getIsViewYN() {
+		return isViewYN;
+	}
+
+	public void setIsViewYN(String isViewYN) {
+		this.isViewYN = isViewYN;
+	}
+	
 }

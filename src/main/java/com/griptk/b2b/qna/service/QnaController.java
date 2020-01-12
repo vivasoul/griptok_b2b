@@ -26,9 +26,9 @@ public class QnaController {
 		String viewPath = "qna/list";
 		model.addAttribute("content_page", viewPath);
 		// TO-DO : GET USER_NO FROM SESSION.
-		int user_no = (int) session.getAttribute("user_no");
-		List<QnaVO> arr = qnaMapper.listQna(user_no);
-		model.addAttribute("arr",arr);
+//		int user_no = (int) session.getAttribute("user_no");
+//		List<QnaVO> arr = qnaMapper.listQna(user_no);
+//		model.addAttribute("arr",arr);
 		return "_template/main";
 	}
 	

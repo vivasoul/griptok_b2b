@@ -28,17 +28,10 @@
 						<th data-column = "title">문의내용</th>
 						<th data-column = "req_dt">문의일자</th>
 						<th data-column = "proc_yn">처리여부</th>
+						<th data-column = "isViewYN" data-visible="false">상세 페이지 요청 가능여부</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="each" items="${arr }">
-						<tr>
-							<td>${each.qna_no }</td>
-							<td>${each.title }</td>
-							<td>${each.req_dt }</td>
-							<td>${each.proc_yn }</td>
-						</tr>
-					</c:forEach>
 				</tbody>
 			</table>
 		</div>
@@ -52,6 +45,12 @@ $(document).ready(function() {
 			const rowIndex = $(this)[0]._DT_RowIndex;
 			const rowData = exampleTable.getRow(rowIndex);
 			const qnaId = rowData.qna_no;
+			const canViewChange = rowData.isViewYN == 'Y';
+			
+			if(!canViewChange){
+				alert("본인이 작성하신 글에 대해서만 열람 가능합니다.");
+				return false;
+			}
 			
 			if(qnaId !== undefined){
 				const _url = 'qna/view?id=' + qnaId;
@@ -59,7 +58,17 @@ $(document).ready(function() {
 			}
 		}
 	});
-	const initData = exampleTable.getRows();
+	
+	var initData = exampleTable.getRows();
+	
+	$.ajax({
+		url : "/qnas",
+        type: "get",
+        success : function(result){
+        	exampleTable.reload(result);
+        	initData = exampleTable.getRows();
+        }
+	});
 	/****************************************
 	* EVENT TRIGGER START
 	*****************************************/
