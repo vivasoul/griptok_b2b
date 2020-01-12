@@ -20,22 +20,45 @@
 	</select>
 	
 	
-	<delete id="deleteCarted" parameterType="com.griptk.b2b.shopping.domain.CartedVO">
+	<delete id="deleteCarted">
 		DELETE
 		FROM tb_carted_list
 		WHERE user_no = #{user_no}
 		AND product_id IN
-		<foreach collection="product_ids" item="item" open="(" close=")" separator=",">#{item}</foreach>
+		<foreach collection="list" item="item" open="(" close=")" separator=",">#{item.product_id}</foreach>
 	</delete>
 	
-	<insert id="insertInterested" parameterType="com.griptk.b2b.shopping.domain.CartedVO">
-		INSERT INTO tb_interested_list
-		VALUES 
-		<foreach collection="product_ids" item="item" separator=",">
-		(#{user_no},#{item},NOW())
-		</foreach> 
-		ON DUPLICATE KEY
-		UPDATE reg_dt = NOW()
+	<insert id="addToCart" parameterType="List">
+		INSERT INTO tb_carted_list
+		(
+			user_no,
+			product_id,
+			carted_cnt,
+			reg_dt
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		(#{item.user_no},#{item.product_id},#{item.carted_cnt}, NOW())
+		</foreach>
+		ON DUPLICATE KEY UPDATE
+			carted_cnt = (CASE WHEN VALUES(carted_cnt) = 0 THEN carted_cnt + 1 ELSE VALUES(carted_cnt) END),
+			reg_dt = VALUES(reg_dt)
 	</insert>
-
+	
+	<insert id="addToCartFromInterested" parameterType="List">
+		INSERT INTO tb_carted_list
+		(
+			user_no,
+			product_id,
+			carted_cnt,
+			reg_dt
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		(#{item.user_no},#{item.product_id},1, NOW())
+		</foreach>
+		ON DUPLICATE KEY UPDATE
+			carted_cnt = carted_cnt+1,
+			reg_dt = VALUES(reg_dt)
+	</insert>
 </mapper>

@@ -47,9 +47,10 @@
       	<div class="row">
       		<div class="col-sm-12 submit" align="center">
       			 <button id="withdraw" class="btn-primary btn-lg">확인</button>
-      			 <button class="btn-warning btn-lg" type="button">취소</button>
+      			 <button id="withdraw_cancel" class="btn-lg" type="button">취소</button>
       		</div>
          </div>
+        <br>
          
         </div>
 

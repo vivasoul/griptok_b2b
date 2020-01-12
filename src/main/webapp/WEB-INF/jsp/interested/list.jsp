@@ -6,7 +6,7 @@
 <script src="./common/js/common.js"></script>
 <script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
-
+<script src="./common/js/util.js" charset="utf-8"></script>
 <link rel="stylesheet" href="./css/service/interested.css">
 <link rel="stylesheet" href="./css/margin.css">
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">

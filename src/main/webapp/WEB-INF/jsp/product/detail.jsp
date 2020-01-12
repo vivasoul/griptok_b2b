@@ -2,6 +2,14 @@
 <script type="text/javascript" src="/js/product/detail.js"></script>
 <link rel="stylesheet" href="/css/product/detail.css" />
 <script type="text/javascript">
+const getProductId = function(){
+	return Number(jQuery("#gtk-detail-main .data-id").text());
+};
+
+const getCartedCnt = function(){
+	return Number(jQuery("#gtk-detail-main .input-quantity").val());
+};
+
 jQuery(document).ready(function(){
 	loadData("<%=request.getAttribute("product_id").toString()%>");
 	jQuery(".gtk-detail-images-thumbs").on("click", "img", function(e){
@@ -25,6 +33,22 @@ jQuery(document).ready(function(){
 		jQuery("input.input-quantity").val(q);		
 		updateCount(q);
 	});
+	
+	jQuery("#goto-cart-btn").on("click", function(){
+		const product_id = getProductId();
+		const carted_cnt = getCartedCnt();
+		
+		moveToCart(product_id, carted_cnt);
+	});
+	
+	jQuery("#goto-buy-btn").on("click", function(){
+		const product_id = getProductId();
+	});
+	
+	jQuery("#goto-interset-btn").on("click", function(){
+		const product_id = getProductId();
+		moveToInterested(product_id);
+	});	
 });
 </script>
 <div id="gtk-detail-main" class="container-fluid">

@@ -10,49 +10,28 @@
 			p.retail_price,
 			p.sales_price,
 			#{user_no} as user_no
-		FROM
-			tb_product p
-		INNER JOIN
-			tb_product_img im
-		ON 
-			p.product_id = im.product_id
-		INNER JOIN
-			tb_img_file_info info
-		ON 
-			im.img_no = info.img_no
-		INNER JOIN
-			tb_interested_list l
-		ON 
-			p.product_id = l.product_id
-		WHERE
-			l.user_no = #{user_no}
+		FROM tb_product p
+		INNER JOIN tb_img_file_info info	ON p.thumb_img_no = info.img_no
+		INNER JOIN tb_interested_list l 	ON p.product_id = l.product_id
+		WHERE 1=1
+		AND	l.user_no = #{user_no}
 	</select>
 	
-	<insert id="addToCart" parameterType="com.griptk.b2b.shopping.domain.InterestedVO">
-		INSERT INTO tb_carted_list
-		(
-			user_no,
-			product_id,
-			carted_cnt,
-			reg_dt
-		)
-		VALUES
-		(
-			#{user_no},
-			#{product_id},
-			1,
-			NOW()
-		)		
-		ON DUPLICATE KEY UPDATE
-			carted_cnt = carted_cnt+1
+	<insert id="insertInterested" parameterType="List">
+		INSERT INTO tb_interested_list(user_no, product_id, reg_dt)
+		VALUES 
+		<foreach collection="list" item="item" separator=",">
+		(#{item.user_no},#{item.product_id},NOW())
+		</foreach> 
+		ON DUPLICATE KEY UPDATE 
+			reg_dt = NOW()
 	</insert>
 	
-	<delete id="deleteFromInterested" parameterType="com.griptk.b2b.shopping.domain.InterestedVO">
+	<delete id="deleteFromInterested">
 		DELETE FROM tb_interested_list
-		WHERE
-			user_no = #{user_no}
-		AND
-			product_id = #{product_id}		
+		WHERE 1=1
+		AND	user_no = #{user_no}
+		AND product_id IN <foreach collection="list" item="item" open="(" close=")" separator=",">#{item.product_id}</foreach>
 	</delete>
 	
 </mapper>

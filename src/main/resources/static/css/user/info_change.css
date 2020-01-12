@@ -41,6 +41,56 @@
 	
 }
 
-.input_ninty{
+.input_ten{
+	width:10%;	
+}
+
+.input_twenty{
+	width:20%;	
+}
+
+.input_thirty{
+	width:30%;	
+}
+
+.input_forty{
+	width:40%;	
+}
+
+.input_fifty{
+	width:50%;	
+}
+
+.input_sixty{
+	width:60%;	
+}
+
+.input_seventy{
+	width:70%;	
+}
+
+.input_eighty{
 	width:80%;	
+}
+
+.input_ninty{
+	width:90%;	
+}
+
+.input_hundred{
+	width:100%;	
+}
+
+
+.orange_font{
+	color:orange;
+}
+
+.btn_blue{
+	color : white;
+	background-color : #5B9BD5;
+}
+
+.modal-backdrop:nth-child(2n-1) {
+  opacity : 0;
 }
