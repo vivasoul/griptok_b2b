@@ -3,9 +3,7 @@
 <html>
 <head>
 <script src="./lib/js/jquery.min.js"></script>
-<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./css/user/info_change.css">
-<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <script src="./common/js/util.js" charset="utf-8"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -45,7 +43,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">비밀번호</td>
-					<td colspan="3"><button data-toggle="modal" data-target="#pwChangeModal" class="btn_blue btn-sm-offset-2" type="button">비밀번호 변경</button></td>
+					<td colspan="3"><button data-toggle="modal" data-target="#pwChangeModal" class="btn_blue btn_blue_border btn-sm-offset-2" type="button">비밀번호 변경</button></td>
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">회사명</td>
@@ -75,7 +73,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				<tr>
 					<td class="grey_back_td bolded">주소</td>
 					<td colspan="3">
-						<input style="width:60%" type="text" id="addr"/><button data-toggle="modal" data-target="#addrModal" class="btn_blue btn-sm-offset-2" onclick="loadMainShipping()" type="button">기본 배송지 변경</button>
+						<input style="width:60%" type="text" id="addr"/><button data-toggle="modal" data-target="#addrModal" class="btn_blue btn_blue_border btn-sm-offset-2" onclick="loadMainShipping()" type="button">기본 배송지 변경</button>
 						<p class="orange_font">
 						<br>
 						입력하신 주소는 기본 배송지로 입력됩니다. <br>

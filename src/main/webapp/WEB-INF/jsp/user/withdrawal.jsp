@@ -4,9 +4,7 @@
 <head>
 <title>Insert title here</title>
 <script src="./lib/js/jquery.min.js"></script>
-<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./css/user/withdrawal.css">
-<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 
 </head>
 <body>
