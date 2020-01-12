@@ -2,7 +2,7 @@ const updateCount = function(cnt) {
 	const _cnt = Number(cnt) || 0;
 	const $sum = jQuery("#gtk-detail-main .gtk-detail-summary");
 	const price = Number(jQuery("#sales-price").val()) || 0;
-	$sum.find(".data-total-count").text(cnt);
+	$sum.find(".data-total-count").text(_cnt);
 	$sum.find(".data-total-amount").text(currency_formatter(_cnt*price,'원'));
 };
 
