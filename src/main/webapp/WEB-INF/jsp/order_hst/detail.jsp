@@ -11,28 +11,32 @@
 
 <script src="../lib/datatable/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css">
+<link rel="stylesheet" href="../css/margin.css">
+<link rel="stylesheet" href="../css/shopping/order_hst_detail.css">
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row">
-			<div style="background-color: LightGray">
-				<font style="font-weight: bold">주문 배송 조회/ 주문 상세 내역</font>
+		<div class="row m-t-md">
+			<div class="bg-lightGray">
+				<font class="font-weight-bold font-size-md">주문 배송 조회/ 주문 상세 내역</font>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row m-t-lg">
 			<table class="table table-bordered">
 				<tr>
 					<td class="col-md-4">
-						<div class="col-md-3"><font style="font-weight: bold">주문일자</font></div>
-						<div class="col-md-9">${one.order_dt } </div>
+						<div class="col-md-4">
+							<font class="font-weight-bold font-size-md">주문일자</font>
+						</div>
+						<div class="col-md-8">${one.order_dt } </div>
 					</td>
 					<td class="col-md-6">
-						<div class="col-md-3"><font style="font-weight: bold">주문 번호</font></div>
+						<div class="col-md-3"><font class="font-weight-bold font-size-md">주문번호</font></div>
 						<div class="col-md-9">${one.order_no } </div>
 					</td>
 					<td class="col-md-2">
 						<div class="row col-md-12 text-center">
-							<input type="button" value="거래명세서 발급" id="btn-transaction" class="btn btn-secondary-outline pull-center"/>
+							<input type="button" value="거래명세서 발급" id="btn-transaction" class="gtk-btn gtk-btn-sm pull-center"/>
 						</div>
 					</td>
 				</tr>
