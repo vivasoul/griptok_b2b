@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/product/list.css" />
-<script type="text/javascript" src= "/js/product/list.js"></script>
+<script type="text/javascript" src="/js/product/common.js"></script>
+<script type="text/javascript" src="/js/product/list.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	loadList("<%=request.getAttribute("list_url")%>","filtered-product-list");
