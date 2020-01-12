@@ -112,7 +112,7 @@ const loadList = function(url, render_id){
 		for(let i=0; i<len; i++){
 			dom_arr.push(thumbnailGenerator(datas[i]));
 		}
-		if(dom_arr.length) jQuery("#"+render_id).append(dom_arr);
+		if(dom_arr.length) jQuery("#"+render_id).empty().append(dom_arr);
 		
 	}).fail(function(e){
 		//console.log("loadList failed..");
