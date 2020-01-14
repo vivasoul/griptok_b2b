@@ -47,6 +47,12 @@ $(document).ready(function(){
 		$('#pwchange_modal_poper').click();
 	}
 	
+//	$(".auto_inputs").keyup(function () {
+//	    if (this.value.length == this.maxLength) {
+//	      $(this).next('.auto_inputs').focus();
+//	    }
+//	});
+	
 	// 비밀번호 찾기
 	$("#btn_passwd_change").bind("click",function(){
 		if(emptyCheck("new_passwd")&&emptyCheck("new_passwd_check")){
@@ -123,7 +129,7 @@ $(document).ready(function(){
 		     	contentType: "application/json",
 		        success : function(responseData){
 		        	var user_id = responseData;
-		        	if(user_id==null){
+		        	if(user_id==null||user_id==""){
 		        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
 		        	}else{
 		        		alert("회원님의 아이디는 " + user_id + "입니다.");
@@ -149,9 +155,8 @@ $(document).ready(function(){
 		        	   }),
 		   	    contentType: "application/json",
 		        success : function(responseData){
-		        	console.log(responseData);
 		        	var user_id = responseData;
-		        	if(user_id==null){
+		        	if(user_id==null||user_id==""){
 		        		alert("해당 정보로 등록된 아이디가 존재하지 않습니다.");
 		        	}else{
 		        		alert("회원님의 아이디는 " + user_id + "입니다.");

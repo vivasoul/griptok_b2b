@@ -14,9 +14,10 @@ var validation_check = {
 $("#id_check").bind("click", function() {
 	if (emptyCheck("user_id")) {
 		$.ajax({
-			url : "/sign_up/check/"+$("#user_id").val(),
+			url : "/sign_up/check/id/"+$("#user_id").val(),
 			type : "get",
 			success : function(responseData) {
+				console.log(responseData);
 				if (responseData == 0) {
 					alert("사용가능한 Id입니다.");
 					validation_check.id_checked = true;
@@ -38,7 +39,7 @@ $("#sign_up_cancel").bind("click", function(){
 $("#company_nm_check").bind("click", function() {
 	if (emptyCheck("company_nm")) {
 		$.ajax({
-			url : "/sign_up/check/"+$("#company_nm").val(),
+			url : "/sign_up/check/company_nm/"+$("#company_nm").val(),
 			type : "get",
 			success : function(responseData) {
 				if (responseData == 0) {
@@ -58,7 +59,7 @@ $("#company_nm_check").bind("click", function() {
 $("#biz_reg_number_check").bind("click", function() {
 	if (emptyCheck("biz_reg_number")) {
 		$.ajax({
-			url : "/sign_up/check/"+$("#biz_reg_number").val(),
+			url : "/sign_up/check/biz_reg_number/"+$("#biz_reg_number").val(),
 			type : "get",
 			success : function(responseData) {
 				if (responseData == 0) {

@@ -85,15 +85,15 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<input id="id_cell_contact_tel1" maxlength="3"
-											class="form-control input-lg" placeholder="010" type="text">
+											class="form-control input-lg auto_inputs" placeholder="010" type="text">
 									</div>
 									<div class="col-sm-4">
 										<input id="id_cell_contact_tel2" maxlength="4"
-											class="form-control input-lg" type="text">
+											class="form-control input-lg auto_inputs" type="text">
 									</div>
 									<div class="col-sm-4">
 										<input id="id_cell_contact_tel3" maxlength="4"
-											class="form-control input-lg" type="text">
+											class="form-control input-lg auto_inputs" type="text">
 									</div>
 								</div>
 							</div>
@@ -189,15 +189,15 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<input id="passwd_cell_contact_tel1" maxlength="3"
-											class="form-control input-lg" placeholder="010" type="text">
+											class="form-control input-lg auto_inputs" placeholder="010" type="text">
 									</div>
 									<div class="col-sm-4">
 										<input id="passwd_cell_contact_tel2" maxlength="4"
-											class="form-control input-lg" type="text">
+											class="form-control input-lg auto_inputs" type="text">
 									</div>
 									<div class="col-sm-4">
 										<input id="passwd_cell_contact_tel3" maxlength="4"
-											class="form-control input-lg" type="text">
+											class="form-control input-lg auto_inputs" type="text">
 									</div>
 								</div>
 							</div>

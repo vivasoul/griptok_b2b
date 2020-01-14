@@ -12,6 +12,7 @@ $(document).ready(function() {
 	bs_input_file();
 	validationInitialize();
 	validateAll("#info_change_form");
+	validateAll("#password_form");
 	$.ajax({
         url : "/info_change/load",
         type: "get",
@@ -37,6 +38,11 @@ $("#info_change_cancel").bind("click",function(){
 	location.href="/main"
 });
 
+function password_modal_initialize(){
+	$('#old_passwd').val("");
+	$('#new_passwd').val("");
+	$('#new_passwd_check').val("");
+}
 
 $("#btn_passwd_change").bind("click",function(){
 	if(emptyCheck("old_passwd")&&emptyCheck("new_passwd")&&emptyCheck("new_passwd_check")){
@@ -48,12 +54,13 @@ $("#btn_passwd_change").bind("click",function(){
        	     	"new_passwd" : $("#new_passwd").val()
     		}),
 	     	contentType: "application/json",		
-	        success : function(responseData){
+	        success : function(responseData){	        	
 	        	if(responseData==0){
 	        		alert("기존 비밀번호를 확인해주세요.");
 	        	}else{
 	        		alert("비밀번호 변경이 완료되었습니다.");
 	        		$("#passwd_change_close").click();
+	        		password_modal_initialize();
 	        	}
 	        }
 	    });
@@ -61,6 +68,7 @@ $("#btn_passwd_change").bind("click",function(){
 		alert("값을 채워주세요.");
 	}
 });
+
 
 function loadMainShipping(){
 	$.ajax({

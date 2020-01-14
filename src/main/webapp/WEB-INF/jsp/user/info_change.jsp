@@ -121,6 +121,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
             <h3>비밀번호 변경</h3>
             <br>            
         <div class="tab-content clearfix">
+      	<form id="password_form">
           <br>
           <fieldset>
             <div class="form-group">
@@ -132,16 +133,17 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
             <div class="form-group">
             	<div class="right-inner-addon">
 	                <i class="fa fa-key"></i>
-	                <input id="new_passwd"  reg_id = "passwd" data-regex="T" name="passwd"  class="form-control input-lg" placeholder="새 비밀번호" type="password">
+	                <input id="new_passwd"  reg_id = "new_passwd" data-regex="T" name="passwd"  class="form-control input-lg" placeholder="새 비밀번호" type="password">
               </div>
             </div>
             <div class="form-group">
             	<div class="right-inner-addon">
 	                <i class="fa fa-key"></i>
-	                <input id="new_passwd_check" reg_id = "passwd_check" data-keyup="P" parent_id="passwd" class="form-control input-lg" placeholder="비밀번호 확인" type="password">
+	                <input id="new_passwd_check" reg_id = "new_passwd_check" data-keyup="P" parent_id="new_passwd" class="form-control input-lg" placeholder="비밀번호 확인" type="password">
               </div>
             </div>
           </fieldset>
+           </form>
           <hr>
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
@@ -153,6 +155,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
             </div>
             </div>
           </div>
+     
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -228,6 +231,6 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 </div>
 
 <script src="./common/js/util.js" charset="utf-8"></script>
-<script src="./js/user/info_change.js"></script>
+<script src="./js/user/info_change.js" charset="utf-8"></script>
 </body>
 </html>

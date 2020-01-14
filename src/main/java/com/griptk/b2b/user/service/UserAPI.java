@@ -66,7 +66,7 @@ public class UserAPI {
 	}
 	
 	// biz_reg_number check	
-	@GetMapping("/sign_up/check/{biz_reg_number}")
+	@GetMapping("/sign_up/check//biz_reg_number/{biz_reg_number}")
 	public int checkBizRegNumber(
 			@PathVariable("biz_reg_number") String biz_reg_number) {
 		
