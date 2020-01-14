@@ -133,7 +133,7 @@ function validateRegex(regex_id, _this) {
 	var regex_type = /(?=.{6,})/;
 	var regex_msg = "비밀번호는 6~15자 이내로 입력해야 합니다.";
 
-	if (regex_id == "passwd") {
+	if (regex_id == "passwd"||regex_id=="new_passwd") {
 		regex_type = /(?=.{6,})/;
 		regex_msg = "비밀번호는 6~15자 이내로 입력해야 합니다.";
 	} else if (regex_id == "id") {

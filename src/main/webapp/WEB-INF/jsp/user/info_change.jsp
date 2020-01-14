@@ -4,7 +4,6 @@
 <head>
 <script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./css/user/info_change.css">
-<script src="./common/js/util.js" charset="utf-8"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 var user_no = "<%= session.getAttribute( "user_no" ) %>";
@@ -39,7 +38,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				<tbody>
 				<tr>
 					<td class="grey_back_td bolded">아이디</td>
-					<td colspan="3"><input type="text" name="user_id" id="user_id"/><input type="hidden" name="user_no" id="user_no"/></td>
+					<td colspan="3"><input type="text" reg_id = "id" data-regex="T" name="user_id" id="user_id"/><input type="hidden" name="user_no" id="user_no"/></td>
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">비밀번호</td>
@@ -49,7 +48,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 					<td class="grey_back_td bolded">회사명</td>
 					<td><input type="text" name="company_nm" id="company_nm" required/></td>
 					<td class="grey_back_td bolded">사업자 등록번호</td>
-					<td><input type="text" maxlength="12" name="biz_reg_number" id="biz_reg_number" required/></td>
+					<td><input type="text" maxlength="12" reg_id = "biz_reg_number" data-regex="T" data-keyup="B" name="biz_reg_number" id="biz_reg_number" required/></td>
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">사업자 등록번호 사본</td>
@@ -84,19 +83,19 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				</tr>	
 				<tr>
 					<td class="grey_back_td bolded">연락처</td>
-					<td><input type="text" maxlength="12" name="contact_tel" id="contact_tel" required/></td>
+					<td><input type="text" reg_id = "tel" data-regex="T" data-keyup="T" maxlength="12" name="contact_tel" id="contact_tel" required/></td>
 					<td class="grey_back_td bolded">세금계산서발행 이메일</td>
-					<td><input class="input_eighty" type="text" name="tax_email" id="tax_email"/></td>
+					<td><input class="input_eighty" type="text" data-regex="T" name="tax_email" placeholder="세금계산서 발행 이메일" name="tax_email" id="tax_email"/></td>
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">담당자명</td>
 					<td><input type="text" name="manager_nm" id="manager_nm"/></td>
 					<td class="grey_back_td bolded">담당자 연락처</td>
-					<td><input class="input_eighty" type="text" maxlength="13" name="manager_tel" id="manager_tel" required/></td>
+					<td><input class="input_eighty" type="text" maxlength="13" reg_id="tel" data-regex="T" data-keyup="T" name="manager_tel" id="manager_tel" required/></td>
 				</tr>
 				<tr>
 					<td class="grey_back_td bolded">담당자 이메일</td>
-					<td colspan="3"><input class="input_thirty" type="text" name="manager_email" id="manager_email" required/></td>
+					<td colspan="3"><input class="input_thirty" type="text"  reg_id="email" id="manager_email" data-regex="T" name="manager_email" id="manager_email" required/></td>
 				</tr>	
 				</tbody>
 			</table>
@@ -133,13 +132,13 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
             <div class="form-group">
             	<div class="right-inner-addon">
 	                <i class="fa fa-key"></i>
-	                <input id="new_passwd" class="form-control input-lg" placeholder="새 비밀번호" type="password">
+	                <input id="new_passwd"  reg_id = "passwd" data-regex="T" name="passwd"  class="form-control input-lg" placeholder="새 비밀번호" type="password">
               </div>
             </div>
             <div class="form-group">
             	<div class="right-inner-addon">
 	                <i class="fa fa-key"></i>
-	                <input id="new_passwd_check" class="form-control input-lg" placeholder="비밀번호 확인" type="password">
+	                <input id="new_passwd_check" reg_id = "passwd_check" data-keyup="P" parent_id="passwd" class="form-control input-lg" placeholder="비밀번호 확인" type="password">
               </div>
             </div>
           </fieldset>
@@ -228,7 +227,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
   </div>
 </div>
 
-
+<script src="./common/js/util.js" charset="utf-8"></script>
 <script src="./js/user/info_change.js"></script>
 </body>
 </html>
