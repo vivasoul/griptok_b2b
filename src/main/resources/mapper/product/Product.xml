@@ -7,7 +7,9 @@
 			a.product_id,
 			a.title,
 			a.retail_price,
-			a.sales_price,
+			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
+										 ELSE a.sales_price
+			END AS sales_price,
 			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
@@ -22,7 +24,9 @@
 			a.product_id,
 			a.title,
 			a.retail_price,
-			a.sales_price,
+			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
+										 ELSE a.sales_price
+			END AS sales_price,
 			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
@@ -43,7 +47,7 @@
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
 		AND a.is_dc = 'Y'
-		ORDER BY a.reg_dt desc
+		${order_by}
 	</select>	
 	
 	<select id="listProducts" resultType="com.griptk.b2b.product.domain.ProductVO">
@@ -51,48 +55,56 @@
 			a.product_id,
 			a.title,
 			a.retail_price,
-			a.sales_price,
+			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
+										 ELSE a.sales_price
+			END AS sales_price,
 			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
-		ORDER BY a.reg_dt desc
+		${order_by}
 	</select>	
 	
-	<select id="listProducts_C" parameterType="Int" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_C" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
 			a.retail_price,
-			a.sales_price,
+			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
+										 ELSE a.sales_price
+			END AS sales_price,
 			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
 		WHERE 1=1
 		AND c.craft_no = #{craft_no}
-		ORDER BY a.reg_dt desc
+		${order_by}
 	</select>
 	
-	<select id="listProducts_CC" parameterType="Int" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_CC" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
 			a.retail_price,
-			a.sales_price,
+			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
+										 ELSE a.sales_price
+			END AS sales_price,
 			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
 		AND a.category_no = #{category_no}
-		ORDER BY a.reg_dt desc
+		${order_by}
 	</select>
 	
-	<select id="listProducts_B" parameterType="Int" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_B" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
 			a.retail_price,
-			a.sales_price,
+			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
+										 ELSE a.sales_price
+			END AS sales_price,
 			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
@@ -100,22 +112,24 @@
 		INNER JOIN tb_brand_type d ON c.brand_no = d.brand_no
 		WHERE 1=1
 		AND d.p_brand_no = #{p_brand_no}	
-		ORDER BY a.reg_dt desc
+		${order_by}
 	</select>
 	
-	<select id="listProducts_BB" parameterType="Int" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_BB" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
 			a.retail_price,
-			a.sales_price,
+			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
+										 ELSE a.sales_price
+			END AS sales_price,
 			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
 		WHERE 1=1
 		AND c.brand_no = #{brand_no}
-		ORDER BY a.reg_dt desc
+		${order_by}
 	</select>				
 	
 	<select id="getAllCounts" resultType="Int">

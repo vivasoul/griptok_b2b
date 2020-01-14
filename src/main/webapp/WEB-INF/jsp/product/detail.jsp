@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<script type="text/javascript" src="/js/product/common.js"></script>
 <script type="text/javascript" src="/js/product/detail.js"></script>
 <link rel="stylesheet" href="/css/product/detail.css" />
 <script type="text/javascript">
@@ -17,19 +18,24 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery("input.input-quantity").on("change", function(e){
-		updateCount(e.target.value);
+		let cnt = e.target.value;
+		if(cnt < 1) cnt = 1;
+		this.value = cnt;
+		updateCount(cnt);
 	});
 	
 	jQuery(".gtk-detail-quantity .quantity-down-btn").on("click", function(e){
-		let q = jQuery("input.input-quantity").val();
+		let q = Number(jQuery("input.input-quantity").val()) || 0;
 		q--;
+		q = q < 1 ? 1 : q;
 		jQuery("input.input-quantity").val(q);
 		updateCount(q);
 	});
 	
 	jQuery(".gtk-detail-quantity .quantity-up-btn").on("click", function(e){
-		let q = jQuery("input.input-quantity").val();
+		let q = Number(jQuery("input.input-quantity").val()) || 0;
 		q++;
+		q = q < 1 ? 1 : q;
 		jQuery("input.input-quantity").val(q);		
 		updateCount(q);
 	});

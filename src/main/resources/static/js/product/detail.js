@@ -2,7 +2,7 @@ const updateCount = function(cnt) {
 	const _cnt = Number(cnt) || 0;
 	const $sum = jQuery("#gtk-detail-main .gtk-detail-summary");
 	const price = Number(jQuery("#sales-price").val()) || 0;
-	$sum.find(".data-total-count").text(cnt);
+	$sum.find(".data-total-count").text(_cnt);
 	$sum.find(".data-total-amount").text(currency_formatter(_cnt*price,'원'));
 };
 
@@ -43,38 +43,4 @@ const loadData = function(product_id) {
 		}).always(function(){
 			
 		});
-};
-
-const moveToCart = function(product_id, carted_cnt) {
-	jQuery.ajax({
-		  url: "/carteds",
-		  method: "POST",
-		  contentType: "application/json",
-		  data: JSON.stringify([
-			  {"product_id":product_id, "carted_cnt": carted_cnt}
-		  ])
-		}).done(function(e){
-			alert("해당 상품을 장바구니에 추가하였습니다.");
-		}).fail(function(e){
-			console.log(e);
-		}).always(function(){
-			
-		});	
-};
-
-const moveToInterested = function(product_id) {
-	jQuery.ajax({
-		  url: "/interesteds",
-		  method: "POST",
-		  contentType: "application/json",
-		  data: JSON.stringify([
-			  {"product_id":product_id}
-		  ])
-		}).done(function(e){
-			alert("해당 상품을 관심상품에 추가하였습니다.");
-		}).fail(function(e){
-			console.log(e);
-		}).always(function(){
-			
-		});	
 };

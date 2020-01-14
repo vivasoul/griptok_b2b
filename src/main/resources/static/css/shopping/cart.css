@@ -1,3 +1,6 @@
+#div-process-status .gtk-process-bar { min-width:250px;padding-left:0px;padding-right:5px; }
+#div-process-status .gtk-process-bar button { width:90%; }
+
 .font-size-large {
 	font-size: 20px;
 }
