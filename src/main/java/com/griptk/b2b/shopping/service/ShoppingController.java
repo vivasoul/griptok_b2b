@@ -7,10 +7,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.griptk.b2b.shopping.domain.CartedVO;
 import com.griptk.b2b.shopping.domain.OrderDetailVO;
@@ -85,6 +86,17 @@ public class ShoppingController {
 		return "_template/main";
 	}
 	
-	
+	@GetMapping("/carted/purchase")
+	public String purchase_list(Model model,HttpSession session,@RequestParam("product_ids") String product_ids) {
+		String viewPath = "cart/list2buy";
+		model.addAttribute("content_page", viewPath);
+		
+		//TO-DO : get user_no from session.
+		int user_no = (int) session.getAttribute("user_no");
+		List<CartedVO> arr = cartMapper.listCarted(user_no);
+		model.addAttribute("arr",arr);
+		
+		return "_template/main";
+	}
 }
 
