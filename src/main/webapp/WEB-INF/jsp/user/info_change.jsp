@@ -83,7 +83,7 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				</tr>	
 				<tr>
 					<td class="grey_back_td bolded">연락처</td>
-					<td><input type="text" reg_id = "tel" data-regex="T" data-keyup="T" maxlength="12" name="contact_tel" id="contact_tel" required/></td>
+					<td><input type="text" reg_id = "tel" data-regex="T" data-keyup="T" maxlength="13" name="contact_tel" id="contact_tel" required/></td>
 					<td class="grey_back_td bolded">세금계산서발행 이메일</td>
 					<td><input class="input_eighty" type="text" data-regex="T" name="tax_email" placeholder="세금계산서 발행 이메일" name="tax_email" id="tax_email"/></td>
 				</tr>

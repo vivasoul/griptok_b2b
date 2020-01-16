@@ -1,28 +1,3 @@
-// 모달 불러오기
-var modal = document.getElementById('id_finder');
-var modal2 = document.getElementById('pwd_finder');
-
-function openFinder(evt, method, type) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName(type+"_tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName(type+"_tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(method).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-
-// 모달 열기
-function openModal(type){
-	document.getElementById(type+'_finder').style.display='block'
-	document.getElementById(type+'_finder_initial').click();
-}	
-
 // 빈 값 여부 체커
 function form_checker(_vals, highlight_needed){
 	var return_val = true;
@@ -46,6 +21,17 @@ $(document).ready(function(){
 		$('#init_passwd').val(key);
 		$('#pwchange_modal_poper').click();
 	}
+	$("#id_finder_opener").bind("click",function(){
+		$('#idFinderModal').find('input:text').val('');   
+		
+	});
+	
+	$("#pwd_finder_opener").bind("click",function(){
+		$('#pwdFinderModal').find('input:text').val('');
+	});
+	 
+	
+
 	
 //	$(".auto_inputs").keyup(function () {
 //	    if (this.value.length == this.maxLength) {
@@ -237,14 +223,5 @@ $(document).ready(function(){
 	    	$("#btn_login").click();
 	    }
 	});
-	
-	// 모달 종료
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }else if(event.target == modal2){
-	    	modal2.style.display = "none";
-	    }
-	}
 
 });

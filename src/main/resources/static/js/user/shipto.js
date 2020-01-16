@@ -111,6 +111,7 @@ function loadShippingdata(result){
 	$('#receiver_tel').val(result.receiver_tel);
 	$('#shipto_nm').val(result.shipto_nm);
 	$('#post_code').val(result.post_code);
+	$('#main_shipping').val(result.main_shipping);
 }
 
 function changeDefaultShipping(){
@@ -244,7 +245,8 @@ $("#shipto_change").bind("click",function(){
 	        	     "shipto_addr1" : $("#shipto_addr1").val(),
 	        	     "shipto_addr2" : $("#shipto_addr2").val(),
 	        	     "user_no" : user_no,
-	        	     "shipto_no" : $("#shipto_no").val()
+	        	     "shipto_no" : $("#shipto_no").val(),
+	        	     "main_shipping" : $("#main_shipping").val()
 	        		}),
 	    	contentType: "application/json",
 	        success : function(responseData){

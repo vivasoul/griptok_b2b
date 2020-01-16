@@ -68,6 +68,7 @@
            <div class="form-group">
             	<div class="col-sm-11 input-group">
 		            <input type="hidden" id="shipto_no" name="shipto_no"/>
+		            <input type="hidden" id="main_shipping" name="main_shipping"/>
 	          		<input type="text" id="shipto_nm" name="shipto_nm" placeholder="배송지 이름" class="form-control input-lg">
 		          </div>
             </div>

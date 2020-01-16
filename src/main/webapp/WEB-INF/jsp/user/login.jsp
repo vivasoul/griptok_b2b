@@ -45,9 +45,9 @@
 			<div class="row form-group">
 				<div class="col-md-12 control">
 					<div data-toggle="modal" data-target="#idFinderModal"
-						class="login_float">●아이디찾기</div>
+						id = "id_finder_opener"	class="login_float">●아이디찾기</div>
 					<div data-toggle="modal" data-target="#pwdFinderModal"
-						class="login_float">●비밀번호찾기</div>
+						id = "pwd_finder_opener" class="login_float">●비밀번호찾기</div>
 					<div onclick="location.href='/sign-up'" class="login_float">
 						●회원가입</div>
 					<button data-toggle="modal" data-target="#authModal"
