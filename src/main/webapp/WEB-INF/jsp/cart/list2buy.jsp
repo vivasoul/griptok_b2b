@@ -41,16 +41,18 @@
 						
 						<th data-column = "img_file" data-visible="false">이미지경로</th>
 						<th data-column = "tot_discount" data-visible="false">총할인금액</th>
+						<th data-column = "product_id" data-visible="false">고유번호</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="each" items="${arr }">
-							<tr data-row-id="${each.product_id }">
+							<tr>
 								<td>${each.title }</td>
 								<td>${each.carted_cnt }</td>
 								<td>${each.order_cost }</td>
 								<td>${each.img_file }</td>
 								<td>${each.tot_discount }</td>
+								<td>${each.product_id }</td>
 							</tr>
 						</c:forEach>
 				</tbody>
@@ -121,7 +123,7 @@
 							<tr>
 								<th>총 할인 금액</th>
 								<td>
-									<input type="text" name="final_discount_price" readonly class="form-control"/>
+									<input type="text" name="tot_order_discount" readonly class="form-control"/>
 								</td>
 							</tr>
 						</tbody>
@@ -129,7 +131,7 @@
 							<tr>
 					            <th>최종 결제 금액</th>
 					            <td>
-					            	<input type="text" name="final_order_price" readonly class="form-control"/>
+					            	<input type="text" name="tot_order_cost" readonly class="form-control"/>
 					            </td>
 					        </tr>
 						</tfoot>
@@ -153,11 +155,11 @@
 					const $f = $('#amount-confirm-form');
 					const dataArr = payTable.getRows().toArray();
 					const bindData = {
-						final_order_price : dataArr.map(function(x,y){return parseInt(x.order_cost)}).reduce(function(x,y){return x + y}),
-						final_discount_price : dataArr.map(function(x,y){return parseInt(x.tot_discount)}).reduce(function(x,y){return x + y})
+						tot_order_cost : dataArr.map(function(x,y){return parseInt(x.order_cost)}).reduce(function(x,y){return x + y}),
+						tot_order_discount : dataArr.map(function(x,y){return parseInt(x.tot_discount)}).reduce(function(x,y){return x + y})
 					};
 					
-					bindData.final_original_price = bindData.final_order_price + bindData.final_discount_price;
+					bindData.final_original_price = bindData.tot_order_cost + bindData.tot_order_discount;
 					
 					griptok.form.bindData($f,bindData);
 					
@@ -330,7 +332,52 @@
 			griptok.component.bootbox.alert({
 				title : "실시간 계좌 이체",
 				message : "우리은행 1005-182-103721 주식회<br>사 아이버스터 입금시 업체명으로<br> 입금해주세요",
-				size : "big"
+				size : "big",
+				callback : function(){
+					const $shipForm = $('#cart-shipto-form'),shipForm = $shipForm[0];
+					const $amountForm = $('#amount-confirm-form'),amountForm = $amountForm[0];
+					
+					const dataOrder = {
+						order_title : shipForm.shipto_no.value + "_" + shipForm.receiver_nm.value + "_주문_" + amountForm.tot_order_cost.value,
+						tot_order_cost	: amountForm.tot_order_cost.value				
+					};
+					
+					const dataOrderList = payTable.getRows().toArray().map(function(x){
+						return {
+							product_id : x.product_id,
+							order_cnt : x.carted_cnt,
+							order_cost : x.order_cost	
+						};
+					});
+					
+					const dataOrderDetail = {
+						receiver : shipForm.receiver_nm.value,
+						memo : shipForm.memo.value,
+						recv_addr : shipForm.addr.value
+					};
+					
+					const orderData = {
+						orderDetailVO : dataOrder,
+						orderList : dataOrderList,
+						orderedVO : dataOrderDetail
+					}
+					
+					$.ajax({
+						url : '/orders',
+						type : 'post',
+						contentType : "application/json",
+						data : JSON.stringify(orderData),
+						success : function(result){
+							if(result == -1){
+								console.log('exception occured in the server')
+							}else if(result >= 3){
+								console.log('successful')
+							}else{
+								console.log('something is wrong')
+							}
+						}
+					});
+				}
 			});
 		})
 	})

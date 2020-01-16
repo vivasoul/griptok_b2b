@@ -54,7 +54,7 @@ public class ShoppingController {
 	}
 	
 	@GetMapping("/ordered/view")
-	public String hst_detail(Model model,@RequestParam("id") String order_no,HttpSession session) {
+	public String hst_detail(Model model,@RequestParam("id") int order_no,HttpSession session) {
 		String viewPath = "order_hst/detail";
 		model.addAttribute("content_page", viewPath);
 		//TO-DO : get user_no from session.
@@ -87,13 +87,17 @@ public class ShoppingController {
 	}
 	
 	@GetMapping("/carted/purchase")
-	public String purchase_list(Model model,HttpSession session,@RequestParam("product_ids") String product_ids) {
+	public String purchase_list(Model model,HttpSession session,@RequestParam("product_ids") String productIds) {
 		String viewPath = "cart/list2buy";
 		model.addAttribute("content_page", viewPath);
 		
 		//TO-DO : get user_no from session.
 		int user_no = (int) session.getAttribute("user_no");
-		List<CartedVO> arr = cartMapper.listCarted(user_no);
+		CartedVO cartedVO = new CartedVO();
+		cartedVO.setUser_no(user_no);
+		cartedVO.setProductIds(productIds);
+		
+		List<CartedVO> arr = cartMapper.listCartedIn(cartedVO);
 		model.addAttribute("arr",arr);
 		
 		return "_template/main";

@@ -1,8 +1,7 @@
 package com.griptk.b2b.shopping.domain;
 
-import java.util.ArrayList;
-
 public class OrderDetailVO {
+	private int user_no;
 	private String reg_dt; //tb_order
 	private String order_no; //tb_order
 	
@@ -23,46 +22,12 @@ public class OrderDetailVO {
 		
 	}
 	
-	public OrderDetailVO(
-		String order_no,   	
-		String reg_dt,
-		String order_title, 		
-		int order_cnt, 		
-		double tot_order_cost
-	) {
-		this.order_no=	   	order_no;
-		this.reg_dt=	 	reg_dt;
-		this.order_title=	order_title;
-		this.order_cnt=	 	order_cnt;
-		this.tot_order_cost=	tot_order_cost;
+	public int getUser_no() {
+		return user_no;
 	}
-	
-	public ArrayList<OrderDetailVO> list() {
-		return new ArrayList<OrderDetailVO>() { 
-            {
-                add(
-            		new OrderDetailVO(
-        				"2019101200125"
-        				,"2019.10.12"
-        				,"카카오 그립톡  라이언"
-        				,3
-        				,10000
-        			)
-                ); 
-                add(
-            		new OrderDetailVO(
-        				"2019101200125"
-        				,"2019.10.12"
-        				,"카카오 그립톡  외무지"
-        				,5
-        				,30000
-        			)
-                );  
-            } 
-        }; 
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
 	}
-	
-	
 	public String getReg_dt() {
 		return reg_dt;
 	}

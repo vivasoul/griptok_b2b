@@ -10,6 +10,8 @@ public interface CartMapper {
 
 	List<CartedVO> listCarted(int user_no);
 	
+	List<CartedVO> listCartedIn(CartedVO cartedVO);
+	
 	int deleteCarted(@Param("user_no") int user_no, @Param("list") List<CartedVO> list);
 
 	int addToCart(List<CartedVO> list);

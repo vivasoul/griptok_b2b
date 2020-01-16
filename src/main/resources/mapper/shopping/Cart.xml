@@ -19,6 +19,23 @@
 		ON (a.product_id = c.product_id AND c.user_no = #{user_no})
 	</select>
 	
+	<select id="listCartedIn" parameterType="com.griptk.b2b.shopping.domain.CartedVO" resultType="com.griptk.b2b.shopping.domain.CartedVO">
+		SELECT 
+			a.product_id,
+			a.title,
+			c.carted_cnt,
+			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS img_file,
+			c.carted_cnt * a.sales_price as order_cost,
+			a.sales_price AS unit_price,
+			a.retail_price - a.sales_price AS unit_discount,
+			c.carted_cnt * (a.retail_price - a.sales_price) AS tot_discount,
+			'false' as checked
+		FROM tb_product a
+		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
+		INNER JOIN tb_carted_list c
+		ON (a.product_id = c.product_id AND c.user_no = #{user_no})
+		AND a.product_id in (${productIds})
+	</select>
 	
 	<delete id="deleteCarted">
 		DELETE

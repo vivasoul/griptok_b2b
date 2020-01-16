@@ -3,6 +3,7 @@ package com.griptk.b2b.shopping.domain;
 public class CartedVO {
 	private int user_no;
 	private int product_id;
+	private String productIds;
 	private String[] product_ids;
 	
 	private String title;
@@ -28,7 +29,12 @@ public class CartedVO {
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
-	
+	public String getProductIds() {
+		return productIds;
+	}
+	public void setProductIds(String productIds) {
+		this.productIds = productIds;
+	}
 	public String[] getProduct_ids() {
 		return product_ids;
 	}

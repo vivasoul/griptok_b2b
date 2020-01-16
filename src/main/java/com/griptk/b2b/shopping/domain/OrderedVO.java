@@ -4,7 +4,7 @@ package com.griptk.b2b.shopping.domain;
 public class OrderedVO {
 	
 	private int user_no; //tb_user
-	private String order_no; //tb_order_detail
+	private int order_no; //tb_order_detail
 	private String invoice_no; //tb_order_detail
 	private String sender; //tb_order_detail
 	private String receiver; //tb_order_detail
@@ -22,11 +22,11 @@ public class OrderedVO {
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-	public String getOrder_no() {
+	public int getOrder_no() {
 		return order_no;
 	}
 
-	public void setOrder_no(String order_no) {
+	public void setOrder_no(int order_no) {
 		this.order_no = order_no;
 	}
 

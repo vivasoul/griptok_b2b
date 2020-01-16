@@ -26,6 +26,19 @@
 		AND a.order_no = #{order_no}
 	</select>
 	
+	<select id="maxOrderNo" parameterType="int" resultType="int">
+		SELECT max(order_no)
+		FROM tb_order
+		WHERE user_no =#{user_no}
+	</select>
+	
+	<select id="selectSender" parameterType="int" resultType="String">
+		SELECT 
+			CONCAT(ceo_nm,'/',contact_tel,'/',tax_email) AS sender 
+		FROM tb_user 
+		where user_no = #{user_no}
+	</select>
+	
 	<select id="listChildOrder" parameterType="com.griptk.b2b.shopping.domain.OrderedVO" resultType="com.griptk.b2b.shopping.domain.OrderVO">
 		SELECT 
 			a.order_no,b.title,a.order_cnt,a.order_cost
@@ -36,4 +49,30 @@
 		AND a.order_no = #{order_no}
 		AND c.user_no = #{user_no}
 	</select>
+	
+	<insert id="insertOrder" parameterType="com.griptk.b2b.shopping.domain.OrderDetailVO">
+		INSERT INTO 
+			tb_order 
+				(user_no,order_title,tot_order_cost,order_status,reg_dt,upd_dt,order_dt)
+			VALUES
+				(#{user_no},#{order_title},#{tot_order_cost},'X',NOW(),NOW(),NOW())
+	</insert>
+	
+	<insert id="insertOrderList" parameterType="com.griptk.b2b.shopping.domain.OrderVO">
+		INSERT INTO 
+			tb_order_list
+				(order_no,product_id,order_cnt,order_cost)
+			VALUES
+				(#{order_no},#{product_id},#{order_cnt},#{order_cost})
+	</insert>
+	
+	<insert id="insertDetail" parameterType="com.griptk.b2b.shopping.domain.OrderedVO">
+		INSERT INTO 
+			tb_order_detail
+				(order_no,invoice_no,sender,receiver,memo,recv_addr,upd_dt)
+			VALUES
+				(#{order_no},#{invoice_no},#{sender},#{receiver},#{memo},#{recv_addr},NOW())
+	</insert>
+	
+	
 </mapper>
