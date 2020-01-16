@@ -80,14 +80,14 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="border-right-1">
-								<input type="text" id="tot-original-price" readonly class="form-control border-none bg-transparent"/> 
+							<td class="border-right-1 col-md-4">
+								<input type="text" id="tot-original-price" readonly class=" border-none bg-transparent" style="width:100%;"/> 
 							</td>
 							<td class="border-right-1">
-								<input type="text" id="tot-discount-price" readonly class="form-control border-none bg-transparent"/> 
+								<input type="text" id="tot-discount-price" readonly class=" border-none bg-transparent" style="width:100%;"/> 
 							</td>
 							<td>
-								<input type="text" id="tot-order-price" readonly class="form-control border-none bg-transparent font-size-large color-red"/>
+								<input type="text" id="tot-order-price" readonly class=" border-none bg-transparent font-size-large color-red" style="width:100%;"/>
 							</td>
 						</tr>
 					</tbody>
