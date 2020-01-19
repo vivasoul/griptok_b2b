@@ -13,7 +13,7 @@
 			OR 
 			menu_auth = #{menu_auth}
 		)  
-		AND menu_id != 'shop_main'
+		AND view_yn = 'Y'
 		ORDER BY sort_no
 	</select>
 	
