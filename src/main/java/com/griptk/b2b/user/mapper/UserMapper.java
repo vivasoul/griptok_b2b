@@ -25,11 +25,7 @@ public interface UserMapper {
 	
 	int setPasswd(UserVO userVo);
 	
-	int insertImgInfo(ImageVO imgVo);
-	
 	int updateImgInfo(ImageVO imgVo);
-	
-	int getImgNo();
 	
 	UserVO getUserInfo(int user_no);
 	

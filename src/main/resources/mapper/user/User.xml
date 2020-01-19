@@ -17,29 +17,7 @@
 		SELECT count(*) FROM tb_user
 		WHERE biz_reg_number = #{biz_reg_number}
 	</select>
-	
-	<insert id="insertImgInfo" parameterType="com.griptk.b2b.user.domain.UserVO" >
-		INSERT INTO tb_img_file_info(
-			file_nm,
-			file_path,
-			file_size,
-			reg_dt,
-			file_format,
-			img_width,
-			img_height
-		)
-		VALUES(
-			#{file_nm},
-			#{file_path},
-			#{file_size},
-			now(),
-			#{file_format},
-			#{img_width},
-			#{img_height}
-		)
 		
-	</insert>
-	
 	<insert id="updateImgInfo" parameterType="com.griptk.b2b.user.domain.UserVO" >
 		UPDATE tb_img_file_info
 		SET file_nm=#{file_nm},
@@ -52,11 +30,7 @@
 			img_no = (SELECT biz_img_no FROM tb_user WHERE user_no = #{user_no})
 		
 	</insert>
-	
-	<select id="getImgNo" resultType="Integer">
-		SELECT LAST_INSERT_ID();
-	</select>
-	
+		
 	<select id="getUserInfo" parameterType="Integer" resultType="com.griptk.b2b.user.domain.UserVO">
 		SELECT user_id, 
 			u.company_nm,

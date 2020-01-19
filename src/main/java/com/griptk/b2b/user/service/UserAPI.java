@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.griptk.b2b.common.service.FileAPI;
 import com.griptk.b2b.user.domain.ImageVO;
 import com.griptk.b2b.user.domain.PasswdVO;
 import com.griptk.b2b.user.domain.UserVO;
@@ -35,6 +36,8 @@ import com.griptk.b2b.util.password.PasswordGenerator;
 @RestController
 @MapperScan({"com.griptk.b2b.user.mapper.*"})
 public class UserAPI {
+	@Autowired 
+	private FileAPI fileAPI;
 	
 	@Autowired
 	private UserMapper mapper;
@@ -73,50 +76,6 @@ public class UserAPI {
 		return mapper.checkBizRegNumber(biz_reg_number);
 	}
 	
-	public ImageVO uploadFile(
-			MultipartFile mf) throws Exception {
-		
-		String uploadPath = "";
-		
-		// mapper
-		String path = "D:\\"+"upload\\"; // 파일 업로드 경로
-			
-		String original = mf.getOriginalFilename(); // 업로드하는 파일 name
-			
-		uploadPath = path+original; // 파일 업로드 경로 + 파일 이름
-		
-		File imag_file = new File(uploadPath);
-		
-		if(imag_file.exists()){
-			imag_file.delete();
-		}
-		
-		
-		mf.transferTo(imag_file); // 파일을 위에 지정 경로로 업로드
-		
-		BufferedImage bimg = ImageIO.read(imag_file);
-		int width          = bimg.getWidth();
-		int height         = bimg.getHeight();
-		
-		String extension = "";
-
-		int i = original.lastIndexOf('.');
-		if (i >= 0) {
-		    extension = original.substring(i+1);
-		}
-		
-		ImageVO imgVo = new ImageVO();
-		imgVo.setFile_nm(original);
-		imgVo.setFile_format(extension);
-		imgVo.setFile_path(uploadPath);
-		imgVo.setFile_size(imag_file.length());
-		imgVo.setImg_width(width);
-		imgVo.setImg_height(height);
-		
-		return imgVo;
-		
-	}
-	
 	// sign_up
 	@Transactional
 	@PostMapping("/sign_up/sign_up")
@@ -129,22 +88,16 @@ public class UserAPI {
 		int result = 1;
 		
 		try{
+			ImageVO imgVO = fileAPI.uploadBizImage(real_file);
 			
-			ImageVO imgVo = uploadFile(real_file);
-			
-			int img_result = mapper.insertImgInfo(imgVo);
-			
-			int img_no = mapper.getImgNo();
-			
-			vo.setBiz_img_no(img_no);
+			vo.setBiz_img_no(imgVO.getImg_no());
 			
 			String new_temp_password = passwordEncoder.encode(vo.getPasswd());
 			
 			vo.setPasswd(new_temp_password);
 
-			int user_result = mapper.signUpUser(vo);
-			
-			int login_result = mapper.insertLoginInfo(vo);
+			mapper.signUpUser(vo);
+			mapper.insertLoginInfo(vo);
 
 			session.setAttribute("registered", "registered");
 			response.sendRedirect("/login");
@@ -331,7 +284,7 @@ public class UserAPI {
 			
 			int img_result = 1;
 			if(!real_file.isEmpty()){
-				ImageVO imgVo = uploadFile(real_file);
+				ImageVO imgVo = fileAPI.uploadBizImage(real_file);
 				imgVo.setUser_no(vo.getUser_no());
 				img_result = mapper.updateImgInfo(imgVo);
 			}

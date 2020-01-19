@@ -21,9 +21,11 @@ spring:
   username: admin 
   password: lktnyhkdh
 ---
+upload:
+  location: D:/upload
 spring:  
  resources: 
-  static-locations: classpath:/static/
+  static-locations: classpath:/static/,file:///D:/upload
  mvc: 
   view:
    prefix: /WEB-INF/jsp/

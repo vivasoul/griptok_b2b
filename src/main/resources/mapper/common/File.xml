@@ -2,5 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.common.mapper.FileMapper">
+	<insert id="insertImgInfo" parameterType="com.griptk.b2b.user.domain.ImageVO" >
+		INSERT INTO tb_img_file_info(file_nm, file_path, file_size, reg_dt, file_format, download_nm, img_width, img_height )
+		VALUES( #{file_nm}, #{file_path}, #{file_size}, NOW(), #{file_format}, #{download_nm}, #{img_width}, #{img_height} )
+	</insert>
 	
+	<select id="getImgNo" resultType="Long">
+		SELECT LAST_INSERT_ID() AS img_no;
+	</select>		
 </mapper>
