@@ -1,5 +1,6 @@
 package com.griptk.b2b.user.service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -51,11 +52,12 @@ public class UserController {
 	@RequestMapping("/sign-out")
 	public String goSignOut(HttpSession session) {
 		session.invalidate();
-		return "redirect:/main";
+		return "redirect:/login";
 	}
 	
 	@RequestMapping("/")
-	public String goFirst() {
-		return "redirect:/main";
+	public String goFirst(HttpSession session) {
+		boolean isLogined = session.getAttribute("user_no") != null;
+		return isLogined ? "redirect:/main" : "redirect:/login";
 	}	
 }
