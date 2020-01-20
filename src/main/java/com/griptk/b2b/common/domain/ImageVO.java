@@ -1,4 +1,4 @@
-package com.griptk.b2b.user.domain;
+package com.griptk.b2b.common.domain;
 
 public class ImageVO {
 	private long img_no;

@@ -1,11 +1,8 @@
 package com.griptk.b2b.user.service;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -24,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.griptk.b2b.common.domain.ImageVO;
 import com.griptk.b2b.common.service.FileAPI;
-import com.griptk.b2b.user.domain.ImageVO;
 import com.griptk.b2b.user.domain.PasswdVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.domain.WithdrawalVO;

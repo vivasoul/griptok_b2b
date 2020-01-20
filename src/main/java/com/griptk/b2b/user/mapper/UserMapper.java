@@ -1,6 +1,6 @@
 package com.griptk.b2b.user.mapper;
 
-import com.griptk.b2b.user.domain.ImageVO;
+import com.griptk.b2b.common.domain.ImageVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.domain.WithdrawalVO;
 

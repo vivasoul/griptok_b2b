@@ -3,6 +3,7 @@ package com.griptk.b2b.common.service;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,14 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.griptk.b2b.common.domain.ImageVO;
 import com.griptk.b2b.common.mapper.FileMapper;
-import com.griptk.b2b.user.domain.ImageVO;
 
 @RestController
 @RequestMapping("/files")
@@ -40,14 +42,22 @@ public class FileAPI {
 	}
 	
 	@Transactional
-	@PostMapping("/product_image")
-	public List<ImageVO> uploadProductImages() {
-		return null;
+	//@PostMapping("/product_image")
+	public List<ImageVO> uploadProductImages(List<MultipartFile> upload_files) throws IllegalStateException, IOException {
+		List<ImageVO> result = new ArrayList<>();
+		for(MultipartFile mf: upload_files) {
+			ImageVO imgVO = getImageVOFromMultipart("/product_image/",mf);
+			mapper.insertImgInfo(imgVO);
+			long img_no = mapper.getImgNo();
+			imgVO.setImg_no(img_no);
+			result.add(imgVO);
+		}
+		return result;
 	}
 	
-	@GetMapping("/{file_no}")
-	public ImageVO getFile() { 
-		return null;
+	@GetMapping("/{img_no}")
+	public ImageVO getFile(@PathVariable("img_no") long img_no) { 
+		return mapper.getFile(img_no);
 	}
 	
 	private ImageVO getImageVOFromMultipart(String file_path, MultipartFile upload_file) throws IllegalStateException, IOException {
@@ -59,13 +69,12 @@ public class FileAPI {
 		    extension = download_nm.substring(i+1);
 		}
 		String file_nm = UUID.randomUUID().toString()+"."+extension; // file_name for upload
-		String absolute_path = new StringBuilder().append(UPLOAD_DIR)
-												  .append(file_path)
-												  .append(file_nm).toString();
-		File img_file = new File(absolute_path);
-		System.out.println(img_file.getAbsolutePath());
-		if(img_file.exists()) img_file.delete();
+		String absolute_path = UPLOAD_DIR+file_path;
 		
+		File dir_path = new File(absolute_path);
+		if(!dir_path.exists()) dir_path.mkdirs();
+		
+		File img_file = new File(absolute_path+file_nm);
 		upload_file.transferTo(img_file); // 파일을 위에 지정 경로로 업로드
 		
 		BufferedImage bimg = ImageIO.read(img_file);
