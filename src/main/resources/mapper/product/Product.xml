@@ -36,7 +36,7 @@
 		LIMIT 5
 	</select>
 	
-	<select id="listDcProducts" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listDcProducts" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -48,9 +48,10 @@
 		WHERE 1=1
 		AND a.is_dc = 'Y'
 		${order_by}
+		LIMIT #{start}, #{limit}
 	</select>	
 	
-	<select id="listProducts" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -62,9 +63,10 @@
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		${order_by}
+		LIMIT #{start}, #{limit}
 	</select>	
 	
-	<select id="listProducts_C" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_C" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -77,11 +79,12 @@
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
 		WHERE 1=1
-		AND c.craft_no = #{craft_no}
+		AND c.craft_no = #{id}
 		${order_by}
+		LIMIT #{start}, #{limit}
 	</select>
 	
-	<select id="listProducts_CC" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_CC" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -93,11 +96,12 @@
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
-		AND a.category_no = #{category_no}
+		AND a.category_no = #{id}
 		${order_by}
+		LIMIT #{start}, #{limit}
 	</select>
 	
-	<select id="listProducts_B" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_B" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -111,11 +115,12 @@
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
 		INNER JOIN tb_brand_type d ON c.brand_no = d.brand_no
 		WHERE 1=1
-		AND d.p_brand_no = #{p_brand_no}	
+		AND d.p_brand_no = #{id}	
 		${order_by}
+		LIMIT #{start}, #{limit}
 	</select>
 	
-	<select id="listProducts_BB" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_BB" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -128,8 +133,9 @@
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
 		WHERE 1=1
-		AND c.brand_no = #{brand_no}
+		AND c.brand_no = #{id}
 		${order_by}
+		LIMIT #{start}, #{limit}
 	</select>				
 	
 	<select id="getAllCounts" resultType="Int">

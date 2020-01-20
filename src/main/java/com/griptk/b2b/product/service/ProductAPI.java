@@ -2,6 +2,8 @@ package com.griptk.b2b.product.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.griptk.b2b.product.domain.IProductSortType;
+import com.griptk.b2b.product.domain.PredicateVO;
 import com.griptk.b2b.product.domain.ProductDetailVO;
 import com.griptk.b2b.product.domain.ProductVO;
 import com.griptk.b2b.product.mapper.ProductMapper;
@@ -31,45 +34,38 @@ public class ProductAPI {
 	}
 	
 	@GetMapping("/dc")
-	public List<ProductVO> getDCProducts(@RequestParam(value="sort_type", defaultValue=IProductSortType.ORDER_BY_REG_DT) String sort_type){
-		String order_by = getOrderByFragment(sort_type);
-		return mapper.listDcProducts(order_by);
+	public List<ProductVO> getDCProducts(HttpServletRequest req){
+		return mapper.listDcProducts(generatePredicate(0,req));
 	}
 	
 	@GetMapping("")
-	public List<ProductVO> getAllProducts(@RequestParam(value="sort_type", defaultValue=IProductSortType.ORDER_BY_REG_DT) String sort_type){
-		String order_by = getOrderByFragment(sort_type);
-		return mapper.listProducts(order_by);
+	public List<ProductVO> getAllProducts(HttpServletRequest req){
+		return mapper.listProducts(generatePredicate(0,req));
 	}
 	
 	@GetMapping("/craft/{craft_no}")
-	public List<ProductVO> getProducts_C(@PathVariable("craft_no") int craft_no,
-										 @RequestParam(value="sort_type", defaultValue=IProductSortType.ORDER_BY_REG_DT) String sort_type){
-		String order_by = getOrderByFragment(sort_type);
-		return mapper.listProducts_C(craft_no, order_by);
+	public List<ProductVO> getProducts_C(@PathVariable("craft_no") int craft_no, HttpServletRequest req){
+		return mapper.listProducts_C(generatePredicate(craft_no,req));
 	}
 	
 	@GetMapping("/craft/{craft_no}/{category_no}")
 	public List<ProductVO> getProducts_CC(@PathVariable("craft_no") int craft_no,
 										  @PathVariable("category_no") int category_no,
-										  @RequestParam(value="sort_type", defaultValue=IProductSortType.ORDER_BY_REG_DT) String sort_type){
-		String order_by = getOrderByFragment(sort_type);
-		return mapper.listProducts_CC(category_no, order_by);
+										  HttpServletRequest req){
+		return mapper.listProducts_CC(generatePredicate(category_no,req));
 	}
 	
 	@GetMapping("/brand/{p_brand_no}")
 	public List<ProductVO> getProducts_B(@PathVariable("p_brand_no") int p_brand_no,
-										 @RequestParam(value="sort_type", defaultValue=IProductSortType.ORDER_BY_REG_DT) String sort_type){
-		String order_by = getOrderByFragment(sort_type);
-		return mapper.listProducts_B(p_brand_no, order_by);
+										 HttpServletRequest req){
+		return mapper.listProducts_B(generatePredicate(p_brand_no,req));
 	}
 	
 	@GetMapping("/brand/{p_brand_no}/{brand_no}")
 	public List<ProductVO> getProducts_BB(@PathVariable("p_brand_no") int p_brand_no,
 										  @PathVariable("brand_no") int brand_no,
-										  @RequestParam(value="sort_type", defaultValue=IProductSortType.ORDER_BY_REG_DT) String sort_type){
-		String order_by = getOrderByFragment(sort_type);
-		return mapper.listProducts_BB(brand_no, order_by);
+										  HttpServletRequest req){
+		return mapper.listProducts_BB(generatePredicate(brand_no,req));
 	}
 	@GetMapping("/{product_id}")
 	public ProductDetailVO getDetail(@PathVariable("product_id") int product_id) {
@@ -85,5 +81,27 @@ public class ProductAPI {
 			case IProductSortType.ORDER_BY_SALES:	  return "ORDER BY a.reg_dt desc";
 			default:								  return "ORDER BY a.reg_dt desc";
 		}
+	}
+	
+	private PredicateVO generatePredicate(int id, HttpServletRequest req) {
+		PredicateVO data = new PredicateVO();
+		String sort_type = req.getParameter("sort_type");
+		String limit 	 = req.getParameter("limit");
+		String page 	 = req.getParameter("page");
+		int _limit = 20;
+		int _page = 0;
+		
+		if(limit != null) {
+			try { _limit = Integer.parseInt(limit); }catch(NumberFormatException ne) {}
+		}
+		if(page != null) {
+			try { _page = Integer.parseInt(page); }catch(NumberFormatException ne) {}
+		}
+		
+		data.setId(id);
+		data.setOrder_by(getOrderByFragment(sort_type != null ? sort_type : IProductSortType.ORDER_BY_REG_DT));
+		data.setLimit(_limit);
+		data.setStart(_limit*_page);
+		return data;
 	}
 }
