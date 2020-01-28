@@ -1,50 +1,43 @@
+body {
+	background-image:url(/img/common/login_background_6.png);
+	background-repeat:no-repeat;
+	background-position-x:center;
+	background-position-y:top;
+}
+
+.griptok-header { border-bottom:1px solid #A6A6A6; }
+
 #gtk-signup-title { font-size:30px;font-weight:400;padding-bottom:10px; }
 .gtk-login-process-box .gtk-process-bar { min-width:300px; }
 .gtk-login-process-box .gtk-process-bar button{ width:90%; }
 
-
-#loginbox { margin-top:25px;margin-bottom:100px }
-#loginbox .row{ margin-bottom:25px; }
-
 .login_top img { width:450px; }
-.login_top .gtk-login-summary { display:inline-block; vertical-align:middle; }
-.bottom_menu { 
-	margin-top:15px;
-}
-.gtk-login-btn-group { text-align:center }
+.login_top .gtk-login-summary { display:inline-block; vertical-align:top; padding:55px 0px 0px 165px;color:#5E5E5E; }
 
-#loginbox .input-group { margin-bottom:10px; }
+.login-middle-pad { display:block;height:110px; }
+.login-content { display:block;width:470px;margin:0 auto; }
+.gtk-login-btn-group { text-align:center }
+.media-object { height: 65px; }
+
+#loginbox .row{ margin-bottom:15px; }
+#loginbox .row>div { padding:0px; }
+#loginbox .input-group { margin-bottom:5px;padding-right:5px; }
 #loginbox .input-group input, 
-#loginbox .input-group button { height:35px; }
-#loginbox .input-group input  { width:70%;border:2px solid #999;border-radius:0px; }
+#loginbox .input-group button { height:30px; }
+#loginbox .input-group input  { width:70%;border:1px solid #EAEAEA;border-radius:0px;font-size:13px }
 #loginbox .input-group.no-addon input  { width:100%; }
 #loginbox .input-group button { width:30%; }
 #loginbox .gtk-term-condition-group { border:1px solid #dadada; min-height:180px; }
 #loginbox .gtk-term-condition-group .gtk-term-condition-box { padding:0px; }
 #loginbox .gtk-term-condition-group .gtk-term-condition-box>pre { background-color:#f5f6f7;height:125px;border:0px;border-radius:0px; }
 
+.login-option-group { padding-left:10px !important;font-size:12px; }
+.login-option-group .login_float{ padding-right:10px; cursor:pointer; float:left; }
+.login-option-group .login_float .option-icon { color: #A6A6A6; margin-right: 5px; font-size: 5px; }
+.login-option-group .login_float .option-text { vertical-align:middle; }
+
+.login-guide-box { border:1px solid #EAEAEA;background-color:#FFF;margin-bottom:110px;padding:20px; }
+.login-guide-box .guide-title { color:#5E5E5E;font-size:20px;font-weight:700;margin-bottom:10px; }
+.login-guide-box .guide-content { color:#A6A6A6;font-size:15px;padding-left:15px;line-height:24px; }
+
 /*#loginbox .gtk-btn.gtk-btn-sm { width:85px; }*/
-.bottom_menu>a {
-	 display:inline-block;
-	 width:250px;
-	 height:45px;
-	 box-shadow: 
-	    2px 0 0 0 #CCC, 
-	    0 2px 0 0 #CCC, 
-	    2px 2px 0 0 #CCC,   /* Just to fix the corner */
-		    2px 0 0 0 #CCC inset, 
-		    0 2px 0 0 #CCC inset;
-	 padding-top:12px;
-	 text-align:center;
-	 text-decoration:none;
-	 color:#333;
-	 font-weight:700;
-}
-.bottom_menu>a:hover {
-	background-color:#999;
-	color:#FFF;
-}
-.bottom_copyright {
-		padding-top:10px;
-		text-align:center; 
-}

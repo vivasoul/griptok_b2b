@@ -3,11 +3,7 @@
 	 text-align: center;
 }
 
-.login_float{
-	padding-right : 10px;
-	cursor:pointer;
-	float:left;
-}
+
 
 .h_tag_left{
 	text-align : left;
@@ -25,14 +21,6 @@
 .option-button {
     height:100%;
     width:100%;
-}
-
-.media-object {
-    height: 100px;
-}
-
-#login_passwd{
-	margin-top:10px;
 }
 
 .notice{

@@ -12,17 +12,9 @@
 %>
 
 <div class="container-fluid custom-container">
-	<div class="row">
+	<div class="login-middle-pad"></div>
+	<div class="row login-content" id="loginbox">
 		<div class="mainbox col-sm-12">
-			<h3 class="h_tag_left">가입 절차</h3>
-			<h4 class="h_tag_left">1. 회원가입 중 사업자 등록증 사본 이미지 등록</h4>
-			<h4 class="h_tag_left">2. 승인대기</h4>
-			<h4 class="h_tag_left">3. 담당자 확인 후 승인 완료</h4>
-			<h4 class="h_tag_left">4. 사이트 로그인 후 이용</h4>
-		</div>
-	</div>
-	<div class="row" id="loginbox">
-		<div class="mainbox col-sm-5">
 			<div class="row">
 				<div style="display: none" id="login-alert"
 					class="alert alert-danger col-sm-12"></div>
@@ -30,12 +22,10 @@
 			<div class="row">
 				<div class="media-object col-sm-8">
 					<div class="col-sm-12 input-group no-addon">
-						<input id="login_user_id" name="user_id" type="text"
-							placeholder="아이디" class="form-control input-lg">
+						<input id="login_user_id" name="user_id" type="text" placeholder="아이디" class="form-control input-lg">
 					</div>
 					<div class="col-sm-12 input-group no-addon">
-						<input id="login_passwd" name="passwd" type="password"
-							placeholder="비밀번호" class="form-control input-lg">
+						<input id="login_passwd" name="passwd" type="password" placeholder="비밀번호" class="form-control input-lg">
 					</div>
 				</div>
 				<div class="media-object col-sm-4">
@@ -43,19 +33,28 @@
 				</div>
 			</div>
 			<div class="row form-group">
-				<div class="col-md-12 control">
+				<div class="col-md-12 control login-option-group">
 					<div data-toggle="modal" data-target="#idFinderModal"
-						id = "id_finder_opener"	class="login_float">●아이디찾기</div>
+						id = "id_finder_opener"	class="login_float"><span class="option-icon">●</span><span class="option-text">아이디 찾기</span></div>
 					<div data-toggle="modal" data-target="#pwdFinderModal"
-						id = "pwd_finder_opener" class="login_float">●비밀번호찾기</div>
+						id = "pwd_finder_opener" class="login_float"><span class="option-icon">●</span><span class="option-text">비밀번 호찾기</span></div>
 					<div onclick="location.href='/sign-up'" class="login_float">
-						●회원가입</div>
+						<span class="option-icon">●</span>회원 가입</div>
 					<button data-toggle="modal" data-target="#authModal"
 						id="auth_modal_poper" class="hidden"></button>
 					<button data-toggle="modal" data-target="#pwChangeModal"
 						id="pwchange_modal_poper" class="hidden"></button>	
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="row login-content">
+		<div class="login-guide-box col-sm-12">
+			<div class="guide-title">가입 절차</div>
+			<div class="guide-content">1. 회원가입 중 사업자 등록증 사본 이미지 등록</div>
+			<div class="guide-content">2. 승인대기</div>
+			<div class="guide-content">3. 담당자 확인 후 승인 완료</div>
+			<div class="guide-content">4. 사이트 로그인 후 이용</div>
 		</div>
 	</div>
 </div>
