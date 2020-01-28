@@ -19,6 +19,6 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/_template/login/header.jsp" flush="false" />
 <jsp:include page="<%=content_page%>"  flush="false" />
-<jsp:include page="/WEB-INF/jsp/_template/login/footer.jsp" flush="false" />
+<jsp:include page="/WEB-INF/jsp/_template/common/footer.jsp" flush="false" />
 </body>
 </html>
