@@ -3,11 +3,12 @@
 
 body {
 /*	margin: 1% !important;*/
-	max-width:1200px;
-	margin:0 auto !important;
 	font-family: 'Nanum Gothic', sans-serif !important;
 }
-
+a,a:hover{ text-decoration:none; }
+ 
+.griptok-header, .griptok-body, .griptok-footer { max-width:1200px; margin:0 auto !important; }
+.slash-seperator { padding:0px 12px; }
 /* menus */
 .top_menu { 
 	 text-align:right;
@@ -39,7 +40,7 @@ body {
 .bottom_menu { margin-top:10px; margin-right:17px; }
 .bottom-pad { display:block; height:17px; }
 .bottom_menu>a { text-decoration:none; color:#333; } 
-.bottom_menu>.bottom_menu_sep { padding:0px 12px; }
+.bottom_menu>.slash-seperator { padding:0px 12px; }
 .gtk-logo-text { width:768px; padding:20px 3%; border:1px solid #C3C3C3; float:right; vertical-align:top;font-size:12px; }
 .gtk-logo-text>.left-text {display: inline-block; width: 47%; vertical-align: top;}
 .gtk-logo-text>.right-text {display: inline-block; width: 47%;}

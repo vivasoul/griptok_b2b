@@ -8,7 +8,7 @@
 	String side_title = (String)request.getAttribute("side_title");
 	List<MenuVO> side_menus = (List<MenuVO>)request.getAttribute("side_menus");
 %>
-<div class="container-fluid">
+<div class="container-fluid griptok-body">
 	<div class="row">
 		<%if(side_menus != null && !side_menus.isEmpty()) {%>
 		<div class="col-sm-2">

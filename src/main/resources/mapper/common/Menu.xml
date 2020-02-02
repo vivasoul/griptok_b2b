@@ -8,11 +8,7 @@
 		FROM tb_menu
 		WHERE 1=1
 		AND p_menu_id = 'client_root'
-		AND ( 
-			menu_auth = 'A'
-			OR 
-			menu_auth = #{menu_auth}
-		)  
+		AND ( menu_auth = 'A' OR menu_auth = #{menu_auth} )  
 		AND view_yn = 'Y'
 		ORDER BY sort_no
 	</select>
@@ -23,11 +19,7 @@
 		FROM tb_menu
 		WHERE 1=1
 		AND p_menu_id = #{p_menu_id}
-		AND ( 
-			menu_auth = 'A'
-			OR 
-			menu_auth = #{menu_auth}
-		)
+		AND ( menu_auth = 'A' OR menu_auth = #{menu_auth} )
 		ORDER BY sort_no
 	</select>
 	

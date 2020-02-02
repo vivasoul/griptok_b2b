@@ -11,7 +11,7 @@
 	session.invalidate();
 %>
 
-<div class="container-fluid custom-container">
+<div class="container-fluid custom-container griptok-body">
 	<div class="login-middle-pad"></div>
 	<div class="row login-content" id="loginbox">
 		<div class="mainbox col-sm-12">

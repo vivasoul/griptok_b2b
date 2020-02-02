@@ -6,8 +6,8 @@
 		</div><!-- 
 	 --><div class="bottom-liner-right">
 		<nav class="nav bottom_menu"><!-- 
-		--><a href="#">About Us</a><span class="bottom_menu_sep">/</span><!-- 
-		   --><a href="#">Privacy Policy</a><span class="bottom_menu_sep">/</span><!--
+		--><a href="#">About Us</a><span class="slash-seperator">/</span><!-- 
+		   --><a href="#">Privacy Policy</a><span class="slash-seperator">/</span><!--
 		   --><a href="#">Terms of Use</a><!--
 		--></nav>
 		</div>
