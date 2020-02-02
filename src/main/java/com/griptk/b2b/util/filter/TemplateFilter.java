@@ -60,6 +60,7 @@ public class TemplateFilter implements Filter{
 					break;
 				case ITemplateType.ADMIN_TEMPLATE:
 					/* Need to update to top menus for admin only */
+					request.setAttribute("side_title", "관리자");
 					request.setAttribute("side_menus", menuMng.listSubMenu("admin_root", "L"));
 				default:
 					//DO NOTHING

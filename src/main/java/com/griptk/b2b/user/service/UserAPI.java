@@ -164,6 +164,7 @@ public class UserAPI {
 				result = 0;
 			}else{
 				session.setAttribute("user_no", loginInfo.getUser_no());
+				session.setAttribute("auth_type", loginInfo.getAuth_type());
 			}
 			resp.put("aprv_status", loginInfo.getAprv_status());
 		}catch(Exception e){

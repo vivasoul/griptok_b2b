@@ -1,15 +1,22 @@
 package com.griptk.b2b.user.domain;
 
+import java.io.Serializable;
+
 import org.springframework.web.multipart.MultipartFile;
 
-public class UserVO {
-	
+public class UserVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7125856825648054188L;
+		
 	private int user_no;
 	// login
 	private String passwd;
 	private String reg_dt;
 	private String upd_dt;
 	private String aprv_status;
+	private String auth_type;
 	
 	private MultipartFile real_file;
 	private String file_nm;
@@ -58,6 +65,12 @@ public class UserVO {
 	}
 	public void setAprv_status(String aprv_status) {
 		this.aprv_status = aprv_status;
+	}
+	public String getAuth_type() {
+		return auth_type;
+	}
+	public void setAuth_type(String auth_type) {
+		this.auth_type = auth_type;
 	}
 	public MultipartFile getReal_file() {
 		return real_file;
@@ -158,11 +171,11 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "UserVO [user_no=" + user_no + ", passwd=" + passwd + ", reg_dt=" + reg_dt + ", upd_dt=" + upd_dt
-				+ ", aprv_status=" + aprv_status + ", real_file=" + real_file + ", file_nm=" + file_nm + ", user_id="
-				+ user_id + ", company_nm=" + company_nm + ", biz_reg_number=" + biz_reg_number + ", ceo_nm=" + ceo_nm
-				+ ", biz_category=" + biz_category + ", post_code=" + post_code + ", biz_addr_1=" + biz_addr_1
-				+ ", biz_addr_2=" + biz_addr_2 + ", contact_tel=" + contact_tel + ", tax_email=" + tax_email
-				+ ", manager_nm=" + manager_nm + ", manager_tel=" + manager_tel + ", manager_email=" + manager_email
-				+ ", biz_img_no=" + biz_img_no + "]";
+				+ ", aprv_status=" + aprv_status + ", auth_type=" + auth_type + ", real_file=" + real_file
+				+ ", file_nm=" + file_nm + ", user_id=" + user_id + ", company_nm=" + company_nm + ", biz_reg_number="
+				+ biz_reg_number + ", ceo_nm=" + ceo_nm + ", biz_category=" + biz_category + ", post_code=" + post_code
+				+ ", biz_addr_1=" + biz_addr_1 + ", biz_addr_2=" + biz_addr_2 + ", contact_tel=" + contact_tel
+				+ ", tax_email=" + tax_email + ", manager_nm=" + manager_nm + ", manager_tel=" + manager_tel
+				+ ", manager_email=" + manager_email + ", biz_img_no=" + biz_img_no + "]";
 	}
 }
