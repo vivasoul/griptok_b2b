@@ -1,7 +1,7 @@
 .griptok-header.most-top-menus { height:42px;padding:11px; text-align:right;font-size:12px;letter-spacing:-2px; }
 .griptok-header.most-top-menus>a { color:#747474; }
 .griptok-header.most-top-menus.slash-seperator { padding:0px 5px; }
-.most-top-baseline { border:1px solid #DCDCDC; }
+.most-top-baseline { border-top:1px solid #DCDCDC; }
 .griptok-brand-parents {padding-top:20px; text-align:right; font-size:15px; font-weight:800;letter-spacing:-1px; }
 .griptok-brand-parents>.slash-seperator { padding:0px 17px; }
 .griptok-brand-parents>a,.griptok-brand-parents>.slash-seperator{ color:#00A1E3; }
