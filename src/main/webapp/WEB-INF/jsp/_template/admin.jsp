@@ -11,6 +11,7 @@
 <script src="/js/common.js"></script>
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/admin/common.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/_template/admin/header.jsp" flush="false" />

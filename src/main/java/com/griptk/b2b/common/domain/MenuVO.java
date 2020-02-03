@@ -1,5 +1,7 @@
 package com.griptk.b2b.common.domain;
 
+import java.util.List;
+
 public class MenuVO{
 	private String menu_id;
 	private String menu_nm;
@@ -9,6 +11,7 @@ public class MenuVO{
 	private String template_id;
 	private String menu_path;
 	private String id_path;
+	private List<MenuVO> sub_menus;
 	public String getMenu_id() {
 		return menu_id;
 	}
@@ -57,10 +60,16 @@ public class MenuVO{
 	public void setId_path(String id_path) {
 		this.id_path = id_path;
 	}
+	public List<MenuVO> getSub_menus() {
+		return sub_menus;
+	}
+	public void setSub_menus(List<MenuVO> sub_menus) {
+		this.sub_menus = sub_menus;
+	}
 	@Override
 	public String toString() {
 		return "MenuVO [menu_id=" + menu_id + ", menu_nm=" + menu_nm + ", p_menu_id=" + p_menu_id + ", menu_url="
 				+ menu_url + ", menu_auth=" + menu_auth + ", template_id=" + template_id + ", menu_path=" + menu_path
-				+ ", id_path=" + id_path + "]";
+				+ ", id_path=" + id_path + ", sub_menus=" + sub_menus + "]";
 	}
 }

@@ -62,4 +62,8 @@ public class MenuManager {
 	public List<MenuVO> listSubMenu(String p_menu_id, String menu_auth) {
 		return api.getMenuByParent(p_menu_id, menu_auth);
 	}
+	
+	public List<MenuVO> listSubMenuWithChild(String p_menu_id, String menu_auth) {
+		return api.getMenuByParentWithChild(p_menu_id, menu_auth);
+	}	
 }

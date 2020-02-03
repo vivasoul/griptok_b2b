@@ -1,0 +1,1 @@
+/* detail javascript for /admin/product */

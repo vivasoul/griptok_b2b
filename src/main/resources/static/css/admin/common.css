@@ -1,0 +1,8 @@
+.griptok-header.most-top-menus { height:42px;padding:11px; text-align:right;font-size:12px;letter-spacing:-2px; }
+.griptok-header.most-top-menus>a { color:#747474; }
+.griptok-header.most-top-menus.slash-seperator { padding:0px 5px; }
+.most-top-baseline { border-top:1px solid #DCDCDC; }
+
+.griptok-side-menu .side-menu-lv1 { cursor:pointer }
+.griptok-side-menu .side-menu-lv2 { display:none }
+.griptok-side-menu .side-menu-lv2.side-menu-lv2-active { display:block }

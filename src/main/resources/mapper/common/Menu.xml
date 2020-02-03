@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.common.mapper.MenuMapper">
+	<resultMap id="menusWithChild" type="com.griptk.b2b.common.domain.MenuVO">
+		<id property="menu_id" column="menu_id" />
+		<result property="menu_nm" column="menu_nm"/>
+	  	<result property="p_menu_id" column="p_menu_id"/>
+		<result property="menu_url" column="menu_url"/>
+	  	<result property="menu_auth" column="menu_auth"/>	  	
+		<result property="template_id" column="template_id"/>
+	  	<collection property="sub_menus" ofType="com.griptk.b2b.common.domain.MenuVO">
+			<id property="menu_id" column="c_menu_id" />
+			<result property="menu_nm" column="c_menu_nm"/>
+		  	<result property="p_menu_id" column="c_p_menu_id"/>
+			<result property="menu_url" column="c_menu_url"/>
+		  	<result property="menu_auth" column="c_menu_auth"/>	  	
+			<result property="template_id" column="c_template_id"/>	  		
+	  	</collection>
+	</resultMap>
 	<select id="listInClientRoot" parameterType="String" resultType="com.griptk.b2b.common.domain.MenuVO">
 		SELECT 	
 			menu_id, menu_nm, p_menu_id, menu_url, menu_auth, template_id
@@ -21,6 +37,18 @@
 		AND p_menu_id = #{p_menu_id}
 		AND ( menu_auth = 'A' OR menu_auth = #{menu_auth} )
 		ORDER BY sort_no
+	</select>
+	<select id="listMenuByParentWithChild" parameterType="com.griptk.b2b.common.domain.MenuVO" resultMap="menusWithChild">
+		SELECT 	
+			a.menu_id, a.menu_nm, a.p_menu_id, a.menu_url, a.menu_auth, a.template_id,
+			b.menu_id AS c_menu_id, b.menu_nm AS c_menu_nm, b.p_menu_id AS c_p_menu_id,
+			b.menu_url AS c_menu_url, b.menu_auth AS c_menu_auth, b.template_id AS c_template_id
+		FROM tb_menu a
+		INNER JOIN tb_menu b ON a.menu_id = b.p_menu_id 
+		WHERE 1=1
+		AND a.p_menu_id = #{p_menu_id}
+		AND ( a.menu_auth = 'A' OR a.menu_auth = #{menu_auth} )
+		ORDER BY a.sort_no, b.sort_no
 	</select>
 	
 	<select id="list" resultType="com.griptk.b2b.common.domain.MenuVO">
