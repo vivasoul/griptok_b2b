@@ -9,8 +9,6 @@
 	List<CraftTypeVO> crafts_filter = (List<CraftTypeVO>)request.getAttribute("crafts_filter");
 	List<BrandTypeVO> brands_filter = (List<BrandTypeVO>)request.getAttribute("brands_filter");
 	boolean isAdmin = session.getAttribute("auth_type") != null && "A".equals(session.getAttribute("auth_type").toString());
-	
-	String page_path = (String)request.getAttribute("page_path");
 %>
 <div class="container-fluid griptok-header most-top-menus">
 	<%if(isAdmin){%><a href="/admin/products">관리자</a><span class="slash-seperator">/</span><%}%>
@@ -38,7 +36,4 @@
 	  <a href="/main/all">전체 상품(All)</a><!--
 	  --><%for(CraftTypeVO craft: crafts_filter){ %><a href="/main/craft?p_id=<%=craft.getCraft_no()%>"><%=craft.getCraft_nm()%></a><%}%><!-- 
    --><a href="/main/dc">특가상품</a>
-</div>
-<div class="container-fluid griptok-header">
-<%if(page_path!=null){%><div class="row"><div class="col-sm-12" id="griptok-page-path"><%=page_path%></div></div><%}%>
 </div>
