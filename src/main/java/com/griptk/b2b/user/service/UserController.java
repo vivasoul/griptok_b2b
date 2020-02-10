@@ -1,6 +1,5 @@
 package com.griptk.b2b.user.service;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,7 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public String goLoginPage(Model model) {
+		model.addAttribute("has_back_img", "Y");
 		model.addAttribute("content_page", "user/login");
 		return "_template/login";
 	}

@@ -2,6 +2,7 @@
 <%	
 	String content_page = (String) request.getAttribute("content_page");
 	content_page = "/WEB-INF/jsp/"+content_page+".jsp";
+	boolean has_back_img = request.getAttribute("has_back_img") != null && "Y".equals(request.getAttribute("has_back_img"));
 %>    
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
 <link rel="stylesheet" href="/css/_template/login.css">
 <link rel="stylesheet" href="/css/user/login.css">
 </head>
-<body>
+<body <%if(has_back_img){%>class="gtk-login-background"<%}%>>
 <jsp:include page="/WEB-INF/jsp/_template/login/header.jsp" flush="false" />
 <jsp:include page="<%=content_page%>"  flush="false" />
 <jsp:include page="/WEB-INF/jsp/_template/common/footer.jsp" flush="false" />

@@ -1,4 +1,4 @@
-body {
+body.gtk-login-background {
 	background-image:url(/img/common/login_background_6.png);
 	background-repeat:no-repeat;
 	background-position-x:center;
