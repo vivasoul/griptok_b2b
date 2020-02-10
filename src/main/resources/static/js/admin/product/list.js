@@ -1,13 +1,6 @@
 const getProductURL = function(product_id){
-	const path = location.pathname;
 	const query = location.search.replace(/[?]/,"");
-	let url = "/main/detail?product_id="+product_id;
-	if(path == "/main/brand"){
-		url += "&"+query+"&mode=B";
-	}else if(path == "/main/craft"){
-		url += "&"+query+"&mode=C";
-	}
-	
+	let url = "/admin/products/edit?product_id="+product_id;
 	return url;
 };
 

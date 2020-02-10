@@ -24,8 +24,21 @@ public class MProductController {
 	private ProductMapper productMapper;
 
 	@RequestMapping("/admin/products")
-	public String goProductsAdmin(Model model) {
+	public String goAdminProducts(Model model) {
 		model.addAttribute("content_page", "product/admin/mng_list");
 		return "_template/admin";
 	}
+
+	@RequestMapping("/admin/products/edit")
+	public String goAdminProductEdit(Model model, @RequestParam("product_id") int product_id) {
+		model.addAttribute("product_id", product_id);
+		model.addAttribute("content_page", "product/admin/mng_edit");
+		return "_template/admin";
+	}
+	
+	@RequestMapping("/admin/new-product")
+	public String goAdminProductEdit(Model model) {
+		model.addAttribute("content_page", "product/admin/mng_new");
+		return "_template/admin";
+	}	
 }
