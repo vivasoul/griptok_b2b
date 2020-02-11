@@ -24,13 +24,22 @@ public class UtilFilterBean {
         urlPatterns.remove("/");        
         bean.setUrlPatterns(urlPatterns);
         return bean;
-    }  
+    } 
+    
+    @Bean
+    public FilterRegistrationBean<AdminFilter> registerAdminFilter(MenuManager menuMng){
+        FilterRegistrationBean<AdminFilter> bean = new FilterRegistrationBean<>();
+        bean.setFilter(new AdminFilter());
+        bean.setOrder(2);
+        bean.addUrlPatterns("/admin/*");
+        return bean;
+    }      
     
     @Bean
     public FilterRegistrationBean<TemplateFilter> registerTemplateFilter(MenuManager menuMng, CategoryManager categoryMng){
         FilterRegistrationBean<TemplateFilter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new TemplateFilter(menuMng, categoryMng));
-        bean.setOrder(2);
+        bean.setOrder(3);
         //bean.addUrlPatterns("/*");
         Set<String> urlPatterns = menuMng.listURLSet();
         urlPatterns.remove("/mypage");

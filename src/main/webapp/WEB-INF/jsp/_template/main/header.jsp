@@ -8,7 +8,7 @@
 	List<MenuVO> top_menus = (List<MenuVO>)request.getAttribute("top_menus");
 	List<CraftTypeVO> crafts_filter = (List<CraftTypeVO>)request.getAttribute("crafts_filter");
 	List<BrandTypeVO> brands_filter = (List<BrandTypeVO>)request.getAttribute("brands_filter");
-	boolean isAdmin = session.getAttribute("auth_type") != null && "A".equals(session.getAttribute("auth_type").toString());
+	boolean isAdmin = session.getAttribute("auth_type") != null && "M".equals(session.getAttribute("auth_type").toString());
 %>
 <div class="container-fluid griptok-header most-top-menus">
 	<%if(isAdmin){%><a href="/admin/products">관리자</a><span class="slash-seperator">/</span><%}%>
