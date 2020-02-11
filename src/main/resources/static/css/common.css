@@ -50,6 +50,17 @@ a,a:hover{ text-decoration:none; }
 /* content-header */
 #griptok-page-title { text-align:left;font-size:13px;font-weight:700; }
 #griptok-page-path { text-align:right;font-size:13px;font-weight:700;margin-top:15px; } 
+.griptok-start-menus { 
+	width:100%;
+	height:44px;
+	text-align:center;
+	background-color:#19B4F0;
+	border-top:1px solid #00A1E3;
+	border-bottom:1px solid #00A1E3;
+	padding:10px;
+}
+.griptok-start-menus>a{ color:#FFF;font-size:13px;margin-right:25px; }
+
 /* content-body */
 .griptok-body .left-content { width:137px;display:table-cell;background-color:#FBFBFB; }
 .griptok-body .right-content { width:1063px;display:table-cell;padding-left:10px; }

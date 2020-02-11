@@ -32,7 +32,7 @@
 		</div>		
 	</div>
 </div>
-<div class="griptok-craft-parents">
+<div class="griptok-start-menus griptok-craft-parents">
 	  <a href="/main/all">전체 상품(All)</a><!--
 	  --><%for(CraftTypeVO craft: crafts_filter){ %><a href="/main/craft?p_id=<%=craft.getCraft_no()%>"><%=craft.getCraft_nm()%></a><%}%><!-- 
    --><a href="/main/dc">특가상품</a>

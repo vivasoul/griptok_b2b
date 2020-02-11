@@ -53,4 +53,8 @@ public class MenuAPI {
 	public List<MenuVO> getSideMenuByCraft(int craft_no){
 		return mapper.listMenusByCraft(craft_no);
 	}
+	
+	public List<MenuVO> getMenuHierarchy(String menu_id){
+		return mapper.listMenuHierarchy(menu_id);
+	}
 }

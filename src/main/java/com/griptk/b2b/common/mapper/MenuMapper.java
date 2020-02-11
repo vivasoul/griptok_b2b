@@ -19,6 +19,8 @@ public interface MenuMapper {
 	@MapKey("menu_url")
 	Map<String, MenuVO> listWithUrl_Admin();	
 	
+	List<MenuVO> listMenuHierarchy(String menu_id);
+	
 	List<MenuVO> listMenusByBrand(int p_brand_no);
 	List<MenuVO> listMenusByCraft(int craft_no);
 }

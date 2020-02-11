@@ -7,13 +7,4 @@
 .griptok-brand-parents>a,.griptok-brand-parents>.slash-seperator{ color:#00A1E3; }
 .griptok-brand-parents input.griptok-brand-search { width:250px;border:1px solid #00A1E3;margin-bottom:2px; }
 
-.griptok-craft-parents { 
-	width:100%;
-	height:44px;
-	text-align:center;
-	background-color:#19B4F0;
-	border-top:1px solid #00A1E3;
-	border-bottom:1px solid #00A1E3;
-	padding:10px;
-}
-.griptok-craft-parents>a{ color:#FFF;font-size:13px;margin-right:25px; }
+.griptok-craft-parents { /* DO SOMETHING */ }

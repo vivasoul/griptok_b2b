@@ -55,6 +55,12 @@ public class MenuManager {
 		else				return getMenuFromURL(url).getMenu_path();
 	}	
 	
+	public List<MenuVO> getMenuHierarchyFromURL(String url) {
+		MenuVO menu = getMenuFromURL(url);
+		if(menu == null)	return null;		
+		else				return api.getMenuHierarchy(menu.getMenu_id());		
+	}
+	
 	public Set<String> listURLSet(){
 		return menu_map.keySet();
 	}

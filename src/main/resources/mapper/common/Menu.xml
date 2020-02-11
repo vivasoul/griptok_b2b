@@ -59,25 +59,21 @@
 	
 	<select id="listWithUrl_Client" resultType="com.griptk.b2b.common.domain.MenuVO">
 	<![CDATA[
-		WITH RECURSIVE MENUS AS (
-			SELECT 
-				x.menu_id, p_menu_id, menu_url, menu_nm, menu_auth, template_id
-			FROM ( SELECT  MAX(menu_id) AS menu_id FROM tb_menu GROUP BY menu_url ) x 
-			INNER JOIN tb_menu y ON x.menu_id = y.menu_id
-		), P_MENUS AS (
+		WITH RECURSIVE P_MENUS AS (
 			SELECT 
 				menu_id, p_menu_id, 
 				menu_nm AS menu_path, menu_id AS id_path,
 				menu_id AS root_id
-			FROM MENUS
+			FROM tb_menu
 			WHERE menu_id = 'client_root'
 			UNION ALL
 			SELECT 
 				a.menu_id, a.p_menu_id, 
 				CONCAT(b.menu_path,' > ',a.menu_nm) AS menu_path, CONCAT(b.id_path,',',a.menu_id) AS menu_path, 
 				b.root_id AS root_id
-			FROM MENUS a
+			FROM tb_menu a
 			INNER JOIN P_MENUS b ON a.p_menu_id = b.menu_id
+			WHERE 1=1
 		)
 		SELECT 
 			ref.menu_id, ref.p_menu_id, ref.menu_url, 
@@ -85,7 +81,7 @@
 			src.menu_path,src.id_path
 		FROM P_MENUS src
 		INNER JOIN tb_menu ref ON src.menu_id = ref.menu_id
-		WHERE root_id = 'client_root'
+		WHERE ref.shortcut_yn = 'N'
 	]]>	
 	</select>
 	
@@ -105,6 +101,7 @@
 				b.root_id AS root_id
 			FROM tb_menu a
 			INNER JOIN P_MENUS b ON a.p_menu_id = b.menu_id
+			WHERE 1=1
 		)
 		SELECT 
 			ref.menu_id, ref.p_menu_id, ref.menu_url, 
@@ -112,10 +109,26 @@
 			src.menu_path,src.id_path
 		FROM P_MENUS src
 		INNER JOIN tb_menu ref ON src.menu_id = ref.menu_id
-		WHERE root_id = 'admin_root'
-		AND menu_url != ''
+		WHERE ref.shortcut_yn = 'N'
 	]]>	
 	</select>	
+	
+	<select id="listMenuHierarchy" parameterType="String" resultType="com.griptk.b2b.common.domain.MenuVO">
+		WITH RECURSIVE P_MENUS AS (
+			SELECT 
+				menu_id, p_menu_id, menu_nm, menu_url, 1 AS lvl
+			FROM tb_menu
+			WHERE menu_id = #{menu_id}
+			UNION ALL
+			SELECT 
+				a.menu_id, a.p_menu_id, a.menu_nm, a.menu_url, b.lvl + 1 AS lvl
+			FROM tb_menu a
+			INNER JOIN P_MENUS b ON a.menu_id = b.p_menu_id
+		) 
+		SELECT 
+			menu_id, menu_nm, menu_url, ROW_NUMBER() OVER(ORDER BY lvl DESC) AS menu_lvl
+		FROM P_MENUS
+	</select>
 	
 	<select id="listMenusByBrand" resultType="com.griptk.b2b.common.domain.MenuVO">
 	<![CDATA[

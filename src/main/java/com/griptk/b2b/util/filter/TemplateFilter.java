@@ -46,6 +46,8 @@ public class TemplateFilter implements Filter{
 		request.setAttribute("page_path",menu_path);
 		
 		if(template != null) {
+			request.setAttribute("menu_hierarchy", menuMng.getMenuHierarchyFromURL(url));
+			
 			switch(template) {
 				case ITemplateType.LOGIN_TEMPLATE:
 					break;
@@ -60,8 +62,9 @@ public class TemplateFilter implements Filter{
 					break;
 				case ITemplateType.ADMIN_TEMPLATE:
 					/* Need to update to top menus for admin only */
-					request.setAttribute("side_title", "관리자");
-					request.setAttribute("side_menus", menuMng.listSubMenuWithChild("admin_root", "L"));
+					request.setAttribute("top_menus", menuMng.listSubMenuWithChild("admin_root", "M"));
+					//request.setAttribute("side_title", "관리자");
+					//request.setAttribute("side_menus", menuMng.listSubMenuWithChild("admin_root", "L"));
 				default:
 					//DO NOTHING
 			}
