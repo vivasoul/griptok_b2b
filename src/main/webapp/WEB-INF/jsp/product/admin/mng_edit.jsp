@@ -6,5 +6,20 @@
 </script>
 <div class="container-fluid" id="gtk-detail-main">
 	상품 수정 페이지입니다.<br/>
-	<%=request.getAttribute("product_id")%>
+	<%=request.getAttribute("product_id")%><br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>
+	상품 등록 페이지입니다.<br/>		
 </div>	

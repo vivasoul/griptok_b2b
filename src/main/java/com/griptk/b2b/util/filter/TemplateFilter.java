@@ -1,6 +1,7 @@
 package com.griptk.b2b.util.filter;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -41,12 +42,13 @@ public class TemplateFilter implements Filter{
 		String menu_path = menu.getMenu_path();
 		String id_path = menu.getId_path();
 		String title = menu.getMenu_nm();
+		List<MenuVO> menu_hierarchy = menuMng.getMenuHierarchyFromURL(url);
 		
 		request.setAttribute("page_title",title);
 		request.setAttribute("page_path",menu_path);
 		
 		if(template != null) {
-			request.setAttribute("menu_hierarchy", menuMng.getMenuHierarchyFromURL(url));
+			request.setAttribute("menu_hierarchy", menu_hierarchy);
 			
 			switch(template) {
 				case ITemplateType.LOGIN_TEMPLATE:
@@ -62,9 +64,12 @@ public class TemplateFilter implements Filter{
 					break;
 				case ITemplateType.ADMIN_TEMPLATE:
 					/* Need to update to top menus for admin only */
-					request.setAttribute("top_menus", menuMng.listSubMenuWithChild("admin_root", "M"));
-					//request.setAttribute("side_title", "관리자");
-					//request.setAttribute("side_menus", menuMng.listSubMenuWithChild("admin_root", "L"));
+					request.setAttribute("top_menus", menuMng.listSubMenu("admin_root", "M"));
+					if(menu_hierarchy.size() > 1) {
+						MenuVO start_menu = menu_hierarchy.get(1);
+						request.setAttribute("side_title", start_menu.getMenu_nm());
+						request.setAttribute("side_menus", menuMng.listSubMenu(start_menu.getMenu_id(), "M"));						
+					}
 				default:
 					//DO NOTHING
 			}

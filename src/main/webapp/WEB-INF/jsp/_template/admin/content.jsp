@@ -27,18 +27,7 @@
 				<div class="griptok-side-title"><%=side_title%></div>
 				<div class="griptok-side-body">
 				<%for(MenuVO menu: side_menus){%>
-					<div class="side-menu-lv1" menu-id="<%=menu.getMenu_id()%>">	
-						<%=menu.getMenu_nm()%>
-						<% 
-							List<MenuVO> child_menus = menu.getSub_menus(); 
-							if(child_menus != null){%>
-							<div class="side-menu-lv2">
-							<%for(MenuVO c_menu:child_menus){%>
-								<div menu-id="<%=c_menu.getMenu_id()%>"><a href="<%=c_menu.getMenu_url()%>"><%=c_menu.getMenu_nm()%></a></div>
-							<%}%>
-							</div>
-						<%}%>
-					</div>
+					<div menu-id="<%=menu.getMenu_id()%>"><a href="<%=menu.getMenu_url()%>"><%=menu.getMenu_nm()%></a></div>
 				<%}%>
 				</div>
 			</div>

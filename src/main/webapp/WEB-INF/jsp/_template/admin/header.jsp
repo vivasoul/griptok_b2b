@@ -7,8 +7,8 @@
 	List<MenuVO> top_menus = (List<MenuVO>)request.getAttribute("top_menus");
 	List<MenuVO> menu_hierarchy = (List<MenuVO>)request.getAttribute("menu_hierarchy");
 	int len = menu_hierarchy.size();
-	MenuVO menu_lv2 = len > 1 ? menu_hierarchy.get(1) : null; 
-	MenuVO menu_lv3 = len > 2 ? menu_hierarchy.get(2) : null;
+	MenuVO start_menu = len > 1 ? menu_hierarchy.get(1) : null; 
+	MenuVO side_menu  = len > 2 ? menu_hierarchy.get(2) : null;
 %>
 <div class="container-fluid griptok-header most-top-menus">
 	<a href="/sign-out">로그아웃</a>
