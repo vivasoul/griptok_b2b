@@ -28,6 +28,10 @@ upload:
 spring:  
  resources: 
   static-locations: classpath:/static/
+ servlet:
+  multipart:
+   max-file-size: 5MB
+   max-request-size: 5MB  
  mvc: 
   view:
    prefix: /WEB-INF/jsp/

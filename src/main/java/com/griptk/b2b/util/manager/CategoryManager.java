@@ -19,8 +19,8 @@ public class CategoryManager {
 	}
 	
 	public void refresh() {
-		crafts = api.getCrafts();
-		p_brands = api.getParentBrands();
+		crafts = api.listCrafts();
+		p_brands = api.listParentBrands(1);
 	}
 	
 	public List<CraftTypeVO> getCrafts(){

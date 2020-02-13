@@ -43,7 +43,7 @@ public class FileAPI {
 	
 	@Transactional
 	//@PostMapping("/product_image")
-	public List<ImageVO> uploadProductImages(List<MultipartFile> upload_files) throws IllegalStateException, IOException {
+	public List<ImageVO> uploadProductImages(MultipartFile[] upload_files) throws IllegalStateException, IOException {
 		List<ImageVO> result = new ArrayList<>();
 		for(MultipartFile mf: upload_files) {
 			ImageVO imgVO = getImageVOFromMultipart("/product_image/",mf);

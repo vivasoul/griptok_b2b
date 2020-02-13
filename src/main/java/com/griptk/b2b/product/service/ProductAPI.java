@@ -1,19 +1,26 @@
 package com.griptk.b2b.product.service;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.griptk.b2b.product.domain.IProductSortType;
 import com.griptk.b2b.product.domain.PredicateVO;
 import com.griptk.b2b.product.domain.ProductDetailVO;
+import com.griptk.b2b.product.domain.ProductReqVO;
 import com.griptk.b2b.product.domain.ProductVO;
 import com.griptk.b2b.product.mapper.ProductMapper;
 
@@ -103,5 +110,21 @@ public class ProductAPI {
 		data.setLimit(_limit);
 		data.setStart(_limit*_page);
 		return data;
+	}
+	/* API for admin(manager) */
+	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@Transactional
+	public void createProduct(@ModelAttribute ProductReqVO payload ) throws IOException, ServletException {
+		//@RequestParam("title") String title, @RequestParam("files") MultipartFile[] files
+		/*
+		Collection<Part> parts = request.getParts();
+		for(Part p: parts) {
+			//p.get
+		}*/
+		System.out.println(payload);
+		System.out.println(payload.getFiles().length);
+		for(MultipartFile mf : payload.getFiles()) {
+			System.out.println(mf.getName());
+		}
 	}
 }
