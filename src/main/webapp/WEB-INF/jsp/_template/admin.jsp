@@ -8,7 +8,8 @@
 <title>GRIPTOK B2B SHOPPING MALL-ADMIN</title>
 <script src="/lib/js/jquery.min.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="/js/common.js"></script>
+<script src="/js/common/common.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/admin/common.css">
