@@ -10,7 +10,7 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
@@ -27,7 +27,7 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
@@ -42,7 +42,7 @@
 			a.title,
 			a.retail_price,
 			ROUND(a.sales_price*0.9,-2) AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
@@ -59,7 +59,7 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		${order_by}
@@ -74,7 +74,7 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
@@ -92,7 +92,7 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
@@ -109,7 +109,7 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
@@ -128,7 +128,7 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
@@ -228,10 +228,41 @@
 	
 	<select id="getDetailImages" parameterType="Int" resultType="String">
 		SELECT 
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format)
+			CONCAT(b.file_path, '/', b.file_nm)
 		FROM tb_product_img a 
 		INNER JOIN tb_img_file_info b ON a.img_no = b.img_no
 		WHERE 1=1
 		AND a.product_id = #{product_id}		
-	</select>		
+	</select>	
+	
+	<!-- CREATE -->
+	<insert id="create" parameterType="com.griptk.b2b.product.domain.ProductReqVO">
+		INSERT INTO tb_product (`title`, `retail_price`, `sales_price`, `is_new`, `is_best`, `is_dc`, `thumb_img_no`, `category_no`)
+		VALUES
+		( 
+			#{title}, 
+			#{retail_price}, 
+			#{sales_price}, 
+			IFNULL(#{is_new},'N'), 
+			IFNULL(#{is_best},'N'), 
+			IFNULL(#{is_dc},'N'), 
+			#{thumb_img_no}, 
+			(SELECT category_no FROM tb_product_category WHERE brand_no = #{brand_no} AND craft_no = #{craft_no})		
+		)
+	</insert>
+	<select id="insertedId" resultType="Integer">
+		SELECT LAST_INSERT_ID() AS id
+	</select>
+	<insert id="createDetail">
+		INSERT INTO tb_product_detail(product_id, stock_cnt)
+		VALUES (#{product_id}, #{stock_cnt})
+	</insert>
+	<insert id="createImages">
+		INSERT INTO tb_product_img(product_id, img_no, reg_dt)
+		VALUES
+		<foreach item="item" collection="list" separator=",">
+		    (#{item.product_id}, #{item.img_no}, NOW()) 
+		</foreach>
+	</insert>
+	
 </mapper>

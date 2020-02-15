@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.griptk.b2b.common.service.FileAPI;
 import com.griptk.b2b.product.domain.IProductSortType;
 import com.griptk.b2b.product.domain.PredicateVO;
 import com.griptk.b2b.product.domain.ProductDetailVO;
+import com.griptk.b2b.product.domain.ProductImgReqVO;
 import com.griptk.b2b.product.domain.ProductReqVO;
 import com.griptk.b2b.product.domain.ProductVO;
 import com.griptk.b2b.product.mapper.ProductMapper;
@@ -29,6 +31,9 @@ import com.griptk.b2b.product.mapper.ProductMapper;
 public class ProductAPI {	
 	@Autowired
 	private ProductMapper mapper;
+	
+	@Autowired
+	private FileAPI fileAPI;
 	
 	@GetMapping("/new")
 	public List<ProductVO> getNewProducts(){
@@ -121,10 +126,29 @@ public class ProductAPI {
 		for(Part p: parts) {
 			//p.get
 		}*/
+		ProductImgReqVO imgReq = fileAPI.uploadProductImage(0, payload.getThumb_file());
+		long thumb_img_no = imgReq.getImg_no();
+		payload.setThumb_img_no(thumb_img_no);
+		
+		int result = mapper.create(payload);
+		
+		int product_id = 0;
+		if(result != 0) {
+			product_id = mapper.insertedId();
+			payload.setProduct_id(product_id);
+			
+			List<ProductImgReqVO> images = fileAPI.uploadProductMultipleImages(product_id, payload.getFiles());
+			if(!images.isEmpty()) {
+				mapper.createImages(images);
+			}
+			mapper.createDetail(payload);
+		}
+		
 		System.out.println(payload);
+		System.out.println(payload.getThumb_file().getOriginalFilename());
 		System.out.println(payload.getFiles().length);
 		for(MultipartFile mf : payload.getFiles()) {
-			System.out.println(mf.getName());
+			System.out.println(mf.getOriginalFilename());
 		}
 	}
 }

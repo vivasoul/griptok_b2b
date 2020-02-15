@@ -1,0 +1,9 @@
+.gtk-main-box { margin:20px 60px;padding:25px;border:1px solid #EAEAEA; }
+.gtk-group-title { padding:10px 5px;font-size:20px;font-weight:600;color:#5E5E5E; }
+.gtk-group-title .title-icon { font-size:15px;color:#CFCFCF; }
+.gtk-input-group { font-size:15px;font-weight:400;color:#5E5E5E;padding:0px 30px;margin-bottom:12px; }
+.gtk-input-group label { display:block;margin-bottom:5px;font-weight:400; }
+.gtk-input-group input[type=text],
+.gtk-input-group input[type=number] { display:block;width:100%;height:30px;border:1px solid #EAEAEA;padding:3px; }
+.gtk-input-group select { height:30px;border:1px solid #EAEAEA;padding:3px; }
+#v_craft_no,#v_brand_no,#v_category_no { width:32%; }

@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.griptk.b2b.common.domain.ImageVO;
 import com.griptk.b2b.common.mapper.FileMapper;
+import com.griptk.b2b.product.domain.ProductImgReqVO;
 
 @RestController
 @RequestMapping("/files")
@@ -43,17 +46,23 @@ public class FileAPI {
 	
 	@Transactional
 	//@PostMapping("/product_image")
-	public List<ImageVO> uploadProductImages(MultipartFile[] upload_files) throws IllegalStateException, IOException {
-		List<ImageVO> result = new ArrayList<>();
+	public List<ProductImgReqVO> uploadProductMultipleImages(int product_id, MultipartFile[] upload_files) throws IllegalStateException, IOException {
+		List<ProductImgReqVO> result = new ArrayList<>();
 		for(MultipartFile mf: upload_files) {
-			ImageVO imgVO = getImageVOFromMultipart("/product_image/",mf);
-			mapper.insertImgInfo(imgVO);
-			long img_no = mapper.getImgNo();
-			imgVO.setImg_no(img_no);
+			ProductImgReqVO imgVO = uploadProductImage(product_id, mf);
 			result.add(imgVO);
 		}
 		return result;
 	}
+	
+	public ProductImgReqVO uploadProductImage(int product_id, MultipartFile upload_file) throws IllegalStateException, IOException {
+		
+		ImageVO imgVO = getImageVOFromMultipart("/product_image/",upload_file);
+		mapper.insertImgInfo(imgVO);
+		long img_no = mapper.getImgNo();		
+		
+		return new ProductImgReqVO(product_id, img_no);
+	}	
 	
 	@GetMapping("/{img_no}")
 	public ImageVO getFile(@PathVariable("img_no") long img_no) { 
@@ -61,6 +70,11 @@ public class FileAPI {
 	}
 	
 	private ImageVO getImageVOFromMultipart(String file_path, MultipartFile upload_file) throws IllegalStateException, IOException {
+		String _file_path = null;
+		
+		if(file_path.endsWith("/")) _file_path = file_path + generateSubPath();
+		else						_file_path = file_path + "/" + generateSubPath();
+		
 		String extension = "";
 		String download_nm = upload_file.getOriginalFilename(); // file_name for download
 		
@@ -69,12 +83,12 @@ public class FileAPI {
 		    extension = download_nm.substring(i+1);
 		}
 		String file_nm = UUID.randomUUID().toString()+"."+extension; // file_name for upload
-		String absolute_path = UPLOAD_DIR+file_path;
+		String absolute_path = UPLOAD_DIR+_file_path;
 		
 		File dir_path = new File(absolute_path);
 		if(!dir_path.exists()) dir_path.mkdirs();
-		
-		File img_file = new File(absolute_path+file_nm);
+		System.out.println("##################"+absolute_path);
+		File img_file = new File(absolute_path+"/"+file_nm);
 		upload_file.transferTo(img_file); // 파일을 위에 지정 경로로 업로드
 		
 		BufferedImage bimg = ImageIO.read(img_file);
@@ -83,7 +97,7 @@ public class FileAPI {
 		
 		ImageVO imgVo = new ImageVO();
 		imgVo.setFile_nm(file_nm);
-		imgVo.setFile_path(file_path);
+		imgVo.setFile_path(_file_path);
 		imgVo.setFile_format(extension);
 		imgVo.setFile_size(img_file.length());
 		imgVo.setDownload_nm(download_nm);
@@ -91,5 +105,13 @@ public class FileAPI {
 		imgVo.setImg_height(height);
 		
 		return imgVo;		
+	}
+	
+	private String generateSubPath() {
+		Calendar c = Calendar.getInstance();
+		int yyyy = c.get(Calendar.YEAR);
+		int mm = c.get(Calendar.MONTH);
+		
+		return yyyy+"/"+mm;
 	}
 }
