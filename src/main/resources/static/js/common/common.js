@@ -15,3 +15,22 @@ const currency_formatter = function(amount, unit) {
 	
 	return format_arr.reverse().join(",")+unit;
 };
+
+jQuery.fn.fire = function(eventName){
+	
+	this.each(function(){
+		try{
+			if ("createEvent" in document) {
+			    var evt = document.createEvent("HTMLEvents");
+			    evt.initEvent(eventName, false, true);
+			    this.dispatchEvent(evt);
+			}
+			else
+				this.fireEvent("on"+eventName);
+		}catch(e){
+			
+		}
+	});
+	
+	return this;
+}

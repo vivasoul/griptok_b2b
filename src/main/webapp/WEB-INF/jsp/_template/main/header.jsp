@@ -24,7 +24,10 @@
 			<a href="/main"><img src="/img/common/head_logo_small.png"/></a>
 		</div>
 		<div class="col-sm-8 griptok-brand-parents">
-		  <input class="griptok-brand-search" type="text" value=""/><br/>
+		  <div class="griptok-brand-search">
+		  	<input class="griptok-brand-search-input" type="text" value=""/><!-- 
+		 --><button type="button" class="griptok-brand-search-icon"><i class="fa fa-search"></i></button><br/>
+		  </div>
 		  <%for(int j=0; j<brands_filter.size(); j++) { BrandTypeVO brand = brands_filter.get(j);%>
 		  	<%if(j>0){%><span class="slash-seperator">/</span><%}%>
 		  	<a href="/main/brand?p_id=<%=brand.getBrand_no()%>"><%=brand.getBrand_nm()%></a>

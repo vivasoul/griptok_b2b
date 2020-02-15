@@ -5,6 +5,12 @@
 .griptok-brand-parents {padding-top:20px; text-align:right; font-size:15px; font-weight:800;letter-spacing:-1px; }
 .griptok-brand-parents>.slash-seperator { padding:0px 17px; }
 .griptok-brand-parents>a,.griptok-brand-parents>.slash-seperator{ color:#00A1E3; }
-.griptok-brand-parents input.griptok-brand-search { width:250px;border:1px solid #00A1E3;margin-bottom:2px; }
+
+    
+.griptok-brand-search { position:relative;margin-bottom:5px; }
+.griptok-brand-search .griptok-brand-search-input,
+.griptok-brand-search .griptok-brand-search-icon  { position:absolute;top:0px;right:0px; }
+.griptok-brand-search .griptok-brand-search-input { width:250px;border:1px solid #00A1E3;padding:1px 10px;font-weight:400; }
+.griptok-brand-search .griptok-brand-search-icon { color:#00A1E3; padding: 3px 10px;top:-1px; border:0px;background-color:transparent}
 
 .griptok-craft-parents { /* DO SOMETHING */ }
