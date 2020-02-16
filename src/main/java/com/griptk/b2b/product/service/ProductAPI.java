@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.griptk.b2b.common.service.FileAPI;
 import com.griptk.b2b.product.domain.IProductSortType;
@@ -23,6 +23,7 @@ import com.griptk.b2b.product.domain.PredicateVO;
 import com.griptk.b2b.product.domain.ProductDetailVO;
 import com.griptk.b2b.product.domain.ProductImgReqVO;
 import com.griptk.b2b.product.domain.ProductReqVO;
+import com.griptk.b2b.product.domain.ProductRespVO;
 import com.griptk.b2b.product.domain.ProductVO;
 import com.griptk.b2b.product.mapper.ProductMapper;
 
@@ -120,12 +121,6 @@ public class ProductAPI {
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	@Transactional
 	public void createProduct(@ModelAttribute ProductReqVO payload ) throws IOException, ServletException {
-		//@RequestParam("title") String title, @RequestParam("files") MultipartFile[] files
-		/*
-		Collection<Part> parts = request.getParts();
-		for(Part p: parts) {
-			//p.get
-		}*/
 		ProductImgReqVO imgReq = fileAPI.uploadProductImage(0, payload.getThumb_file());
 		long thumb_img_no = imgReq.getImg_no();
 		payload.setThumb_img_no(thumb_img_no);
@@ -143,12 +138,34 @@ public class ProductAPI {
 			}
 			mapper.createDetail(payload);
 		}
-		
-		System.out.println(payload);
-		System.out.println(payload.getThumb_file().getOriginalFilename());
-		System.out.println(payload.getFiles().length);
-		for(MultipartFile mf : payload.getFiles()) {
-			System.out.println(mf.getOriginalFilename());
-		}
 	}
+	
+	@GetMapping("/{product_id}/edit")
+	public ProductRespVO getDetailForEdit(@PathVariable("product_id") int product_id) {
+		ProductRespVO result = mapper.getDetail_2(product_id);
+		List<ProductImgReqVO> images = mapper.getDetailImages_2(product_id);
+		result.setFiles(images);		
+		return result;
+	}	
+	
+	@PutMapping(value="/{product_id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@Transactional
+	public void updateProduct(@PathVariable int product_id,
+							  @ModelAttribute ProductReqVO payload ) throws IOException, ServletException {
+		payload.setProduct_id(product_id);
+		
+		ProductImgReqVO imgReq = fileAPI.uploadProductImage(product_id, payload.getThumb_file());
+		long thumb_img_no = imgReq.getImg_no();
+		payload.setThumb_img_no(thumb_img_no);
+		
+		int result = mapper.create(payload);
+		
+		if(result != 0) {
+			List<ProductImgReqVO> images = fileAPI.uploadProductMultipleImages(product_id, payload.getFiles());
+			if(!images.isEmpty()) {
+				mapper.createImages(images);
+			}
+			mapper.createDetail(payload);
+		}
+	}	
 }

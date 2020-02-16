@@ -28,8 +28,14 @@ jQuery(document).ready(function(){
 			$this.find("+p").hide();
 			$this.find("+p+img").prop("src", s).show();
 		}else{
-			$this.find("+p").show();
-			$this.find("+p+img").prop("src", "").hide();
+			const defaultSrc = $this.prop("defaultSrc");
+			if(defaultSrc){
+				$this.find("+p").hide();
+				$this.find("+p+img").prop("src", defaultSrc).show();
+			}else{
+				$this.find("+p").show();
+				$this.find("+p+img").prop("src", "").hide();				
+			}
 		}
 	});
 });

@@ -41,15 +41,38 @@ const loadCraftNo = function(){
 	loadSelect("#v_craft_no","/categories/crafts","craft_no","craft_nm");
 };
 
+const setData = function(data){
+	console.log(data);
+	jQuery("#v_title").val(data["title"]);
+	jQuery("#v_retail_price").val(data["retail_price"]);
+	jQuery("#v_sales_price").val(data["sales_price"]);
+	jQuery("#v_stock_cnt").val(data["stock_cnt"]);
+	jQuery("#v_craft_no").val(data["craft_no"]);
+	jQuery("#v_p_brand_no").val(data["p_brand_no"]).fire("change");
+	jQuery("#v_brand_no").val(data["brand_no"]);
+	jQuery("#v_is_new").prop("checked",data["is_new"] === "Y");
+	jQuery("#v_is_best").prop("checked",data["is_best"] === "Y");
+	jQuery("#v_is_dc").prop("checked",data["is_dc"] === "Y");
+	
+	const thumb_file = data["thumb_file"];
+	const files = data["files"];
+	if(thumb_file){
+		jQuery("#v_thumb_file").prop("defaultSrc",thumb_file.img_path).fire("change");
+	}
+	if(files.length){
+		for(let i=0;i<files.length;i++){
+			jQuery("#v_file_"+(i+1)).prop("defaultSrc",files[i].img_path).fire("change");		
+		}
+	}
+};
+
 const loadData = function(product_id) {
 	jQuery.ajax({
-		  url: "/products/"+product_id,
+		  url: "/products/"+product_id+"/edit",
 		  method: "GET",
 		  dataType: "json"
 		}).done(function(data){
-			console.log(data);
-			//renderData(data);
-			//jQuery("#gtk-detail-main").prop("data",data);
+			setData(data);
 		}).fail(function(e){
 			console.log(e);
 		}).always(function(){
@@ -82,4 +105,31 @@ const insertData = function(){
 	}).always(function(){
 		
 	});
-}
+};
+
+const updateDate = function(product_id){
+    const form = jQuery('#save-product-form')[0];
+    
+    if(!form.reportValidity()) return false;
+    // Create an FormData object 
+    const formData = new FormData(form);
+
+   // disabled the submit button
+    jQuery("#save-product-btn").prop("disabled", true);
+   
+	jQuery.ajax({
+	  url: "/products/"+product_id,
+	  method: "PUT",
+	  enctype:"multipart/form-data",
+      contentType: false, 
+      processData: false,
+      data: formData
+	}).done(function(data){
+		alert("성공적으로 수정되었습니다.");
+		location.href="/admin/products";
+	}).fail(function(e){
+		console.log(e);
+	}).always(function(){
+		
+	});
+};

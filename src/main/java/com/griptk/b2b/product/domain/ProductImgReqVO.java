@@ -3,6 +3,7 @@ package com.griptk.b2b.product.domain;
 public class ProductImgReqVO {
 	private int product_id;
 	private long img_no;
+	private String img_path;
 	public  ProductImgReqVO() {
 		this(0,0);
 	}
@@ -10,7 +11,6 @@ public class ProductImgReqVO {
 		this.product_id = product_id;
 		this.img_no = img_no;
 	}
-	
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -23,8 +23,14 @@ public class ProductImgReqVO {
 	public void setImg_no(long img_no) {
 		this.img_no = img_no;
 	}
+	public String getImg_path() {
+		return img_path;
+	}
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
+	}
 	@Override
 	public String toString() {
-		return "ProductImgReqVO [product_id=" + product_id + ", img_no=" + img_no + "]";
+		return "ProductImgReqVO [product_id=" + product_id + ", img_no=" + img_no + ", img_path=" + img_path + "]";
 	}
 }
