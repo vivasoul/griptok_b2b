@@ -25,6 +25,19 @@ spring:
 upload:
  location: D:/upload 
 ---
+spring:
+ profiles: kt-aws
+ datasource:
+  #driver: org.mariadb.jdbc.Driver
+  driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  url: jdbc:log4jdbc:mariadb://mr-lee-database.cl1qpbs1xffv.ap-northeast-2.rds.amazonaws.com/griptok_b2b
+  username: admin 
+  password: lktnyhkdh
+ resources: 
+  static-locations: classpath:/static/,file:///home/ec2-user/upload
+upload:
+ location: /home/ec2-user/upload  
+---
 spring:  
  resources: 
   static-locations: classpath:/static/
