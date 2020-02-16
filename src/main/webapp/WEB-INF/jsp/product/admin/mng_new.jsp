@@ -68,7 +68,7 @@ jQuery(document).ready(function(e){
 	 		</div>
 	 		<div class="gtk-input-group">
 	 			<label for="v_stock_cnt">재고량</label>
-	 			<input type="number" id="v_stock_cnt" name="stocks" value="" required/>
+	 			<input type="number" id="v_stock_cnt" name="stock_cnt" value="" required/>
 	 		</div>
 	 		<div class="gtk-input-group">
 	 			<label for="v_craft_no">카테고리</label>
