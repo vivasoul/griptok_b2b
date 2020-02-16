@@ -6,23 +6,16 @@
 jQuery(document).ready(function(e){
 	loadCraftNo();
 	loadPBrandNo();
-	jQuery(".gtk-file-upload input[type=file]").on("change", function(e){
-		const f = e.target.files[0];
-		$this = jQuery(this);
-		if(f){
-			const s = URL.createObjectURL(f);
-			$this.find("+p").hide();
-			$this.find("+p+img").prop("src", s).show();
-		}else{
-			$this.find("+p").show();
-			$this.find("+p+img").prop("src", "").hide();
-		}
-	});
 	jQuery("#v_p_brand_no").on("change", loadBrandNo);
+	
+	jQuery("#save-product-btn").on("click", function(e){
+		e.preventDefault();
+		insertData();
+	});
 });
 </script>
 <div class="container-fluid" id="gtk-detail-main">
-	<form action="/products" method="POST" enctype="multipart/form-data">
+	<form id="save-product-form">
 	<div class="gtk-main-box">
 		<div style="display:inline-block;width:50%;vertical-align:top;">
 			<div class="gtk-group-title"><span class="title-icon">●</span> 상품 이미지</div>
@@ -100,8 +93,7 @@ jQuery(document).ready(function(e){
 	 	</div> 
 	 </div>
 	 <div class="gtk-form-btn-group">
-	 	<button class="gtk-btn gtk-btn-blue" type="submit">등록</button>
+	 	<button id="save-product-btn" class="gtk-btn gtk-btn-blue" type="submit">등록</button>
 	 </div>
-	
 	</form>		
 </div>	

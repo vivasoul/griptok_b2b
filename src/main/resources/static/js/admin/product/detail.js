@@ -40,3 +40,46 @@ const loadPBrandNo = function(){
 const loadCraftNo = function(){
 	loadSelect("#v_craft_no","/categories/crafts","craft_no","craft_nm");
 };
+
+const loadData = function(product_id) {
+	jQuery.ajax({
+		  url: "/products/"+product_id,
+		  method: "GET",
+		  dataType: "json"
+		}).done(function(data){
+			console.log(data);
+			//renderData(data);
+			//jQuery("#gtk-detail-main").prop("data",data);
+		}).fail(function(e){
+			console.log(e);
+		}).always(function(){
+			
+		});
+};
+
+const insertData = function(){
+    const form = jQuery('#save-product-form')[0];
+    
+    if(!form.reportValidity()) return false;
+    // Create an FormData object 
+    const formData = new FormData(form);
+
+   // disabled the submit button
+    jQuery("#save-product-btn").prop("disabled", true);
+   
+	jQuery.ajax({
+	  url: "/products",
+	  method: "POST",
+	  enctype:"multipart/form-data",
+      contentType: false, 
+      processData: false,
+      data: formData
+	}).done(function(data){
+		alert("성공적으로 저장되었습니다.");
+		location.href="/admin/products";
+	}).fail(function(e){
+		console.log(e);
+	}).always(function(){
+		
+	});
+}
