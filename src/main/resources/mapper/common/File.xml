@@ -7,6 +7,20 @@
 		VALUES( #{file_nm}, #{file_path}, #{file_size}, NOW(), #{file_format}, #{download_nm}, #{img_width}, #{img_height} )
 	</insert>
 	
+	<update id="updateImgInfo" parameterType="com.griptk.b2b.common.domain.ImageVO">
+		UPDATE tb_img_file_info 
+		SET
+			file_nm = #{file_nm},
+			file_path = #{file_path},
+			file_size = #{file_size},
+			file_format = #{file_format},
+			download_nm = #{download_nm},
+			img_width = #{img_width},
+			img_height = #{img_height},
+			upd_dt = NOW()
+		WHERE img_no = #{img_no}
+	</update>
+	
 	<select id="getImgNo" resultType="Long">
 		SELECT LAST_INSERT_ID() AS img_no;
 	</select>	
@@ -14,7 +28,7 @@
 	<select id="getFile" parameterType="Long" resultType="com.griptk.b2b.common.domain.ImageVO" >
 		SELECT 
 			img_no,
-			CONCAT(file_path, file_nm,'.',file_format) AS file_nm,
+			CONCAT(file_path,'/', file_nm) AS file_nm,
 			download_nm,
 			file_size,
 			img_width,

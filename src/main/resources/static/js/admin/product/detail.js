@@ -62,10 +62,12 @@ const setData = function(data){
 	const thumb_file = data["thumb_file"];
 	const files = data["files"];
 	if(thumb_file){
+		jQuery("#v_thumb_img_no").val(thumb_file.img_no);
 		jQuery("#v_thumb_file").prop("defaultSrc",thumb_file.img_path).fire("change");
 	}
 	if(files.length){
 		for(let i=0;i<files.length;i++){
+			jQuery("#v_img_no_"+(i+1)).val(files[i].img_no);
 			jQuery("#v_file_"+(i+1)).prop("defaultSrc",files[i].img_path).fire("change");		
 		}
 	}
@@ -112,7 +114,7 @@ const insertData = function(){
 	});
 };
 
-const updateDate = function(product_id){
+const updateData = function(product_id){
     const form = jQuery('#save-product-form')[0];
     
     if(!form.reportValidity()) return false;
@@ -124,7 +126,7 @@ const updateDate = function(product_id){
    
 	jQuery.ajax({
 	  url: "/products/"+product_id,
-	  method: "PUT",
+	  method: "POST",
 	  enctype:"multipart/form-data",
       contentType: false, 
       processData: false,

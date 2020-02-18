@@ -5,8 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -35,6 +35,11 @@ public class FileAPI {
 	@Autowired
 	private FileMapper mapper;
 	
+	@GetMapping("/{img_no}")
+	public ImageVO getFile(@PathVariable("img_no") long img_no) { 
+		return mapper.getFile(img_no);
+	}
+	
 	@PostMapping("/biz_image")
 	public ImageVO uploadBizImage(@RequestPart (value="upload_file") MultipartFile upload_file) throws IllegalStateException, IOException {
 		ImageVO imgVO = getImageVOFromMultipart("/biz_image/",upload_file);
@@ -62,12 +67,42 @@ public class FileAPI {
 		long img_no = mapper.getImgNo();		
 		
 		return new ProductImgReqVO(product_id, img_no);
+	}
+	
+	@Transactional
+	//@PostMapping("/product_image")
+	public List<ProductImgReqVO> uploadProductMultipleImages(int product_id, long[] img_nos, MultipartFile[] upload_files) throws IllegalStateException, IOException {
+		List<ProductImgReqVO> result = new ArrayList<>();
+		for(int i=0; i<img_nos.length; i++) {
+			long img_no = img_nos[i];
+			MultipartFile mf = upload_files[i];
+			if(img_no > 0) {
+				uploadProductImage(product_id, img_no, mf);
+			}else {
+				ProductImgReqVO imgVO = uploadProductImage(product_id, mf);
+				result.add(imgVO);				
+			}
+		}
+		return result;
 	}	
 	
-	@GetMapping("/{img_no}")
-	public ImageVO getFile(@PathVariable("img_no") long img_no) { 
-		return mapper.getFile(img_no);
+	public void uploadProductImage(int product_id, long img_no, MultipartFile upload_file) throws IllegalStateException, IOException {
+		
+		deleteFile(img_no);
+		ImageVO imgVO = getImageVOFromMultipart("/product_image/",upload_file);
+		imgVO.setImg_no(img_no);
+		mapper.updateImgInfo(imgVO);
 	}
+	
+	private void deleteFile(long file_no) {
+		ImageVO img = mapper.getFile(file_no);
+		String file_nm = img.getFile_nm();
+		String absolute_file_nm = UPLOAD_DIR+file_nm;
+		File f = new File(absolute_file_nm);
+		if(f.exists()) f.delete();
+	}
+	
+	
 	
 	private ImageVO getImageVOFromMultipart(String file_path, MultipartFile upload_file) throws IllegalStateException, IOException {
 		String _file_path = null;

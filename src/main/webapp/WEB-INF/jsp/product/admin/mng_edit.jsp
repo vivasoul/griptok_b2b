@@ -12,11 +12,23 @@ jQuery(document).ready(function(e){
 	
 	jQuery("#save-product-btn").on("click", function(e){
 		e.preventDefault();
-		jQuery(".gtk-input-upload input[type=text]").each(function(a,b){
-			console.log(a);
-			console.log(b);
+		/* disable input-fields related with file-upload to avoid buggy situation */
+		jQuery(".gtk-file-upload input[type=file]").each(function(idx,elem){
+			const $this = jQuery(elem);
+			const key_input_id = $this.attr("key-input");
+			
+			if(!key_input_id) return;
+			
+			const $hidden = jQuery("#"+key_input_id);
+			console.log($this.val());
+			if($this.val()){
+				if($hidden.val() === "") $hidden.val("-1");
+			}else{
+				$this.prop("disabled", true);
+				$hidden.prop("disabled", true);
+			}
 		});
-		//updateData();
+		updateData(jQuery("#v_product_id").val());
 	});
 });
 </script>
@@ -29,15 +41,15 @@ jQuery(document).ready(function(e){
 				<label for="v_thumb_file">썸네일 이미지</label>
 				<div class="gtk-file-upload">
 					<input type="hidden" id="v_thumb_img_no" name="thumb_img_no" value="" />
-					<input type="file" id="v_thumb_file" name="thumb_file" accept="image/*" />
+					<input type="file" id="v_thumb_file" name="thumb_file" accept="image/*" key-input="v_thumb_img_no"/>
 				</div>
 			</div>
 			<div class="gtk-detail-imgs-group">
 				<div class="gtk-input-group">
 					<label for="v_file_1">이미지1</label>
 					<div class="gtk-file-upload">
-						<input type="hidden" id="v_thumb_img_no" name="thumb_img_no" value="" />
-						<input type="file" id="v_file_1" name="files" accept="image/*" key-input="v_thumb_img_no" />
+						<input type="hidden" id="v_img_no_1" name="img_nos" value="" />
+						<input type="file" id="v_file_1" name="files" accept="image/*" key-input="v_img_no_1" />
 					</div>
 				</div>
 				<div class="gtk-input-group">

@@ -281,7 +281,28 @@
 		    (#{item.product_id}, #{item.img_no}, NOW()) 
 		</foreach>
 	</insert>
-
+	<!-- UPDATE -->
+	<update id="update" parameterType="com.griptk.b2b.product.domain.ProductReqVO">
+		UPDATE tb_product 
+		SET
+			title = #{title}, 
+			retail_price = #{retail_price}, 
+			sales_price = #{sales_price}, 
+			is_new = IFNULL(#{is_new},'N'), 
+			is_best = IFNULL(#{is_best},'N'), 
+			is_dc = IFNULL(#{is_dc},'N'),
+			category_no =(SELECT category_no FROM tb_product_category WHERE brand_no = #{brand_no} AND craft_no = #{craft_no}),
+			upd_dt = NOW()
+		WHERE product_id = #{product_id}
+	</update>
+	<update id="updateDetail" parameterType="com.griptk.b2b.product.domain.ProductReqVO">
+		UPDATE tb_product_detail
+		SET
+			stock_cnt = #{stock_cnt},
+			upd_dt = NOW()
+		WHERE product_id = #{product_id}
+	</update>	
+	
 	<select id="getDetail_2" parameterType="Int" resultMap="productRespMap">
 		SELECT 
 			a.product_id,

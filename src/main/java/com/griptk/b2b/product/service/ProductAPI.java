@@ -148,24 +148,23 @@ public class ProductAPI {
 		return result;
 	}	
 	
-	@PutMapping(value="/{product_id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PostMapping(value="/{product_id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	@Transactional
-	public void updateProduct(@PathVariable int product_id,
-							  @ModelAttribute ProductReqVO payload ) throws IOException, ServletException {
+	public void updateProduct(	@PathVariable int product_id,
+								@ModelAttribute ProductReqVO payload) throws IOException, ServletException {
+		long thumb_img_no = payload.getThumb_img_no();
+		if(thumb_img_no > 0) fileAPI.uploadProductImage(product_id, thumb_img_no, payload.getThumb_file());
+		
 		payload.setProduct_id(product_id);
-		
-		ProductImgReqVO imgReq = fileAPI.uploadProductImage(product_id, payload.getThumb_file());
-		long thumb_img_no = imgReq.getImg_no();
-		payload.setThumb_img_no(thumb_img_no);
-		
-		int result = mapper.create(payload);
+		int result = mapper.update(payload);
 		
 		if(result != 0) {
-			List<ProductImgReqVO> images = fileAPI.uploadProductMultipleImages(product_id, payload.getFiles());
-			if(!images.isEmpty()) {
-				mapper.createImages(images);
+			long[] img_nos = payload.getImg_nos();
+			if(img_nos != null) {
+				List<ProductImgReqVO> images = fileAPI.uploadProductMultipleImages(product_id, payload.getImg_nos(), payload.getFiles());
+				if(!images.isEmpty()) mapper.createImages(images);
 			}
-			mapper.createDetail(payload);
+			mapper.updateDetail(payload);
 		}
 	}	
 }
