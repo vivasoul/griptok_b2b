@@ -34,3 +34,14 @@ jQuery.fn.fire = function(eventName){
 	
 	return this;
 }
+
+jQuery.fn.lazyVal = function(lazyVal) {
+	if(lazyVal === undefined){
+		const lazyVal = this.prop("lazyValue") || null;
+		this.prop("lazyValue", null);
+		return lazyVal;  
+	}else {
+		this.prop("lazyValue", lazyVal);
+		return this;
+	}
+};

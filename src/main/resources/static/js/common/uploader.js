@@ -31,7 +31,7 @@ jQuery(document).ready(function(){
 			const defaultSrc = $this.prop("defaultSrc");
 			if(defaultSrc){
 				$this.find("+p").hide();
-				$this.find("+p+img").prop("src", defaultSrc).show();
+				$this.find("+p+img").prop("src", defaultSrc).show().on("load", function(){ URL.revokeObjectURL(this.src); });
 			}else{
 				$this.find("+p").show();
 				$this.find("+p+img").prop("src", "").hide();				

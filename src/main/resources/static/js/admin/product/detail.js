@@ -18,7 +18,10 @@ const loadSelect = function(selector, url, cd_key, cd_nm_key, callback){
 			option.innerHTML = d[cd_nm_key];
 			options.push(option);
 		}
-		$dom.append(options); 
+		$dom.append(options);
+		
+		const lazyValue = $dom.lazyVal();
+		if(lazyValue !== null) $dom.val(lazyValue);
 		
 		if(callback instanceof Function) callback();
 	}).fail(function(e){
@@ -47,9 +50,11 @@ const setData = function(data){
 	jQuery("#v_retail_price").val(data["retail_price"]);
 	jQuery("#v_sales_price").val(data["sales_price"]);
 	jQuery("#v_stock_cnt").val(data["stock_cnt"]);
-	jQuery("#v_craft_no").val(data["craft_no"]);
-	jQuery("#v_p_brand_no").val(data["p_brand_no"]).fire("change");
-	jQuery("#v_brand_no").val(data["brand_no"]);
+	jQuery("#v_craft_no").lazyVal(data["craft_no"]);
+	loadCraftNo();
+	jQuery("#v_p_brand_no").lazyVal(data["p_brand_no"]);
+	jQuery("#v_brand_no").lazyVal(data["brand_no"]);
+	loadPBrandNo();
 	jQuery("#v_is_new").prop("checked",data["is_new"] === "Y");
 	jQuery("#v_is_best").prop("checked",data["is_best"] === "Y");
 	jQuery("#v_is_dc").prop("checked",data["is_dc"] === "Y");

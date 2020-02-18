@@ -4,14 +4,18 @@
 <script type="text/javascript" src="/js/common/uploader.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function(e){
-	loadCraftNo();
-	loadPBrandNo();
+	//loadCraftNo();
+	//loadPBrandNo();
 	jQuery("#v_p_brand_no").on("change", loadBrandNo);
 	
 	loadData(jQuery("#v_product_id").val());
 	
 	jQuery("#save-product-btn").on("click", function(e){
 		e.preventDefault();
+		jQuery(".gtk-input-upload input[type=text]").each(function(a,b){
+			console.log(a);
+			console.log(b);
+		});
 		//updateData();
 	});
 });
@@ -24,32 +28,37 @@ jQuery(document).ready(function(e){
 			<div class="gtk-input-group">
 				<label for="v_thumb_file">썸네일 이미지</label>
 				<div class="gtk-file-upload">
-					<input type="file" id="v_thumb_file" name="thumb_file" accept="image/*" required/>
+					<input type="hidden" id="v_thumb_img_no" name="thumb_img_no" value="" />
+					<input type="file" id="v_thumb_file" name="thumb_file" accept="image/*" />
 				</div>
 			</div>
 			<div class="gtk-detail-imgs-group">
 				<div class="gtk-input-group">
 					<label for="v_file_1">이미지1</label>
 					<div class="gtk-file-upload">
-						<input type="file" id="v_file_1" name="files" accept="image/*" required/>
+						<input type="hidden" id="v_thumb_img_no" name="thumb_img_no" value="" />
+						<input type="file" id="v_file_1" name="files" accept="image/*" key-input="v_thumb_img_no" />
 					</div>
 				</div>
 				<div class="gtk-input-group">
 					<label for="v_file_2">이미지2</label>
 					<div class="gtk-file-upload">
-						<input type="file" id="v_file_2" name="files" accept="image/*" required/>
+						<input type="hidden" id="v_img_no_2" name="img_nos" value="" />
+						<input type="file" id="v_file_2" name="files" accept="image/*" key-input="v_img_no_2"/>
 					</div>
 				</div>
 				<div class="gtk-input-group">
 					<label for="v_file_3">이미지3</label>
 					<div class="gtk-file-upload">
-						<input type="file" id="v_file_3" name="files" accept="image/*" required/>
+						<input type="hidden" id="v_img_no_3" name="img_nos" value="" />
+						<input type="file" id="v_file_3" name="files" accept="image/*" key-input="v_img_no_3"/>
 					</div>
 				</div>
 				<div class="gtk-input-group">
 					<label for="v_file_4">이미지4</label>
 					<div class="gtk-file-upload">
-						<input type="file" id="v_file_4" name="files" accept="image/*" required/>
+						<input type="hidden" id="v_img_no_4" name="img_nos" value="" />
+						<input type="file" id="v_file_4" name="files" accept="image/*" key-input="v_img_no_4"/>
 					</div>
 				</div>												
 			</div>
