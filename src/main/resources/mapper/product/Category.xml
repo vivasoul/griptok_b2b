@@ -2,28 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.product.mapper.CategoryMapper">
+	<resultMap	id="categoryResult" type="com.griptk.b2b.product.domain.CategoryVO">
+		<id property="category_no" column="category_no"/>
+		<result property="category_nm" column="category_nm"/>
+		<result property="use_yn" column="use_yn"/>
+		<collection property="brand" ofType="com.griptk.b2b.product.domain.BrandTypeVO">
+			<id property="brand_no" column="brand_no"/>
+			<result property="brand_nm" column="brand_nm"/>
+			<result property="p_brand_no" column="p_brand_no"/>
+			<result property="p_brand_nm" column="p_brand_nm"/>			
+		</collection>
+		<collection property="craft" ofType="com.griptk.b2b.product.domain.CraftTypeVO">
+			<id property="craft_no" column="craft_no"/>
+			<result property="craft_nm" column="craft_nm"/>			
+		</collection>		
+	</resultMap>
 	<select id="listBrands" parameterType="Int" resultType="com.griptk.b2b.product.domain.BrandTypeVO">
-		SELECT brand_no, brand_nm 
-		FROM tb_brand_type 
-		WHERE p_brand_no = #{p_brand_no}
-		ORDER BY brand_no
+		SELECT 
+			a.brand_no, a.brand_nm,
+			b.brand_no AS p_brand_no, b.brand_nm AS p_brand_nm, 
+			a.use_yn
+		FROM tb_brand_type a
+		INNER JOIN tb_brand_type b ON a.p_brand_no = b.brand_no
+		WHERE a.p_brand_no = #{p_brand_no}
+		ORDER BY a.brand_no
 	</select>
 	
 	<select id="listCrafts" resultType="com.griptk.b2b.product.domain.CraftTypeVO">
-		SELECT craft_no, craft_nm 
+		SELECT craft_no, craft_nm, use_yn 
 		FROM tb_craft_type
 		ORDER BY craft_no
 	</select>
 	
 	<select id="getCraft" parameterType="Int" resultType="com.griptk.b2b.product.domain.CraftTypeVO">
-		SELECT craft_no, craft_nm 
+		SELECT craft_no, craft_nm, use_yn 
 		FROM tb_craft_type 
 		WHERE craft_no = #{craft_no}
 	</select>
 	
 	<select id="getBrand" parameterType="Int" resultType="com.griptk.b2b.product.domain.BrandTypeVO">
-		SELECT brand_no, brand_nm 
-		FROM tb_brand_type 
-		WHERE brand_no = #{brand_no}
+		SELECT 
+			a.brand_no, a.brand_nm,
+			b.brand_no AS p_brand_no, b.brand_nm AS p_brand_nm, 
+			a.use_yn
+		FROM tb_brand_type a
+		INNER JOIN tb_brand_type b ON a.p_brand_no = b.brand_no
+		WHERE a.brand_no = #{brand_no}
+	</select>
+	
+	<select id="listCategory" resultMap="categoryResult">
+		SELECT 
+			a.category_no, a.category_nm, 
+			b.brand_no, b.brand_nm,
+			c.brand_no AS p_brand_no, c.brand_nm AS p_brand_nm, 
+			d.craft_no, d.craft_nm,			
+			a.use_yn
+		FROM tb_product_category a
+		INNER JOIN tb_brand_type b ON a.brand_no = b.brand_no
+		INNER JOIN tb_brand_type c ON b.p_brand_no = c.brand_no
+		INNER JOIN tb_craft_type d ON a.craft_no = d.craft_no
 	</select>
 </mapper>

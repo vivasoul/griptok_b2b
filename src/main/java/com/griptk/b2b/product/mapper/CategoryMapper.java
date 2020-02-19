@@ -3,6 +3,7 @@ package com.griptk.b2b.product.mapper;
 import java.util.List;
 
 import com.griptk.b2b.product.domain.BrandTypeVO;
+import com.griptk.b2b.product.domain.CategoryVO;
 import com.griptk.b2b.product.domain.CraftTypeVO;
 
 public interface CategoryMapper {
@@ -11,4 +12,6 @@ public interface CategoryMapper {
 	
 	CraftTypeVO getCraft(int craft_no);
 	BrandTypeVO getBrand(int brand_no);
+	
+	List<CategoryVO> listCategory();
 }

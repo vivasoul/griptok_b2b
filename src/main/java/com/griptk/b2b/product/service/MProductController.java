@@ -57,4 +57,10 @@ public class MProductController {
 		model.addAttribute("content_page", "product/admin/mng_new");
 		return "_template/admin";
 	}
+	
+	@RequestMapping("/admin/category")
+	public String goAdminCetegory(Model model) {
+		model.addAttribute("content_page", "product/admin/mng_category");
+		return "_template/admin";
+	}	
 }

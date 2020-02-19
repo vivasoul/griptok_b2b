@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.griptk.b2b.product.domain.BrandTypeVO;
+import com.griptk.b2b.product.domain.CategoryVO;
 import com.griptk.b2b.product.domain.CraftTypeVO;
 import com.griptk.b2b.product.mapper.CategoryMapper;
 
@@ -38,4 +38,9 @@ public class CategoryAPI {
 	public BrandTypeVO getBrand(int brand_no){
 		return mapper.getBrand(brand_no);
 	}	
+	
+	@GetMapping
+	public List<CategoryVO> listCategories(){
+		return mapper.listCategory();
+	}
 }
