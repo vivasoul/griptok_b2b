@@ -36,7 +36,7 @@ jQuery(document).ready(function(e){
 <div class="container-fluid" id="gtk-detail-main">
 	<form id="save-product-form">
 	<div class="gtk-main-box">
-		<div style="display:inline-block;width:50%;vertical-align:top;">
+		<div class="gtk-box-half">
 			<div class="gtk-group-title"><span class="title-icon">●</span> 상품 이미지</div>
 			<div class="gtk-input-group">
 				<label for="v_thumb_file">썸네일 이미지</label>
@@ -76,7 +76,7 @@ jQuery(document).ready(function(e){
 				</div>												
 			</div>
 		</div><!-- 
-	 --><div style="display:inline-block;width:50%;vertical-align:top;">
+	 --><div class="gtk-box-half">
 	 		<div class="gtk-group-title"><span class="title-icon">●</span> 상품 기본 정보</div>
 	 		<div class="gtk-input-group">
 	 			<label for="v_product_id">상품번호</label>
