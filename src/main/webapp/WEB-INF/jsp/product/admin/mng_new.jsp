@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%
+	boolean dc_only = request.getAttribute("dc_only") == null ?  false : (Boolean)request.getAttribute("dc_only");
+%>
 <link rel="stylesheet" href="/css/product/edit.css" />
 <script type="text/javascript" src="/js/admin/product/detail.js"></script>
 <script type="text/javascript" src="/js/common/uploader.js"></script>
@@ -89,7 +92,10 @@ jQuery(document).ready(function(e){
 	 		 <div class="gtk-input-group">
 	 			<label for="v_is_best">베스트상품 여부</label>
 	 			<input type="checkbox" id="v_is_best" name="is_best" value="Y"/>
-	 		</div>		 			
+	 		</div>
+	 		<%if(dc_only){%>
+	 		<input type="hidden" id="v_is_dc" name="is_dc" value="Y" readOnly/>
+	 		<%}%>
 	 	</div> 
 	 </div>
 	 <div class="gtk-form-btn-group">

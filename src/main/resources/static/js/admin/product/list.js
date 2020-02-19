@@ -1,17 +1,22 @@
-const getProductURL = function(product_id){
+const getProductURL = function(product_id, dc_only){
 	const query = location.search.replace(/[?]/,"");
-	let url = "/admin/products/edit?product_id="+product_id;
+	let url = null;
+	if(dc_only){
+		url = "/admin/dc-products/edit?product_id="+product_id;
+	}else{
+		url = "/admin/products/edit?product_id="+product_id;
+	}
 	return url;
 };
 
-const thumbnailGenerator = function(data) {
+const thumbnailGenerator = function(data, dc_only) {
 	const id = data.product_id;
 	
 	const main_div = document.createElement("div");
 	main_div.className = "griptok-thumb";
 	
 		const anchor = document.createElement("a");
-		anchor.href = getProductURL(id);
+		anchor.href = getProductURL(id, dc_only);
 		
 			const img_div = document.createElement("div");
 			img_div.className = "thumb-image";
@@ -42,9 +47,9 @@ const thumbnailGenerator = function(data) {
 	return main_div;
 }
 
-const loadList = function(url, render_id){
+const loadList = function(render_id){
 	jQuery.ajax({
-	  url: url,
+	  url: "/products",
 	  method: "GET",
 	  dataType: "json"
 	}).done(function(datas){
@@ -53,6 +58,28 @@ const loadList = function(url, render_id){
 		const dom_arr = [];
 		for(let i=0; i<len; i++){
 			dom_arr.push(thumbnailGenerator(datas[i]));
+		}
+		if(dom_arr.length) jQuery("#"+render_id).empty().append(dom_arr);
+		
+	}).fail(function(e){
+		//console.log("loadList failed..");
+		console.log(e);
+	}).always(function(){
+		//console.log("loadList finished.")
+	});
+};
+
+const loadListDC = function(render_id){
+	jQuery.ajax({
+	  url: "/products/dc",
+	  method: "GET",
+	  dataType: "json"
+	}).done(function(datas){
+		
+		const len = datas.length;
+		const dom_arr = [];
+		for(let i=0; i<len; i++){
+			dom_arr.push(thumbnailGenerator(datas[i],true));
 		}
 		if(dom_arr.length) jQuery("#"+render_id).empty().append(dom_arr);
 		
