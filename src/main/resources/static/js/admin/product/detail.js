@@ -45,7 +45,6 @@ const loadCraftNo = function(){
 };
 
 const setData = function(data){
-	console.log(data);
 	jQuery("#v_title").val(data["title"]);
 	jQuery("#v_retail_price").val(data["retail_price"]);
 	jQuery("#v_sales_price").val(data["sales_price"]);
