@@ -46,3 +46,57 @@
 	color : white;
 	background-color : #5B9BD5;
 }
+
+.width_9{
+	width:90%;
+}
+
+.width_480{
+	width:480px;
+}
+.width_290{
+	width:290px;
+}
+
+.width_70{
+	width:70px;
+}
+
+.width_95{
+	width:95px;
+}
+
+.margin_l_15{
+	margin-left:15px;
+}
+
+.margin_r_5{
+	margin-right:5px;
+}
+
+.margin_r_15{
+	margin-right:15px;
+}
+
+.margin_r_2{
+	margin-right:20px;
+}
+
+.margin_r_3{
+	margin-right:30px;
+}
+
+.margin_r_4{
+	margin-right:40px;
+}
+
+
+.popup_btn{
+	width:125px;
+	height:47px;
+}
+
+.input_holder{
+  text-indent: 10px;
+  height : 35px;
+}

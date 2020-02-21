@@ -37,7 +37,7 @@
 					<div data-toggle="modal" data-target="#idFinderModal"
 						id = "id_finder_opener"	class="login_float"><span class="option-icon">●</span><span class="option-text">아이디 찾기</span></div>
 					<div data-toggle="modal" data-target="#pwdFinderModal"
-						id = "pwd_finder_opener" class="login_float"><span class="option-icon">●</span><span class="option-text">비밀번 호찾기</span></div>
+						id = "pwd_finder_opener" class="login_float"><span class="option-icon">●</span><span class="option-text">비밀번호 찾기</span></div>
 					<div onclick="location.href='/sign-up'" class="login_float">
 						<span class="option-icon">●</span>회원 가입</div>
 					<button data-toggle="modal" data-target="#authModal"
@@ -60,12 +60,13 @@
 </div>
 <!-- Id finder Modal -->
 <div class="modal fade" id="idFinderModal" role="dialog">
-	<div class="modal-dialog">
+	<div class="modal-dialog width_480">
 		<div class="modal-content modal_border">
 			<div class="modal-body">
-				<h3 class="h_tag_center">아이디찾기</h3>
+				<h4 class="margin_l_15">아이디찾기</h4>
+				<br>
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#cell_tab" data-toggle="tab">전화번호</a>
+					<li class="active"><a href="#cell_tab" data-toggle="tab">휴대폰번호</a>
 					</li>
 					<li><a href="#email_tab" data-toggle="tab">이메일</a></li>
 				</ul>
@@ -75,40 +76,58 @@
 						<br>
 						<fieldset>
 							<div class="form-group">
-								<div class="right-inner-addon">
-									<i class="fa fa-envelope"></i> <input id="id_cell_ceo_nm"
-										class="form-control input-lg" placeholder="이름" type="text">
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8 ">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+													<input id="id_cell_ceo_nm" class="width_290 input_holder" placeholder="이름" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2"></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="row">
-									<div class="col-sm-4">
-										<input id="id_cell_contact_tel1" maxlength="3"
-											class="form-control input-lg auto_inputs" placeholder="010" type="text">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+												<input id="id_cell_contact_tel1" maxlength="3"
+													class="width_70 margin_r_15 input_holder" placeholder="010" type="text">
+												<input id="id_cell_contact_tel2" maxlength="4"
+													class="width_95 margin_r_15 input_holder" type="text">
+												<input id="id_cell_contact_tel3" maxlength="4"
+													class="width_95 input_holder" type="text">
+											</div>
+											</div>
 									</div>
-									<div class="col-sm-4">
-										<input id="id_cell_contact_tel2" maxlength="4"
-											class="form-control input-lg auto_inputs" type="text">
+									<div class="col-sm-2"></div>
 									</div>
-									<div class="col-sm-4">
-										<input id="id_cell_contact_tel3" maxlength="4"
-											class="form-control input-lg auto_inputs" type="text">
-									</div>
-								</div>
 							</div>
 						</fieldset>
+						<br>
 						<div class="row">
-							<div class="col-sm-12 notice small_font">*회원가입 시 등록한 이름과
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8 notice small_font">회원가입 시 등록한 이름과
 								휴대폰 번호 또는 이메일을 입력하시면 아이디를 확인하실 수 있습니다.</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<br>
 						<div class="tab-content">
 							<div class="col-sm-2"></div>
-							<div class="col-sm-8">
-								<button id="id_cell_finder"
-									class="btn btn_blue btn-lg btn-block">
-									<i class="fa fa-plus"></i> 확인
-								</button>
+							<div class="col-sm-8 ">
+								<div class="row">
+										<div class="col-sm-12 input-group no-addon">
+											<button type="button" id="id_finder_close" class="gtk-btn popup_btn margin_l_15 margin_r_5"
+											data-dismiss="modal">취소</button>
+											<button id="id_cell_finder"
+											class="gtk-btn gtk-btn-blue popup_btn">
+											<i class="fa fa-plus"></i> 확인
+										</button>
+										</div>
+								</div>
 							</div>
 							<div class="col-sm-2"></div>
 						</div>
@@ -118,38 +137,62 @@
 						<br>
 						<fieldset>
 							<div class="form-group">
-								<div class="right-inner-addon">
-									<i class="fa fa-envelope"></i> <input id="id_email_ceo_nm"
-										class="form-control input-lg" placeholder="이름" type="text">
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8 ">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+													<input id="id_email_ceo_nm" class="width_290 input_holder" placeholder="이름" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2"></div>
 								</div>
 							</div>
+							
 							<div class="form-group">
-								<div class="right-inner-addon">
-									<i class="fa fa-key"></i> <input id="id_email_email"
-										class="form-control input-lg" placeholder="이메일" type="text">
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8 ">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+													<input id="id_email_email" class="width_290 input_holder" placeholder="이메일" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2"></div>
 								</div>
 							</div>
 						</fieldset>
+						<br>
 						<div class="row">
-							<div class="col-sm-12 notice small_font">*회원가입 시 등록한 이름과
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8 notice small_font">회원가입 시 등록한 이름과
 								휴대폰 번호 또는 이메일을 입력하시면 아이디를 확인하실 수 있습니다.</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<br>
-						<div class="col-sm-2"></div>
-						<div class="col-sm-8">
-							<button id="id_email_finder"
-								class="btn btn_blue btn-lg btn-block">
-								<i class="fa fa-plus"></i> 확인
-							</button>
+						
+						
+						<div class="tab-content">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8 ">
+								<div class="row">
+										<div class="col-sm-12 input-group no-addon">
+											<button type="button" id="id_finder_close" class="gtk-btn popup_btn margin_l_15 margin_r_5"
+											data-dismiss="modal">취소</button>
+											<button id="id_email_finder"
+											class="gtk-btn gtk-btn-blue popup_btn">
+											<i class="fa fa-plus"></i> 확인
+										</button>
+										</div>
+								</div>
+							</div>
+							<div class="col-sm-2"></div>
 						</div>
-						<div class="col-sm-2"></div>
 						<br>
 					</div>
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" id="id_finder_close" class="btn btn-default"
-						data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
@@ -158,12 +201,13 @@
 
 <!-- Pwd finder Modal -->
 <div class="modal fade" id="pwdFinderModal" role="dialog">
-	<div class="modal-dialog">
+	<div class="modal-dialog width_480">
 		<div class="modal-content modal_border">
 			<div class="modal-body">
-				<h3 class="h_tag_center">비밀번호 찾기</h3>
+				<h4 class="margin_l_15">비밀번호 찾기</h4>
+				<br>
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#pass_cell_tab" data-toggle="tab">전화번호</a>
+					<li class="active"><a href="#pass_cell_tab" data-toggle="tab">휴대폰번호</a>
 					</li>
 					<li><a href="#pass_email_tab" data-toggle="tab">이메일</a></li>
 				</ul>
@@ -173,87 +217,140 @@
 						<br>
 						<fieldset>
 							<div class="form-group">
-								<div class="right-inner-addon">
-									<i class="fa fa-envelope"></i> <input id="passwd_cell_user_id"
-										class="form-control input-lg" placeholder="아이디" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="right-inner-addon">
-									<i class="fa fa-envelope"></i> <input id="passwd_cell_ceo_nm"
-										class="form-control input-lg" placeholder="이름" type="text">
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8 ">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+													<input id="passwd_cell_user_id" class="width_290 input_holder" placeholder="아이디" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2"></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="row">
-									<div class="col-sm-4">
-										<input id="passwd_cell_contact_tel1" maxlength="3"
-											class="form-control input-lg auto_inputs" placeholder="010" type="text">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8 ">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+													<input id="passwd_cell_ceo_nm" class="width_290 input_holder" placeholder="이름" type="text">
+											</div>
+										</div>
 									</div>
-									<div class="col-sm-4">
-										<input id="passwd_cell_contact_tel2" maxlength="4"
-											class="form-control input-lg auto_inputs" type="text">
-									</div>
-									<div class="col-sm-4">
-										<input id="passwd_cell_contact_tel3" maxlength="4"
-											class="form-control input-lg auto_inputs" type="text">
-									</div>
+									<div class="col-sm-2"></div>
 								</div>
 							</div>
-						</fieldset>
-						<div class="row">
-							<div class="col-sm-12 notice small_font">
-								*회원가입 시 등록한 아이디와 이름을 입력해주세요.<br> 고객님의 이메일로 임시 비밀번호가 전송됩니다.
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+												<input id="passwd_cell_contact_tel1" maxlength="3" class="width_70 margin_r_15 input_holder" placeholder="010" type="text">
+												<input id="passwd_cell_contact_tel2" maxlength="4" class="width_95 margin_r_15 input_holder" type="text">
+												<input id="passwd_cell_contact_tel3" maxlength="4" class="width_95 input_holder" type="text">
+											</div>
+											</div>
+									</div>
+									<div class="col-sm-2"></div>
+									</div>
 							</div>
+						
+						</fieldset>
+						<br>
+						<div class="row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8 notice small_font">회원가입 시 등록한 아이디와 이름을 입력해주세요.<br> 고객님의 이메일로 임시 비밀번호가 전송됩니다.</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<br>
+						
+						
 						<div class="tab-content">
 							<div class="col-sm-2"></div>
-							<div class="col-sm-8">
-								<button id="passwd_cell_finder"
-									class="btn btn_blue btn-lg btn-block">
-									<i class="fa fa-plus"></i> 확인
-								</button>
+							<div class="col-sm-8 ">
+								<div class="row">
+										<div class="col-sm-12 input-group no-addon">
+											<button type="button" class="gtk-btn popup_btn margin_l_15 margin_r_5"
+											data-dismiss="modal">취소</button>
+											<button id="passwd_cell_finder"
+											class="gtk-btn gtk-btn-blue popup_btn">
+											<i class="fa fa-plus"></i> 확인
+										</button>
+										</div>
+								</div>
 							</div>
 							<div class="col-sm-2"></div>
 						</div>
+						
 					</div>
 
 					<div class="tab-pane fade" id="pass_email_tab">
 						<br>
 						<fieldset>
 							<div class="form-group">
-								<div class="right-inner-addon">
-									<i class="fa fa-envelope"></i> <input id="passwd_email_user_id"
-										class="form-control input-lg" placeholder="아이디" type="text">
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8 ">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+													<input id="passwd_email_user_id" class="width_290 input_holder" placeholder="아이디" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="right-inner-addon">
-									<i class="fa fa-envelope"></i> <input id="passwd_email_ceo_nm"
-										class="form-control input-lg" placeholder="이름" type="text">
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8 ">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+													<input id="passwd_email_ceo_nm" class="width_290 input_holder" placeholder="이름" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="right-inner-addon">
-									<i class="fa fa-key"></i> <input id="passwd_email_email"
-										class="form-control input-lg" placeholder="이메일" type="text">
+								<div class="row">
+									<div class="col-sm-2"></div>
+									<div class="col-sm-8 ">
+										<div class="row">
+											<div class="col-sm-12 input-group no-addon">
+													<input id="passwd_email_email" class="width_290 input_holder" placeholder="이메일" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-2"></div>
 								</div>
 							</div>
+						
 						</fieldset>
+						<br>
 						<div class="row">
-							<div class="col-sm-12 notice small_font">
-								*회원가입 시 등록한 아이디와 이름을 입력해주세요.<br> 고객님의 이메일로 임시 비밀번호가 전송됩니다.
-							</div>
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8 notice small_font">회원가입 시 등록한 아이디와 이름을 입력해주세요.<br> 고객님의 이메일로 임시 비밀번호가 전송됩니다.</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<br>
-						<div class=" text-center">
+						<div class="tab-content">
 							<div class="col-sm-2"></div>
-							<div class="col-sm-8">
-								<button id="passwd_email_finder"
-									class="btn btn_blue btn-lg btn-block">
-									<i class="fa fa-plus"></i> 확인
-								</button>
+							<div class="col-sm-8 ">
+								<div class="row">
+										<div class="col-sm-12 input-group no-addon">
+											<button type="button" class="gtk-btn popup_btn margin_l_15 margin_r_5"
+											data-dismiss="modal">취소</button>
+											<button id="passwd_email_finder"
+											class="gtk-btn gtk-btn-blue popup_btn">
+											<i class="fa fa-plus"></i> 확인
+										</button>
+										</div>
+								</div>
 							</div>
 							<div class="col-sm-2"></div>
 						</div>
@@ -261,10 +358,6 @@
 					<br>
 				</div>
 
-			</div>
-			<div class="modal-footer">
-				<button type="button" id="passwd_finder_close"
-					class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -302,7 +395,7 @@
 </div>
 
 <div class="modal fade" id="pwChangeModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog width_480">
       <div class="modal-content">
         <div class="modal-body">
             <h3 class="h_tag_center">비밀번호 변경</h3>
