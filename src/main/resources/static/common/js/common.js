@@ -273,6 +273,7 @@ griptok.component.datatable = function(p_tableId){
 			}
 		},
 		"paging": true,
+		"lengthChange":false,
 		"autoWidth": true,
 		"searching": false,
 	};
@@ -301,7 +302,7 @@ griptok.component.datatable = function(p_tableId){
 		
 		let rowClickEvent = newOptions['onRowClick'];
 		
-		$('#' + $this.tableId + ' tbody').unbind('click');
+		$table.find('tbody').unbind('click');
 		
 		if(rowClickEvent !== undefined &&  typeof rowClickEvent === 'function'){
 			$this.customOptions.onRowClick = rowClickEvent;
@@ -319,7 +320,15 @@ griptok.component.datatable = function(p_tableId){
 		
 		const $returnTable = $table.DataTable(useOptions);
 		
-		$('#' + $this.tableId + ' tbody').on('click','tr',$this.customOptions.onRowClick);
+		$table.find('tbody').on('click','tr',$this.customOptions.onRowClick);
+		
+		// COMMON-CSS
+		if($table.hasClass('table-striped')){$table.removeClass('table-striped')};
+		$table.find('thead').find('th').css({'background-color' : '#f5f5f5'});
+		$table.css({'margin-top':'13px'});
+		
+		const $tableWrapper = $('#' + tableId + "_wrapper");
+		$tableWrapper.css({'margin-bottom' : '880px'})
 		
 		return $returnTable;
 	};
