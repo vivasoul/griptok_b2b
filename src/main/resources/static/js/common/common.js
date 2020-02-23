@@ -45,3 +45,36 @@ jQuery.fn.lazyVal = function(lazyVal) {
 		return this;
 	}
 };
+
+/* code.js */
+const loadSelect = function(selector, url, cd_key, cd_nm_key, callback){
+	cd_key = cd_key || "cd";
+	cd_nm_key = cd_nm_key || "cd_nm";
+	
+	jQuery.ajax({
+		url:url,
+		method:"GET",
+		dataType:"json"
+	}).done(function(datas){
+		const $dom = jQuery(selector);
+		$dom.empty();
+		const options = [];
+		for(let i=0; i<datas.length; i++){
+			const d = datas[i];
+			const option = document.createElement("option");
+			option.value = d[cd_key];
+			option.innerHTML = d[cd_nm_key];
+			options.push(option);
+		}
+		$dom.append(options);
+		
+		const lazyValue = $dom.lazyVal();
+		if(lazyValue !== null) $dom.val(lazyValue);
+		
+		if(callback instanceof Function) callback();
+	}).fail(function(e){
+		/* error callback */
+	}).always(function(e){
+		/* always.. */
+	});	
+};

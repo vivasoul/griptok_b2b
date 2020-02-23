@@ -27,6 +27,16 @@
 		WHERE a.p_brand_no = #{p_brand_no}
 		ORDER BY a.brand_no
 	</select>
+	<select id="listAllBrands" resultType="com.griptk.b2b.product.domain.BrandTypeVO">
+		SELECT 
+			a.brand_no, a.brand_nm,
+			b.brand_no AS p_brand_no, b.brand_nm AS p_brand_nm, 
+			a.use_yn
+		FROM tb_brand_type a
+		INNER JOIN tb_brand_type b ON a.p_brand_no = b.brand_no
+		WHERE a.p_brand_no IN (SELECT brand_no FROM tb_brand_type WHERE p_brand_no = 1)
+		ORDER BY a.brand_no
+	</select>
 	
 	<select id="listCrafts" resultType="com.griptk.b2b.product.domain.CraftTypeVO">
 		SELECT craft_no, craft_nm, use_yn 
@@ -61,5 +71,24 @@
 		INNER JOIN tb_brand_type b ON a.brand_no = b.brand_no
 		INNER JOIN tb_brand_type c ON b.p_brand_no = c.brand_no
 		INNER JOIN tb_craft_type d ON a.craft_no = d.craft_no
+		ORDER BY b.p_brand_no, a.brand_no, a.craft_no
 	</select>
+	<insert id="createBrand" parameterType="com.griptk.b2b.product.domain.BrandTypeVO">
+		INSERT INTO tb_brand_type(brand_nm, p_brand_no) VALUES(#{brand_nm}, #{p_brand_no})
+	</insert>
+	<insert id="createCraft" parameterType="com.griptk.b2b.product.domain.CraftTypeVO">
+		INSERT INTO tb_craft_type(craft_nm) VALUES(#{craft_nm})
+	</insert>	
+	<insert id="createCategory" parameterType="com.griptk.b2b.product.domain.CategoryReqVO"> 
+		INSERT INTO tb_product_category(craft_no, brand_no, category_nm) VALUES(#{craft_no}, #{brand_no}, #{category_nm})
+	</insert>
+	<update id="updateBrand" parameterType="com.griptk.b2b.product.domain.BrandTypeVO">
+		UPDATE tb_brand_type	SET use_yn = IFNULL(#{use_yn},'N') WHERE brand_no = #{brand_no}
+	</update>
+	<update id="updateCraft" parameterType="com.griptk.b2b.product.domain.CraftTypeVO">
+		UPDATE tb_craft_type	SET use_yn = IFNULL(#{use_yn},'N') WHERE craft_no = #{craft_no}
+	</update>	
+	<update id="updateCategory" parameterType="com.griptk.b2b.product.domain.CategoryReqVO">
+		UPDATE tb_product_category	SET use_yn = IFNULL(#{use_yn},'N') WHERE craft_no = #{craft_no}
+	</update>	
 </mapper>
