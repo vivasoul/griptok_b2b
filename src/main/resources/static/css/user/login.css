@@ -3,8 +3,6 @@
 	 text-align: center;
 }
 
-
-
 .h_tag_left{
 	text-align : left;
 }
@@ -65,11 +63,28 @@
 .width_95{
 	width:95px;
 }
-
+.margin_l_5{
+	margin-left:5px;
+}
+.margin_l_10{
+	margin-left:10px;
+}
 .margin_l_15{
 	margin-left:15px;
 }
 
+.margin_l_18{
+	margin-left:18px;
+}
+.margin_l_22{
+	margin-left:22px;
+}
+.margin_l_30{
+	margin-left:30px;
+}
+.margin_l_80{
+	margin-left:80px;
+}
 .margin_r_5{
 	margin-right:5px;
 }
@@ -77,7 +92,9 @@
 .margin_r_15{
 	margin-right:15px;
 }
-
+.margin_r_18{
+	margin-right:18px;
+}
 .margin_r_2{
 	margin-right:20px;
 }
@@ -89,8 +106,41 @@
 .margin_r_4{
 	margin-right:40px;
 }
+.margin_r_40{
+	margin-right:40px;
+}
 
+.margin_b_15{
+	margin-bottom:15px;
+}
+.margin_b_35{
+	margin-bottom:35px;
+}
+.margin_b_88{
+	margin-bottom:88px;
+}
 
+.margin_t_10{
+	margin-top:10px;
+}
+.margin_t_15{
+	margin-top:15px;
+}
+.margin_t_17{
+	margin-top:17px;
+}
+.margin_t_20{
+	margin-top:20px;
+}
+.margin_t_22{
+	margin-top:22px;
+}
+.margin_t_28{
+	margin-top:28px;
+}
+.margin_t_70{
+	margin-top:70px;
+}
 .popup_btn{
 	width:125px;
 	height:47px;
@@ -99,4 +149,40 @@
 .input_holder{
   text-indent: 10px;
   height : 35px;
+}
+
+
+/*
+	sign_up 
+*/
+.sign_up_box{
+	width : 1200px;
+}
+
+.header_font{
+	font-size : 25px;
+}
+
+.sub_header_font{
+	font-size : 20px;
+}
+
+.info_font{
+	font-size : 15px;
+}
+
+.grey_font{
+	color : #8e8e8e;
+}
+.line_division_r{
+	border-right:2px dashed #EAEAEA;	
+}
+.line_division{
+	border-left:2px dashed #EAEAEA;
+}
+
+.sign_up_bix_box{
+	width : 182px;
+	height : 60px;
+	font-size : 17px;
 }
