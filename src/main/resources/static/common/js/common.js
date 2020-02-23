@@ -274,7 +274,7 @@ griptok.component.datatable = function(p_tableId,p_margin_bottom){
 		},
 		"paging": true,
 		"lengthChange":false,
-		"autoWidth": true,
+		"autoWidth": false,
 		"searching": false,
 	};
 	
@@ -324,7 +324,6 @@ griptok.component.datatable = function(p_tableId,p_margin_bottom){
 		
 		// COMMON-CSS
 		if($table.hasClass('table-striped')){$table.removeClass('table-striped')};
-		$table.find('thead').find('th').css({'background-color' : '#f5f5f5'});
 		$table.css({'margin-top':'13px'});
 		
 		const $tableWrapper = $('#' + tableId + "_wrapper");

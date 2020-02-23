@@ -5,11 +5,28 @@
 <html>
 <head>
 <script src="./common/js/common.js"></script>
-<script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
-
+<!--  link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css" -->
+<script src="./lib/js/jquery.min.js"></script>
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
+<style type="text/css">
+.gtk-table { border-collapse:collapse;margin:14px 0px;width:100%; }
+.gtk-table th,
+.gtk-table td { border:1px solid #E0E0E0;color:#7c7c7c;font-size:12px;line-height:12px;padding:14px 20px; }
+.gtk-table th { background-color:#FCFCFC;text-align:center; }
+.gtk-table td {  }
+.dataTables_paginate { float: right; margin-top: -20px; color: #7c7c7c; }
+.dataTables_paginate a { text-decoration:none;color:#7c7c7c }
+.dataTables_paginate a:hover { text-decoration:none;color:#000; }
+
+.dataTables_paginate .paginate_button:hover { cursor:pointer; }
+.dataTables_paginate span>.paginate_button { display:inline-block;width:25px;height:25px;padding:1px;
+										text-align: center;vertical-align: middle;margin: 5px;
+										color: #7C7C7C; border:1px solid #E0E0E0; background-color: #FFF; }
+.dataTables_paginate span>.paginate_button.current { color: #FFF; border:1px solid #00A1E3; background-color: #19B4F0; } 
+.dataTables_paginate .paginate_button.previous, 
+.dataTables_paginate .paginate_button.next {  }
+</style>
 </head>
 <body>
 	<div class="container-fluid">
@@ -22,7 +39,7 @@
 			</select>
 		</div>
 		<div class="row">
-			<table id="example" class="table table-striped table-bordered hover">
+			<table id="example" class="gtk-table">
 				<thead>
 					<tr>
 						<th data-column = "notice_no" data-visible="false">공지번호</th>
