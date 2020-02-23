@@ -276,6 +276,7 @@ griptok.component.datatable = function(p_tableId,p_margin_bottom){
 		"lengthChange":false,
 		"autoWidth": false,
 		"searching": false,
+		"ordering": false
 	};
 	
 	$this.customOptions = {
