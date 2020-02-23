@@ -189,7 +189,7 @@
 			}
 		};
 		
-		const payTable = griptok.component.datatable('pay-tbl');
+		const payTable = griptok.component.datatable('pay-tbl',0);
 		const payTableOptions = {
 			"lengthChange" : false,
 			columnDefs : [

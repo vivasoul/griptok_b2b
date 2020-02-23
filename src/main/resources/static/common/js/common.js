@@ -251,7 +251,7 @@ object-name : component.datatable
 explanation : wrapper for DataTable library. Currently available functions - [create],[reload],[selectedRow]
 module-depth : 3
 */
-griptok.component.datatable = function(p_tableId){
+griptok.component.datatable = function(p_tableId,p_margin_bottom){
 	let $this = $(this);
 
 	$this.tableId = p_tableId;
@@ -328,7 +328,13 @@ griptok.component.datatable = function(p_tableId){
 		$table.css({'margin-top':'13px'});
 		
 		const $tableWrapper = $('#' + tableId + "_wrapper");
-		$tableWrapper.css({'margin-bottom' : '880px'})
+		
+		if(p_margin_bottom == undefined){
+			$tableWrapper.css({'margin-bottom' : '880px'});
+		}else{
+			const use_m_b = p_margin_bottom + 'px';
+			$tableWrapper.css({'margin-bottom' : use_m_b});
+		}
 		
 		return $returnTable;
 	};

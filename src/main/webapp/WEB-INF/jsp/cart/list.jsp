@@ -227,7 +227,7 @@ $(document).ready(function() {
 	/********************************************************
 	* ON PAGE INIT
 	********************************************************/
-	const cartTable = griptok.component.datatable('cart-tbl');
+	const cartTable = griptok.component.datatable('cart-tbl',0);
 	update.checked.payment();
 	
 	cartTable.create(null,{
