@@ -16,62 +16,81 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row m-t-md">
-			<div class="bg-lightGray">
-				<font class="font-weight-bold font-size-md">주문 배송 조회/ 주문 상세 내역</font>
+		<div class="row">
+			<div class="col-md-12">
+				<p style="margin-left: 18px;margin-top: 17px;margin-bottom:20px;">
+					<font color="gray">입금대기중에 한하여 배송지 변경 및 주문취소가 가능 합니다.</font>
+				</p>
 			</div>
 		</div>
-		<div class="row m-t-lg">
-			<table class="table table-bordered">
-				<tr>
-					<td class="col-md-4">
-						<div class="col-md-4">
-							<font class="font-weight-bold font-size-md">주문일자</font>
+		<div class="row">
+			<table class="table table-bordered" style="border-style: sold;border-width:8px;">
+				<tr style="height:75px;">
+					<td class="col-md-4" >
+						<div class="col-md-4" style="text-align: center;margin-top: 20px;">
+							<font class="font-weight-bold font-size-md">주문일자:</font>
 						</div>
-						<div class="col-md-8">${one.order_dt } </div>
+						<div class="col-md-8" style="text-align: left;margin-top: 20px;">${one.order_dt }</div>
 					</td>
 					<td class="col-md-6">
-						<div class="col-md-3"><font class="font-weight-bold font-size-md">주문번호</font></div>
-						<div class="col-md-9">${one.order_no } </div>
+						<div class="col-md-3" style="text-align: center;margin-top: 20px;">
+							<font class="font-weight-bold font-size-md">주문번호:</font>
+						</div>
+						<div class="col-md-9" style="text-align: left;margin-top: 20px;">${one.order_no } </div>
 					</td>
 					<td class="col-md-2">
-						<div class="row col-md-12 text-center">
-							<input type="button" value="거래명세서 발급" id="btn-transaction" class="gtk-btn gtk-btn-sm pull-center"/>
+						<div class="row col-md-12 text-center" style="text-align: center;margin-top: 13px;">
+							<input type="button" value="거래명세서 발급" id="btn-transaction" 
+							class="gtk-btn gtk-btn-blue gtk-btn-sm pull-center" style="height:35px;width:153px;"/>
 						</div>
 					</td>
 				</tr>
 			</table>
 		</div>
-		<div class="row">
-			<div style="background-color: transparent">
-				<font style="font-weight: bold">배송정보</font>
+		<div class="row" style="margin-top:10px;">
+			<div style="background-color: transparent;">
+				<ul style="list-style-type: square;padding-left: 15px;">
+					<li><font style="font-weight: bold">배송정보</font></li>
+				</ul>
 			</div>
 		</div>
 		<div class="row">
-			<table id="custom-css-table" class="table">
+			<table id="custom-css-table" class="table table-bordered">
 				<tbody>
 					<tr>
 						<th>송장번호</th>
-						<td>${one.invoice_no}</td>
+						<td><font style="color: red;margin-left: 20px;">${one.invoice_no}</font></td>
 					</tr>
 					<tr>
 						<th>주문자</th>
-						<td>${one.sender}</td>
+						<td><font style="margin-left:20px;">${one.sender}</font></td>
 					</tr>
 					<tr>
 						<th>받는사람</th>
-						<td>${one.receiver}</td>
+						<td>
+							<div class="col-md-12">
+								<div class="col-md-9">
+									<font style="margin-left:20px;">${one.receiver}</font>
+								</div>
+								<div class="col-md-3" style="text-align: right;">
+									<input type="button" value="배송지 변경" id="shipto-btn" 
+										class="gtk-btn gtk-btn-sm pull-center" style="height:20px;width:120px;"/>
+								</div>							
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<th>출고시 참고사항</th>
-						<td>${one.memo}</td>
+						<td><font style="margin-left:20px;">${one.memo}</font></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="row">
-			<div style="background-color: transparent">
-				<font style="font-weight: bold">주문상품 정보</font>
+		<div class="row" style="margin-top:10px;">
+			<div style="background-color: transparent;">
+				<ul style="list-style-type: square;padding-left: 15px;">
+					<li><font style="font-weight: bold">주문상품 정보</font></li>
+				</ul>
 			</div>
 		</div>
 		<div class="row">
@@ -102,7 +121,8 @@
 <script>
 $(document).ready(function() {
 	$('#custom-css-table th').css({
-		'background-color':'LightGray',
+		'background-color':'#f5f5f5',
+		'font-weight':'normal',
 		'width':'20%',
 		'text-align':'center'
 	})
