@@ -411,7 +411,7 @@ griptok.component.bootbox = {
 				}
 			})
 		},
-		confirm : function(pOptions){
+		confirm : function(pOptions,btnLabels){
 			const defaultCallback = function(result){
 				console.log('no callback was defined for bootbox.confirm. result = ' + result);
 				return result;
@@ -421,15 +421,19 @@ griptok.component.bootbox = {
 			const title = pOptions.title === undefined ? '': pOptions.title;
 			const callback = typeof pOptions.callback !== 'function' ? defaultCallback : pOptions.callback;
 			
+			
+			const cancelText = btnLabels !== undefined ? btnLabels.cancel : '취소';
+			const confirmText = btnLabels !== undefined ? btnLabels.confirm : '확인';
+			
 			return bootbox.confirm({
 			    title: title,
 			    message: message,
 			    buttons: {
 			        cancel: {
-			            label: '<i class="fa fa-times"></i> 취소'
+			            label: '<i class="fa fa-times"></i> ' + cancelText
 			        },
 			        confirm: {
-			            label: '<i class="fa fa-check"></i> 확인'
+			            label: '<i class="fa fa-check"></i> ' + confirmText
 			        }
 			    },
 			    callback: callback
