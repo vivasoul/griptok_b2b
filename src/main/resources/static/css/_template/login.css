@@ -32,15 +32,15 @@ body.gtk-login-background {
 #loginbox .gtk-term-condition-group .gtk-term-condition-box { padding:0px; }
 #loginbox .gtk-term-condition-group .gtk-term-condition-box>pre { background-color:#f5f6f7;height:125px;border:0px;border-radius:0px;}
 
-#signupbox {margin-left:65px;border:1px solid #8e8e8e;width:1070px;}
+#signupbox {margin-left:65px;border:1px solid #EAEAEA;color:#5E5E5E;width:1070px;}
 
-#termbox {margin-left:65px;border:1px solid #8e8e8e;width:1070px;}
+#termbox {margin-left:65px;border:1px solid #EAEAEA;color:#5E5E5E;width:1070px;}
 #signupbox .row{ margin-bottom:15px; }
 #signupbox .row>div { padding:0px; }
 #signupbox .input-group { margin-bottom:5px;padding-right:5px !important; }
 #signupbox .input-group input, 
 #signupbox .input-group button { height:30px; }
-#signupbox .input-group input  { width:80%;border:1px solid #EAEAEA;border-radius:0px;font-size:13px }
+#signupbox .input-group input  { width:79%;border:1px solid #EAEAEA;border-radius:0px;font-size:13px;box-shadow:none;margin-right:1%; }
 #signupbox .input-group.no-addon input  { width:100%; }
 #signupbox .input-group button { width:20%; }
 #signupbox .gtk-term-condition-group { border:1px solid #dadada; min-height:180px; }

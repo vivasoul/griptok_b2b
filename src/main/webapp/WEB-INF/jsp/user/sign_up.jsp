@@ -27,7 +27,7 @@
             	<div class="col-sm-6 line_division_r">
             	<div class=" margin_l_18 margin_t_28 margin_r_40">
 	            		<div class="sub_header_font">
-	            			● 기본정보
+	            			<span class="title-icon">●</span> 기본정보
 	            		</div>
             		<div class="margin_l_22">
 	            		<div class="info_font grey_font margin_t_15">
@@ -53,7 +53,7 @@
 	            		</div>
             		</div>
             			<div class="sub_header_font margin_t_28">
-	            			● 기업정보
+	            			<span class="title-icon">●</span> 기업정보
 	            		</div>
 	            	<div class="margin_l_22">
 	            		<div class="info_font grey_font margin_t_15">
@@ -89,7 +89,7 @@
             	<div class="col-sm-6">
             	<div class=" margin_l_18 margin_t_28 margin_r_40">
             		<div class="sub_header_font">
-	            			● 추가정보
+	            		<span class="title-icon">●</span> 추가정보
             		</div>
             		<div class="margin_l_22">
 	            		<div class="info_font grey_font margin_t_15">

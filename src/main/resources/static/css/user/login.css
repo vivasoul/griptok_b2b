@@ -166,6 +166,7 @@
 .sub_header_font{
 	font-size : 20px;
 }
+.sub_header_font .title-icon { font-size:15px;color:#CFCFCF;}
 
 .info_font{
 	font-size : 15px;
