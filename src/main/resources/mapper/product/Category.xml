@@ -89,6 +89,6 @@
 		UPDATE tb_craft_type	SET use_yn = IFNULL(#{use_yn},'N') WHERE craft_no = #{craft_no}
 	</update>	
 	<update id="updateCategory" parameterType="com.griptk.b2b.product.domain.CategoryReqVO">
-		UPDATE tb_product_category	SET use_yn = IFNULL(#{use_yn},'N') WHERE craft_no = #{craft_no}
+		UPDATE tb_product_category	SET use_yn = IFNULL(#{use_yn},'N') WHERE category_no = #{category_no}
 	</update>	
 </mapper>

@@ -30,6 +30,8 @@ const renderCraft = function(datas, min_idx, max_idx){
 			const td3 = document.createElement("td");
 			td3.className="gtk-td-center";
 				const checkbox = document.createElement("input");
+				checkbox.className = "gtk-code-useyn";
+				checkbox["data-id"] = d["craft_no"];
 				checkbox.type="checkbox";
 				checkbox.value="Y";
 				checkbox.checked = d["use_yn"] === "Y"
@@ -60,6 +62,8 @@ const renderBrand = function(datas, min_idx, max_idx){
 			const td4 = document.createElement("td");
 			td4.className="gtk-td-center";
 				const checkbox = document.createElement("input");
+				checkbox.className = "gtk-code-useyn";
+				checkbox["data-id"] = d["brand_no"];
 				checkbox.type="checkbox";
 				checkbox.value="Y";
 				checkbox.checked = d["use_yn"] === "Y"
@@ -95,6 +99,8 @@ const renderCategory = function(datas, min_idx, max_idx){
 			const td6 = document.createElement("td");
 			td6.className="gtk-td-center";
 				const checkbox = document.createElement("input");
+				checkbox.className = "gtk-code-useyn";
+				checkbox["data-id"] = d["category_no"];
 				checkbox.type="checkbox";
 				checkbox.value="Y";
 				checkbox.checked = d["use_yn"] === "Y"

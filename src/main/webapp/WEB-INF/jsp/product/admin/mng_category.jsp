@@ -47,6 +47,27 @@ jQuery(document).ready(function(e){
 			insertCategory(craft_no, brand_no, category_nm);
 		}
 	});
+	
+	jQuery("#brand-type-table").on("click", ".gtk-code-useyn", function(e){
+		const data_id = e.target["data-id"];
+		const use_yn = e.target.checked ? "Y" : "N";
+		
+		updateBrand(data_id, use_yn);
+	});
+	
+	jQuery("#craft-type-table").on("click", ".gtk-code-useyn", function(e){
+		const data_id = e.target["data-id"];
+		const use_yn = e.target.checked ? "Y" : "N";
+		
+		updateCraft(data_id, use_yn);
+	});
+	
+	jQuery("#category-type-table").on("click", ".gtk-code-useyn", function(e){
+		const data_id = e.target["data-id"];
+		const use_yn = e.target.checked ? "Y" : "N";
+		
+		updateCategory(data_id, use_yn);
+	});	
 });
 </script>
 <div class="container-fluid">

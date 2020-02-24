@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,7 +58,8 @@ public class CategoryAPI {
 		mapper.createBrand(vo);
 	}
 	@PutMapping("/brands/{brand_no}")
-	public void updateBrand(@RequestBody BrandTypeVO vo) {
+	public void updateBrand(@PathVariable int brand_no, @RequestBody BrandTypeVO vo) {
+		vo.setBrand_no(brand_no);
 		mapper.updateBrand(vo);
 	}
 	
@@ -66,7 +68,8 @@ public class CategoryAPI {
 		mapper.createCraft(vo);
 	}
 	@PutMapping("/crafts/{craft_no}")
-	public void updateCraft(@RequestBody CraftTypeVO vo) {
+	public void updateCraft(@PathVariable int craft_no, @RequestBody CraftTypeVO vo) {
+		vo.setCraft_no(craft_no);
 		mapper.updateCraft(vo);
 	}
 	
@@ -75,7 +78,8 @@ public class CategoryAPI {
 		mapper.createCategory(vo);
 	}
 	@PutMapping("/{category_no}")
-	public void updateCategory(@RequestBody CategoryReqVO vo) {
+	public void updateCategory(@PathVariable int category_no, @RequestBody CategoryReqVO vo) {
+		vo.setCategory_no(category_no);
 		mapper.updateCategory(vo);
 	}
 }
