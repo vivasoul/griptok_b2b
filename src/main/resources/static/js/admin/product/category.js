@@ -263,6 +263,7 @@ const insertCraft = function(craft_nm){
 		alert("성공적으로 저장되었습니다.");
 		loadCraft();
 		loadCraftNo();
+		refreshConfig("category");
 	}).fail(function(e){
 		console.log(e);
 	}).always(function(){
@@ -283,6 +284,7 @@ const insertBrand = function(p_brand_no, brand_nm){
 		loadBrand();
 		loadPBrandNo();
 		loadPBrandNo2();
+		refreshConfig("category");
 	}).fail(function(e){
 		console.log(e);
 	}).always(function(){
@@ -301,6 +303,7 @@ const insertCategory = function(craft_no, brand_no, category_nm){
 		alert("성공적으로 저장되었습니다.");
 		
 		loadCategory();
+		refreshConfig("category");
 	}).fail(function(e){
 		console.log(e);
 	}).always(function(){
