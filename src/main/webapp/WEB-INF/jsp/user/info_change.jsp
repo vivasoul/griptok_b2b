@@ -213,10 +213,10 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
             <div class="col-sm-6">
-              <button id="shipto_change_close" class="btn btn-lg btn-block" data-dismiss="modal"><i class="fa fa-plus"></i> 취소</button>
+              <button id="shipto_change_close" class="btn btn-lg btn-block" data-dismiss="modal"> 취소</button>
              </div> 
              <div class="col-sm-6">
-              <button id="shipto_change" class="btn btn_blue btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
+              <button id="shipto_change" class="btn btn_blue btn-lg btn-block"> 확인</button>
               </div>
             </div>
           </div>

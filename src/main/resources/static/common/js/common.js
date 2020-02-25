@@ -268,15 +268,16 @@ griptok.component.datatable = function(p_tableId,p_margin_bottom){
 			"loadingRecords": "로딩중입니다...",
 			"processing":     "처리중입니다...",
 			"paginate": {
-				"next": "다음",
-				"previous": "이전"
+				"next": ">",
+				"previous": "<"
 			}
 		},
 		"paging": true,
 		"lengthChange":false,
 		"autoWidth": false,
 		"searching": false,
-		"ordering": false
+		"ordering": false,
+		"bInfo" : false
 	};
 	
 	$this.customOptions = {

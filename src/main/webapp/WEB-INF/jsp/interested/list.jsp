@@ -27,12 +27,17 @@
 		</div>	
 		<br>
 		<div class="row">
-			<button onclick="addToCart()" class="btn-primary btn-sm text-sm" type="button">장바구니 담기</button>
-			<button onclick="deleteInterested()" class="btn-sm text-sm" type="button">삭제</button>
+			<button id="addall" onclick="addToCart()" class="gtk-btn gtk-btn-sm gtk-btn-blue text-sm" type="button">전체 상품 장바구니 담기</button>
+			<button id="deleteall" onclick="deleteInterested()" class="gtk-btn gtk-btn-sm text-sm" type="button">전체 상품 삭제</button>
 		</div>
-		<br>
 		<div class="row">
 			<table id="interested-tbl" class="table table-striped table-bordered hover">
+				<colgroup>
+					<col width = "11%"/>
+					<col width = "57%"/>
+					<col width = "13%"/>
+					<col width = "19%"/>
+				</colgroup>
 				<thead>
 					<tr>
 						<th data-column = "sales_price">선택</th>

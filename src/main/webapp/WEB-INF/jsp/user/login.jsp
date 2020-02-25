@@ -124,7 +124,7 @@
 											data-dismiss="modal">취소</button>
 											<button id="id_cell_finder"
 											class="gtk-btn gtk-btn-blue popup_btn">
-											<i class="fa fa-plus"></i> 확인
+											확인
 										</button>
 										</div>
 								</div>
@@ -277,7 +277,7 @@
 											data-dismiss="modal">취소</button>
 											<button id="passwd_cell_finder"
 											class="gtk-btn gtk-btn-blue popup_btn">
-											<i class="fa fa-plus"></i> 확인
+											 확인
 										</button>
 										</div>
 								</div>
@@ -347,7 +347,7 @@
 											data-dismiss="modal">취소</button>
 											<button id="passwd_email_finder"
 											class="gtk-btn gtk-btn-blue popup_btn">
-											<i class="fa fa-plus"></i> 확인
+											 확인
 										</button>
 										</div>
 								</div>
@@ -405,20 +405,17 @@
           <fieldset>
             <div class="form-group">
               <div class="right-inner-addon">
-                <i class="fa fa-envelope"></i>
                 <input id="init_user_no" type="hidden"/>
                 <input id="init_passwd" type="hidden"/>
               </div>
             </div>
             <div class="form-group">
             	<div class="right-inner-addon">
-	                <i class="fa fa-key"></i>
 	                <input id="new_passwd" class="form-control input-lg" placeholder="새 비밀번호" type="password">
               </div>
             </div>
             <div class="form-group">
             	<div class="right-inner-addon">
-	                <i class="fa fa-key"></i>
 	                <input id="new_passwd_check" class="form-control input-lg" placeholder="비밀번호 확인" type="password">
               </div>
             </div>

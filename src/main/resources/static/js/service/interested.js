@@ -104,14 +104,10 @@ function loadMainInterestedList(reload){
 		        				render: function (product_id,type,row,obj) { 
 		        					const btnDiv = 
 		        						'<div class="row">' +
-		        							'<div>' + 
-		        							'<button class="btn btn-primary form-group js-change-now" data-toggle="modal" data-target="#addrModal"  data-row-indice="'+product_id+'">장바구니 담기</button>' +
-		        							'</div>' +
+		        							'<button class="gtk-btn gtk-btn-blue table_add_btn js-change-now" data-toggle="modal" data-target="#addrModal"  data-row-indice="'+product_id+'">장바구니 담기</button>' +
 		        						'</div>' + 
 		        						'<div class="row">' +
-		        							'<div>' + 
-		        							'<button class="btn btn-secondary-outline form-group js-delete-now" data-row-indice="'+product_id+'">삭제</button>' +
-		        							'</div>' + 
+		        							'<button class="gtk-btn table_delete_btn js-delete-now" data-row-indice="'+product_id+'">삭제</button>' +
 		        						'</div>' 
 		
 		        					return btnDiv;
@@ -182,8 +178,7 @@ function addToCart(){
 	     	contentType: "application/json",
 	        success : function(responseData){
 	        	var result = responseData;
-	        	console.log(result);
-	        	if(result==1){
+	        	if(result>=1){
 	        		alert("장바구니에 상품을 담았습니다.");
 	        	}else{
 	        		alert("장바구니 담기에 실패하였습니다.");

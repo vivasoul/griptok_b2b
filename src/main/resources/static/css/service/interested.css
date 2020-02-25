@@ -23,3 +23,34 @@
 	vertical-align: middle; 
 }
 
+#addall{
+	width : 165px;
+	font-size : 12px;
+	font-weight : 100;
+}
+
+#deleteall{
+	width : 118px;
+	color : black;
+	font-size : 12px;
+	font-weight : 100;
+	background-color: #ebebeb;
+}
+
+.table_add_btn{
+	width : 132px;
+	font-weight : 100;
+	font-size : 12px;
+	margin-top : 16px;
+	margin-bottom : 8px;
+	height : 30px;
+}
+.table_delete_btn{
+	width : 132px;
+	font-weight : 100;
+	font-size : 12px;
+	background-color: #ebebeb;
+	margin-bottom : 16px;
+	color : black;
+	height : 30px;
+}
