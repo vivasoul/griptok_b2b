@@ -19,26 +19,30 @@
 		});		
 	});
 </script>
-<div class="container-fluid griptok-body">
-	<div class="row">
-		<%if(side_menus != null && !side_menus.isEmpty()) {%>
-		<div class="left-content">
-			<div class="griptok-side-menu">
-				<div class="griptok-side-title"><%=side_title%></div>
-				<div class="griptok-side-body">
-				<%for(MenuVO menu: side_menus){%>
-					<div menu-id="<%=menu.getMenu_id()%>"><a href="<%=menu.getMenu_url()%>"><%=menu.getMenu_nm()%></a></div>
-				<%}%>
-				</div>
+<div class="griptok-admin-body">
+	<div class="left-content">
+		<div class="side-menu">
+			<div class="side-header">
+				<a class="go-main-link" href="#">
+					<img src="/img/admin/back_to_shopping.png"/><br/>
+					<span class="go-main-link-text">쇼핑몰 바로 가기</span>
+				</a>
 			</div>
-		</div><!-- 
-	 --><div class="right-content">
-		<%}else{%>
-		<div>
-		<%}%>
-			<%if(page_path!=null){%><div class="row"><div class="col-sm-12" id="griptok-page-path"><%=page_path%></div></div><%}%>
-			<%if(page_title!=null){%><div id="griptok-page-title"><%=page_title%></div><%}%>
+			<div class="side-body">
+			<%for(MenuVO menu: side_menus){%>
+				<div menu-id="<%=menu.getMenu_id()%>"><a href="<%=menu.getMenu_url()%>"><%=menu.getMenu_nm()%></a></div>
+			<%}%>
+			</div>
+		</div>
+	</div><!-- 
+ --><div class="right-content">
+ 		<div class="griptok-admin-monitor">
+ 		</div>
+		<div class="griptok-admin-content">
+		<%if(page_path!=null){%><div class="row"><div class="col-sm-12" id="griptok-page-path"><%=page_path%></div></div><%}%>
+		<%if(page_title!=null){%><div id="griptok-page-title"><%=page_title%></div><%}%>
 			<jsp:include page="<%=content_page %>" flush="false" />
 		</div>
+		<jsp:include page="/WEB-INF/jsp/_template/admin/footer.jsp" flush="false" />
 	</div>
 </div>

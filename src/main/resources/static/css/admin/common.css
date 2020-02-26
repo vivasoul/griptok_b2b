@@ -1,4 +1,20 @@
-.griptok-header.most-top-menus { height:42px;padding:11px; text-align:right;font-size:12px;letter-spacing:-2px; }
+body { background-color:#E8E8E8; }
+/* header */
+.griptok-admin-header { display:table;width:100%;height:54px;border:1px solid #00A1E3;background-color:#19B4F0; }
+.griptok-admin-header img,
+.griptok-admin-header span{ display:inline-block;vertical-align:middle; }
+.griptok-admin-header .header-left,
+.griptok-admin-header .header-right { display:table-cell;width:50%; }
+
+.griptok-admin-header .header-left-left  { display:table-cell;padding:9px 15px; }
+.griptok-admin-header .header-left-right { display:table-cell;padding-top:9px;color:#FFF;vertical-align:top; }
+
+.griptok-admin-header .header-right { text-align:right; }
+.griptok-admin-header .top-right-menu { display:inline-block;margin-right:15px; }
+.griptok-admin-header .top-right-menu a { color:#FFF;font-size:12px; }
+.griptok-admin-header .top-right-menu a>img { margin-right:2px; }
+
+.griptok-header.most-top-menus { height:54px;padding:11px; text-align:right;font-size:12px;letter-spacing:-2px; }
 .griptok-header.most-top-menus>a { color:#747474; }
 .griptok-header.most-top-menus.slash-seperator { padding:0px 5px; }
 .most-top-baseline { border-top:1px solid #DCDCDC; }
@@ -6,3 +22,29 @@
 .griptok-side-menu .side-menu-lv1 { cursor:pointer }
 .griptok-side-menu .side-menu-lv2 { display:none }
 .griptok-side-menu .side-menu-lv2.side-menu-lv2-active { display:block }
+
+/* body */
+
+.griptok-admin-body { display:table;width:100%; }
+.griptok-admin-body .left-content,
+.griptok-admin-body .right-content { display:table-cell; }
+.griptok-admin-body .left-content  { width:165px;vertical-align:top;background-color:#003C60; }
+/* body - left */
+.griptok-admin-body .side-menu .side-header { background-color:#002E4E;height:99px;padding:21px 23px; }
+.griptok-admin-body .side-header .go-main-link { display:block;text-align:center;border-radius:5px;border:1px solid #003F65;width:119px;height:57px;
+												 padding-top:10px;background-image:linear-gradient(to top,#003668,#00446D );color:#FFF; }
+.go-main-link .go-main-link-text { font-size:12px;margin-top:5px; } 
+.griptok-admin-body .side-menu a { color:#FFF; }
+.griptok-admin-body .side-menu a:hover { color:#FFF; }
+
+/* body - right */
+.griptok-admin-body .right-content .griptok-admin-monitor,
+.griptok-admin-body .right-content .griptok-admin-content { display:table;width:calc(100% - 30px);margin:15px 15px 0px 15px;background-color:#FFF; } 
+
+.griptok-admin-body .right-content .griptok-admin-monitor { height:79px; }
+.griptok-admin-body .right-content .griptok-admin-content {  }
+
+/* footer */
+.griptok-admin-footer { display:table;width:calc(100% - 30px);height:82px; margin:15px 15px 0px 15px;background-color:#FFF; }
+.griptok-admin-footer .footer-left { display:table-cell;width:50%; text-align:left; }  
+.griptok-admin-footer .footer-right { display:table-cell;width:50%; text-align:right; }
