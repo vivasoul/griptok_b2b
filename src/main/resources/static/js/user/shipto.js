@@ -82,13 +82,9 @@ function loadMainShippingList(reload){
 		        				render: function (shipto_no,type,row,obj) { 
 		        					const btnDiv = 
 		        						'<div class="row">' +
-		        							'<div class="col-md-offset-3">' + 
-		        							'<button class="btn btn-primary form-group js-change-now" data-toggle="modal" data-target="#addrModal"  data-row-indice="'+shipto_no+'">수정</button>' +
-		        							'</div>' +
-		        						'</div>' + 
-		        						'<div class="row">' +
-		        							'<div class="col-md-offset-3">' + 
-		        							'<button class="btn btn-secondary-outline form-group js-delete-now" data-row-indice="'+shipto_no+'">삭제</button>' +
+		        							'<div class="col-sm-12">' + 
+		        							'<button class="btn table_change_btn js-change-now" data-toggle="modal" data-target="#addrModal"  data-row-indice="'+shipto_no+'">수정</button>' +
+		        							'<button class="btn table_delete_btn js-delete-now" data-row-indice="'+shipto_no+'">삭제</button>' +
 		        							'</div>' + 
 		        						'</div>' 
 		

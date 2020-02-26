@@ -29,27 +29,32 @@
 		</div>	
 		<br>	
 		<div class="row">
-			<div class="m-b-lg">
 				<div class="col-md-11 nopadding">
-					<button onclick="changeDefaultShipping()" class="btn-primary btn-sm text-sm" type="button">기본 배송지로 설정</button>
-					<button onclick="deleteShipping()" class="btn-sm text-sm" type="button">삭제</button>
+					<button onclick="changeDefaultShipping()" id="setdefault" class="gtk-btn gtk-btn-sm gtk-btn-blue text-sm" type="button">기본 배송지로 설정</button>
+					<button onclick="deleteShipping()" id="deleteall" class="gtk-btn gtk-btn-sm text-sm" type="button">삭제</button>
 				</div>
 				<div class="col-md-1 nopadding">
-					<button onclick="addShipping()" data-toggle="modal" data-target="#addrModal" class="btn-sm text-sm" type="button">배송지 추가</button>
+					<button onclick="addShipping()" data-toggle="modal" data-target="#addrModal" id="addshipping" class="gtk-btn gtk-btn-sm gtk-btn-blue text-sm" type="button">배송지 추가</button>
 				</div>
-			</div>
 		</div>
-		<br>
 		<div class="row">
 			<table id="shipto-tbl" class="table table-striped table-bordered hover">
+				<colgroup>
+					<col width = "6%"/>
+					<col width = "16%"/>
+					<col width = "40%"/>
+					<col width = "9%"/>
+					<col width = "13%"/>
+					<col width = "16%"/>
+				</colgroup>
 				<thead>
 					<tr>
-						<th data-column = "user_no">선택</th>
-						<th data-column = "shipto_nm">배송지 이름</th>
-						<th data-column = "addr">배송지 주소</th>
-						<th data-column = "receiver_nm">받는 사람</th>
-						<th data-column = "receiver_tel">휴대폰번호</th>
-						<th data-column = "shipto_no">비고</th>
+						<th data-column = "user_no" class="table_h">선택</th>
+						<th data-column = "shipto_nm" class="table_h">배송지 이름</th>
+						<th data-column = "addr" class="table_h">배송지 주소</th>
+						<th data-column = "receiver_nm" class="table_h">받는 사람</th>
+						<th data-column = "receiver_tel" class="table_h">휴대폰번호</th>
+						<th data-column = "shipto_no" class="table_h">비고</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -105,11 +110,11 @@
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
             <div class="col-sm-6">
-              <button id="shipto_change_close" class="btn btn-warning btn-lg btn-block" data-dismiss="modal"><i class="fa fa-plus"></i> 취소</button>
+              <button id="shipto_change_close" class="btn btn-warning btn-lg btn-block" data-dismiss="modal"> 취소</button>
              </div> 
              <div class="col-sm-6">
-              <button id="shipto_change" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
-              <button id="shipto_add" style="display:hidden;" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
+              <button id="shipto_change" class="btn btn-primary btn-lg btn-block"> 확인</button>
+              <button id="shipto_add" style="display:none;" class="btn btn-primary btn-lg btn-block"> 확인</button>
              </div>
             </div>
           </div>
