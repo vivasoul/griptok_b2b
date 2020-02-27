@@ -35,7 +35,11 @@
 						<div class="col-md-4" style="text-align: center;margin-top: 20px;">
 							<font class="font-weight-bold font-size-md">주문일자:</font>
 						</div>
-						<div class="col-md-8" style="text-align: left;margin-top: 20px;">${one.order_dt }</div>
+						<div class="col-md-8" style="text-align: left;margin-top: 20px;">
+							<span id="span-order-dt">
+								${one.order_dt }
+							</span>
+						</div>
 					</td>
 					<td class="col-md-6">
 						<div class="col-md-3" style="text-align: center;margin-top: 20px;">
@@ -68,7 +72,11 @@
 					</tr>
 					<tr>
 						<th>주문자</th>
-						<td><font style="margin-left:20px;">${one.sender}</font></td>
+						<td >
+							<span style="margin-left:20px;" id="span-sender">
+								${one.sender}
+							</span>
+						</td>
 					</tr>
 					<tr>
 						<th>받는사람</th>
@@ -148,9 +156,9 @@ $(document).ready(function() {
 			'    <div class="col-md-12">                                                                                                         ' +
 			'      <div class="col-md-6">                                                                                                        ' +
 			'        <table class="table table-bordered">                                                                                        ' +
-			'          <tr><td style="text-align:center;">2020년 1월 30일</td></tr>                                                                ' +
+			'          <tr><td style="text-align:center;"><input type="text" style="border:none;text-align:center;" name="order_dt" readonly></td></tr>                                                                ' +
 			'          <tr><td></td></tr>                                                                                                        ' +
-			'          <tr><td style="text-align:right;"><font style="font-size:20px;font-weight:bold;">주식회사 더블유 아이 귀하</font></td></tr>       ' +
+			'          <tr><td style="text-align:right;"><font style="font-size:20px;font-weight:bold;"><input type="text" style="border:none;text-align:left;" name="cmpny_nm" readonly> 귀하</font></td></tr>       ' +
 			'          <tr><td style="text-align:center;">아래와 같이 청구 합니다.</td></tr>                                                             ' +
 			'        </table>                                                                                                                    ' +
 			'      </div>                                                                                                                        ' +
@@ -189,8 +197,8 @@ $(document).ready(function() {
 			'             <col style="width: 50%;">                                                                                              ' +
 			'          </colgroup>                                                                                                               ' +
 			'      <tr>                                                                                                                          ' +
-			'        <td style="text-align:center;"><font style="font-size:20px;">총주문 수량 : 150개</font></td>                                     ' +
-			'        <td style="text-align:center;"><font style="font-weight:bold;font-size:20px;">총 주문 합계금액 : 2000,0000원(VAT포함)</font></td>	' +
+			'        <td style="text-align:center;"><font style="font-size:20px;">총주문 수량 : <input type="text" style="border:none;text-align:right;" name="tot_cnt" readonly>개</font></td>                                     ' +
+			'        <td style="text-align:center;"><font style="font-weight:bold;font-size:20px;">총 주문 합계금액 : <input type="text" style="border:none;text-align:right;" name="tot_price" readonly>원(VAT포함)</font></td>	' +
 			'      </tr>                                                                                                                         ' +
 			'    </table>                                                                                                                        ' +
 			'  </div>                                                                                                                            ' +
@@ -241,6 +249,22 @@ $(document).ready(function() {
 			}
 		},{cancel:'닫기',confirm:'다운로드'}).
 		init(function(){
+			const varObject = {
+				tot_cnt : 
+					initTable.getRows().
+					map(function(z){return(z['order_cnt'].split('개').join(''))}).
+					reduce(function(x,y){return parseInt(x)+parseInt(y)}),
+				tot_price : 
+					initTable.getRows().
+					map(function(z){return(z['order_cost'].split(/\s*[,|원]\s*/).join(''))}).
+					reduce(function(x,y){return parseInt(x)+parseInt(y)}),
+				cmpny_nm : 
+						$('#span-sender').html().replace(/\s+/g, '').split("/")[0],
+				order_dt : 
+						$('#span-order-dt').html().replace(/\s+/g, '').slice(0,10)
+			};
+			
+			griptok.form.bindData($('#transaction-hist-form'),varObject)
 			griptok.component.datatable('pay-hist-tbl',0).create(initTable.getRows(),{
 				  "lengthChange": false
 			} );
