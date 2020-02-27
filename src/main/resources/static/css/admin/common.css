@@ -50,7 +50,7 @@ body { background-color:#E8E8E8; }
 .griptok-admin-body .right-content .griptok-admin-content { display:table;width:calc(100% - 30px);margin:15px 15px 0px 15px;background-color:#FFF; } 
 
 .griptok-admin-body .right-content .griptok-admin-monitor { height:79px;padding:9px 0px; }
-.griptok-admin-body .right-content .griptok-admin-content { min-height:400px; }
+.griptok-admin-body .right-content .griptok-admin-content { min-height:400px;padding:10px 30px; }
 .griptok-admin-monitor .monitor-box-list { display:table;height:61px; }
 .monitor-box-list .monitor-box { display:table-cell;border-right:2px solid #C4C4C4; }
 .monitor-box-list .monitor-box.last { border-right:0px;  }

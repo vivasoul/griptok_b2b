@@ -56,7 +56,7 @@
 					<div class="menu-title">
 						<%=menu.getMenu_nm()%>
 					</div>
-					<div class="menu-toggle-arrow"><i class="fa fa-chevron-down"></i></div>
+					<div class="menu-toggle-arrow"><i class="fa fa-chevron-<%= menu.getMenu_id().equals(active_menu_lv1) ? "up" : "down" %>"></i></div>
 				</div>
 				<div class="side-menu-lv1-child<%= menu.getMenu_id().equals(active_menu_lv1) ? " active" : "" %>">
 					<%for(MenuVO c_menu: menu.getSub_menus()) {%>
