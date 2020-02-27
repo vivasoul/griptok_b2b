@@ -67,8 +67,7 @@ public class TemplateFilter implements Filter{
 					request.setAttribute("top_menus", menuMng.listSubMenu("admin_root", "M"));
 					if(menu_hierarchy.size() > 1) {
 						MenuVO start_menu = menu_hierarchy.get(1);
-						request.setAttribute("side_title", start_menu.getMenu_nm());
-						request.setAttribute("side_menus", menuMng.listSubMenu(start_menu.getMenu_id(), "M"));						
+						request.setAttribute("side_menus", menuMng.listSubMenuWithChild("admin_root", "M"));						
 					}
 				default:
 					//DO NOTHING

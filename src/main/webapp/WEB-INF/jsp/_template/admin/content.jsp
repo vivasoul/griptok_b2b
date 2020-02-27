@@ -6,16 +6,23 @@
 	content_page = "/WEB-INF/jsp/"+content_page+".jsp";
 	String page_path = (String)request.getAttribute("page_path");
 	String page_title = (String)request.getAttribute("page_title");
-	String side_title = (String)request.getAttribute("side_title");
+	List<MenuVO> menu_hierarchy = (List<MenuVO>)request.getAttribute("menu_hierarchy");
+	String active_menu_lv1 =  menu_hierarchy.get(1).getMenu_id();
 	List<MenuVO> side_menus = (List<MenuVO>)request.getAttribute("side_menus");
 %>
 <script type="text/javascript">
-	const SIDE_TOGGLE_CLASS = "side-menu-lv2-active";
+	const SIDE_TOGGLE_CLASS = "active";
 	jQuery(document).ready(function(e){
-		jQuery(".griptok-side-body").on("click", ".side-menu-lv1", function(e){
-			const $this = jQuery(this).find(".side-menu-lv2")
-			if($this.hasClass(SIDE_TOGGLE_CLASS)) $this.removeClass(SIDE_TOGGLE_CLASS);
-			else 								  $this.addClass(SIDE_TOGGLE_CLASS);
+		jQuery(".side-body").on("click", ".side-menu-lv1", function(e){
+			const $this = jQuery(this);
+			const $next = $this.next();
+			if($next.hasClass(SIDE_TOGGLE_CLASS)) {
+				$next.removeClass(SIDE_TOGGLE_CLASS);
+				$this.find("i").prop("className", "fa fa-chevron-down");
+			}else{
+				$next.addClass(SIDE_TOGGLE_CLASS);
+				$this.find("i").prop("className", "fa fa-chevron-up");
+			}
 		});		
 	});
 	const getMonitorCount = function(){
@@ -45,7 +52,17 @@
 			</div>
 			<div class="side-body">
 			<%for(MenuVO menu: side_menus){%>
-				<div menu-id="<%=menu.getMenu_id()%>"><a href="<%=menu.getMenu_url()%>"><%=menu.getMenu_nm()%></a></div>
+				<div class="side-menu-lv1">
+					<div class="menu-title">
+						<%=menu.getMenu_nm()%>
+					</div>
+					<div class="menu-toggle-arrow"><i class="fa fa-chevron-down"></i></div>
+				</div>
+				<div class="side-menu-lv1-child<%= menu.getMenu_id().equals(active_menu_lv1) ? " active" : "" %>">
+					<%for(MenuVO c_menu: menu.getSub_menus()) {%>
+					<div class="side-menu-lv2"><a href="<%=c_menu.getMenu_url()%>"><%=c_menu.getMenu_nm()%></a></div>		
+					<%}%>
+				</div>					
 			<%}%>
 			</div>
 		</div>
