@@ -21,14 +21,6 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="m-b-lg">
-				<div class="col-md-12" style="background-color: LightGray">
-					<font class="bolded">배송지관리</font>
-				</div>
-			</div>
-		</div>	
-		<br>	
-		<div class="row">
 				<div class="col-md-11 nopadding">
 					<button onclick="changeDefaultShipping()" id="setdefault" class="gtk-btn gtk-btn-sm gtk-btn-blue text-sm" type="button">기본 배송지로 설정</button>
 					<button onclick="deleteShipping()" id="deleteall" class="gtk-btn gtk-btn-sm text-sm" type="button">삭제</button>

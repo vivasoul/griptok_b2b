@@ -45,6 +45,10 @@
 	background-color : #5B9BD5;
 }
 
+.float_l{
+	float: left;
+}
+
 .width_9{
 	width:90%;
 }
