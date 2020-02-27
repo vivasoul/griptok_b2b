@@ -32,7 +32,7 @@ body { background-color:#E8E8E8; }
 /* body - left */
 .griptok-admin-body .side-menu .side-header { background-color:#002E4E;height:99px;padding:21px 23px; }
 .griptok-admin-body .side-header .go-main-link { display:block;text-align:center;border-radius:5px;border:1px solid #003F65;width:119px;height:57px;
-												 padding-top:10px;background-image:linear-gradient(to top,#003668,#00446D );color:#FFF; }
+												 padding-top:10px;background-image:linear-gradient(to top,#003668,#00446D );color:#FFF;text-decoration:none;}
 .go-main-link .go-main-link-text { font-size:12px;margin-top:5px; } 
 .griptok-admin-body .side-menu a { color:#FFF; }
 .griptok-admin-body .side-menu a:hover { color:#FFF; }
@@ -41,8 +41,16 @@ body { background-color:#E8E8E8; }
 .griptok-admin-body .right-content .griptok-admin-monitor,
 .griptok-admin-body .right-content .griptok-admin-content { display:table;width:calc(100% - 30px);margin:15px 15px 0px 15px;background-color:#FFF; } 
 
-.griptok-admin-body .right-content .griptok-admin-monitor { height:79px; }
-.griptok-admin-body .right-content .griptok-admin-content {  }
+.griptok-admin-body .right-content .griptok-admin-monitor { height:79px;padding:9px 0px; }
+.griptok-admin-monitor .monitor-box-list { display:table;height:61px; }
+.monitor-box-list .monitor-box { display:table-cell;border-right:2px solid #C4C4C4; }
+.monitor-box-list .monitor-box.last { border-right:0px;  }
+.monitor-box .monitor-title, 
+.monitor-box .monitor-count { display:table-cell; }
+.monitor-box .monitor-title { text-align:center;width:98px;padding-top:9px;padding-left:30px;font-size:12px;font-weight:700; }
+.monitor-box .monitor-title a { color:#757575 }
+.monitor-box .monitor-title img { vertical-align:baseline; }
+.monitor-box .monitor-count { vertical-align:middle;font-size:30px;font-weight:700;width:98px;padding-left:20px;color:#19B4F0; }
 
 /* footer */
 .griptok-admin-footer { display:table;width:calc(100% - 30px);height:82px; margin:15px 15px 0px 15px;background-color:#FFF; }

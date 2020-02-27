@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.griptk.b2b.common.mapper.AdminMapper">
+	<select id="getMonitorCount" resultType="com.griptk.b2b.common.domain.MonitorVO">
+		SELECT 
+		( SELECT COUNT(*) FROM tb_login WHERE aprv_status = 'N' ) AS user_waiting_cnt,
+		( SELECT COUNT(*) FROM tb_order WHERE order_status = 'X' ) AS deposit_waiting_cnt,
+		( SELECT COUNT(*) FROM tb_order WHERE order_status = 'X' ) AS new_order_cnt,
+		( SELECT COUNT(*) FROM tb_order WHERE order_status = 'D' ) AS derivering_cnt		
+	</select>
+</mapper>
