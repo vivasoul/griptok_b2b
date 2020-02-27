@@ -331,7 +331,7 @@ griptok.component.datatable = function(p_tableId,p_margin_bottom){
 		const $tableWrapper = $('#' + tableId + "_wrapper");
 		
 		if(p_margin_bottom == undefined){
-			$tableWrapper.css({'margin-bottom' : '880px'});
+			$tableWrapper.css({'margin-bottom' : '50px'});
 		}else{
 			const use_m_b = p_margin_bottom + 'px';
 			$tableWrapper.css({'margin-bottom' : use_m_b});
