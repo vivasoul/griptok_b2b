@@ -81,7 +81,7 @@
 									<div class="col-sm-8 ">
 										<div class="row">
 											<div class="col-sm-12 input-group no-addon">
-													<input id="id_cell_ceo_nm" class="width_290 input_holder" placeholder="이름" type="text">
+													<input id="id_cell_manager_nm" class="width_290 input_holder" placeholder="이름" type="text">
 											</div>
 										</div>
 									</div>
@@ -94,12 +94,18 @@
 									<div class="col-sm-8">
 										<div class="row">
 											<div class="col-sm-12 input-group no-addon">
-												<input id="id_cell_contact_tel1" maxlength="3"
+												<div class="float_l">
+												<input id="id_cell_manager_tel1" maxlength="3"
 													class="width_70 margin_r_15 input_holder" placeholder="010" type="text">
-												<input id="id_cell_contact_tel2" maxlength="4"
+												</div>
+												<div class="float_l">
+												<input id="id_cell_manager_tel2" maxlength="4"
 													class="width_95 margin_r_15 input_holder" type="text">
-												<input id="id_cell_contact_tel3" maxlength="4"
+												</div>
+												<div class="float_l">
+												<input id="id_cell_manager_tel3" maxlength="4"
 													class="width_95 input_holder" type="text">
+												</div>	
 											</div>
 											</div>
 									</div>
@@ -142,7 +148,7 @@
 									<div class="col-sm-8 ">
 										<div class="row">
 											<div class="col-sm-12 input-group no-addon">
-													<input id="id_email_ceo_nm" class="width_290 input_holder" placeholder="이름" type="text">
+													<input id="id_email_manager_nm" class="width_290 input_holder" placeholder="이름" type="text">
 											</div>
 										</div>
 									</div>
@@ -156,7 +162,7 @@
 									<div class="col-sm-8 ">
 										<div class="row">
 											<div class="col-sm-12 input-group no-addon">
-													<input id="id_email_email" class="width_290 input_holder" placeholder="이메일" type="text">
+													<input id="id_email_manager_email" class="width_290 input_holder" placeholder="이메일" type="text">
 											</div>
 										</div>
 									</div>
@@ -235,7 +241,7 @@
 									<div class="col-sm-8 ">
 										<div class="row">
 											<div class="col-sm-12 input-group no-addon">
-													<input id="passwd_cell_ceo_nm" class="width_290 input_holder" placeholder="이름" type="text">
+													<input id="passwd_cell_manager_nm" class="width_290 input_holder" placeholder="이름" type="text">
 											</div>
 										</div>
 									</div>
@@ -248,9 +254,9 @@
 									<div class="col-sm-8">
 										<div class="row">
 											<div class="col-sm-12 input-group no-addon">
-												<input id="passwd_cell_contact_tel1" maxlength="3" class="width_70 margin_r_15 input_holder" placeholder="010" type="text">
-												<input id="passwd_cell_contact_tel2" maxlength="4" class="width_95 margin_r_15 input_holder" type="text">
-												<input id="passwd_cell_contact_tel3" maxlength="4" class="width_95 input_holder" type="text">
+												<input id="passwd_cell_manager_tel1" maxlength="3" class="width_70 margin_r_15 input_holder" placeholder="010" type="text">
+												<input id="passwd_cell_manager_tel2" maxlength="4" class="width_95 margin_r_15 input_holder" type="text">
+												<input id="passwd_cell_manager_tel3" maxlength="4" class="width_95 input_holder" type="text">
 											</div>
 											</div>
 									</div>

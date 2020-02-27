@@ -103,14 +103,14 @@ $(document).ready(function(){
 	
 	// 핸드폰 번호를 통한 아이디 찾기
 	$("#id_cell_finder").bind("click",function(){
-		var checker_vals = ["id_cell_ceo_nm", "id_cell_contact_tel1","id_cell_contact_tel2","id_cell_contact_tel3"];
+		var checker_vals = ["id_cell_manager_nm", "id_cell_manager_tel1","id_cell_manager_tel2","id_cell_manager_tel3"];
 		if(form_checker(checker_vals)){
 		    $.ajax({
 		        url : "/login/find/id",
 		        type: "post",
 		        data : JSON.stringify({ 
-		        			"ceo_nm" : $("#id_cell_ceo_nm").val(),
-		        			"contact_tel" : $("#id_cell_contact_tel1").val()+"-"+$("#id_cell_contact_tel2").val()+"-"+$("#id_cell_contact_tel3").val()
+		        			"manager_nm" : $("#id_cell_manager_nm").val(),
+		        			"manager_tel" : $("#id_cell_manager_tel1").val()+"-"+$("#id_cell_manager_tel2").val()+"-"+$("#id_cell_manager_tel3").val()
 		        	   }),
 		     	contentType: "application/json",
 		        success : function(responseData){
@@ -130,14 +130,14 @@ $(document).ready(function(){
 
 	// 이메일을 통한 아이디 찾기
 	$("#id_email_finder").bind("click",function(){
-		var checker_vals = ["id_email_ceo_nm", "id_email_email"];
+		var checker_vals = ["id_email_ceo_nm", "id_email_manager_email"];
 		if(form_checker(checker_vals)){
 		    $.ajax({
 		        url : "/login/find/id",
 		        type: "post",
 		        data : JSON.stringify({ 
-		        			"ceo_nm" : $("#id_email_ceo_nm").val(),
-		        			"tax_email" : $("#id_email_email").val()
+		        			"manager_nm" : $("#id_email_manager_nm").val(),
+		        			"manager_email" : $("#id_email_manager_email").val()
 		        	   }),
 		   	    contentType: "application/json",
 		        success : function(responseData){
@@ -163,8 +163,8 @@ $(document).ready(function(){
 	        type: "post",
 	        data : JSON.stringify({ 
 	        			"user_id" : $("#passwd_cell_user_id").val(),
-	        			"ceo_nm" : $("#passwd_cell_ceo_nm").val(),
-	        			"contact_tel" : $("#passwd_cell_contact_tel1").val()+"-"+$("#passwd_cell_contact_tel2").val()+"-"+$("#passwd_cell_contact_tel3").val()
+	        			"manager_nm" : $("#passwd_cell_manager_nm").val(),
+	        			"manager_tel" : $("#passwd_cell_manager_tel1").val()+"-"+$("#passwd_cell_manager_tel2").val()+"-"+$("#passwd_cell_manager_tel3").val()
 	        	   }),
 	     	contentType: "application/json",
 	        success : function(responseData){
@@ -194,8 +194,8 @@ $(document).ready(function(){
 	        type: "post",
 	        data : JSON.stringify({ 
 	        			"user_id" : $("#passwd_email_user_id").val(),
-	        			"ceo_nm" : $("#passwd_email_ceo_nm").val(),
-	        			"tax_email" : $("#passwd_email_email").val()
+	        			"manager_nm" : $("#passwd_email_manager_nm").val(),
+	        			"manager_email" : $("#passwd_email_manager_email").val()
 	        	   }),
 	   	    contentType: "application/json",
 	        success : function(responseData){
