@@ -36,7 +36,9 @@
 				<table id="cart-tbl" class="table table-striped table-bordered hover gtk-datatable">
 					<thead>
 						<tr>
-							<th data-column="checked" class="w-10">선택</th>
+							<th data-column="checked" class="w-10">
+								<input type="checkbox" id="js-chk-master"/>
+							</th>
 							<th data-column = "title" class="w-50">상품정보</th>
 							<th data-column = "carted_cnt">수량</th>
 							<th data-column = "order_cost">금액</th>
@@ -51,7 +53,7 @@
 					<tbody>
 						<c:forEach var="each" items="${arr }">
 							<tr data-row-id="${each.product_id }">
-								<td>${each.checked }</td>
+								<td style="text-align: center;">${each.checked }</td>
 								<td>${each.title }</td>
 								<td>${each.carted_cnt }</td>
 								<td>${each.order_cost }</td>
@@ -234,7 +236,7 @@ $(document).ready(function() {
 	cartTable.create(null,{
 		"lengthChange": false,
 		columnDefs: [
-			{"className": "dt-body-center", "targets": [0,2,3]},
+			{"className": "dt-body-center", "targets": [2,3]},
 			{"className": "dt-head-center", "targets": "_all"},
 			{
 				"targets": [0],
@@ -371,6 +373,10 @@ $(document).ready(function() {
 		update.checked.remove();
 		update.checked.payment();
 	});
+	
+	$('#js-chk-master').on('change',function(){
+		$('.js-chk').prop('checked',  $(this).is(':checked'));
+	})
 });
 </script>
 </body>
