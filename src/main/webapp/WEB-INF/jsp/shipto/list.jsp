@@ -7,9 +7,8 @@
 <script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/margin.css">
-<link rel="stylesheet" href="./css/user/shipto.css">
 
-<link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/user/shipto.css">
 <!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -22,6 +21,16 @@
 
 	<div class="container-fluid">
 		<div class="row">
+			<div class="m-b-lg">
+				<div class="col-md-12">
+					<p class="m-t-sm m-b-md margin_l_18 margin_t_15 margin_b_17 grey_font">
+						최초 회원 가입시 입력하신 주소가 기본 배송지로 자동 지정됩니다.<br>
+						변경을 원하실 경우 배송지를 추가하거나 수정하실 수 있습니다.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 				<div class="col-md-11 nopadding">
 					<button onclick="changeDefaultShipping()" id="setdefault" class="gtk-btn gtk-btn-sm gtk-btn-blue text-sm" type="button">기본 배송지로 설정</button>
 					<button onclick="deleteShipping()" id="deleteall" class="gtk-btn gtk-btn-sm text-sm" type="button">삭제</button>
@@ -31,7 +40,7 @@
 				</div>
 		</div>
 		<div class="row">
-			<table id="shipto-tbl" class="table table-striped table-bordered hover gtk-datatable">
+			<table id="shipto-tbl" class="table table-striped table-bordered hover">
 				<colgroup>
 					<col width = "6%"/>
 					<col width = "16%"/>

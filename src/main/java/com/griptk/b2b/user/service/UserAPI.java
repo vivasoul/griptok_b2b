@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.griptk.b2b.common.domain.ImageVO;
 import com.griptk.b2b.common.service.FileAPI;
 import com.griptk.b2b.user.domain.PasswdVO;
+import com.griptk.b2b.user.domain.ShipToVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.domain.WithdrawalVO;
 import com.griptk.b2b.user.mapper.UserMapper;
@@ -92,8 +93,22 @@ public class UserAPI {
 			String new_temp_password = passwordEncoder.encode(vo.getPasswd());
 			
 			vo.setPasswd(new_temp_password);
-
+			
 			mapper.signUpUser(vo);
+			
+			
+			
+			ShipToVO shippingVO = new ShipToVO();
+			shippingVO.setUser_id(vo.getUser_id());
+			shippingVO.setShipto_addr1(vo.getBiz_addr_1());
+			shippingVO.setShipto_addr2(vo.getBiz_addr_2());
+			shippingVO.setReceiver_tel(vo.getManager_tel());
+			shippingVO.setReceiver_nm(vo.getManager_nm());
+			shippingVO.setShipto_no(1);
+			shippingVO.setShipto_nm(vo.getManager_nm());
+			shippingVO.setPost_code(vo.getPost_code());
+			
+			mapper.addMainShippingInfo(shippingVO);
 			mapper.insertLoginInfo(vo);
 
 			session.setAttribute("registered", "registered");
@@ -117,6 +132,7 @@ public class UserAPI {
 	public String findId(
 			@RequestBody UserVO vo,
 	        HttpServletResponse response) {
+		System.out.println(vo.toString());
 		return mapper.findId(vo);
 		
 	}
@@ -134,7 +150,7 @@ public class UserAPI {
 			if(resultVo==null) {
 				result =-2;
 			}else {
-				String recipient_email = resultVo.getTax_email();
+				String recipient_email = resultVo.getManager_email();
 //				String temp_pass = passwordGenerator.generate(12);
 				sendTempPassword(recipient_email, resultVo.getUser_no(), resultVo.getPasswd());
 //				String new_temp_password = passwordEncoder.encode(temp_pass);

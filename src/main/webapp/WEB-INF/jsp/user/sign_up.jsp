@@ -45,12 +45,6 @@
 	            			비밀번호 확인
 	            		</div>
 	            		<div class="col-sm-12 input-group no-addon custom margin_t_10"><input id="passwd_check" name="passwd_check" reg_id = "passwd_check" data-keyup="P" parent_id="passwd" type="password" placeholder="위에 비밀번호와 일치해야합니다."  class="form-control input-sm" required></div>
-	            		<div class="info_font grey_font margin_t_15">
-	            			휴대전화
-	            		</div>
-	            		<div class="col-sm-12 input-group no-addon custom margin_t_10">
-	            			<input type="text" reg_id="tel" data-regex="T" data-keyup="T" id="contact_tel" maxlength="13" name="contact_tel" placeholder="담당자 휴대전화"  class="form-control input-sm" required>
-	            		</div>
             		</div>
             			<div class="sub_header_font margin_t_28">
 	            			<span class="title-icon">●</span> 기업정보

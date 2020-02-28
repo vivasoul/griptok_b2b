@@ -84,7 +84,7 @@
 			#{post_code},
 			#{biz_addr_1},
 			#{biz_addr_2},
-			#{contact_tel},
+			'',
 			#{tax_email},
 			#{manager_nm},
 			#{manager_tel},
@@ -92,6 +92,35 @@
 			now(),
 			now(),
 			#{biz_img_no} 
+		)
+	</insert>
+	
+	<insert id="addMainShippingInfo" parameterType="com.griptk.b2b.user.domain.ShipToVO" >
+		INSERT INTO tb_shipto_addr(
+			user_no, 
+			receiver_nm,
+			shipto_addr1,
+			shipto_addr2,
+			receiver_tel,
+			reg_dt,
+			shipto_no,
+			shipto_nm,
+			upd_dt,
+			post_code,
+			main_shipping 
+		)
+		VALUES (
+			(SELECT user_no FROM tb_user WHERE user_id = #{user_id}),
+			#{receiver_nm},
+			#{shipto_addr1},
+			#{shipto_addr2},
+			#{receiver_tel},
+			NOW(),
+			#{shipto_no},
+			#{shipto_nm},
+			NOW(),
+			#{post_code},
+			'Y'
 		)
 	</insert>
 	
@@ -179,26 +208,26 @@
 	
 	<select id="findId" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="String">
 		SELECT user_id FROM tb_user
-		WHERE ceo_nm = #{ceo_nm}
-		 <if test="contact_tel != null">
-	        AND contact_tel = #{contact_tel}
+		WHERE manager_nm = #{manager_nm}
+		 <if test="manager_tel != null">
+	        AND manager_tel = #{manager_tel}
 	    </if>
-	    <if test="tax_email != null">
-	        AND tax_email = #{tax_email}
+	    <if test="manager_email != null">
+	        AND manager_email = #{manager_email}
 	    </if>
 	</select>
 	
 	<select id="findPasswd" parameterType="com.griptk.b2b.user.domain.UserVO" resultType="com.griptk.b2b.user.domain.UserVO">
-		SELECT u.user_no, l.passwd, u.tax_email FROM tb_user u
+		SELECT u.user_no, l.passwd, u.manager_email FROM tb_user u
 		INNER JOIN tb_login l
 		ON u.user_no = l.user_no
 		WHERE user_id= #{user_id}
-		AND ceo_nm = #{ceo_nm}
-		<if test="contact_tel != null">
-	        AND contact_tel = #{contact_tel}
+		AND manager_nm = #{manager_nm}
+		<if test="manager_tel != null">
+	        AND manager_tel = #{manager_tel}
 	    </if>
-	    <if test="tax_email != null">
-	        AND tax_email = #{tax_email}
+	    <if test="manager_email != null">
+	        AND manager_email = #{manager_email}
 	    </if>
 	</select>
 	

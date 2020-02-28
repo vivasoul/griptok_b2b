@@ -1,6 +1,7 @@
 package com.griptk.b2b.user.mapper;
 
 import com.griptk.b2b.common.domain.ImageVO;
+import com.griptk.b2b.user.domain.ShipToVO;
 import com.griptk.b2b.user.domain.UserVO;
 import com.griptk.b2b.user.domain.WithdrawalVO;
 
@@ -38,6 +39,8 @@ public interface UserMapper {
 	int insertWithdrawal(WithdrawalVO withdrawlVo);
 	
 	int updateStatus(WithdrawalVO withdrawlVo);
+	
+	int addMainShippingInfo(ShipToVO vo);
 
 }
 

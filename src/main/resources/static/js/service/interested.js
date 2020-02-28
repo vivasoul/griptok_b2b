@@ -197,6 +197,7 @@ $(document).on('click','.js-delete-now',function(){
 	update.clicked.remove($(this).attr('data-row-indice'));
 });
 
-
-
+$("#selectAll").bind("click",function(){
+	
+});
 
