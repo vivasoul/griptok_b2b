@@ -326,16 +326,17 @@ griptok.component.datatable = function(p_tableId,p_margin_bottom){
 		
 		// COMMON-CSS
 		if($table.hasClass('table-striped')){$table.removeClass('table-striped')};
-		$table.css({'margin-top':'13px'});
-		
-		const $tableWrapper = $('#' + tableId + "_wrapper");
-		
-		if(p_margin_bottom == undefined){
-			$tableWrapper.css({'margin-bottom' : '50px'});
-		}else{
-			const use_m_b = p_margin_bottom + 'px';
-			$tableWrapper.css({'margin-bottom' : use_m_b});
-		}
+//		if($table.hasClass('table')){$table.removeClass('table')};
+//		$table.css({'margin-top':'13px'});
+//		
+//		const $tableWrapper = $('#' + tableId + "_wrapper");
+//		
+//		if(p_margin_bottom == undefined){
+//			$tableWrapper.css({'margin-bottom' : '50px'});
+//		}else{
+//			const use_m_b = p_margin_bottom + 'px';
+//			$tableWrapper.css({'margin-bottom' : use_m_b});
+//		}
 		
 		return $returnTable;
 	};
