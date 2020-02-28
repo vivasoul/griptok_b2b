@@ -170,11 +170,11 @@ a,a:hover{ text-decoration:none; }
 .gtk-datatable td { border:1px solid #E0E0E0;color:#7c7c7c;font-size:12px;line-height:12px;padding:14px 20px; }
 .gtk-datatable th { background-color:#FCFCFC;text-align:center; }
 .gtk-datatable td {  }
-
 .dataTables_paginate { float: right; margin-top: -20px; color: #7c7c7c; }
 .dataTables_paginate a { text-decoration:none;color:#7c7c7c }
 .dataTables_paginate a:hover { text-decoration:none;color:#000; }
 
+.dt-body-center {text-align:center;}
 .dataTables_paginate .paginate_button:hover { cursor:pointer; }
 .dataTables_paginate span>.paginate_button { display:inline-block;width:25px;height:25px;padding:1px;
 										text-align: center;vertical-align: middle;margin: 5px;

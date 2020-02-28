@@ -11,8 +11,6 @@
 
  <div class="custom-container container-fluid">    
 		<div class="mainbox col-sm-12">
-			<h3 class="grey_back_title">회원탈퇴</h3>
-			<br>
 			<h5 class="bolded">그립톡 B2B 사이트 회원 탈퇴를 원하시나요</h5>
 			<br>
 			<h5 class="bolded">그동안 이용해 주신 회원님께 진심으로 감사드립니다.</h5>
@@ -44,8 +42,8 @@
       	<br>
       	<div class="row">
       		<div class="col-sm-12 submit" align="center">
-      			 <button id="withdraw" class="btn-primary btn-lg">확인</button>
-      			 <button id="withdraw_cancel" class="btn-lg" type="button">취소</button>
+      			 <button id="withdraw" class="gtk-btn gtk-btn-blue popup_btn">확인</button>
+      			 <button id="withdraw_cancel" class="gtk-btn popup_btn margin_l_15 margin_r_5" type="button">취소</button>
       		</div>
          </div>
         <br>

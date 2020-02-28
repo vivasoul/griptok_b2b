@@ -23,8 +23,6 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 
  <div class="custom-container container-fluid">    
 		<div class="mainbox col-sm-12">
-			<h3 class="grey_back_title">회원정보 수정</h3>
-		<br>	
 		<h5 class="bolded">기본정보(필수 입력사항)</h5>
 		<br>
 		<form id="info_change_form" method="post" action="/info_change/change" enctype="multipart/form-data">
@@ -100,12 +98,10 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 				</tbody>
 			</table>
       	<br>
-      	<br>
-      	<br>
       	<div class="row">
       		<div class="col-sm-12 submit" align="center">
-      			 <button id="info_change" class="btn_blue btn-lg" type="submit">확인</button>
-      			 <button id="info_change_cancel" class="btn-lg" type="button">취소</button>
+      			 <button id="info_change" class="gtk-btn gtk-btn-blue popup_btn" type="submit">확인</button>
+      			 <button id="info_change_cancel" class="gtk-btn popup_btn margin_l_15 margin_r_5" type="button">취소</button>
       		</div>
          </div>
          
@@ -126,19 +122,16 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
           <fieldset>
             <div class="form-group">
               <div class="right-inner-addon">
-                <i class="fa fa-envelope"></i>
                 <input id="old_passwd" class="form-control input-lg" placeholder="기존 비밀번호" type="password">
               </div>
             </div>
             <div class="form-group">
             	<div class="right-inner-addon">
-	                <i class="fa fa-key"></i>
 	                <input id="new_passwd"  reg_id = "new_passwd" data-regex="T" name="passwd"  class="form-control input-lg" placeholder="새 비밀번호" type="password">
               </div>
             </div>
             <div class="form-group">
             	<div class="right-inner-addon">
-	                <i class="fa fa-key"></i>
 	                <input id="new_passwd_check" reg_id = "new_passwd_check" data-keyup="P" parent_id="new_passwd" class="form-control input-lg" placeholder="비밀번호 확인" type="password">
               </div>
             </div>
@@ -148,10 +141,10 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
             <div class="col-sm-6">  
-              <button id="passwd_change_close" class="btn btn-lg btn-block" data-dismiss="modal"><i class="fa fa-plus"></i> 취소</button>
+              <button id="passwd_change_close" class="btn btn-lg btn-block" data-dismiss="modal">취소</button>
             </div>
             <div class="col-sm-6">
-              <button id="btn_passwd_change" class="btn btn_blue btn-lg btn-block"><i class="fa fa-plus"></i> 확인</button>
+              <button id="btn_passwd_change" class="btn btn_blue btn-lg btn-block">확인</button>
             </div>
             </div>
           </div>
@@ -220,10 +213,6 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
               </div>
             </div>
           </div>
-        </div>
-        <br>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

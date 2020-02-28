@@ -42,7 +42,7 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th id="selectAll" data-column = "sales_price">선택</th>
+						<th id="selectAll"  data-column = "sales_price">선택</th>
 						<th data-column = "title">상품</th>
 						<th data-column = "retail_price">가격</th>
 						<th data-column = "product_id">관리</th>

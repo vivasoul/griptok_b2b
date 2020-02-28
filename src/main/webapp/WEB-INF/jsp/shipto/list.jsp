@@ -7,7 +7,7 @@
 <script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/margin.css">
-
+<link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" href="./css/user/shipto.css">
 <!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
@@ -40,7 +40,7 @@
 				</div>
 		</div>
 		<div class="row">
-			<table id="shipto-tbl" class="table table-striped table-bordered hover">
+			<table id="shipto-tbl" class="gtk-datatable table table-striped table-bordered hover">
 				<colgroup>
 					<col width = "6%"/>
 					<col width = "16%"/>
@@ -93,7 +93,7 @@
 	            <div class="col-sm-12 input-group">
           		<input type="text" id="post_code" name="post_code" placeholder="우편번호" readonly="readonly" class="form-control input-lg">
 	        	<span class="input-group-btn" style="width:0;">
-		        	<button onclick="openDaumZipAddress('post_code', 'shipto_addr1', 'shipto_addr2')" class="btn-primary btn-lg text-sm" type="button">주소찾기</button>
+		        	<button onclick="openDaumZipAddress('post_code', 'shipto_addr1', 'shipto_addr2')" class="gtk-btn gtk-btn-blue height_adjusted" type="button">주소찾기</button>
 			    </span>
 	          </div>
             </div>
@@ -111,19 +111,22 @@
           <hr>
           <div class="tab-content">
             <div class="tab-pane fade in active text-center">
-            <div class="col-sm-6">
-              <button id="shipto_change_close" class="btn btn-warning btn-lg btn-block" data-dismiss="modal"> 취소</button>
-             </div> 
-             <div class="col-sm-6">
-              <button id="shipto_change" class="btn btn-primary btn-lg btn-block"> 확인</button>
-              <button id="shipto_add" style="display:none;" class="btn btn-primary btn-lg btn-block"> 확인</button>
-             </div>
+            <div class="row">
+					<div class="col-sm-12 input-group no-addon">
+						<button type="button" id="shipto_change_close" class="gtk-btn popup_btn margin_l_15 margin_r_5"
+						data-dismiss="modal">취소</button>
+						<button id="shipto_change"
+						class="gtk-btn gtk-btn-blue popup_btn">
+						 확인
+					</button>
+					<button id="shipto_add"
+						class="gtk-btn gtk-btn-blue popup_btn">
+						 확인
+					</button>
+					</div>
+			</div>
             </div>
           </div>
-        </div>
-        <br>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 const interestedTable = griptok.component.datatable('interested-tbl');
+var a = false;
 var table = null;
 $(document).ready(function() {
 	if(user_no=="null"){
@@ -198,6 +199,7 @@ $(document).on('click','.js-delete-now',function(){
 });
 
 $("#selectAll").bind("click",function(){
-	
+	a = !a;
+	$('.js-chk').prop('checked',  a);
 });
 

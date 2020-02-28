@@ -73,7 +73,7 @@
 #interested-tbl td { border:1px solid #E0E0E0;color:#7c7c7c;font-size:12px;line-height:12px;padding:14px 20px; }
 #interested-tbl th { background-color:#FCFCFC;text-align:center; }
 #interested-tbl td { }
-.dt-body-center {text-align:center;}
+
 .dataTables_paginate { width:100%; text-align:center; margin-top: 20px; color: #7c7c7c; }
 .dataTables_paginate a { text-decoration:none;color:#7c7c7c }
 .dataTables_paginate a:hover { text-decoration:none;color:#000; }
