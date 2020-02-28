@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/shopping/pointy-button.css">
 <link rel="stylesheet" href="./css/shopping/plus-minus-div.css">
-<link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
+<!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
 <link rel="stylesheet" href="./css/shopping/cart.css">
-
+<link rel="stylesheet" href="./css/common.css">
 
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

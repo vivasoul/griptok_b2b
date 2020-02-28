@@ -13,8 +13,9 @@
 <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
 
 <script src="../lib/datatable/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css">
+<!-- <link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css"> -->
 <link rel="stylesheet" href="../css/margin.css">
+<link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/shopping/order_hst_detail.css">
 
 <script src="../lib/bootbox/bootbox.min.js"></script>
@@ -107,7 +108,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<table id="example" class="table table-striped table-bordered hover gtk-datatable">
+			<table id="example" class="gtk-datatable">
 				<thead>
 					<tr>
 						<th data-column = "order_dt">주문일자</th>

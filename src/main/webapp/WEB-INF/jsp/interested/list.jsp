@@ -9,7 +9,8 @@
 <script src="./common/js/util.js" charset="utf-8"></script>
 <link rel="stylesheet" href="./css/service/interested.css">
 <link rel="stylesheet" href="./css/margin.css">
-<link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
+<link rel="stylesheet" href="./css/common.css">
+<!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <script>
 	var user_no = "<%= session.getAttribute( "user_no" ) %>";
@@ -23,7 +24,7 @@
 			<button id="deleteall" onclick="deleteInterested()" class="gtk-btn gtk-btn-sm text-sm" type="button">전체 상품 삭제</button>
 		</div>
 		<div class="row">
-			<table id="interested-tbl" class="table table-striped table-bordered hover">
+			<table id="interested-tbl" class="table table-striped table-bordered hover gtk-datatable">
 				<colgroup>
 					<col width = "11%"/>
 					<col width = "57%"/>

@@ -7,9 +7,10 @@
 <script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/margin.css">
-
 <link rel="stylesheet" href="./css/user/shipto.css">
-<link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
+
+<link rel="stylesheet" href="./css/common.css">
+<!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="./common/js/util.js" charset="utf-8"></script>
@@ -30,7 +31,7 @@
 				</div>
 		</div>
 		<div class="row">
-			<table id="shipto-tbl" class="table table-striped table-bordered hover">
+			<table id="shipto-tbl" class="table table-striped table-bordered hover gtk-datatable">
 				<colgroup>
 					<col width = "6%"/>
 					<col width = "16%"/>

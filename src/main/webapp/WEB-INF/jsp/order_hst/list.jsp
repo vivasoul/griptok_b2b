@@ -9,9 +9,10 @@
 <script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/margin.css">
+<link rel="stylesheet" href="./css/common.css">
 
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
+<!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
 </head>
 <body>
 	<div class="container-fluid">

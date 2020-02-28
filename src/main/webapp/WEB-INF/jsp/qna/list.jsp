@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
+<!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
+<link rel="stylesheet" href="./css/common.css">
 </head>
 <body>
 	<div class="container-fluid">
