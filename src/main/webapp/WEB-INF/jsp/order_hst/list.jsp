@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<div class="row m-b-md">
-			<table id="example" class="table table-bordered hover">
+			<table id="example" class="table table-bordered hover gtk-datatable">
 				<thead>
 					<tr>
 						<th data-column = "reg_dt">주문일자</th>

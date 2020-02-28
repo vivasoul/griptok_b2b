@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css">
 <link rel="stylesheet" href="./css/shopping/cart.css">
 
+
 <script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="./lib/bootbox/bootbox.min.js"></script>
@@ -32,7 +33,7 @@
 		</div>
 		<div id="div-view-cart" class="row js-view-div">
 			<div class="col-md-12">
-				<table id="cart-tbl" class="table table-striped table-bordered hover">
+				<table id="cart-tbl" class="table table-striped table-bordered hover gtk-datatable">
 					<thead>
 						<tr>
 							<th data-column="checked" class="w-10">선택</th>

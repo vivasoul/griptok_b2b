@@ -19,7 +19,7 @@
 <body>
 <div class="container-fluid">
 	<div class="row">
-		<table id="example" class="table table-striped table-bordered hover">
+		<table id="example" class="table table-striped table-bordered hover gtk-datatable">
 			<thead>
 				<tr>
 					<th data-column = "qna_no">번호</th>

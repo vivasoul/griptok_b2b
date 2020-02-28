@@ -15,7 +15,7 @@
 <body>
 <div class="container-fluid">
 	<div class="row">
-		<table id="example2" class="table table-striped table-bordered hover">
+		<table id="example2" class="table table-striped table-bordered hover gtk-datatable">
 			<thead>
 				<tr>
 					<th data-column = "category">구분</th>

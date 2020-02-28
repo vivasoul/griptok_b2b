@@ -107,7 +107,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<table id="example" class="table table-striped table-bordered hover">
+			<table id="example" class="table table-striped table-bordered hover gtk-datatable">
 				<thead>
 					<tr>
 						<th data-column = "order_dt">주문일자</th>
@@ -203,7 +203,7 @@ $(document).ready(function() {
 			'    </table>                                                                                                                        ' +
 			'  </div>                                                                                                                            ' +
 			'  <div class="row">                                                                                                                 ' +
-			'    <table id="pay-hist-tbl" class="table table-striped table-bordered hover">                                                      ' +
+			'    <table id="pay-hist-tbl" class="table table-striped table-bordered hover gtk-datatable">                                                      ' +
 			'		<thead>                                                                                                                      ' +
 			'			<tr>                                                                                                                     ' +
 			'				<th data-column = "order_dt">주문일자</th>                                                                              ' +

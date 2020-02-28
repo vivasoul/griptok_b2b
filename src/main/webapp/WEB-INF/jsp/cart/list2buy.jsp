@@ -32,7 +32,7 @@
 	</div>
 	<div id="div-view-pay" class="row js-view-div">
 		<div class="col-md-12">
-			<table id="pay-tbl" class="table table-striped table-bordered hover">
+			<table id="pay-tbl" class="table table-striped table-bordered hover gtk-datatable">
 				<thead>
 					<tr>
 						<th data-column = "title" class="w-50">상품정보</th>
