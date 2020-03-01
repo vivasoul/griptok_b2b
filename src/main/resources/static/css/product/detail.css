@@ -1,7 +1,7 @@
 .gtk-detail>div { padding-left:0px; }
 .gtk-detail .gtk-detail-id { margin-bottom:12px;color:#9C9C9C; }
 .gtk-detail .gtk-detail-title { min-height:90px;font-size:23px;font-weight:900;color:#010101 }
-.gtk-detail .gtk-detail-price { margin-bottom:20px;text-align:right;font-family:Tahoma,'Nanum Gothic', sans-serif; }
+.gtk-detail .gtk-detail-price { margin-bottom:27px;text-align:right;font-family:Tahoma,'Nanum Gothic', sans-serif; }
 .gtk-detail-price .data-retail-price { font-size:15px;font-weight:400;text-decoration:line-through;color:#B8B8B8; }
 .gtk-detail-price .data-sales-price { padding:0px 25px 0px 10px;font-size:27px;font-weight:700;color:#19B0F4; }
 .gtk-detail .gtk-detail-quantity { padding:30px 15px;border-top:2px dashed #D6D6D6; border-bottom:2px dashed #D6D6D6;line-height:26px;color:#848484; }
