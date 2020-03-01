@@ -191,7 +191,7 @@
 					render:function(carted_cnt,type,row,obj){
 						return '<div class="form-group">' + 
 									'<button class="minus" disabled>-</button>' + 
-									'<input type="text" value="'+ carted_cnt + '" data-price="'+ row.unit_price +'" data-row-indice="'+ obj.row +  '" data-discount-price="'+ row.unit_discount +'"  readonly/>' + 
+									'<input class="middle-input" type="text" value="'+ carted_cnt + '" data-price="'+ row.unit_price +'" data-row-indice="'+ obj.row +  '" data-discount-price="'+ row.unit_discount +'"  readonly/>' + 
 									'<button class="plus" disabled>+</button>' + 
 								'</div>'; 
 					}
