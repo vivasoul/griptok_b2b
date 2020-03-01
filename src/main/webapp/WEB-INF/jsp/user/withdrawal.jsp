@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Insert title here</title>
-<script src="./lib/js/jquery.min.js"></script>
-<link rel="stylesheet" href="./css/user/withdrawal.css">
-
-</head>
-<body>
-
- <div class="custom-container container-fluid">    
+<link rel="stylesheet" href="/css/user/withdrawal.css">
+<div class="custom-container container-fluid">    
 		<div class="mainbox col-sm-12">
 			<h5 class="bolded">그립톡 B2B 사이트 회원 탈퇴를 원하시나요</h5>
 			<br>
@@ -52,5 +43,3 @@
 
 </div>
 <script src="./js/user/withdrawal.js"></script>
-</body>
-</html>

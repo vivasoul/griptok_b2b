@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script src="../common/js/common.js"></script>
-<script src="../lib/js/jquery.min.js"></script>
-<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
-
-<script src="../lib/datatable/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css">
-<link rel="stylesheet" href="../css/margin.css">
-</head>
-<body>
+<script src="/lib/datatable/jquery.dataTables.min.js"></script>
 <div class="container-fluid">
 	<div class="row">
 		<table id="example2" class="table table-striped table-bordered hover gtk-datatable">
@@ -75,5 +64,3 @@ $(document).ready(function() {
 	*****************************************/
 });
 </script>
-</body>
-</html>

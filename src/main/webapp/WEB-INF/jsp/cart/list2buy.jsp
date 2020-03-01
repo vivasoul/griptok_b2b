@@ -2,26 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<script src="../common/js/common.js"></script>
-
-<script src="../lib/js/jquery.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="../css/margin.css">
-<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/shopping/pointy-button.css">
-<link rel="stylesheet" href="../css/shopping/plus-minus-div.css">
-<link rel="stylesheet" href="../lib/datatable/jquery.dataTables.min.css">
-<link rel="stylesheet" href="../css/shopping/cart.css">
-
-<script src="../lib/datatable/jquery.dataTables.min.js"></script>
-<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="../lib/bootbox/bootbox.min.js"></script>
-</head>
-<body>
+<link rel="stylesheet" href="/css/shopping/pointy-button.css">
+<link rel="stylesheet" href="/css/shopping/plus-minus-div.css">
+<link rel="stylesheet" href="/css/shopping/cart.css">
+<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="/lib/datatable/jquery.dataTables.min.js"></script>
+<script src="/lib/bootbox/bootbox.min.js"></script>
 <div class="container-fluid">
 	<div class="row">
 			<div class="m-b-md text-right" id="div-process-status">
@@ -382,5 +368,3 @@
 		})
 	})
 </script>
-</body>
-</html>

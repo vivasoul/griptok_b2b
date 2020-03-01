@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script src="../lib/js/jquery.min.js"></script>
-<script src="../common/js/common.js"></script>
-
-<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
-
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/bootbox/bootbox.min.js"></script>
-</head>
-<body>
+<script src="/lib/bootbox/bootbox.min.js"></script>
 <div class="container-fluid">
 	<form id="qna-write-form">
 	<div class="row">
@@ -42,7 +31,6 @@
 	</div>
 	</form>
 </div>
-</body>
 <script>
 $(document).ready(function() {
 	const $f = $('#qna-write-form'),f = $f[0];
@@ -82,4 +70,3 @@ $(document).ready(function() {
 	
 });
 </script>
-</html>

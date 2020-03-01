@@ -1,26 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script src="./lib/js/jquery.min.js"></script>
 <link rel="stylesheet" href="./css/user/info_change.css">
-<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 var user_no = "<%= session.getAttribute( "user_no" ) %>";
 var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
 </script>
 <%
 	session.setAttribute("info_changed", "null");
- %>
-
-
-
-
-
-</head>
-
-<body>
-
+%>
  <div class="custom-container container-fluid">    
 		<div class="mainbox col-sm-12">
 		<h5 class="bolded">기본정보(필수 입력사항)</h5>
@@ -218,8 +205,5 @@ var info_changed = "<%= session.getAttribute( "info_changed" ) %>";
     </div>
   </div>
 </div>
-
 <script src="./common/js/util.js" charset="utf-8"></script>
 <script src="./js/user/info_change.js" charset="utf-8"></script>
-</body>
-</html>

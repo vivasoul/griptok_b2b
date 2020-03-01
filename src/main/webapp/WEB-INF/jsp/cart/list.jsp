@@ -2,107 +2,93 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<script src="./common/js/common.js"></script>
-
-<script src="./lib/js/jquery.min.js"></script>
-<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="./css/margin.css">
-<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/shopping/pointy-button.css">
-<link rel="stylesheet" href="./css/shopping/plus-minus-div.css">
+<link rel="stylesheet" href="/css/shopping/pointy-button.css">
+<link rel="stylesheet" href="/css/shopping/plus-minus-div.css">
 <!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
-<link rel="stylesheet" href="./css/shopping/cart.css">
-<link rel="stylesheet" href="./css/common.css">
-
-<script src="./lib/datatable/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="/css/shopping/cart.css">
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="./lib/datatable/jquery.dataTables.min.js"></script>
 <script src="./lib/bootbox/bootbox.min.js"></script>
-</head>
-<body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="m-b-md text-right" id="div-process-status">
-				<button id="btn-view-cart" class="btn btn-arrow-right js-view-btngroup btn-primary m-r-lg">장바구니</button>
-				<button id="btn-pay-highlight" class="btn btn-arrow-right btn-secondary-outline m-r-lg" disabled>주문결제</button>
-				<button class="btn btn-arrow-right btn-secondary-outline m-r-md" disabled>주문완료</button>
-			</div>
-		</div>
-		<div id="div-view-cart" class="row js-view-div">
-			<div class="col-md-12">
-				<table id="cart-tbl" class="table table-striped table-bordered hover gtk-datatable">
-					<thead>
-						<tr>
-							<th data-column="checked" class="w-10">
-								<input type="checkbox" id="js-chk-master"/>
-							</th>
-							<th data-column = "title" class="w-50">상품정보</th>
-							<th data-column = "carted_cnt">수량</th>
-							<th data-column = "order_cost">금액</th>
-							<th data-column="product_id">주문</th>
-							
-							<th data-column = "unit_price" data-visible="false">단일가격</th>
-							<th data-column = "img_file" data-visible="false">이미지경로</th>
-							<th data-column = "unit_discount" data-visible="false">유닛할인금액</th>
-							<th data-column = "tot_discount" data-visible="false">총할인금액</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="each" items="${arr }">
-							<tr data-row-id="${each.product_id }">
-								<td style="text-align: center;">${each.checked }</td>
-								<td>${each.title }</td>
-								<td>${each.carted_cnt }</td>
-								<td>${each.order_cost }</td>
-								<td>${each.product_id }</td>
-								
-								<td>${each.unit_price }</td>
-								<td>${each.img_file }</td>
-								<td>${each.unit_discount }</td>
-								<td>${each.tot_discount }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-md-12 pull-left m-b-md" id="div-all-action">
-				<button class="gtk-btn" id="btn-remove-all">선택 상품 삭제</button>
-				<button class="gtk-btn" id="btn-interest-all">선택 상품 관심상품 등록</button>
-			</div>
-			<div class="col-md-12">
-				<table id="cart-price-table" class="table border-top-2 border-bottom-2">
-					<thead>
-						<tr>
-							<th class="border-right-1">총상품금액</th>
-							<th class="border-right-1">총할인금액</th>
-							<th class="border-none">결제 예정 금액</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="border-right-1 col-md-4">
-								<input type="text" id="tot-original-price" readonly class=" border-none bg-transparent" style="width:100%;"/> 
-							</td>
-							<td class="border-right-1">
-								<input type="text" id="tot-discount-price" readonly class=" border-none bg-transparent" style="width:100%;"/> 
-							</td>
-							<td>
-								<input type="text" id="tot-order-price" readonly class=" border-none bg-transparent font-size-large color-red" style="width:100%;"/>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-md-12 m-b-md m-t-md text-center">
-				<button class="gtk-btn">취소</button>
-				<button class="gtk-btn gtk-btn-blue js-view-btngroup" id="btn-view-pay">주문하기</button>
-				<button class="gtk-btn">견적서 출력</button>
-			</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="m-b-md text-right" id="div-process-status">
+			<button id="btn-view-cart" class="btn btn-arrow-right js-view-btngroup btn-primary m-r-lg">장바구니</button>
+			<button id="btn-pay-highlight" class="btn btn-arrow-right btn-secondary-outline m-r-lg" disabled>주문결제</button>
+			<button class="btn btn-arrow-right btn-secondary-outline m-r-md" disabled>주문완료</button>
 		</div>
 	</div>
+	<div id="div-view-cart" class="row js-view-div">
+		<div class="col-md-12">
+			<table id="cart-tbl" class="table table-striped table-bordered hover gtk-datatable">
+				<thead>
+					<tr>
+						<th data-column="checked" class="w-10">
+							<input type="checkbox" id="js-chk-master"/>
+						</th>
+						<th data-column = "title" class="w-50">상품정보</th>
+						<th data-column = "carted_cnt">수량</th>
+						<th data-column = "order_cost">금액</th>
+						<th data-column="product_id">주문</th>
+						
+						<th data-column = "unit_price" data-visible="false">단일가격</th>
+						<th data-column = "img_file" data-visible="false">이미지경로</th>
+						<th data-column = "unit_discount" data-visible="false">유닛할인금액</th>
+						<th data-column = "tot_discount" data-visible="false">총할인금액</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="each" items="${arr }">
+						<tr data-row-id="${each.product_id }">
+							<td style="text-align: center;">${each.checked }</td>
+							<td>${each.title }</td>
+							<td>${each.carted_cnt }</td>
+							<td>${each.order_cost }</td>
+							<td>${each.product_id }</td>
+							
+							<td>${each.unit_price }</td>
+							<td>${each.img_file }</td>
+							<td>${each.unit_discount }</td>
+							<td>${each.tot_discount }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-12 pull-left m-b-md" id="div-all-action">
+			<button class="gtk-btn" id="btn-remove-all">선택 상품 삭제</button>
+			<button class="gtk-btn" id="btn-interest-all">선택 상품 관심상품 등록</button>
+		</div>
+		<div class="col-md-12">
+			<table id="cart-price-table" class="table border-top-2 border-bottom-2">
+				<thead>
+					<tr>
+						<th class="border-right-1">총상품금액</th>
+						<th class="border-right-1">총할인금액</th>
+						<th class="border-none">결제 예정 금액</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="border-right-1 col-md-4">
+							<input type="text" id="tot-original-price" readonly class=" border-none bg-transparent" style="width:100%;"/> 
+						</td>
+						<td class="border-right-1">
+							<input type="text" id="tot-discount-price" readonly class=" border-none bg-transparent" style="width:100%;"/> 
+						</td>
+						<td>
+							<input type="text" id="tot-order-price" readonly class=" border-none bg-transparent font-size-large color-red" style="width:100%;"/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-12 m-b-md m-t-md text-center">
+			<button class="gtk-btn">취소</button>
+			<button class="gtk-btn gtk-btn-blue js-view-btngroup" id="btn-view-pay">주문하기</button>
+			<button class="gtk-btn">견적서 출력</button>
+		</div>
+	</div>
+</div>
 <script>
 $(document).ready(function() {
 	/********************************************************
@@ -379,5 +365,3 @@ $(document).ready(function() {
 	})
 });
 </script>
-</body>
-</html>

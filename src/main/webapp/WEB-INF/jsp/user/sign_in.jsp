@@ -1,25 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/register/register.css">
-<link rel="stylesheet" href="/css/bootstrap.min.css">
+
 <!-- <link rel="stylesheet" href="/css/common/bootstrap.min.css"> -->
 <!-- <link rel="stylesheet" href="/css/common/font-awesome.min.css"> -->
 <!-- <link rel="stylesheet" href="/css/common/googleapi.css"> -->
-</head>
-<body>
 
  <div class="custom-container container">    
 		<div class="mainbox col-sm-10 col-sm-offset-2" >
 			<img class="login_top" src="/img/login/griptok.png" onclick="location.href='/login2.html';"/>
 			<div class="login_top">
-				<h2>±×¸³Åå µµ¸ÅÀü¿ë ¼îÇÎ¸ôÀÔ´Ï´Ù.</h2>
-				<h4>º» »çÀÌÆ®´Â »ç¾÷ÀÚ¸¸ ÀÌ¿ëÀÌ °¡´ÉÇÑ µµ¸Å »çÀÌÆ® ÀÔ´Ï´Ù.<br>°¡ÀÔ ½ÂÀÎ ¿Ï·á ÈÄ ÀÌ¿ëÀÌ °¡´É ÇÕ´Ï´Ù.</h4>
+				<h2>ê·¸ë¦½í†¡ ë„ë§¤ì „ìš© ì‡¼í•‘ëª°ìž…ë‹ˆë‹¤.</h2>
+				<h4>ë³¸ ì‚¬ì´íŠ¸ëŠ” ì‚¬ì—…ìžë§Œ ì´ìš©ì´ ê°€ëŠ¥í•œ ë„ë§¤ ì‚¬ì´íŠ¸ ìž…ë‹ˆë‹¤.<br>ê°€ìž… ìŠ¹ì¸ ì™„ë£Œ í›„ ì´ìš©ì´ ê°€ëŠ¥ í•©ë‹ˆë‹¤.</h4>
 			</div>
 		</div>
 
@@ -32,24 +23,24 @@
       	   <div class="row" >
             <div class="col-sm-4">
               	<div class="col-sm-12 input-group custom">
-			    <input type="text" class="form-control input-lg" placeholder="¾ÆÀÌµð">
+			    <input type="text" class="form-control input-lg" placeholder="ì•„ì´ë””">
 			    <span class="input-group-btn" style="width:0;">
-			        <button class="btn-primary btn-lg" type="button">Áßº¹È®ÀÎ</button>
+			        <button class="btn-primary btn-lg" type="button">ì¤‘ë³µí™•ì¸</button>
 			    </span>
 			   </div>
-               <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="ºñ¹Ð¹øÈ£"  class="form-control input-lg"></div>
-               <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="ºñ¹Ð¹øÈ£ È®ÀÎ"  class="form-control input-lg"></div>
+               <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="ë¹„ë°€ë²ˆí˜¸"  class="form-control input-lg"></div>
+               <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸"  class="form-control input-lg"></div>
             </div>
             <div class="col-sm-8">
             	<span class="input_chk">
 					<input type="checkbox" id="termsService" name="termsService" class="chk">
-					<label for="termsService">ÀüÃ¼ µ¿ÀÇ<span class="terms_necessary">(ÇÊ¼ö)</span></label>
+					<label for="termsService">ì „ì²´ ë™ì˜<span class="terms_necessary">(í•„ìˆ˜)</span></label>
 				</span>
             	<div class="col-sm-12" style="border:1px solid #dadada">
 	            <div class="col-sm-6 custom" >
 	            <span class="input_chk">
 					<input type="checkbox" id="termsService" name="termsService" class="chk">
-					<label for="termsService">ÀÌ¿ë¾à°ü µ¿ÀÇ<span class="terms_necessary">(ÇÊ¼ö)</span></label>
+					<label for="termsService">ì´ìš©ì•½ê´€ ë™ì˜<span class="terms_necessary">(í•„ìˆ˜)</span></label>
 				</span>
 	              <div class="col-sm-12" style="background-color:#f5f6f7;overflow-y:scroll;">	
 		            <p> 
@@ -61,7 +52,7 @@
 	            <div class="col-sm-6 custom">
 	            <span class="input_chk">
 					<input type="checkbox" id="termsService" name="termsService" class="chk">
-					<label for="termsService">°³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë µ¿ÀÇ<span class="terms_necessary">(ÇÊ¼ö)</span></label>
+					<label for="termsService">ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš© ë™ì˜<span class="terms_necessary">(í•„ìˆ˜)</span></label>
 				</span>
 				<div class="col-sm-12" style="background-color:#f5f6f7;overflow-y:scroll;">	
 		            <p> 
@@ -78,19 +69,19 @@
            <div class="row">
             <div class="col-sm-4 ">
               <div class="col-sm-12 input-group custom">
-              	<input type="text" placeholder="È¸»ç¸í" class="form-control input-lg">
+              	<input type="text" placeholder="íšŒì‚¬ëª…" class="form-control input-lg">
               	<span class="input-group-btn" style="width:0;">
-			        <button class="btn-primary btn-lg text-sm" type="button">Áßº¹È®ÀÎ</button>
+			        <button class="btn-primary btn-lg text-sm" type="button">ì¤‘ë³µí™•ì¸</button>
 			    </span>
               </div>
               <div class="col-sm-12 input-group custom">
-              	<input type="number" placeholder="»ç¾÷ÀÚµî·Ï¹øÈ£"  class="form-control input-lg">
+              	<input type="number" placeholder="ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸"  class="form-control input-lg">
               	<span class="input-group-btn" style="width:0;">
-			        <button class="btn-primary btn-lg text-sm" type="button">Áßº¹È®ÀÎ</button>
+			        <button class="btn-primary btn-lg text-sm" type="button">ì¤‘ë³µí™•ì¸</button>
 			    </span>
               </div>
               <div class="col-sm-12 input-group custom">
-<!--               	<input type="file" maxlength="3" placeholder="»ç¾÷ÀÚ µî·ÏÁõ »çº» ÀÌ¹ÌÁö µî·Ï" class="form-control input-lg"> -->
+<!--               	<input type="file" maxlength="3" placeholder="ì‚¬ì—…ìž ë“±ë¡ì¦ ì‚¬ë³¸ ì´ë¯¸ì§€ ë“±ë¡" class="form-control input-lg"> -->
               	<div class="input-group input-file" name="Fichier1">
 		    		<input type="text" class="form-control" placeholder='Choose a file...' />			
 		            <span class="input-group-btn">
@@ -98,25 +89,25 @@
 		    		</span>
 				</div>
               </div>
-              <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="´ëÇ¥ÀÚ¸í"  class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="ëŒ€í‘œìžëª…"  class="form-control input-lg"></div>
             </div>
             <div class="col-sm-4">
-              <div class="col-sm-12 input-group custom"><input type="text" maxlength="3" placeholder="´ã´çÀÚ¸í" class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="´ã´çÀÚ ÈÞ´ëÀüÈ­"  class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" maxlength="3" placeholder="´ã´çÀÚ ÀÌ¸ÞÀÏ" class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" maxlength="3" placeholder="ë‹´ë‹¹ìžëª…" class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="ë‹´ë‹¹ìž íœ´ëŒ€ì „í™”"  class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" maxlength="3" placeholder="ë‹´ë‹¹ìž ì´ë©”ì¼" class="form-control input-lg"></div>
             </div>
             <div class="col-sm-4">
-	          <div class="col-sm-12 input-group custom"><input type="text" maxlength="3" placeholder="¼¼±Ý°è»ê¼­ ¹ßÇà ÀÌ¸ÞÀÏ" class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="¿ìÆí¹øÈ£"  class="form-control input-lg"></div>
-              <div class="col-sm-12 input-group custom"><input type="text" maxlength="3" placeholder="ÁÖ¼Ò" class="form-control input-lg"></div>
+	          <div class="col-sm-12 input-group custom"><input type="text" maxlength="3" placeholder="ì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰ ì´ë©”ì¼" class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" maxlength="4" placeholder="ìš°íŽ¸ë²ˆí˜¸"  class="form-control input-lg"></div>
+              <div class="col-sm-12 input-group custom"><input type="text" maxlength="3" placeholder="ì£¼ì†Œ" class="form-control input-lg"></div>
             </div>
            
            
            </div>
            <div class="row">
            		<div class="col-sm-12 submit">
-           			 <button class="btn-primary btn-lg" type="button">°¡ÀÔÇÏ±â</button>
-           			 <button class="btn-warning btn-lg" type="button">Ãë¼Ò</button>
+           			 <button class="btn-primary btn-lg" type="button">ê°€ìž…í•˜ê¸°</button>
+           			 <button class="btn-warning btn-lg" type="button">ì·¨ì†Œ</button>
            		</div>
            </div>
            </div>  
@@ -161,7 +152,3 @@ $(function() {
 });
 
 </script>
-
-
-</body>
-</html>

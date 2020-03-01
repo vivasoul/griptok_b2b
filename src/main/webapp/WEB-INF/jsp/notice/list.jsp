@@ -1,50 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<script src="./common/js/common.js"></script>
-<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
-<!--  link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css" -->
-<script src="./lib/js/jquery.min.js"></script>
-<script src="./lib/datatable/jquery.dataTables.min.js"></script>
-</head>
-<body>
-	<div class="container-fluid">
-		<div class="row pull-right">
-			<select class="form-control" id="sel-category">
-			  <option>전체</option>
-			  <option>배송지연</option>
-			  <option>일반</option>
-			  <option>이벤트</option>
-			</select>
-		</div>
-		<div class="row">
-			<table id="example" class="gtk-datatable">
-				<thead>
-					<tr>
-						<th data-column = "notice_no" data-visible="false">공지번호</th>
-						<th data-column = "category">구분</th>
-						<th data-column = "title">제목</th>
-						<th data-column = "reg_dt">작성일</th>
-						<th data-column = "view_count">조회수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="each" items="${arr }">
-						<tr>
-							<td>${each.notice_no }</td>
-							<td>${each.category }</td>
-							<td>${each.title }</td>
-							<td>${each.reg_dt }</td>
-							<td>${each.view_cnt }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+<script src="/lib/datatable/jquery.dataTables.min.js"></script>
+<div class="container-fluid">
+	<div class="row pull-right">
+		<select class="form-control" id="sel-category">
+		  <option>전체</option>
+		  <option>배송지연</option>
+		  <option>일반</option>
+		  <option>이벤트</option>
+		</select>
 	</div>
+	<div class="row">
+		<table id="example" class="gtk-datatable">
+			<thead>
+				<tr>
+					<th data-column = "notice_no" data-visible="false">공지번호</th>
+					<th data-column = "category">구분</th>
+					<th data-column = "title">제목</th>
+					<th data-column = "reg_dt">작성일</th>
+					<th data-column = "view_count">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="each" items="${arr }">
+					<tr>
+						<td>${each.notice_no }</td>
+						<td>${each.category }</td>
+						<td>${each.title }</td>
+						<td>${each.reg_dt }</td>
+						<td>${each.view_cnt }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+</div>
 <script>
 $(document).ready(function() {
 	// DataTable initialisation 
@@ -88,5 +79,3 @@ $(document).ready(function() {
 	*****************************************/
 });
 </script>
-</body>
-</html>
