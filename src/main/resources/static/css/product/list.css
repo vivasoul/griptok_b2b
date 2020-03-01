@@ -19,22 +19,15 @@
     padding: 2px 0px 2px 15px;
 }
 
-.griptok-thumb {
-	display:inline-block;
-	width:260px;
-	min-height:320px;
-	padding:2px;
-	vertical-align:top;
-	position:relative;
-}
+.griptok-thumb { display:inline-block;width:255px;min-height:320px;padding:2px;vertical-align:top;position:relative;margin:0px 4px 30px 4px;}
 .griptok-thumb .thumb-image { width:255px;height:255px; }
 .griptok-thumb .thumb-image>img { width:100%;height:100%; }
 .griptok-thumb .gtk-thumb-overlay { z-index:3;position:absolute;top:150px;left:60px;display:none; }
 
-.griptok-thumb>.thumb-title { text-align:left;font-size:12px;font-weight:400; }
-.griptok-thumb>.thumb-price { text-align:right;font-family:Tahoma,'Nanum Gothic', sans-serif	}
-.thumb-price>.base-price { font-size:11px;font-weight:400;text-decoration:line-through; }	
-.thumb-price>.real-price { font-size:13px;font-weight:700; }	
+.griptok-thumb .thumb-title { font-size:14px;font-weight:700;margin:5px 8px 0px 8px;color:#484848; }
+.griptok-thumb .thumb-price { margin:0px 5px;	}
+.thumb-price>.real-price { font-size:19px;font-weight:700;color:#19B0F4 }
+.thumb-price>.base-price { font-size:14px;font-weight:400;text-decoration:line-through;color:#B8B8B8 }
 
 .griptok-main-sort>a { font-size:12px;font-weight:400;text-decoration:none; color:#333 }
 

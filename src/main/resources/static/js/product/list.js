@@ -57,8 +57,8 @@ const thumbnailGenerator = function(data) {
 				const real_span = document.createElement("span");
 				real_span.className = "real-price"; 
 				real_span.innerHTML = currency_formatter(data.sales_price,"원");
-			price_div.appendChild(base_span);
 			price_div.appendChild(real_span);
+			price_div.appendChild(base_span);
 			
 		anchor.appendChild(img_div);
 		anchor.appendChild(title_div);
