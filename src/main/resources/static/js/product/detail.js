@@ -23,8 +23,11 @@ const renderData = function(data) {
 				$body.find(".gtk-detail-images-big").append(f_img);
 			}
 			const img = document.createElement("img");
+			const img2 = document.createElement("img");
 			img.src = data.images[i];
-			$body.find(".gtk-detail-images-thumbs").append(img);			
+			img2.src = data.images[i];
+			$body.find(".gtk-detail-images-thumbs").append(img);
+			$body.find(".gtk-description-body .gtk-detail-images").append(img2);
 		}
 	}
 	updateCount(1);
