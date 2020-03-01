@@ -5,6 +5,14 @@
 	String content_page = (String) request.getAttribute("content_page");
 	content_page = "/WEB-INF/jsp/"+content_page+".jsp";
 	String page_path = (String)request.getAttribute("page_path");
+	String init_path = null;
+	String last_path = null;
+	if(page_path != null){
+		int last_idx = page_path.lastIndexOf(">");
+		init_path = page_path.substring(0, last_idx+1);
+		last_path = page_path.substring(last_idx+1);
+	}
+	
 	String page_title = (String)request.getAttribute("page_title");
 	String side_title = (String)request.getAttribute("side_title");
 	String side_id = (String) request.getAttribute("side_id");
@@ -34,7 +42,9 @@
 		<%}else{%>
 		<div>
 		<%}%>
-			<%if(page_path!=null){%><div class="row"><div class="col-sm-12" id="griptok-page-path"><%=page_path%></div></div><%}%>
+			<%if(page_path!=null){%><div class="row">
+				<div class="col-sm-12" id="griptok-page-path"><%=init_path%><span style="font-weight:900"><%=last_path%></span></div>
+			</div><%}%>
 			<%if(page_title!=null){%><div id="griptok-page-title"><%=page_title%></div><%}%>
 			<jsp:include page="<%=content_page %>" flush="false" />
 		</div>
