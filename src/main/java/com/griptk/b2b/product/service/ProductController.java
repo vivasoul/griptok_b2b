@@ -36,7 +36,7 @@ public class ProductController {
 	@RequestMapping("/main/all")
 	public String goAllPage(Model model) {
 		int cnt = productMapper.getAllCounts();
-		
+		model.addAttribute("start_id", "all");
 		model.addAttribute("page_title","전체상품("+cnt+")");
 		model.addAttribute("page_path","홈 > 전체상품("+cnt+")");
 		model.addAttribute("list_url","/products");
@@ -47,12 +47,14 @@ public class ProductController {
 	@RequestMapping("/main/brand")
 	public String goBrandPage(Model model,
 							 @RequestParam(value="p_id",required=false) Integer p_id,
-							 @RequestParam(value="id",required=false) Integer c_id) {
+							 @RequestParam(value="id", defaultValue = "0") Integer c_id) {
 		if(p_id == null) {
 			return "redirect:/main";
 		}else {
-			PageLabelVO label = getPageLabel('B', p_id, c_id == null ? 0 : c_id);
-						
+			PageLabelVO label = getPageLabel('B', p_id, c_id);
+			
+			model.addAttribute("start_id", p_id.toString());
+			model.addAttribute("side_id", c_id.toString()); 			
 			model.addAttribute("page_title", label.getTitle());
 			model.addAttribute("page_path", label.getPath());
 			model.addAttribute("list_url", label.getList_url());
@@ -66,12 +68,14 @@ public class ProductController {
 	@RequestMapping("/main/craft")
 	public String goCraftPage(Model model,
 							 @RequestParam(value="p_id",required=false) Integer p_id,
-							 @RequestParam(value="id",required=false) Integer c_id) {
+							 @RequestParam(value="id", defaultValue = "0") Integer c_id) {
 		if(p_id == null) {
 			return "redirect:/main";
 		}else {
-			PageLabelVO label = getPageLabel('C', p_id, c_id == null ? 0 : c_id);
-
+			PageLabelVO label = getPageLabel('C', p_id, c_id);
+			
+			model.addAttribute("start_id", p_id.toString());
+			model.addAttribute("side_id", c_id.toString());
 			model.addAttribute("page_title", label.getTitle());
 			model.addAttribute("page_path", label.getPath());
 			model.addAttribute("list_url", label.getList_url());
@@ -86,6 +90,7 @@ public class ProductController {
 	public String goDCPage(Model model) {
 		int cnt = productMapper.getDCCounts();
 		
+		model.addAttribute("start_id", "dc");
 		model.addAttribute("page_title","특가상품("+cnt+")");
 		model.addAttribute("page_path","홈 > 특가상품("+cnt+")");
 		model.addAttribute("list_url","/products/dc");

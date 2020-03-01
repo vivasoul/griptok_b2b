@@ -56,6 +56,7 @@ public class TemplateFilter implements Filter{
 				case ITemplateType.MAIN_TEMPLATE:
 					request.setAttribute("top_menus", isLogined ? menuMng.getLogined() : menuMng.getNotLogined());
 					if(id_path.indexOf("mypage") > -1) {
+						request.setAttribute("side_id", menu.getMenu_id());
 						request.setAttribute("side_title", "마이페이지");
 						request.setAttribute("side_menus", menuMng.listSubMenu("mypage", isLogined ? "L" : "N"));
 					}

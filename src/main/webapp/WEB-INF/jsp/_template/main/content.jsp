@@ -7,6 +7,7 @@
 	String page_path = (String)request.getAttribute("page_path");
 	String page_title = (String)request.getAttribute("page_title");
 	String side_title = (String)request.getAttribute("side_title");
+	String side_id = (String) request.getAttribute("side_id");
 	List<MenuVO> side_menus = (List<MenuVO>)request.getAttribute("side_menus");
 %>
 <div class="container-fluid griptok-body">
@@ -16,9 +17,16 @@
 			<div class="griptok-side-menu">
 				<div class="griptok-side-title"><%=side_title%></div>
 				<div class="griptok-side-body">
-				<%for(MenuVO menu: side_menus){%>
-					<div menu-id="<%=menu.getMenu_id()%>"><a href="<%=menu.getMenu_url()%>"><%=menu.getMenu_nm()%></a></div>
+				<%for(MenuVO menu: side_menus){
+					boolean isActive = (menu.getMenu_id()).equals(side_id);
+				%>
+					<div menu-id="<%=menu.getMenu_id()%>">
+						<a <%if(isActive){%>class="active<%}%> href="<%=menu.getMenu_url()%>"><%=menu.getMenu_nm()%></a>
+					</div>
 				<%}%>
+				</div>
+				<div class="side-banner">
+					<img src="/img/common/side_banner/side_banner_1.png"/>	
 				</div>
 			</div>
 		</div><!-- 

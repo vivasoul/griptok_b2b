@@ -12,4 +12,10 @@ public class MShoppingController {
 		model.addAttribute("content_page", "order_hst/admin/list");
 		return "_template/admin";
 	}
+	
+	@RequestMapping("/admin/check-deposit")
+	public String goAdminDeposit(Model model) {
+		model.addAttribute("content_page", "order_hst/admin/deposit_list");
+		return "_template/admin";
+	}
 }

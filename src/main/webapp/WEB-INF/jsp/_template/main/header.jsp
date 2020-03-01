@@ -8,6 +8,10 @@
 	List<MenuVO> top_menus = (List<MenuVO>)request.getAttribute("top_menus");
 	List<CraftTypeVO> crafts_filter = (List<CraftTypeVO>)request.getAttribute("crafts_filter");
 	List<BrandTypeVO> brands_filter = (List<BrandTypeVO>)request.getAttribute("brands_filter");
+	
+	String start_id = (String) request.getAttribute("start_id");
+	
+		
 	boolean isAdmin = session.getAttribute("auth_type") != null && "M".equals(session.getAttribute("auth_type").toString());
 %>
 <div class="container-fluid griptok-header most-top-menus">
@@ -36,7 +40,10 @@
 	</div>
 </div>
 <div class="griptok-start-menus griptok-craft-parents">
-	  <a href="/main/all">전체 상품(All)</a><!--
-	  --><%for(CraftTypeVO craft: crafts_filter){ %><a href="/main/craft?p_id=<%=craft.getCraft_no()%>"><%=craft.getCraft_nm()%></a><%}%><!-- 
-   --><a href="/main/dc">특가상품</a>
+	  <a href="/main/all" <%if("all".equals(start_id)){%>class="active"<%}%>>전체 상품(All)</a><!--
+	  --><%
+	  		for(CraftTypeVO craft: crafts_filter){ 
+	  			boolean isActive = (craft.getCraft_no()+"").equals(start_id);  
+	  	%><a href="/main/craft?p_id=<%=craft.getCraft_no()%>" <%if(isActive){%>class="active"<%}%>><%=craft.getCraft_nm()%></a><%}%><!-- 
+   --><a href="/main/dc" <%if("dc".equals(start_id)){%>class="active"<%}%>>특가상품</a>
 </div>
