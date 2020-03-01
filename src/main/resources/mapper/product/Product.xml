@@ -164,7 +164,7 @@
 	<!-- craft -->
 	<select id="getPageLabel_C" parameterType="Int" resultType="com.griptk.b2b.common.domain.PageLabelVO">
 		WITH CTE AS (
-			SELECT CONCAT('(',COUNT(*),')') AS cnt_str FROM tb_product a
+			SELECT COUNT(*) AS list_cnt FROM tb_product a
 			INNER JOIN tb_product_category b ON a.category_no = b.category_no
 			INNER JOIN tb_craft_type c ON b.craft_no = c.craft_no
 			WHERE 1=1
@@ -172,7 +172,8 @@
 		)
 		SELECT 
 			craft_nm AS `title`,
-			CONCAT('홈 > ',craft_nm,cnt_str) AS `path`
+			b.list_cnt,
+			CONCAT('홈 > ',craft_nm) AS `path`
 		FROM tb_craft_type a CROSS JOIN CTE b
 		WHERE 1=1
 		AND craft_no = #{craft_no}		
@@ -180,14 +181,15 @@
 	<!-- craft > category -->
 	<select id="getPageLabel_CC" parameterType="Int" resultType="com.griptk.b2b.common.domain.PageLabelVO">
 		WITH CTE AS (
-			SELECT CONCAT('(',COUNT(*),')') AS cnt_str FROM tb_product a
+			SELECT COUNT(*) AS list_cnt FROM tb_product a
 			INNER JOIN tb_product_category b ON a.category_no = b.category_no
 			WHERE 1=1
 			AND b.category_no = #{category_no}
 		)
 		SELECT 
 			category_nm AS `title`,
-			CONCAT('홈 > ',craft_nm,' > ', category_nm, cnt_str) AS `path`
+			c.list_cnt,
+			CONCAT('홈 > ',craft_nm,' > ', category_nm) AS `path`
 		FROM tb_product_category a 
 		INNER JOIN tb_craft_type b ON a.craft_no = b.craft_no
 		CROSS JOIN CTE c
@@ -197,7 +199,7 @@
 	<!-- parent_brand -->
 	<select id="getPageLabel_B" parameterType="Int" resultType="com.griptk.b2b.common.domain.PageLabelVO">
 		WITH CTE AS (
-			SELECT CONCAT('(',COUNT(*),')') AS cnt_str FROM tb_product a
+			SELECT COUNT(*) AS list_cnt FROM tb_product a
 			INNER JOIN tb_product_category b ON a.category_no = b.category_no
 			INNER JOIN tb_brand_type c ON b.brand_no = c.brand_no
 			WHERE 1=1
@@ -205,7 +207,8 @@
 		)
 		SELECT 
 			a.brand_nm AS `title`,
-			CONCAT('홈 > ',brand_nm,cnt_str) AS `path`
+			b.list_cnt,
+			CONCAT('홈 > ',brand_nm) AS `path`
 		FROM tb_brand_type a CROSS JOIN CTE b
 		WHERE 1=1
 		AND brand_no = #{p_brand_no}		
@@ -213,7 +216,7 @@
 	<!-- parent_brand > brand -->
 	<select id="getPageLabel_BB" parameterType="Int" resultType="com.griptk.b2b.common.domain.PageLabelVO">
 		WITH CTE AS (
-			SELECT CONCAT('(',COUNT(*),')') AS cnt_str FROM tb_product a
+			SELECT COUNT(*) AS list_cnt FROM tb_product a
 			INNER JOIN tb_product_category b ON a.category_no = b.category_no
 			INNER JOIN tb_brand_type c ON b.brand_no = c.brand_no
 			WHERE 1=1
@@ -221,7 +224,8 @@
 		)
 		SELECT 
 			a.brand_nm AS `title`,
-			CONCAT('홈 > ',b.brand_nm,' > ',a.brand_nm, cnt_str) AS `path`
+			c.list_cnt,
+			CONCAT('홈 > ',b.brand_nm,' > ',a.brand_nm) AS `path`
 		FROM tb_brand_type a 
 		INNER JOIN tb_brand_type b ON a.p_brand_no = b.brand_no
 		CROSS JOIN CTE c

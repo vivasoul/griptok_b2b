@@ -7,6 +7,7 @@ body {
 	font-family: 'Nanum Gothic', sans-serif !important;
 	height:100%;
 }
+a { cursor:pointer; }
 a,a:hover{ text-decoration:none; }
  
 .griptok-header, .griptok-body, .griptok-footer { max-width:1200px; margin:0 auto !important; }
@@ -181,12 +182,12 @@ a,a:hover{ text-decoration:none; }
 .dataTables_paginate .paginate_button.next {  }
 
 /* pager css */
-.gtk-pager { text-align:center;margin:5px; }
-.gtk-pager a { text-decoration:none;color:#7c7c7c }
-.gtk-pager a:hover { text-decoration:none;color:#000;cursor:pointer; }
-.gtk-pager .gtk-pager-button { display:inline-block;width:25px;height:25px;padding:1px;
-							   text-align: center;vertical-align: middle;margin:5px 1px;
-							   color: #7C7C7C; border:1px solid #E0E0E0; background-color: #FFF; }
-.gtk-pager .gtk-pager-button.active { color: #FFF; border:1px solid #00A1E3; background-color: #19B4F0; } 
+.gtk-pager { text-align:center;margin:30px; }
+.gtk-pager .gtk-pager-button { display:inline-block;width:28px;height:28px;padding-top:4px;
+							   text-align: center;vertical-align: middle;
+							   font-size:12px;color:#7C7C7C;border:1px solid #E0E0E0; background-color: #FFF; }
+.gtk-pager .gtk-pager-button.active { color:#FFF; border:1px solid #19B4F0; background-color: #19B4F0; } 
 .gtk-pager .gtk-pager-prev, 
-.gtk-pager .gtk-pager-next {  }
+.gtk-pager .gtk-pager-next { color:#D1D1D1;vertical-align:middle; }
+.gtk-pager .gtk-pager-prev { margin-right:9px; }
+.gtk-pager .gtk-pager-next { margin-left:9px; }

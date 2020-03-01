@@ -29,16 +29,17 @@ public class ProductController {
 	@RequestMapping("/main")
 	public String goMainPage(Model model) {
 		model.addAttribute("content_page", "product/list");
-		
 		return "_template/main";
 	}
 	
 	@RequestMapping("/main/all")
 	public String goAllPage(Model model) {
-		int cnt = productMapper.getAllCounts();
+		int list_cnt = productMapper.getAllCounts();
+		
+		model.addAttribute("list_cnt", list_cnt);
 		model.addAttribute("start_id", "all");
-		model.addAttribute("page_title","전체상품("+cnt+")");
-		model.addAttribute("page_path","홈 > 전체상품("+cnt+")");
+		model.addAttribute("page_title","전체상품("+list_cnt+")");
+		model.addAttribute("page_path","홈 > 전체상품("+list_cnt+")");
 		model.addAttribute("list_url","/products");
 		model.addAttribute("content_page", "product/filtered_list");
 		return "_template/main";
@@ -52,11 +53,13 @@ public class ProductController {
 			return "redirect:/main";
 		}else {
 			PageLabelVO label = getPageLabel('B', p_id, c_id);
+			int list_cnt = label.getList_cnt();
 			
+			model.addAttribute("list_cnt", list_cnt);
 			model.addAttribute("start_id", p_id.toString());
 			model.addAttribute("side_id", c_id.toString()); 			
 			model.addAttribute("page_title", label.getTitle());
-			model.addAttribute("page_path", label.getPath());
+			model.addAttribute("page_path", label.getPath()+"("+list_cnt+")");
 			model.addAttribute("list_url", label.getList_url());
 			model.addAttribute("side_title", label.getSide_title());
 			model.addAttribute("side_menus", label.getSub_menus());
@@ -73,11 +76,13 @@ public class ProductController {
 			return "redirect:/main";
 		}else {
 			PageLabelVO label = getPageLabel('C', p_id, c_id);
+			int list_cnt = label.getList_cnt();
 			
+			model.addAttribute("list_cnt", list_cnt);
 			model.addAttribute("start_id", p_id.toString());
 			model.addAttribute("side_id", c_id.toString());
 			model.addAttribute("page_title", label.getTitle());
-			model.addAttribute("page_path", label.getPath());
+			model.addAttribute("page_path", label.getPath()+"("+list_cnt+")");
 			model.addAttribute("list_url", label.getList_url());
 			model.addAttribute("side_title", label.getSide_title());
 			model.addAttribute("side_menus", label.getSub_menus());
@@ -88,11 +93,12 @@ public class ProductController {
 	
 	@RequestMapping("/main/dc")
 	public String goDCPage(Model model) {
-		int cnt = productMapper.getDCCounts();
+		int list_cnt = productMapper.getDCCounts();
 		
+		model.addAttribute("list_cnt", list_cnt);
 		model.addAttribute("start_id", "dc");
-		model.addAttribute("page_title","특가상품("+cnt+")");
-		model.addAttribute("page_path","홈 > 특가상품("+cnt+")");
+		model.addAttribute("page_title","특가상품("+list_cnt+")");
+		model.addAttribute("page_path","홈 > 특가상품("+list_cnt+")");
 		model.addAttribute("list_url","/products/dc");
 		model.addAttribute("content_page", "product/filtered_list");
 		return "_template/main";

@@ -5,6 +5,7 @@ import java.util.List;
 public class PageLabelVO {
 	private String title;
 	private String path;
+	private int list_cnt;
 	private String list_url;
 	private String side_title;
 	private List<MenuVO> sub_menus;
@@ -19,6 +20,12 @@ public class PageLabelVO {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	public int getList_cnt() {
+		return list_cnt;
+	}
+	public void setList_cnt(int list_cnt) {
+		this.list_cnt = list_cnt;
 	}
 	public String getList_url() {
 		return list_url;
@@ -40,7 +47,7 @@ public class PageLabelVO {
 	}
 	@Override
 	public String toString() {
-		return "PageLabelVO [title=" + title + ", path=" + path + ", list_url=" + list_url + ", side_title="
-				+ side_title + ", sub_menus=" + sub_menus + "]";
+		return "PageLabelVO [title=" + title + ", path=" + path + ", list_cnt=" + list_cnt + ", list_url=" + list_url
+				+ ", side_title=" + side_title + ", sub_menus=" + sub_menus + "]";
 	}
 }

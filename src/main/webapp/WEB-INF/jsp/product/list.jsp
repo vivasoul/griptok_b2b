@@ -25,7 +25,7 @@ jQuery(document).ready(function(){
 	<div class="row">
 		<div class="col-sm-12 product-list" id="best-product-list"></div>
 	</div>
-	<div class="row"><div class="col-sm-12"><div class="event-header">특가 상품(<span></span>)</div></div></div>
+	<div class="row"><div class="col-sm-12"><div class="event-header">특가 상품</div></div></div>
 	<div class="row">
 		<div class="col-sm-12 product-list" id="special-product-list"></div>
 	</div>

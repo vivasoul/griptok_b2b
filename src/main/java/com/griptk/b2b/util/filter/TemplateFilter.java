@@ -38,15 +38,16 @@ public class TemplateFilter implements Filter{
 		String url = ((HttpServletRequest)request).getRequestURI();		
 		
 		MenuVO menu = menuMng.getMenuFromURL(url);
+		String id = menu.getMenu_id();
 		String template = menu.getTemplate_id();
 		String menu_path = menu.getMenu_path();
 		String id_path = menu.getId_path();
 		String title = menu.getMenu_nm();
 		List<MenuVO> menu_hierarchy = menuMng.getMenuHierarchyFromURL(url);
-		
-		request.setAttribute("page_title",title);
-		request.setAttribute("page_path",menu_path);
-		
+		if(!id.equals("shop_main")) {
+			request.setAttribute("page_title",title);
+			request.setAttribute("page_path",menu_path);
+		}
 		if(template != null) {
 			request.setAttribute("menu_hierarchy", menu_hierarchy);
 			
@@ -56,7 +57,7 @@ public class TemplateFilter implements Filter{
 				case ITemplateType.MAIN_TEMPLATE:
 					request.setAttribute("top_menus", isLogined ? menuMng.getLogined() : menuMng.getNotLogined());
 					if(id_path.indexOf("mypage") > -1) {
-						request.setAttribute("side_id", menu.getMenu_id());
+						request.setAttribute("side_id", id);
 						request.setAttribute("side_title", "마이페이지");
 						request.setAttribute("side_menus", menuMng.listSubMenu("mypage", isLogined ? "L" : "N"));
 					}
