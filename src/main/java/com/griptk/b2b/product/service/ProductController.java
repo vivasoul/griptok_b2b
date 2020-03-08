@@ -56,7 +56,7 @@ public class ProductController {
 			int list_cnt = label.getList_cnt();
 			
 			model.addAttribute("list_cnt", list_cnt);
-			model.addAttribute("start_id", p_id.toString());
+			//model.addAttribute("start_id", p_id.toString());
 			model.addAttribute("side_id", c_id.toString()); 			
 			model.addAttribute("page_title", label.getTitle());
 			model.addAttribute("page_path", label.getPath()+"("+list_cnt+")");

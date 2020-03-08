@@ -50,14 +50,14 @@ public class TemplateFilter implements Filter{
 		}
 		if(template != null) {
 			request.setAttribute("menu_hierarchy", menu_hierarchy);
-			
 			switch(template) {
 				case ITemplateType.LOGIN_TEMPLATE:
 					break;
 				case ITemplateType.MAIN_TEMPLATE:
 					request.setAttribute("top_menus", isLogined ? menuMng.getLogined() : menuMng.getNotLogined());
 					if(id_path.indexOf("mypage") > -1) {
-						request.setAttribute("side_id", id);
+						String side_id = menu_hierarchy.get(2).getMenu_id();
+						request.setAttribute("side_id", side_id);
 						request.setAttribute("side_title", "마이페이지");
 						request.setAttribute("side_menus", menuMng.listSubMenu("mypage", isLogined ? "L" : "N"));
 					}
