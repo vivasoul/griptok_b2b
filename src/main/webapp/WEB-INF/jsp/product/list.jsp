@@ -19,14 +19,14 @@ jQuery(document).ready(function(){
 	</div>
 	<div class="row"><div class="col-sm-12"><div class="event-header">신상품</div></div></div>
 	<div class="row">
-		<div class="col-sm-12 product-list" id="new-product-list"></div>
+		<div class="col-sm-12 product-list full-content " id="new-product-list"></div>
 	</div>
 	<div class="row"><div class="col-sm-12"><div class="event-header">베스트 상품</div></div></div>
 	<div class="row">
-		<div class="col-sm-12 product-list" id="best-product-list"></div>
+		<div class="col-sm-12 product-list full-content " id="best-product-list"></div>
 	</div>
 	<div class="row"><div class="col-sm-12"><div class="event-header">특가 상품</div></div></div>
 	<div class="row">
-		<div class="col-sm-12 product-list" id="special-product-list"></div>
+		<div class="col-sm-12 product-list full-content " id="special-product-list"></div>
 	</div>
 </div>	

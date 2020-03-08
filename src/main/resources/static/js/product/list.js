@@ -103,9 +103,18 @@ const loadList = function(url, render_id){
 		
 		const len = datas.length;
 		const dom_arr = [];
-		for(let i=0; i<len; i++){
-			dom_arr.push(thumbnailGenerator(datas[i]));
+		const box_loop = Math.ceil(len/4);
+		for(let i=0; i<box_loop; i++){
+			const start = i*4;
+			const end = (i+1)*4 > len ? len : (i+1)*4;
+			const box_div = document.createElement("div"); 
+			box_div.className = "gtk-shopping-row";
+			for(let j=start;j<end;j++ ){
+				box_div.append(thumbnailGenerator(datas[j]));
+			}
+			dom_arr.push(box_div);
 		}
+		
 		jQuery("#"+render_id).empty().append(dom_arr);
 	}).fail(function(e){
 		//console.log("loadList failed..");

@@ -40,7 +40,7 @@
 		</div><!-- 
 	 --><div class="right-content">
 		<%}else{%>
-		<div>
+		<div class="full-content">
 		<%}%>
 			<%if(page_path!=null){%><div class="row">
 				<div class="col-sm-12" id="griptok-page-path"><%=init_path%><span style="font-weight:900"><%=last_path%></span></div>
