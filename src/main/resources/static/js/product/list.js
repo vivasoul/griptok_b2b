@@ -72,10 +72,12 @@ const thumbnailGenerator = function(data) {
 			if(data["is_fav"] == "Y")	o_icon_left.className = "gtk-fav-shorcut active";
 			else						o_icon_left.className = "gtk-fav-shorcut";
 			
+			o_icon_left.title = "관심상품";
 			o_icon_left.setAttribute("data-id", id);
 			o_icon_left.onclick = on_interested_click;
 			
 			const o_icon_right = document.createElement("div");
+			o_icon_right.title = "장바구니";
 			if(data["is_carted"] == "Y")	o_icon_right.className = "gtk-cart-shorcut active";
 			else							o_icon_right.className = "gtk-cart-shorcut";
 			
