@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="/css/product/list.css" />
 <script type="text/javascript" src="/js/product/common.js"></script>
 <script type="text/javascript" src="/js/product/list.js"></script>
+<style type="text/css">
+.main-shopping-list{ margin-top:0px; }
+</style>
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	loadList("/products/new","new-product-list");
