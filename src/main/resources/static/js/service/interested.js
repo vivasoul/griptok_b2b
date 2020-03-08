@@ -91,7 +91,7 @@ function loadMainInterestedList(reload){
 		        				"targets": [1],
 		        				data : 'img',
 		        				render: function (title,type,row) {
-		        					return '<img src = "/img/product/test/' + row.file_path + '" width="80" height="80"/> ' + title; 
+		        					return '<img src = "'+ row.file_path + '" width="80" height="80"/> ' + title; 
 		        				} 
 		        			},
 		        			{

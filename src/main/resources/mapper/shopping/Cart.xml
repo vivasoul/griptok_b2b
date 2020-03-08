@@ -7,7 +7,7 @@
 			a.product_id,
 			a.title,
 			c.carted_cnt,
-			CONCAT(b.file_path, '/', b.file_nm,'.',b.file_format) AS img_file,
+			CONCAT(b.file_path, '/', b.file_nm) as img_file,
 			c.carted_cnt * a.sales_price as order_cost,
 			a.sales_price AS unit_price,
 			a.retail_price - a.sales_price AS unit_discount,
