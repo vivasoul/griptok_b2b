@@ -1,10 +1,17 @@
 package com.griptk.b2b.product.domain;
 
 public class PredicateVO {
+	private int user_no;
 	private int id;
 	private String order_by;
 	private int limit;
 	private int start;
+	public int getUser_no() {
+		return user_no;
+	}
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
 	public int getId() {
 		return id;
 	}
@@ -31,6 +38,7 @@ public class PredicateVO {
 	}
 	@Override
 	public String toString() {
-		return "PredicateVO [id=" + id + ", order_by=" + order_by + ", limit=" + limit + ", start=" + start + "]";
+		return "PredicateVO [user_no=" + user_no + ", id=" + id + ", order_by=" + order_by + ", limit=" + limit
+				+ ", start=" + start + "]";
 	}
 }

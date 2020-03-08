@@ -16,8 +16,7 @@ const updatePager = function(pager_id, page){
 	let _page = Number(page) || 0;
 	if(_page < 0) _page = 0;
 	else if(_page > MAX_PAGE) _page = MAX_PAGE;
-	console.log(pager_id);
-	console.log(_page);
+
 	$pager.find(".v_page").val(_page);
 	$pager.find(".gtk-pager-button.active").removeClass("active");
 	$pager.find(".gtk-pager-button[page-no="+_page+"]").addClass("active");
@@ -83,7 +82,7 @@ jQuery(document).ready(function(){
 		<div class="col-sm-12 product-list" id="filtered-product-list"></div>
 	</div>
 	<%if(MAX_PAGE > 0){%>
-	<div class="gtk-pager" id="main_pager" max-page="3">
+	<div class="gtk-pager" id="main_pager" max-page="<%=MAX_PAGE%>">
 		<input type="hidden" class="v_page" value="0"/>
 		<a class="gtk-pager-prev"><i class="fa fa-chevron-left"></i></a><!--
 	 --><%for(int i=0; i<MAX_PAGE; i++){%><a class="gtk-pager-button <%=(i==0? "active" : "")%>" page-no="<%=i%>"><%=i+1%></a><%}%><!-- 

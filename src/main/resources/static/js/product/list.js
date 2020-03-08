@@ -21,12 +21,12 @@ const on_maindiv_out = function(e){
 };
 
 const on_carted_click = function(e){
-	const product_id = this.parentNode.product_id;
+	const product_id = this.getAttribute("data-id");
 	moveToCart(product_id, 1);	
 };
 
 const on_interested_click = function(e){
-	const product_id = this.parentNode.product_id;
+	const product_id = this.getAttribute("data-id");
 	moveToInterested(product_id);	
 };
 
@@ -68,34 +68,28 @@ const thumbnailGenerator = function(data) {
 		overlay_div.className = "gtk-thumb-overlay";
 		
 			/* elements about overlay icons */
-			const overlay_img = document.createElement("img");
-			overlay_img.src = "/img/product/griptok_overlay_2.png";
-			overlay_img.useMap = "#gtk_product_"+id;
-			const _map = document.createElement("map");
-			_map.name = "gtk_product_"+id;
-			_map.product_id = id;
-				const _left_area = document.createElement("area");
-				_left_area.shape = "circle";
-				_left_area.coords = "35,29,25";
-				_left_area.style.cursor = "pointer";
-				_left_area.onclick = on_carted_click;
-				
-				const _right_area = document.createElement("area");
-				_right_area.shape = "circle";
-				_right_area.coords = "105,29,25";
-				_right_area.style.cursor = "pointer";
-				_right_area.onclick = on_interested_click;
-				
-			_map.appendChild(_left_area);
-			_map.appendChild(_right_area);	
-		overlay_div.appendChild(overlay_img);	
-		overlay_div.appendChild(_map);
+			const o_icon_left = document.createElement("div");
+			if(data["is_fav"] == "Y")	o_icon_left.className = "gtk-fav-shorcut active";
+			else						o_icon_left.className = "gtk-fav-shorcut";
+			
+			o_icon_left.setAttribute("data-id", id);
+			o_icon_left.onclick = on_interested_click;
+			
+			const o_icon_right = document.createElement("div");
+			if(data["is_carted"] == "Y")	o_icon_right.className = "gtk-cart-shorcut active";
+			else							o_icon_right.className = "gtk-cart-shorcut";
+			
+			o_icon_right.setAttribute("data-id", id);
+			o_icon_right.onclick = on_carted_click;
+	
+		overlay_div.appendChild(o_icon_left);	
+		overlay_div.appendChild(o_icon_right);
 			
 	main_div.appendChild(anchor);
 	main_div.appendChild(overlay_div);
 	
-	main_div.onmouseover = on_maindiv_in;
-	main_div.onmouseout = on_maindiv_out;
+	//main_div.onmouseover = on_maindiv_in;
+	//main_div.onmouseout = on_maindiv_out;
 	
 	return main_div;
 }

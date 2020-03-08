@@ -7,7 +7,8 @@ const moveToCart = function(product_id, carted_cnt) {
 			  {"product_id":product_id, "carted_cnt": carted_cnt}
 		  ])
 		}).done(function(e){
-			alert("해당 상품을 장바구니에 추가하였습니다.");
+			//alert("해당 상품을 장바구니에 추가하였습니다.");
+			jQuery(".gtk-cart-shorcut[data-id="+product_id+"]").addClass("active");
 		}).fail(function(e){
 			console.log(e);
 		}).always(function(){
@@ -24,7 +25,8 @@ const moveToInterested = function(product_id) {
 			  {"product_id":product_id}
 		  ])
 		}).done(function(e){
-			alert("해당 상품을 관심상품에 추가하였습니다.");
+			//alert("해당 상품을 관심상품에 추가하였습니다.");
+			jQuery(".gtk-fav-shorcut[data-id="+product_id+"]").addClass("active");
 		}).fail(function(e){
 			console.log(e);
 		}).always(function(){

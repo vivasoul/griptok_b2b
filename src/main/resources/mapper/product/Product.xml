@@ -19,7 +19,7 @@
 	  		<result property="img_path" column="img_path"/>
 	    </collection>
 	</resultMap>
-	<select id="listNewProducts" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listNewProducts" parameterType="Int" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -27,7 +27,11 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_fav,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_carted	 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
@@ -36,7 +40,7 @@
 		LIMIT 5
 	</select>
 	
-	<select id="listBestProducts" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listBestProducts" parameterType="Int" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -44,7 +48,11 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_fav,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_carted			 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
@@ -53,13 +61,17 @@
 		LIMIT 5
 	</select>
 	
-	<select id="listDcProducts" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listDcProducts" parameterType="com.griptk.b2b.product.domain.PredicateVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
 			a.retail_price,
 			ROUND(a.sales_price*0.9,-2) AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_fav,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_carted			 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
@@ -68,7 +80,7 @@
 		LIMIT #{start}, #{limit}
 	</select>	
 	
-	<select id="listProducts" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts" parameterType="com.griptk.b2b.product.domain.PredicateVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -76,14 +88,18 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_fav,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_carted			 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		${order_by}
 		LIMIT #{start}, #{limit}
 	</select>	
 	
-	<select id="listProducts_C" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_C" parameterType="com.griptk.b2b.product.domain.PredicateVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -91,7 +107,11 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_fav,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_carted			 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
@@ -101,7 +121,7 @@
 		LIMIT #{start}, #{limit}
 	</select>
 	
-	<select id="listProducts_CC" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_CC" parameterType="com.griptk.b2b.product.domain.PredicateVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -109,7 +129,11 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_fav,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_carted			 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		WHERE 1=1
@@ -118,7 +142,7 @@
 		LIMIT #{start}, #{limit}
 	</select>
 	
-	<select id="listProducts_B" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_B" parameterType="com.griptk.b2b.product.domain.PredicateVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -126,7 +150,11 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_fav,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_carted			
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no
@@ -137,7 +165,7 @@
 		LIMIT #{start}, #{limit}
 	</select>
 	
-	<select id="listProducts_BB" parameterType="com.griptk.b2b.common.domain.PageLabelVO" resultType="com.griptk.b2b.product.domain.ProductVO">
+	<select id="listProducts_BB" parameterType="com.griptk.b2b.product.domain.PredicateVO" resultType="com.griptk.b2b.product.domain.ProductVO">
 		SELECT 
 			a.product_id,
 			a.title,
@@ -145,7 +173,11 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img 
+			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_fav,
+			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
+			ELSE 'N' END) AS is_carted			 
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_category c ON a.category_no = c.category_no

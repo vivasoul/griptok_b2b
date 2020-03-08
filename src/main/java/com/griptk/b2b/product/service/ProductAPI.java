@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.griptk.b2b.common.service.FileAPI;
 import com.griptk.b2b.product.domain.IProductSortType;
@@ -29,6 +29,7 @@ import com.griptk.b2b.product.mapper.ProductMapper;
 
 @RestController
 @RequestMapping("/products")
+@SessionAttributes({"user_no"})
 public class ProductAPI {	
 	@Autowired
 	private ProductMapper mapper;
@@ -37,48 +38,51 @@ public class ProductAPI {
 	private FileAPI fileAPI;
 	
 	@GetMapping("/new")
-	public List<ProductVO> getNewProducts(){
-		return mapper.listNewProducts();
+	public List<ProductVO> getNewProducts(@ModelAttribute("user_no") int user_no){
+		return mapper.listNewProducts(user_no);
 	}
 	
 	@GetMapping("/best")
-	public List<ProductVO> getBestProducts(){
-		return mapper.listBestProducts();
+	public List<ProductVO> getBestProducts(@ModelAttribute("user_no") int user_no){
+		return mapper.listBestProducts(user_no);
 	}
 	
 	@GetMapping("/dc")
-	public List<ProductVO> getDCProducts(HttpServletRequest req){
-		return mapper.listDcProducts(generatePredicate(0,req));
+	public List<ProductVO> getDCProducts(@ModelAttribute("user_no") int user_no, HttpServletRequest req){
+		return mapper.listDcProducts(generatePredicate(user_no, 0,req));
 	}
 	
 	@GetMapping("")
-	public List<ProductVO> getAllProducts(HttpServletRequest req){
-		return mapper.listProducts(generatePredicate(0,req));
+	public List<ProductVO> getAllProducts(@ModelAttribute("user_no") int user_no, HttpServletRequest req){
+		return mapper.listProducts(generatePredicate(user_no, 0,req));
 	}
 	
 	@GetMapping("/craft/{craft_no}")
-	public List<ProductVO> getProducts_C(@PathVariable("craft_no") int craft_no, HttpServletRequest req){
-		return mapper.listProducts_C(generatePredicate(craft_no,req));
+	public List<ProductVO> getProducts_C(@ModelAttribute("user_no") int user_no, @PathVariable("craft_no") int craft_no, HttpServletRequest req){
+		return mapper.listProducts_C(generatePredicate(user_no, craft_no,req));
 	}
 	
 	@GetMapping("/craft/{craft_no}/{category_no}")
-	public List<ProductVO> getProducts_CC(@PathVariable("craft_no") int craft_no,
+	public List<ProductVO> getProducts_CC(@ModelAttribute("user_no") int user_no,
+										  @PathVariable("craft_no") int craft_no,
 										  @PathVariable("category_no") int category_no,
 										  HttpServletRequest req){
-		return mapper.listProducts_CC(generatePredicate(category_no,req));
+		return mapper.listProducts_CC(generatePredicate(user_no, category_no,req));
 	}
 	
 	@GetMapping("/brand/{p_brand_no}")
-	public List<ProductVO> getProducts_B(@PathVariable("p_brand_no") int p_brand_no,
+	public List<ProductVO> getProducts_B(@ModelAttribute("user_no") int user_no,
+										 @PathVariable("p_brand_no") int p_brand_no,
 										 HttpServletRequest req){
-		return mapper.listProducts_B(generatePredicate(p_brand_no,req));
+		return mapper.listProducts_B(generatePredicate(user_no, p_brand_no,req));
 	}
 	
 	@GetMapping("/brand/{p_brand_no}/{brand_no}")
-	public List<ProductVO> getProducts_BB(@PathVariable("p_brand_no") int p_brand_no,
+	public List<ProductVO> getProducts_BB(@ModelAttribute("user_no") int user_no,
+										  @PathVariable("p_brand_no") int p_brand_no,
 										  @PathVariable("brand_no") int brand_no,
 										  HttpServletRequest req){
-		return mapper.listProducts_BB(generatePredicate(brand_no,req));
+		return mapper.listProducts_BB(generatePredicate(user_no, brand_no,req));
 	}
 	@GetMapping("/{product_id}")
 	public ProductDetailVO getDetail(@PathVariable("product_id") int product_id) {
@@ -96,7 +100,7 @@ public class ProductAPI {
 		}
 	}
 	
-	private PredicateVO generatePredicate(int id, HttpServletRequest req) {
+	private PredicateVO generatePredicate(int user_no, int id, HttpServletRequest req) {
 		PredicateVO data = new PredicateVO();
 		String sort_type = req.getParameter("sort_type");
 		String limit 	 = req.getParameter("limit");
@@ -110,7 +114,7 @@ public class ProductAPI {
 		if(page != null) {
 			try { _page = Integer.parseInt(page); }catch(NumberFormatException ne) {}
 		}
-		
+		data.setUser_no(user_no);
 		data.setId(id);
 		data.setOrder_by(getOrderByFragment(sort_type != null ? sort_type : IProductSortType.ORDER_BY_REG_DT));
 		data.setLimit(_limit);

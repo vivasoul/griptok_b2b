@@ -11,8 +11,8 @@ import com.griptk.b2b.product.domain.ProductRespVO;
 import com.griptk.b2b.product.domain.ProductVO;
 
 public interface ProductMapper {
-	List<ProductVO> listNewProducts();
-	List<ProductVO> listBestProducts();
+	List<ProductVO> listNewProducts(int user_no);
+	List<ProductVO> listBestProducts(int user_no);
 	List<ProductVO> listDcProducts(PredicateVO vo);
 	List<ProductVO> listProducts(PredicateVO vo);
 	List<ProductVO> listProducts_C(PredicateVO vo);

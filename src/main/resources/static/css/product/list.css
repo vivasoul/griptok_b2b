@@ -20,9 +20,15 @@
 }
 
 .griptok-thumb { display:inline-block;width:255px;min-height:320px;padding:2px;vertical-align:top;position:relative;margin:0px 4px 30px 4px;}
-.griptok-thumb .thumb-image { width:255px;height:255px; }
+.griptok-thumb .thumb-image { width:255px;height:255px;border:1px solid #ECECEC; }
 .griptok-thumb .thumb-image>img { width:100%;height:100%; }
-.griptok-thumb .gtk-thumb-overlay { z-index:3;position:absolute;top:150px;left:60px;display:none; }
+
+.griptok-thumb .gtk-thumb-overlay { z-index:3;position:absolute;bottom:93px;left:12px; }
+.gtk-thumb-overlay>div { display:inline-block;position:absolute;width:20px;height:20px;cursor:pointer }
+.gtk-thumb-overlay .gtk-fav-shorcut  { top:0px;left:0px;background-image:url(/img/product/fav_shortcut.png); }
+.gtk-thumb-overlay .gtk-cart-shorcut { top:0px;left:215px;background-image:url(/img/product/cart_shortcut.png);  }
+.gtk-thumb-overlay .gtk-fav-shorcut.active   { background-image:url(/img/product/fav_shortcut_active.png); }
+.gtk-thumb-overlay .gtk-cart-shorcut.active  { background-image:url(/img/product/cart_shortcut_active.png); }
 
 .griptok-thumb .thumb-title { font-size:14px;font-weight:700;margin:5px 8px 0px 8px;color:#484848; }
 .griptok-thumb .thumb-price { margin:0px 5px;	}
