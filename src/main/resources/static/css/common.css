@@ -157,7 +157,7 @@ a,a:hover{ text-decoration:none; }
 .gtk-group-content { padding:0px 10px; }
 /* table css */
 .gtk-table { width:100%;border-collapse: collapse; }
-.gtk-table th, .gtk-table td { border:1px solid #E0E0E0; padding:14px;font-size:12px;line-height:12px;color:#7C7C7C;vertical-align:middle; }
+.gtk-table th, .gtk-table td { border:1px solid #E0E0E0; padding:14px 12px;height:40px;font-size:12px;line-height:12px;color:#7C7C7C;vertical-align:middle; }
 .gtk-table th { background-color:#FCFCFC;text-align:center; }
 .gtk-table td.gtk-td-center { text-align:center; }
 .gtk-table td input { margin:0px; }
