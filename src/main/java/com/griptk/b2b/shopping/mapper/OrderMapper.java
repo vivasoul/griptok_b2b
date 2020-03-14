@@ -6,6 +6,7 @@ import java.util.List;
 import com.griptk.b2b.shopping.domain.OrderDetailVO;
 import com.griptk.b2b.shopping.domain.OrderVO;
 import com.griptk.b2b.shopping.domain.OrderedVO;
+import com.griptk.b2b.shopping.domain.ReceiptVO;
 
 public interface OrderMapper {
 	List<OrderDetailVO> listOrder(int order_no);
@@ -17,4 +18,6 @@ public interface OrderMapper {
 	int insertOrderList(OrderVO orderVO);
 	String selectSender(int user_no);
 	int insertDetail(OrderedVO orderedVO);
+	
+	ReceiptVO receipt(long order_no);
 }

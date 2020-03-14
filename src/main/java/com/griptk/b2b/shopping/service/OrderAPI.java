@@ -4,13 +4,12 @@ package com.griptk.b2b.shopping.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +20,7 @@ import com.griptk.b2b.shopping.domain.OrderDetailVO;
 import com.griptk.b2b.shopping.domain.OrderJsonVO;
 import com.griptk.b2b.shopping.domain.OrderVO;
 import com.griptk.b2b.shopping.domain.OrderedVO;
+import com.griptk.b2b.shopping.domain.ReceiptVO;
 import com.griptk.b2b.shopping.mapper.OrderMapper;
 
 
@@ -73,5 +73,10 @@ public class OrderAPI {
 			result = -1;
 		}
 		return result;
+	}
+	
+	@GetMapping("/{order_no}/receipt")
+	public ReceiptVO getReceipt(@PathVariable long order_no) {
+		return orderMapper.receipt(order_no);
 	}
 }

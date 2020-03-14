@@ -30,6 +30,7 @@
 						<font class="font-weight-bold font-size-md">주문번호:</font>
 					</div>
 					<div class="col-md-9" style="text-align: left;">${one.order_no } </div>
+					<input type="hidden" id="v_order_no" value="${one.order_no}"/>
 				</td>
 				<td class="col-md-2">
 					<div class="row col-md-12 text-center">

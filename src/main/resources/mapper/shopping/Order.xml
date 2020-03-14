@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.griptk.b2b.shopping.mapper.OrderMapper">
+	<resultMap id="ReceiptMap" type="com.griptk.b2b.shopping.domain.ReceiptVO">
+  		<id property="order_no" column="order_no" />
+  		<result property="order_dt" column="order_dt"/>
+	  	<result property="company_nm" column="company_nm"/>
+	    <collection property="list" ofType="com.griptk.b2b.shopping.domain.ReceiptDetailVO">
+	    	<result property="order_dt" column="order_dt"/>
+	  		<result property="product_nm" column="product_nm"/>
+	  		<result property="order_cnt" column="order_cnt"/>
+	  		<result property="order_cost" column="order_cost"/>
+	    </collection>
+	</resultMap>
 	<select id="listOrder" parameterType="int" resultType="com.griptk.b2b.shopping.domain.OrderDetailVO">
 		SELECT 
 			a.order_no,
@@ -74,5 +85,19 @@
 				(#{order_no},#{invoice_no},#{sender},#{receiver},#{memo},#{recv_addr},NOW())
 	</insert>
 	
-	
+	<select id="receipt" parameterType="Long" resultMap="ReceiptMap">
+		SELECT 
+			a.order_no,
+			DATE_FORMAT(a.order_dt, '%Y.%m.%d') AS order_dt,
+			b.company_nm,
+			d.title AS product_nm, 
+			c.order_cnt,
+			c.order_cost
+		FROM tb_order a
+		INNER JOIN tb_user b 		ON a.user_no = b.user_no
+		INNER JOIN tb_order_list c ON a.order_no = c.order_no
+		INNER JOIN tb_product d		ON	c.product_id = d.product_id
+		WHERE 1=1
+		AND a.order_no = #{order_no}
+	</select>
 </mapper>

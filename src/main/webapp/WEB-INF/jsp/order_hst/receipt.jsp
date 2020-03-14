@@ -1,43 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- link rel="stylesheet" href="/css/shopping/order_hst_detail.css"-->
-<style type="text/css">
-#receipt_moal .modal-content { border:5px solid #ECECEC;width:800px;height:1010px;display:block;color:#7C7C7C; }
-#receipt_moal .rcpt-body { padding:0px 34px; }
-
-.rcpt-options 		{ text-align:right;font-size:20px;margin-bottom:15px;margin-right:-32px; }	
-.rcpt-options button { border:0px;background-color:transparent }
-
-.rcpt-header { text-align:center;margin-bottom:19px; }
-.rcpt-header>div { display:inline-block;text-align:center;width:200px;border-bottom:2px solid #A9A9A9;font-size:25px;font-weight:900;color:#5E5E5E; }
-
-.rcpt-meta	{ height:160px; }
-.rcpt-meta .rcpt-receiver	{ display:inline-block;width:355px;float:left; }
-.rcpt-meta .rcpt-receiver table { width:100%; }
-.rcpt-meta .rcpt-receiver td { height:40px;border:1px solid #E0E0E0;border-collapse:collapse;text-align:center;font-size:12px; }
-.rcpt-meta .rcpt-receiver tr:nth-child(3)>td { text-align:right;padding-right:18px;font-size:15px;font-weight:700; }
-.rcpt-meta .rcpt-sender 	{ display:inline-block;width:355px;float:right; }
-.rcpt-meta .rcpt-sender table { width:100%; }
-.rcpt-meta .rcpt-sender th,
-.rcpt-meta .rcpt-sender td	{ border:1px solid #E0E0E0;border-collapse:collapse;height:40px;font-size:12px; }
-.rcpt-meta .rcpt-sender th	{ text-align:center;background-color:#FCFCFC; }
-.rcpt-meta .rcpt-sender td	{ padding:0px 12px; }
-
-.rcpt-summary { border:10px solid #F3F3F3;padding:14px 0px;margin:17px 0px; }
-.rcpt-summary table { width:100%; }
-.rcpt-summary td { text-align:center;width:50%;font-size:15px; }
-.rcpt-summary td:nth-child(1) { border-right:3px solid #E0E0E0; } 
-.rcpt-summary td:nth-child(2) { border-left:3px solid #E0E0E0;font-weight:700; }
-
-#rcpt_pager.gtk-pager { margin-top:20px; }
-.rcpt-btn-group { margin-bottom:20px;text-align:center; }
-.rcpt-btn-group .gtk-btn { width:145px;height:45px;margin:0px 6px; }
-
-.rcpt-footer { position:absolute;bottom:0px;width:100%;text-align:right;background-color:#A7A7A7; }
-
-</style>
+<link rel="stylesheet" href="/css/shopping/receipt.css"/>
 <script type="text/javascript">
+var setTableData = function(page_no, list){	
+	const $table = jQuery("#receipt_moal .rcpt-detail-list");
+	$table.find("td").empty();
+
+	for(let i=0;i<list.length;i++){
+		const data = list[i];
+		const $row = $table.find(".rcpt-detail-row-"+i);
+		
+		$row.find("td:eq(0)").text(data["order_dt"]);
+		$row.find("td:eq(1)").text(data["product_nm"]);
+		$row.find("td:eq(2)").text(data["order_cnt"]+" 개");
+		$row.find("td:eq(3)").text(currency_formatter(data["order_cost"]," 원"));
+	}
+};
+
+const setData = function(data){
+	jQuery("#v_order_dt").text(data["order_dt"].replace(/(\d{4})[.](\d{2})[.](\d{2})/,"$1년 $2월 $3일"));
+	jQuery("#v_company_nm").text(data["company_nm"]);
+	
+	let tot_cnt = 0; 
+	let tot_cost = 0;
+	const list = data["list"];
+	const part_list = [];
+	for(let i=0;i<list.length;i++){
+		const row = list[i];
+		tot_cnt += row["order_cnt"];
+		tot_cost += row["order_cost"];
+		if(i<10) part_list.push(row);
+	}
+	jQuery("#v_tot_cnt").text(tot_cnt);
+	jQuery("#v_tot_cost").text(currency_formatter(tot_cost,""));
+	jQuery("#rcpt_pager").initPager(list.length, 10, setTableData, list).updatePager(0);
+};
+
+const loadData = function(order_no){
+	jQuery.ajax({
+		url:"/orders/"+order_no+"/receipt",
+		method:"GET",
+		dataType:"json"
+	}).done(setData);
+};
+
 jQuery(document).ready(function(){
 	jQuery("#transaction-btn").on("click", function(){
+		const order_no = jQuery("#v_order_no").val();
+		loadData(order_no);
 		jQuery("#receipt_moal").modal("show");
 	});
 });
@@ -53,9 +62,9 @@ jQuery(document).ready(function(){
 			<div class="rcpt-meta">
 				<div class="rcpt-receiver">
 					<table>
-						<tr><td>2020년 1월 30일</td></tr>
+						<tr><td id="v_order_dt"></td></tr>
 						<tr><td>&nbsp;</td></tr>
-						<tr><td><span>주식회사 더블유아이</span> 귀하</td></tr>
+						<tr><td><span id="v_company_nm"></span> 귀하</td></tr>
 						<tr><td>아래와 같이 청구합니다.</td></tr>
 					</table>
 				</div>
@@ -87,8 +96,8 @@ jQuery(document).ready(function(){
 			<div class="rcpt-summary">
 				<table>
 					<tr>
-						<td>총 주문 수량: 150 개</td>
-						<td>총 주문 합계금액: 20,000,000 원(VAT포함)</td>
+						<td>총 주문 수량: <span id="v_tot_cnt"></span> 개</td>
+						<td>총 주문 합계금액: <span id="v_tot_cost"></span> 원(VAT포함)</td>
 					</tr>
 				</table>
 			</div>
@@ -106,14 +115,8 @@ jQuery(document).ready(function(){
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="gtk-td-center">2019.12.23</td>
-							<td>라이언 그립톡</td>
-							<td class="gtk-td-center">100개</td>
-							<td class="gtk-td-center">20,000,000원</td>
-						</tr>
-						<%for(int i=0;i<9;i++){%>
-						<tr>
+						<%for(int i=0;i<10;i++){%>
+						<tr class="rcpt-detail-row-<%=i%>">
 							<td class="gtk-td-center"></td>
 							<td></td>
 							<td class="gtk-td-center"></td>
@@ -123,12 +126,7 @@ jQuery(document).ready(function(){
 					</tbody>
 				</table>
 			</div>
-			<div class="gtk-pager" id="rcpt_pager" max-page="3">
-			<input type="hidden" class="v_page" value="0"/>
-			<a class="gtk-pager-prev"><i class="fa fa-chevron-left"></i></a><!--
-		 --><a class="gtk-pager-button active" page-no="0">1</a><!-- 
-		 --><a class="gtk-pager-next"><i class="fa fa-chevron-right"></i></a>
-			</div>
+			<div class="gtk-pager" id="rcpt_pager"></div>
 			<div class="rcpt-btn-group">
 				<button type="button" class="gtk-btn" data-dismiss="modal">닫기</button><!--
 			 --><button type="button" class="gtk-btn gtk-btn-blue">다운로드</button>				
