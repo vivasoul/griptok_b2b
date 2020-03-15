@@ -77,7 +77,7 @@ a,a:hover{ text-decoration:none; }
 /* buttons */
 .gtk-btn { 
 	width:180px; height:60px;
-	background-color:#E0E0E0; color:4f4f4f;
+	background-color:#E0E0E0; color:#4F4F4F;
 	border:0px solid transparent;
 	font-size:17px; font-weight:600;
 	vertical-align:top;text-align:center;

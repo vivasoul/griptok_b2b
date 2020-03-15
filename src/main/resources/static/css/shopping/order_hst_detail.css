@@ -1,56 +1,17 @@
-.font-size-large {
-	font-size: 20px;
-}
-
-.font-size-md {
-	font-size: 13px;
-}
-
-.font-weight-bold {
-	font-weight : bold;
-}
-
-.color-red {
-	color : red;
-}
-
-.w-10 {
-	width: 10%;
-}
-.w-20 {
-	width: 20%;
-}
-
-.border-top-2 {
-	border-top: 2px solid black;
-}
-
-.border-bottom-2 {
-	border-bottom: 2px solid black;
-}
-
-.border-right-1 {
-	border-right: 1px solid black;
-}
-
-.border-none {
-	border : none;
-}
-
-.bg-transparent {
-	background: transparent;
-}
-
-.bg-lightGray {
-	background-color: LightGray;
-}
-
-
-#custom-css-table > th {
-	background-color: LightGray;
-	width : 20%;
-	text-align:center;
-}
-
+.font-size-large { font-size: 20px; }
+.font-size-md { font-size: 13px; }
+.font-weight-bold { font-weight : bold;}
+.color-red { color : red; }
+.w-10 { width: 10%; }
+.w-20 { width: 20%; }
+.border-top-2 { border-top: 2px solid black; }
+.border-bottom-2 { border-bottom: 2px solid black; }
+.border-right-1 { border-right: 1px solid black; }
+.border-none { border : none; }
+.bg-transparent { background: transparent; }
+.bg-lightGray { background-color: LightGray; }
+#custom-css-table > th { background-color:LightGray;width:20%;text-align:center; }
 #transaction-btn { height:35px;width:153px; }
 .table td { vertical-align:middle !important; }
+.order-detail-header { color:#525252;font-size:15px;margin:20px 0px 10px 0px; }
+.order-detail-header .head-icon { color:#7F7F7F;vertical-align:text-top;font-size:11px; }

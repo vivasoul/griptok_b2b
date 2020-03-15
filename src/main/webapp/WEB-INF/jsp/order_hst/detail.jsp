@@ -40,13 +40,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="row" style="margin-top:10px;">
-		<div style="background-color: transparent;">
-			<ul style="list-style-type: square;padding-left: 15px;">
-				<li><font style="font-weight: bold">배송정보</font></li>
-			</ul>
-		</div>
-	</div>
+	<div class="row order-detail-header"><span class="head-icon">■</span> 배송정보</div>
 	<div class="row">
 		<table id="custom-css-table" class="table table-bordered">
 			<tbody>
@@ -83,15 +77,10 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="row" style="margin-top:10px;">
-		<div style="background-color: transparent;">
-			<ul style="list-style-type: square;padding-left: 15px;">
-				<li><font style="font-weight: bold">주문상품 정보</font></li>
-			</ul>
-		</div>
+	<div class="row order-detail-header"><span class="head-icon">■</span> 주문상품 정보</div>
 	</div>
-	<div class="row">
-		<table id="example" class="gtk-datatable">
+	<div class="row" style="margin-bottom:20px;">
+		<table id="example" class="gtk-table">
 			<thead>
 				<tr>
 					<th data-column = "order_dt">주문일자</th>

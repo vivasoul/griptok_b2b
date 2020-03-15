@@ -18,12 +18,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="margin-bottom:15px;">
 		<button id="addall" onclick="addToCart()" class="gtk-btn gtk-btn-sm gtk-btn-blue text-sm" type="button">전체 상품 장바구니 담기</button>
 		<button id="deleteall" onclick="deleteInterested()" class="gtk-btn gtk-btn-sm text-sm" type="button">전체 상품 삭제</button>
 	</div>
 	<div class="row">
-		<table id="interested-tbl" class="table table-striped table-bordered hover">
+		<table id="interested-tbl" class="gtk-table">
 			<colgroup>
 				<col width = "11%"/>
 				<col width = "57%"/>
