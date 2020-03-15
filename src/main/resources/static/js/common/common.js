@@ -119,7 +119,7 @@ const pager_handler = {
 	"prev": function(pager){
 		const max_page_no = Number(pager["max-page-no"]);
 		const cur_page_no = Number(pager["cur-page-no"]);
-		let new_page_no = 0;
+		let new_page_no = cur_page_no;
 		if(cur_page_no > 0) pager["cur-page-no"] = (--new_page_no);
 	},
 	"number": function(pager, page_no, _update_pager){
@@ -128,7 +128,7 @@ const pager_handler = {
 	"next": function(pager){
 		const max_page_no = Number(pager["max-page-no"]);
 		const cur_page_no = Number(pager["cur-page-no"]);
-		let new_page_no = max_page_no;
+		let new_page_no = cur_page_no;
 		if(cur_page_no < max_page_no) pager["cur-page-no"] = (++new_page_no);
 	},	
 };
