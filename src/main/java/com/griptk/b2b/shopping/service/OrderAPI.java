@@ -32,7 +32,7 @@ public class OrderAPI {
 	OrderMapper orderMapper;
 	
 	@Transactional
-	@PostMapping("")
+	@PostMapping
 	public int insert(
 			@ModelAttribute("user_no") int user_no,
 			@RequestBody OrderJsonVO orderJsonVO
@@ -73,6 +73,11 @@ public class OrderAPI {
 			result = -1;
 		}
 		return result;
+	}
+	
+	@GetMapping
+	public List<OrderDetailVO> getOrders(@ModelAttribute int user_no){
+		return orderMapper.listOrder(user_no);
 	}
 	
 	@GetMapping("/{order_no}/receipt")

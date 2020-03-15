@@ -9,7 +9,7 @@ import com.griptk.b2b.shopping.domain.OrderedVO;
 import com.griptk.b2b.shopping.domain.ReceiptVO;
 
 public interface OrderMapper {
-	List<OrderDetailVO> listOrder(int order_no);
+	List<OrderDetailVO> listOrder(int user_no);
 	OrderedVO selectOrder(OrderedVO orderedVO);
 	List<OrderVO> listChildOrder(OrderedVO orderedVO);
 	

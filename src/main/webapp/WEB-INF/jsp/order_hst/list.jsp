@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="/lib/datatable/jquery.dataTables.min.js"></script>
+<style type="text/css">
+#example th:nth-child(6),
+#example td:nth-child(6){ display:none; }
+</style>
 <!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
 <div class="container-fluid">
 	<div class="row">
@@ -22,21 +26,25 @@
 			<input type="button" value="12개월" class="gtk-btn gtk-btn-sm  js-filter-month" data-month="-12" style="margin-left: 6px;height: 23px;width: 84px;"/>
 		</div>
 		<div class="pull-right">
-			<select class="form-control" id="sel-order-status" style="width:160px;height: 25px;font-size: 9.5px;">
-			  <option>전체상태</option>
-			  <option>진행중인주문</option>
-			  <option>완료된주문</option>
+			<select class="form-control" id="sel-order-status" style="width:160px;height: 30px;font-size: 11px;">
+			  <option value="">전체상태</option>
+			  <option value="X">진행중인주문</option>
+			  <option value="O">완료된주문</option>
 			</select>
 		</div>
 	</div>
 	<div class="row m-b-md">
-		<table id="example" class="table table-bordered hover gtk-datatable">
+		<table id="example" class="gtk-table">
+			<colgroup>
+				<col/><col/><col/><col/><col/><col style="display:none"/>
+			</colgroup>
 			<thead>
 				<tr>
 					<th data-column = "reg_dt">주문일자</th>
 					<th data-column = "order_no">주문번호</th>
 					<th data-column = "order_title">상품명</th>
 					<th data-column = "tot_order_cost">주문금액</th>
+					<th data-column = "order_status_nm">주문상태</th>
 					<th data-column = "order_status">배송단계</th>
 				</tr>
 			</thead>
@@ -47,7 +55,8 @@
 					<td>${each.order_no }</td>
 					<td>${each.order_title }</td>
 					<td><fmt:formatNumber value="${each.tot_order_cost}" pattern="#,###" />원</td>
-					<td>${each.order_status }</td>
+					<td>${each.order_status_nm}</td>
+					<td>${each.order_status}</td>
 				</tr>
 			</c:forEach>
 			</tbody>
@@ -74,11 +83,11 @@ $(document).ready(function() {
 	* EVENT TRIGGER START
 	*****************************************/
 	$('#sel-order-status').on('change',function(){
-		const optionValue = $(this).val();
+		const status_cd = $(this).val();
 		
 		const filtered = initData.filter(function(x){
-			return (x['order_status'] === optionValue) ? true : (optionValue === '전체상태' ? true:false)
-		})
+			return status_cd ? status_cd === x['order_status'] : true;
+		});
 		
 		exampleTable.reload(filtered);
 	});
