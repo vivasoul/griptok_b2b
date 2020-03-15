@@ -29,7 +29,7 @@
 					boolean isActive = (menu.getMenu_id()).equals(side_id);
 				%>
 					<div menu-id="<%=menu.getMenu_id()%>">
-						<a <%if(isActive){%>class="active<%}%> href="<%=menu.getMenu_url()%>"><%=menu.getMenu_nm()%></a>
+						<a <%if(isActive){%>class="active"<%}%> href="<%=menu.getMenu_url()%>"><%=menu.getMenu_nm()%></a>
 					</div>
 				<%}%>
 				</div>
