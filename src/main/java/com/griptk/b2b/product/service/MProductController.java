@@ -12,13 +12,12 @@ import com.griptk.b2b.product.mapper.ProductMapper;
 @Controller
 public class MProductController {
 	@Autowired
-	private CategoryMapper categoryMapper;
-	
-	@Autowired
 	private ProductMapper productMapper;
 
 	@RequestMapping("/admin/products")
 	public String goAdminProducts(Model model) {
+		int list_cnt = productMapper.getAllCounts();
+		model.addAttribute("list_cnt", list_cnt);
 		model.addAttribute("content_page", "product/admin/mng_list");
 		return "_template/admin";
 	}
@@ -38,6 +37,8 @@ public class MProductController {
 	
 	@RequestMapping("/admin/dc-products")
 	public String goAdminDcProducts(Model model) {
+		int list_cnt = productMapper.getDCCounts();
+		model.addAttribute("list_cnt", list_cnt);
 		model.addAttribute("dc_only", true);
 		model.addAttribute("content_page", "product/admin/mng_list");
 		return "_template/admin";

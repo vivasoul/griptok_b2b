@@ -90,7 +90,7 @@
  		</div>
 		<div class="griptok-admin-content">
 		<%if(page_path!=null){%><div class="row"><div class="col-sm-12" id="griptok-page-path"><%=page_path%></div></div><%}%>
-		<%if(page_title!=null){%><div id="griptok-page-title"><%=page_title%></div><%}%>
+		<%if(page_title!=null){%><div class="gtk-content-header"><div id="griptok-page-title"><%=page_title%></div></div><%}%>
 			<jsp:include page="<%=content_page %>" flush="false" />
 		</div>
 		<jsp:include page="/WEB-INF/jsp/_template/admin/footer.jsp" flush="false" />

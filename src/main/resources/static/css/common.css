@@ -77,17 +77,17 @@ a,a:hover{ text-decoration:none; }
 /* buttons */
 .gtk-btn { 
 	width:180px; height:60px;
-	background-color:#A0A0A0; color:#FFF;
+	background-color:#E0E0E0; color:4f4f4f;
 	border:0px solid transparent;
-	font-size:17px; font-weight:700;
+	font-size:17px; font-weight:600;
 	vertical-align:top;text-align:center;
 }
 
-.gtk-btn.gtk-btn-sm { width:100px; height:35px; font-size:13px; }
+.gtk-btn.gtk-btn-sm { width:100px; height:30px; font-size:12px; }
 .gtk-btn.gtk-btn-lg { width:250px; font-size:17px; }
 .gtk-btn.gtk-btn-fluid { width:100%; height:100%; font-size:17px; }
 
-.gtk-btn.gtk-btn-blue  { background-color:#19B4F0; }
+.gtk-btn.gtk-btn-blue  { background-color:#19B4F0;color:#FFF; }
 .gtk-btn.gtk-btn-white { background-color:#FFF; color:#333; }
 .gtk-btn.gtk-btn-line-blue  { background-color:#19B4F0;border:2px solid #41719C }
 .gtk-btn.gtk-btn-line-white { background-color:#FFF; color:#333;border:2px solid #7F7F7F }
@@ -160,6 +160,7 @@ a,a:hover{ text-decoration:none; }
 .gtk-table th, .gtk-table td { border:1px solid #E0E0E0; padding:14px 12px;height:40px;font-size:12px;line-height:12px;color:#7C7C7C;vertical-align:middle; }
 .gtk-table th { background-color:#FCFCFC;text-align:center; }
 .gtk-table td.gtk-td-center { text-align:center; }
+.gtk-table td.gtk-td-right { text-align:right; }
 .gtk-table td input { margin:0px; }
 
 /* datatable css */

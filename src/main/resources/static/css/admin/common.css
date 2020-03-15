@@ -24,11 +24,11 @@ body { background-color:#E8E8E8; }
 .griptok-side-menu .side-menu-lv2.side-menu-lv2-active { display:block }
 
 /* body */
-
 .griptok-admin-body { display:table;width:100%;height:100%; }
 .griptok-admin-body .left-content,
 .griptok-admin-body .right-content { display:table-cell; }
 .griptok-admin-body .left-content  { width:165px;vertical-align:top;background-color:#003C60; }
+.griptok-admin-body .right-content .main-shopping-list { padding:15px; }
 /* body - left */
 .griptok-admin-body .side-menu .side-header { background-color:#002E4E;height:99px;padding:21px 23px; }
 .griptok-admin-body .side-header .go-main-link { display:block;text-align:center;border-radius:5px;border:1px solid #003F65;width:119px;height:57px;
@@ -50,7 +50,10 @@ body { background-color:#E8E8E8; }
 .griptok-admin-body .right-content .griptok-admin-content { display:table;width:calc(100% - 30px);margin:15px 15px 0px 15px;background-color:#FFF; } 
 
 .griptok-admin-body .right-content .griptok-admin-monitor { height:79px;padding:9px 0px; }
-.griptok-admin-body .right-content .griptok-admin-content { min-height:400px;padding:10px 30px; }
+.griptok-admin-body .right-content .griptok-admin-content { min-height:400px;padding:0px; }
+.griptok-admin-content .gtk-content-header { padding-top:10px;padding-bottom:10px;border-bottom:1px solid #E8E8E8; }
+#griptok-page-path  { display:none; }
+
 .griptok-admin-monitor .monitor-box-list { display:table;height:61px; }
 .monitor-box-list .monitor-box { display:table-cell;border-right:2px solid #C4C4C4; }
 .monitor-box-list .monitor-box.last { border-right:0px;  }

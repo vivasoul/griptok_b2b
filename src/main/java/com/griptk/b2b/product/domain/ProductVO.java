@@ -8,6 +8,9 @@ public class ProductVO {
 	private String thumb_img;
 	private String is_fav;
 	private String is_carted;
+	private int stock_cnt;
+	private String reg_dt;
+	private String upd_dt;
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -50,10 +53,28 @@ public class ProductVO {
 	public void setIs_carted(String is_carted) {
 		this.is_carted = is_carted;
 	}
+	public int getStock_cnt() {
+		return stock_cnt;
+	}
+	public void setStock_cnt(int stock_cnt) {
+		this.stock_cnt = stock_cnt;
+	}
+	public String getReg_dt() {
+		return reg_dt;
+	}
+	public void setReg_dt(String reg_dt) {
+		this.reg_dt = reg_dt;
+	}
+	public String getUpd_dt() {
+		return upd_dt;
+	}
+	public void setUpd_dt(String upd_dt) {
+		this.upd_dt = upd_dt;
+	}
 	@Override
 	public String toString() {
 		return "ProductVO [product_id=" + product_id + ", title=" + title + ", retail_price=" + retail_price
 				+ ", sales_price=" + sales_price + ", thumb_img=" + thumb_img + ", is_fav=" + is_fav + ", is_carted="
-				+ is_carted + "]";
+				+ is_carted + ", stock_cnt=" + stock_cnt + ", reg_dt=" + reg_dt + ", upd_dt=" + upd_dt + "]";
 	}
 }

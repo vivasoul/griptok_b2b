@@ -14,6 +14,8 @@
 	  	<result property="is_new" column="is_new"/>
 	  	<result property="is_dc" column="is_dc"/>
 	  	<result property="is_best" column="is_best"/>
+	  	<result property="reg_dt" column="reg_dt"/>
+	  	<result property="upd_dt" column="upd_dt"/>
 	    <collection property="thumb_file" ofType="com.griptk.b2b.product.domain.ProductImgReqVO">
 	      	<id property="img_no" column="img_no"/>
 	  		<result property="img_path" column="img_path"/>
@@ -71,9 +73,13 @@
 			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
 			ELSE 'N' END) AS is_fav,
 			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
-			ELSE 'N' END) AS is_carted			 
+			ELSE 'N' END) AS is_carted,
+			c.stock_cnt,
+			DATE_FORMAT(a.reg_dt,'%Y.%m.%d') AS reg_dt,
+			DATE_FORMAT(a.upd_dt,'%Y.%m.%d') AS upd_dt
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
+		INNER JOIN tb_product_detail c ON a.product_id = c.product_id
 		WHERE 1=1
 		AND a.is_dc = 'Y'
 		${order_by}
@@ -92,9 +98,13 @@
 			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
 			ELSE 'N' END) AS is_fav,
 			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
-			ELSE 'N' END) AS is_carted			 
+			ELSE 'N' END) AS is_carted,
+			c.stock_cnt,
+			DATE_FORMAT(a.reg_dt,'%Y.%m.%d') AS reg_dt,
+			DATE_FORMAT(a.upd_dt,'%Y.%m.%d') AS upd_dt
 		FROM tb_product a
 		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
+		INNER JOIN tb_product_detail c ON a.product_id = c.product_id
 		${order_by}
 		LIMIT #{start}, #{limit}
 	</select>	

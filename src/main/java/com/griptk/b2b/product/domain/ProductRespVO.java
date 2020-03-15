@@ -15,9 +15,11 @@ public class ProductRespVO {
 	private String is_best;
 	private String is_dc;
 	
+	private String reg_dt;
+	private String upd_dt;
+	
 	private ProductImgReqVO thumb_file;
 	private List<ProductImgReqVO> files;
-	
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -84,6 +86,18 @@ public class ProductRespVO {
 	public void setIs_dc(String is_dc) {
 		this.is_dc = is_dc;
 	}
+	public String getReg_dt() {
+		return reg_dt;
+	}
+	public void setReg_dt(String reg_dt) {
+		this.reg_dt = reg_dt;
+	}
+	public String getUpd_dt() {
+		return upd_dt;
+	}
+	public void setUpd_dt(String upd_dt) {
+		this.upd_dt = upd_dt;
+	}
 	public ProductImgReqVO getThumb_file() {
 		return thumb_file;
 	}
@@ -101,6 +115,7 @@ public class ProductRespVO {
 		return "ProductRespVO [product_id=" + product_id + ", title=" + title + ", retail_price=" + retail_price
 				+ ", sales_price=" + sales_price + ", stock_cnt=" + stock_cnt + ", craft_no=" + craft_no
 				+ ", p_brand_no=" + p_brand_no + ", brand_no=" + brand_no + ", is_new=" + is_new + ", is_best="
-				+ is_best + ", is_dc=" + is_dc + ", thumb_file=" + thumb_file + ", files=" + files + "]";
+				+ is_best + ", is_dc=" + is_dc + ", reg_dt=" + reg_dt + ", upd_dt=" + upd_dt + ", thumb_file="
+				+ thumb_file + ", files=" + files + "]";
 	}
 }
