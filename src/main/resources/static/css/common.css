@@ -163,13 +163,17 @@ a,a:hover{ text-decoration:none; }
 .gtk-table td.gtk-td-right { text-align:right; }
 .gtk-table td input { margin:0px; }
 
+.gtk-filter-group { text-align:right;margin-bottom:15px; }
+.gtk-filter-group input,
+.gtk-filter-group select { min-width:160px;height:25px;padding-left:10px;margin-left:5px;border:1px solid #E3E3E3;color:#7C7C7C;font-size:12px; }
+
 /* datatable css */
 .gtk-datatable { border-collapse:collapse;margin:14px 0px;width:100%; }
 .gtk-datatable th,
 .gtk-datatable td { border:1px solid #E0E0E0;color:#7c7c7c;font-size:12px;line-height:12px;padding:14px 20px; }
 .gtk-datatable th { background-color:#FCFCFC;text-align:center; }
 .gtk-datatable td {  }
-.dataTables_paginate { float: right; margin-top: -20px; color: #7c7c7c; }
+.dataTables_paginate { text-align:center; margin: 15px 0px; color: #7c7c7c; }
 .dataTables_paginate a { text-decoration:none;color:#7c7c7c }
 .dataTables_paginate a:hover { text-decoration:none;color:#000; }
 

@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="/lib/datatable/jquery.dataTables.min.js"></script>
 <div class="container-fluid">
-	<div class="row pull-right">
-		<select class="form-control" id="sel-category">
+	<div class="row gtk-filter-group">
+		<select id="sel-category">
 		  <option>전체</option>
 		  <option>배송지연</option>
 		  <option>일반</option>
@@ -12,7 +12,7 @@
 		</select>
 	</div>
 	<div class="row">
-		<table id="example" class="gtk-datatable">
+		<table id="example" class="gtk-table">
 			<thead>
 				<tr>
 					<th data-column = "notice_no" data-visible="false">공지번호</th>

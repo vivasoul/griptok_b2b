@@ -19,17 +19,17 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-			<div class="col-md-11 nopadding">
+	<div class="row shipto-top-btns">
+			<div class="col-md-11">
 				<button onclick="changeDefaultShipping()" id="setdefault" class="gtk-btn gtk-btn-sm gtk-btn-blue text-sm" type="button">기본 배송지로 설정</button>
 				<button onclick="deleteShipping()" id="deleteall" class="gtk-btn gtk-btn-sm text-sm" type="button">삭제</button>
 			</div>
-			<div class="col-md-1 nopadding">
+			<div class="col-md-1">
 				<button onclick="addShipping()" data-toggle="modal" data-target="#addrModal" id="addshipping" class="gtk-btn gtk-btn-sm gtk-btn-blue text-sm" type="button">배송지 추가</button>
 			</div>
 	</div>
 	<div class="row">
-		<table id="shipto-tbl" class="gtk-datatable table table-striped table-bordered hover">
+		<table id="shipto-tbl" class="gtk-table">
 			<colgroup>
 				<col width = "6%"/>
 				<col width = "16%"/>

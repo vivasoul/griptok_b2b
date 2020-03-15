@@ -4,15 +4,15 @@
 <!-- <link rel="stylesheet" href="./lib/datatable/jquery.dataTables.min.css"> -->
 <script src="/lib/datatable/jquery.dataTables.min.js"></script>
 <div class="container-fluid">
-	<div class="row pull-right">
-		<select class="form-control" id="sel-proc-yn">
+	<div class="row gtk-filter-group">
+		<select id="sel-proc-yn">
 		  <option>문의 전체</option>
 		  <option>답변 완료</option>
 		  <option>답변 준비중</option>
 		</select>
 	</div>
 	<div class="row">
-		<table id="example" class="table table-striped table-bordered hover gtk-datatable">
+		<table id="example" class="gtk-table">
 			<thead>
 				<tr>
 					<th data-column = "qna_no">번호</th>

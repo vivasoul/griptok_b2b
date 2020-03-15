@@ -19,14 +19,14 @@
 			</div>
 		</div>
 	</div>
-	<div class="row m-b-md">
+	<div class="row">
 		<div class="pull-left">
 			<input type="button" value="1개월" class="gtk-btn gtk-btn-sm  js-filter-month" data-month="-1" style="height: 23px;width: 84px;"/>
 			<input type="button" value="3개월" class="gtk-btn gtk-btn-sm  js-filter-month" data-month="-3" style="margin-left: 6px;height: 23px;width: 84px;"/>
 			<input type="button" value="12개월" class="gtk-btn gtk-btn-sm  js-filter-month" data-month="-12" style="margin-left: 6px;height: 23px;width: 84px;"/>
 		</div>
-		<div class="pull-right">
-			<select class="form-control" id="sel-order-status" style="width:160px;height: 30px;font-size: 11px;">
+		<div class="pull-right gtk-filter-group">
+			<select id="sel-order-status">
 			  <option value="">전체상태</option>
 			  <option value="X">진행중인주문</option>
 			  <option value="O">완료된주문</option>

@@ -19,7 +19,7 @@
 	</div>
 	<div id="div-view-cart" class="row js-view-div">
 		<div class="col-md-12">
-			<table id="cart-tbl" class="table table-striped table-bordered hover gtk-datatable">
+			<table id="cart-tbl" class="gtk-table">
 				<thead>
 					<tr>
 						<th data-column="checked" class="w-10">
