@@ -22,15 +22,32 @@ const _loadList = function(page_no){
 	<%}%>	
 };
 
+const getChecked = function(){
+	const $checkeds = jQuery("#all-product-list input.gtk-product-cbox:checked");
+	return Array.prototype.map.call($checkeds, function(x){ return { "product_id":x.value } });
+};
+
 jQuery(document).ready(function(){
 	jQuery("#product-list-pager").initPager(<%=list_cnt%>,<%=ROW_PER_PAGE%>,_loadList).updatePager(0);
+	
+	jQuery("#all-del-btn").on("click", function(){
+		deleteDatas();
+	});
+	
+	jQuery("#batch-del-btn").on("click", function(){
+		deleteDatas(getChecked());
+	});
+	
+	jQuery("#set-dc-btn").on("click", function(){
+		setToDC(getChecked());
+	});	
 });
 </script>
 <div class="main-shopping-list">
 	<div class="gtk-table-option">
-		<button type="button" class="gtk-btn gtk-btn-sm">선택삭제</button><!-- 
-	 --><button type="button" class="gtk-btn gtk-btn-sm">삭제</button><!--
-	 --><button type="button" class="gtk-btn gtk-btn-sm">특가 상품 지정</button>
+		<button type="button" class="gtk-btn gtk-btn-sm" id="batch-del-btn">선택삭제</button><!-- 
+	 --><button type="button" class="gtk-btn gtk-btn-sm" id="all-del-btn">전체삭제</button><!--
+	 --><button type="button" class="gtk-btn gtk-btn-sm" id="set-dc-btn">특가 상품 지정</button>
  	</div>
 	<div id="all-product-list">
 		<input type="hidden" id="v_row_per_page" value="<%=ROW_PER_PAGE%>"/>

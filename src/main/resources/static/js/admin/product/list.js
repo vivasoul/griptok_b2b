@@ -24,6 +24,7 @@ const renderData = function(datas, is_dc){
 			td1.className = "gtk-td-center";
 				const cbox = document.createElement("input");
 				cbox.type = "checkbox";
+				cbox.value = data["product_id"];
 				cbox.className = "gtk-product-cbox";
 			td1.appendChild(cbox);
 			//수정
@@ -114,5 +115,34 @@ const loadListDC = function(render_id, page_no){
 		console.log(e);
 	}).always(function(){
 		//console.log("loadList finished.")
+	});
+};
+
+const deleteDatas = function(datas){
+	const reqObj = {
+		method: "DELETE",
+		contentType: "application/json"
+	};
+	
+	if(datas instanceof Array){ 
+		reqObj["url"] = "/products";
+		reqObj["data"] = JSON.stringify(datas); 	
+	}else{
+		reqObj["url"] = "/products/all";
+	}
+	
+	jQuery.ajax(reqObj).done(function(res){
+		alert("성공적으로 삭제되었습니다.");
+	});
+};
+
+const setToDC = function(datas){
+	jQuery.ajax({
+		url: "/products/dc",
+		method: "PUT",
+		contentType: "application/json",
+		data: JSON.stringify(datas)
+	}).done(function(res){
+		alert("성공적으로 지정되었습니다.");
 	});
 };

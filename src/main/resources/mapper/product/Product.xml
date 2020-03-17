@@ -384,4 +384,24 @@
 		WHERE 1=1
 		AND a.product_id = #{product_id}		
 	</select>	
+	
+	<update id="delete" parameterType="java.util.List" >
+		UPDATE tb_product SET use_yn = 'N' 
+	 	WHERE product_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+		      #{item.product_id}
+		</foreach>
+	</update>
+	
+	<update id="deleteAll">
+		UPDATE tb_product SET use_yn = 'N'
+	</update>	
+	
+	<update id="changeToDC" parameterType="java.util.List" >
+		UPDATE tb_product SET is_dc = 'Y' 
+	 	WHERE product_id IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+		      #{item.product_id}
+		</foreach>
+	</update>	
 </mapper>
