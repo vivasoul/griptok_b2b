@@ -1,12 +1,12 @@
 package com.griptk.b2b.user.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,6 @@ import com.griptk.b2b.util.mail.MailSender;
 import com.griptk.b2b.util.password.PasswordGenerator;
 
 @RestController
-@MapperScan({"com.griptk.b2b.user.mapper.*"})
 public class UserAPI {
 	@Autowired 
 	private FileAPI fileAPI;
@@ -321,10 +320,7 @@ public class UserAPI {
 				ex.printStackTrace();
 			}
 		}
-		
-		
 	}
-	
 	
 	private void sendTempPassword(String email, int user_no, String password) throws Exception{
 		String title = "Griptok의 비밀번호 찾기 요청입니다.";
@@ -339,4 +335,23 @@ public class UserAPI {
 		mailSender.send(email, title, sb.toString());
 	}
 		
+	@GetMapping("/users/aprv")
+	public List<UserVO> getNotAprovedUsers(){
+		return mapper.list("N");
+	}
+	
+	@GetMapping("/users")
+	public List<UserVO> getUsers(){
+		return mapper.list("A");
+	}
+	
+	@PutMapping("/users/aprv")
+	public void acceptUsers(@RequestBody List<UserVO> users){
+		if(!users.isEmpty()) mapper.accept(users);
+	}
+	
+	@PutMapping("/users/aprv/all")
+	public void acceptUsersAll(){
+		mapper.acceptAll();
+	}	
 }

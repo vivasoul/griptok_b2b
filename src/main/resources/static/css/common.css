@@ -163,6 +163,9 @@ a,a:hover{ text-decoration:none; }
 .gtk-table td.gtk-td-right { text-align:right; }
 .gtk-table td input { margin:0px; }
 
+.gtk-table-option { margin-bottom:15px; }
+.gtk-table-option .gtk-btn { margin-right:5px;  }
+
 .gtk-filter-group { text-align:right;margin-bottom:15px; }
 .gtk-filter-group input,
 .gtk-filter-group select { min-width:160px;height:25px;padding-left:10px;margin-left:5px;border:1px solid #E3E3E3;color:#7C7C7C;font-size:12px; }

@@ -1,5 +1,9 @@
 package com.griptk.b2b.user.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.griptk.b2b.common.domain.ImageVO;
 import com.griptk.b2b.user.domain.ShipToVO;
 import com.griptk.b2b.user.domain.UserVO;
@@ -42,6 +46,11 @@ public interface UserMapper {
 	
 	int addMainShippingInfo(ShipToVO vo);
 
+	List<UserVO> list(@Param("aprv_status") String aprv_status);
+	
+	int accept(List<UserVO> users);
+	
+	int acceptAll();
 }
 
 

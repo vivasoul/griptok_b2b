@@ -9,8 +9,6 @@
 <style type="text/css">
 .gtk-table .product-edit-btn { padding:0px; }
 .gtk-table .product-edit-btn .gtk-btn { width:40px;height:25px;font-size:12px; }
-.gtk-table-option { margin-bottom:15px; }
-.gtk-table-option .gtk-btn { /*padding:0px 10px;min-width:65px;*/margin-right:5px;  }
 </style>
 <script type="text/javascript" src="/js/admin/product/list.js"></script>
 <script type="text/javascript">

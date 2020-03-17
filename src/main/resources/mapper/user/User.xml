@@ -231,4 +231,37 @@
 	    </if>
 	</select>
 	
+	<select id="list" parameterType="String" resultType="com.griptk.b2b.user.domain.UserVO">
+		SELECT 
+			a.user_no,
+			a.user_id, 
+			a.company_nm,
+			a.biz_reg_number,
+			a.ceo_nm,
+			CONCAT('(', a.post_code, ')', a.biz_addr_1, a.biz_addr_2) AS biz_addr_1,
+			a.contact_tel,
+			a.manager_nm,
+			a.manager_tel,
+			a.manager_email,
+			DATE_FORMAT(a.reg_dt,'%Y.%m.%d') AS reg_dt
+		FROM tb_user a
+		INNER JOIN tb_login b ON a.user_no = b.user_no
+		WHERE 1=1
+  		<if test="aprv_status != null">
+	        AND b.aprv_status = #{aprv_status}
+	    </if>	
+	    ORDER BY reg_dt desc	
+	</select>
+	
+	<update id="accept" parameterType="list">
+		UPDATE tb_login SET aprv_status = 'A' 
+		WHERE user_no IN 
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+		      #{item.user_no}
+		</foreach>		
+	</update>
+	
+	<update id="acceptAll">
+		UPDATE tb_login SET aprv_status = 'A' WHERE aprv_status = 'N'
+	</update>	
 </mapper>
