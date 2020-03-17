@@ -30,6 +30,8 @@ const renderData = function(data) {
 			$body.find(".gtk-description-body .gtk-detail-images").append(img2);
 		}
 	}
+	jQuery(".gtk-description-body .gtk-detail-genuine").css("display", data["description"] === "Y" ? "block": "none");
+	
 	updateCount(1);
 };
 

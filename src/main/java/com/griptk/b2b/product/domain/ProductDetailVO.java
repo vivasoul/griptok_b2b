@@ -7,6 +7,7 @@ public class ProductDetailVO {
 	private String title;
 	private int retail_price;
 	private int sales_price;
+	private String description;
 	private List<String> images;
 	public int getProduct_id() {
 		return product_id;
@@ -32,6 +33,12 @@ public class ProductDetailVO {
 	public void setSales_price(int sales_price) {
 		this.sales_price = sales_price;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public List<String> getImages() {
 		return images;
 	}
@@ -41,6 +48,6 @@ public class ProductDetailVO {
 	@Override
 	public String toString() {
 		return "ProductDetailVO [product_id=" + product_id + ", title=" + title + ", retail_price=" + retail_price
-				+ ", sales_price=" + sales_price + ", images=" + images + "]";
-	} 
+				+ ", sales_price=" + sales_price + ", description=" + description + ", images=" + images + "]";
+	}
 }

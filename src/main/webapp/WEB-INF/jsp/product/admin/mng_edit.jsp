@@ -118,6 +118,10 @@ jQuery(document).ready(function(e){
 	 			<label for="v_is_best">베스트상품 여부</label>
 	 			<input type="checkbox" id="v_is_best" name="is_best" value="Y"/>
 	 		</div>
+	 		<div class="gtk-input-group">
+	 			<label for="v_description">정품인증 이미지 포함</label>
+	 			<input type="checkbox" id="v_description" name="description" value="Y"/>
+	 		</div>	 		
 	 		<%if(dc_only){%>
 	 		<input type="hidden" id="v_is_dc" name="is_dc" value="Y" readOnly/>
 	 		<%}%>		 			

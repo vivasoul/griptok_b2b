@@ -25,6 +25,7 @@ const setData = function(data){
 	jQuery("#v_is_new").prop("checked",data["is_new"] === "Y");
 	jQuery("#v_is_best").prop("checked",data["is_best"] === "Y");
 	jQuery("#v_is_dc").prop("checked",data["is_dc"] === "Y");
+	jQuery("#v_description").prop("checked",data["description"] === "Y");
 	
 	const thumb_file = data["thumb_file"];
 	const files = data["files"];

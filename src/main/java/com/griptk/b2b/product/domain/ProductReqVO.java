@@ -16,13 +16,13 @@ public class ProductReqVO {
 	private String is_new;
 	private String is_best;
 	private String is_dc;
+	private String description;
 	
 	private long thumb_img_no;
 	private MultipartFile thumb_file;
 	
 	private long[] img_nos;
 	private MultipartFile[] files;
-	
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -89,6 +89,12 @@ public class ProductReqVO {
 	public void setIs_dc(String is_dc) {
 		this.is_dc = is_dc;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public long getThumb_img_no() {
 		return thumb_img_no;
 	}
@@ -118,7 +124,8 @@ public class ProductReqVO {
 		return "ProductReqVO [product_id=" + product_id + ", title=" + title + ", retail_price=" + retail_price
 				+ ", sales_price=" + sales_price + ", stock_cnt=" + stock_cnt + ", craft_no=" + craft_no
 				+ ", p_brand_no=" + p_brand_no + ", brand_no=" + brand_no + ", is_new=" + is_new + ", is_best="
-				+ is_best + ", is_dc=" + is_dc + ", thumb_img_no=" + thumb_img_no + ", thumb_file=" + thumb_file
-				+ ", img_nos=" + Arrays.toString(img_nos) + ", files=" + Arrays.toString(files) + "]";
+				+ is_best + ", is_dc=" + is_dc + ", description=" + description + ", thumb_img_no=" + thumb_img_no
+				+ ", thumb_file=" + thumb_file + ", img_nos=" + Arrays.toString(img_nos) + ", files="
+				+ Arrays.toString(files) + "]";
 	}
 }

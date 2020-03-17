@@ -14,6 +14,7 @@
 .gtk-detail-summary .detail-summary-3 { padding-left:10px; font-family:Tahoma,'Nanum Gothic', sans-serif;font-size:27px;font-weight:700;color:#010101; }
 .gtk-detail .gtk-detail-btn-group { margin-bottom:50px;text-align:center }
 .gtk-detail .gtk-detail-btn-group .gtk-btn { width:150px;height:58px;margin:0px 4.5px; }
+#goto-cart-btn,#goto-interset-btn { background-color:#A0A0A0;color:#FEFEFE; }
 /*
 .gtk-detail .gtk-detail-btn-group button { 
 		background-color:#D0CECE;color:#FFF;
@@ -24,15 +25,16 @@
 */
 .gtk-detail .gtk-detail-images { }
 .gtk-detail-images .gtk-detail-images-big { width:100%;margin-bottom:15px; }
-.gtk-detail-images .gtk-detail-images-big img{ width:100%;max-width:545px;border:1px solid #ECECEC; }
+.gtk-detail-images .gtk-detail-images-big img{ width:100%;max-width:500px;border:1px solid #ECECEC; }
 .gtk-detail-images .gtk-detail-images-thumbs { margin:0px -23.5px; }
-.gtk-detail-images .gtk-detail-images-thumbs img{ width:100px;margin:0px 23.5px;border:1px solid #ECECEC; }
+.gtk-detail-images .gtk-detail-images-thumbs img{ width:100px;max-width:90px;margin:0px 23.5px;border:1px solid #ECECEC; }
 .gtk-detail-images .gtk-detail-images-thumbs img:hover { cursor:pointer; }
 
 .gtk-description-header{ margin:15px 0px;padding-left:9px;text-align:left;border-left:9px solid #19B4F0;font-size:25px;font-weight:900;color:#010101; }
 .gtk-description-body { min-height:300px; }
 .gtk-description-body .gtk-detail-images img{ display:block;width:100%;margin-bottom:6px; }
-
+.gtk-description-body .gtk-detail-genuine	{ text-align:center;display:none;padding-bottom:20px; }
+.gtk-description-body .gtk-detail-manual	{ text-align:center; }
 .gtk-description-body .gtk-detail-guide { width:100%;margin:30px 0px; }
 .gtk-description-body .gtk-detail-guide .guide-left,
 .gtk-description-body .gtk-detail-guide .guide-right{ width:calc(50% - 2px);display:inline-block;min-width:400px;vertical-align:top; }

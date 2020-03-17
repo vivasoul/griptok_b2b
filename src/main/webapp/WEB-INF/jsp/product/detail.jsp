@@ -80,10 +80,15 @@ jQuery(document).ready(function(){
 			<input id="sales-price" type="hidden" value="0" />
 		</div>
 	</div>
-	<div class="row gtk-detail"><div class="col-sm-12"><div class="gtk-description-header">상품 상세 설명</div></div></div>
+	<div class="row gtk-detail" style="margin-top:20px"><div class="col-sm-12"><div class="gtk-description-header">상품 상세 설명</div></div></div>
 	<div class="row gtk-detail">
 		<div class="col-sm-12 gtk-description-body">
+			<div class="gtk-detail-genuine"><img src="http://www.griptok.com/shop/common/common_top.png"/></div>
 			<div class="gtk-detail-images"></div>
+			<div class="gtk-detail-manual">
+				<img src="http://www.griptok.com/shop/common/common_btm1.png"/><br/><!-- 
+			 --><img src="http://www.griptok.com/shop/common/common_btm2.png"/>
+			</div>
 			<div class="gtk-detail-guide">
 				<div class="guide-left">
 					<div class="guide-box">

@@ -14,6 +14,7 @@
 	  	<result property="is_new" column="is_new"/>
 	  	<result property="is_dc" column="is_dc"/>
 	  	<result property="is_best" column="is_best"/>
+	  	<result property="description" column="description"/>
 	  	<result property="reg_dt" column="reg_dt"/>
 	  	<result property="upd_dt" column="upd_dt"/>
 	    <collection property="thumb_file" ofType="com.griptk.b2b.product.domain.ProductImgReqVO">
@@ -282,7 +283,8 @@
 			a.retail_price,
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
-			END AS sales_price
+			END AS sales_price,
+			b.description
 		FROM tb_product a 
 		INNER JOIN tb_product_detail b ON a.product_id = b.product_id
 		WHERE 1=1
@@ -364,6 +366,7 @@
 			d.craft_no,
 			e.p_brand_no,
 			d.brand_no,	
+			b.description,
 			c.img_no,
 			CONCAT(c.file_path, '/', c.file_nm) AS img_path 
 		FROM tb_product a 
