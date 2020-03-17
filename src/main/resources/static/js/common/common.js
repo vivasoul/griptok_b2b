@@ -1,3 +1,12 @@
+/* map/filter compatibility for Array */
+if(!Array.prototype.map) {
+	Array.prototype.map = function(c){ var r=[]; for(var i=0;i<this.length;i++){ var a=this[i]; r.push(c(a)); } return r; }
+}
+
+if(!Array.prototype.filter) {
+	Array.prototype.filter = function(c){ var r=[]; for(var i=0;i<this.length;i++){ var a=this[i]; if(c(a)) r.push(a); } return r; }
+}
+
 const currency_formatter = function(amount, unit) {
 	let input = amount;
 	const format_arr = [];
