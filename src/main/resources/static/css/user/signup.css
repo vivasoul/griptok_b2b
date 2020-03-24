@@ -1,0 +1,27 @@
+.gtk-signup-header, #signupbox, #termbox { width:1070px; }
+.gtk-signup-header { margin:0px 60px; }
+
+#gtk-signup-title { margin:3px 0px;padding-left:9px;text-align:left;border-left:9px solid #19B4F0;font-size:25px;font-weight:900;color:#5E5E5E;  }
+#gtk-signup-guide { font-size:14px;color:#8E8E8E;padding:12px 15px; }
+
+#signupbox .row{ margin-bottom:15px; }
+#signupbox .row>div { padding:0px; }
+
+#signupbox { padding:13px 0px;margin-top:0px; }
+#signupbox .gtk-box-half { padding:15px 22px 19px 20px; }
+#signupbox .gtk-box-half:nth-child(1) { width:calc(50% - 1px);border-right:1px dashed #EAEAEA; }
+.gtk-user-header { font-size:19px;font-weight:700;color:#5E5E5E; }
+.gtk-user-header .title-icon { font-size:15px;vertical-align:text-top;color:#CFCFCF; }
+#biz-user-info { margin-top:30px; }
+
+.gtk-user-content .gtk-input-label,
+.gtk-user-content .gtk-input-group { padding-left:20px; }
+.gtk-user-content .gtk-input-label { padding:10px 0px 10px 23px;font-size:14px;font-weight:600;color:#5E5E5E; }
+.gtk-user-content .gtk-input-group { margin-bottom:5px; }
+
+.gtk-info-text { padding:10px;color:#9F9F9F;font-size:14px; }
+
+#signupbox .gtk-term-condition-group { border:1px solid #dadada; min-height:180px; }
+#signupbox .gtk-term-condition-group .gtk-term-condition-box { padding:0px; }
+#signupbox .gtk-term-condition-group .gtk-term-condition-box>pre { background-color:#f5f6f7;height:125px;border:0px;border-radius:0px; width:490px; }
+.gtk-term-condition-box>pre { background-color:#f5f6f7;height:125px;border:0px;border-radius:0px; width:490px; height:250px; margin-bottom:34px;}
