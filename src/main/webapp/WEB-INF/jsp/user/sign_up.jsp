@@ -135,19 +135,17 @@
 		<div id="termbox" class="gtk-main-box">
 
             	<div class="gtk-box-half">
-	            	<div class="margin_l_18 margin_t_28 margin_r_40">
-	            		<div class="info_font">
+	            	<div class="term-box">
+	            		<div class="term-cbox-header">
 			            	<input type="checkbox" id="termsService" name="termsService" class="chk" onclick="checkAll()" >
-							<label for="termsService" onclick="checkAll()">전체 동의<span class="terms_necessary">(필수)</span></label>
+							<label for="termsService" onclick="checkAll()">전체 동의</label>
 						</div>
-						<div class="grey_font margin_l_5 margin_t_17">
-							<span class="input_chk">
+						<div class="term-cbox-sheader">
 							<input type="checkbox" id="termsService2" name="termsService2" class="chk" onclick="checkEach()">
 							<label onclick="checkInput('termsService2')">이용약관 동의<span class="terms_necessary">(필수)</span></label>
-						</span>
 						</div>
-		              <div class="col-sm-12 gtk-term-condition-box">	
-			          <pre>
+		              <div class="gtk-term-condition-box">	
+			          	<pre>
 이용약관 페이지입니다.
 이용약관 페이지입니다.
 이용약관 페이지입니다.
@@ -173,15 +171,14 @@
 		            </div>
            		</div><!-- 
              --><div class="gtk-box-half">
-	            	<div class=" margin_l_18 margin_t_70 margin_r_40">
-	            		<div class="grey_font margin_l_5">
-	            		<span class="input_chk">
-												<input type="checkbox" id="termsService3" name="termsService3" class="chk" onclick="checkEach()">
-												<label onclick="checkInput('termsService3')">개인정보 수집 및 이용 동의<span class="terms_necessary">(필수)</span></label>
-											</span>
-											</div>
-											<div class="col-sm-12 gtk-term-condition-box">	
-									            <pre>
+	            	<div class="term-box">
+	            		<div class="term-cbox-header"></div>	            	
+	            		<div class="term-cbox-sheader">
+							<input type="checkbox" id="termsService3" name="termsService3" class="chk" onclick="checkEach()">
+							<label onclick="checkInput('termsService3')">개인정보 수집 및 이용 동의<span class="terms_necessary">(필수)</span></label>
+						</div>
+						<div class="gtk-term-condition-box">	
+							<pre>
 개인정보 수집 및 이용 동의 페이지입니다.
 개인정보 수집 및 이용 동의 페이지입니다.
 개인정보 수집 및 이용 동의 페이지입니다.

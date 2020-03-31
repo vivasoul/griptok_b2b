@@ -24,4 +24,19 @@
 #signupbox .gtk-term-condition-group { border:1px solid #dadada; min-height:180px; }
 #signupbox .gtk-term-condition-group .gtk-term-condition-box { padding:0px; }
 #signupbox .gtk-term-condition-group .gtk-term-condition-box>pre { background-color:#f5f6f7;height:125px;border:0px;border-radius:0px; width:490px; }
-.gtk-term-condition-box>pre { background-color:#f5f6f7;height:125px;border:0px;border-radius:0px; width:490px; height:250px; margin-bottom:34px;}
+.gtk-term-condition-box>pre { background-color:#FAFAFA;color:#7A7A7A;border:1px solid #F3F3F3;border-radius:0px;width:100%; height:250px; margin-bottom:34px;font-family:inherit; }
+
+#termbox .gtk-box-half:nth-child(1) { width:calc(50% - 1px);border-right:1px dashed #EAEAEA; }
+#termbox .term-box { padding:10px; }
+#termbox .gtk-box-half:nth-child(1) .term-box { padding-right:20px; }
+#termbox .gtk-box-half:nth-child(2) .term-box { padding-left:20px; }
+.term-box .term-cbox-header { display:block;height:25px;font-size:15px;color:#5E5E5E; }
+.term-box .term-cbox-header input[type=checkbox] {  }
+.term-box .term-cbox-sheader { padding:10px;font-size:13px;color:#9F9F9F; }
+.term-box .term-cbox-sheader input[type=checkbox] {  }
+
+.term-cbox-header input,
+.term-cbox-header label,
+.term-cbox-sheader input,
+.term-cbox-sheader label { vertical-align:middle;margin-bottom:0px;font-weight:400; }
+.term-cbox-header label { font-weight:700; }
