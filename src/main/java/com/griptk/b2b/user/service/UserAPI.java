@@ -131,7 +131,7 @@ public class UserAPI {
 	public String findId(
 			@RequestBody UserVO vo,
 	        HttpServletResponse response) {
-		System.out.println(vo.toString());
+		//System.out.println(vo.toString());
 		return mapper.findId(vo);
 		
 	}

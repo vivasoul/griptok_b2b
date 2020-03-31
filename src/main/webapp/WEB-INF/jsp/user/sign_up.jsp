@@ -16,8 +16,8 @@
  			본 쇼핑몰은 관리자의 회원가입후 관리자의 승인이 완료 되어야 이용이 가능한 쇼핑몰 입니다.
  		</div> 		
  	</div>
+ 	<form id="sign_up_form" method="post" action="/sign_up/sign_up" enctype="multipart/form-data">
  	<div>
-	<form id="sign_up_form" method="post" action="/sign_up/sign_up" enctype="multipart/form-data">   
       <div id="signupbox" class="gtk-main-box">
         	<div class="gtk-box-half">
         		<div class="gtk-user-header" id="basic-user-info">
@@ -65,7 +65,7 @@
 	         		<div class="gtk-input-label">
 	         			사업자 등록증 사본 이미지 등록
 	         		</div>
-	         		<div class="gtk-input-group">
+	         		<div class="gtk-input-group input-file">
 	         			<input id="file_nm" name="file_nm" type="text" placeholder='사업자등록증 사본 등록' readonly required/><!--
 	         		 --><button class="gtk-btn gtk-btn-sm gtk-btn-blue btn-choose" type="button">찾아보기</button>
 	         		</div>
@@ -86,7 +86,7 @@
             			담당자명
             		</div>
             		<div class="gtk-input-group no-addon">
-            			<input type="text" id="manger_nm" name="manager_nm" required>
+            			<input type="text" id="manager_nm" name="manager_nm" required>
             		</div>
             		<div class="gtk-input-label">
             			담당자 휴대전화
@@ -218,11 +218,8 @@
            			 <button id="sign_up" class="gtk-btn gtk-btn-blue sign_up_bix_box" type="submit">가입하기</button>
            		</div>
            </div>
-        </form>
-	</div><!-- end of loginbox -->
-</div>
-<!-- div container -->
-</div>
+     </form>
+</div><!-- end of loginbox -->
 <script src="./common/js/util.js" charset="utf-8"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>  
 <script src="./js/user/sign_up.js" charset="utf-8"></script>

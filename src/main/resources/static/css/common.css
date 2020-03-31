@@ -12,6 +12,9 @@ a,a:hover{ text-decoration:none; }
  
 .griptok-header, .griptok-body, .griptok-footer { max-width:1200px; margin:0 auto !important; }
 .slash-seperator { padding:0px 12px; }
+
+input:read-only 	 { background-color:#EAEAEA; }
+input:-moz-read-only { background-color:#EAEAEA; }
 /* menus */
 .top_menu { 
 	 text-align:right;

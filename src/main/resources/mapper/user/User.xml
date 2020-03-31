@@ -32,7 +32,9 @@
 	</insert>
 		
 	<select id="getUserInfo" parameterType="Integer" resultType="com.griptk.b2b.user.domain.UserVO">
-		SELECT user_id, 
+		SELECT
+			u.user_no, 
+			u.user_id, 
 			u.company_nm,
 			u.biz_reg_number,
 			u.ceo_nm,
