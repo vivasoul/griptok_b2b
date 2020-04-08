@@ -7,6 +7,6 @@
 		( SELECT COUNT(*) FROM tb_login WHERE aprv_status = 'N' ) AS user_waiting_cnt,
 		( SELECT COUNT(*) FROM tb_order WHERE order_status = 'WP' ) AS deposit_waiting_cnt,
 		( SELECT COUNT(*) FROM tb_order WHERE order_status = 'CP' ) AS new_order_cnt,
-		( SELECT COUNT(*) FROM tb_order WHERE order_status IN ('WD','OD') ) AS derivering_cnt		
+		( SELECT COUNT(*) FROM tb_order WHERE order_status IN ('WD','OD') ) AS delivering_cnt		
 	</select>
 </mapper>

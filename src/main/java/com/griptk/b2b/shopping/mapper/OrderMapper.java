@@ -3,6 +3,9 @@ package com.griptk.b2b.shopping.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.griptk.b2b.shopping.domain.MOrderedVO;
 import com.griptk.b2b.shopping.domain.OrderDetailVO;
 import com.griptk.b2b.shopping.domain.OrderVO;
 import com.griptk.b2b.shopping.domain.OrderedVO;
@@ -20,4 +23,6 @@ public interface OrderMapper {
 	int insertDetail(OrderedVO orderedVO);
 	
 	ReceiptVO receipt(long order_no);
+	List<MOrderedVO> listOrderInStatus(@Param("start") int start, @Param("status") String status);
+	int getOrdersCntInStatus(String status);
 }

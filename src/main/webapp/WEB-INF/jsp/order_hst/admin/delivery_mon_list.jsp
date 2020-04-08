@@ -10,7 +10,7 @@
 <script type="text/javascript" src="/js/admin/order/common.js"></script>
 <script type="text/javascript">
 const _loadList = function(page_no){
-	loadList(page_no, "CP");
+	loadList(page_no, "OD");
 };
 
 const getChecked = function(){
