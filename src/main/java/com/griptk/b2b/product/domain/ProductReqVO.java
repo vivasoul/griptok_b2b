@@ -19,6 +19,10 @@ public class ProductReqVO {
 	private String is_dc;
 	private String description;
 	
+	private int[] option_no;
+	private String[] option_txt;
+	private String[] option_del_yn;
+	
 	private long thumb_img_no;
 	private MultipartFile thumb_file;
 	
@@ -101,6 +105,24 @@ public class ProductReqVO {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public int[] getOption_no() {
+		return option_no;
+	}
+	public void setOption_no(int[] option_no) {
+		this.option_no = option_no;
+	}
+	public String[] getOption_txt() {
+		return option_txt;
+	}
+	public void setOption_txt(String[] option_txt) {
+		this.option_txt = option_txt;
+	}
+	public String[] getOption_del_yn() {
+		return option_del_yn;
+	}
+	public void setOption_del_yn(String[] option_del_yn) {
+		this.option_del_yn = option_del_yn;
 	}
 	public long getThumb_img_no() {
 		return thumb_img_no;

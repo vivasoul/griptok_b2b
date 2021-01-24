@@ -1,5 +1,5 @@
 /* detail javascript for /admin/product */
-const addOption = function(txt, option_no){
+const addOption = function(option_txt, option_no){
 	const row = document.createElement("div");
 	row.className = "gtk-option-row";
 		const input = document.createElement("input");
@@ -7,7 +7,7 @@ const addOption = function(txt, option_no){
 		input.required = true;
 		input.name="option_txt";
 		input.className="gtk-option-txt";
-		input.value = txt;
+		input.value = option_txt;
 		const button = document.createElement("button");
 		button.type="button";
 		button.className="gtk-option-btn";
@@ -89,6 +89,13 @@ const setData = function(data){
 		for(let i=0;i<files.length;i++){
 			jQuery("#v_img_no_"+(i+1)).val(files[i].img_no);
 			jQuery("#v_file_"+(i+1)).prop("defaultSrc",files[i].img_path).fire("change");		
+		}
+	}
+	const options = data["options"];
+	if(options.length){
+		for(let i=0;i<options.length;i++){
+			const opt = options[i];
+			addOption(opt.option_txt, opt.option_no);
 		}
 	}
 };

@@ -16,6 +16,7 @@ public class ProductRespVO {
 	private String is_best;
 	private String is_dc;
 	private String description;
+	private List<OptionVO> options;
 	
 	private String reg_dt;
 	private String upd_dt;
@@ -100,6 +101,12 @@ public class ProductRespVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public List<OptionVO> getOptions() {
+		return options;
+	}
+	public void setOptions(List<OptionVO> options) {
+		this.options = options;
+	}
 	public String getReg_dt() {
 		return reg_dt;
 	}
@@ -129,7 +136,8 @@ public class ProductRespVO {
 		return "ProductRespVO [product_id=" + product_id + ", title=" + title + ", retail_price=" + retail_price
 				+ ", sales_price=" + sales_price + ", stock_cnt=" + stock_cnt + ", category_no=" + category_no
 				+ ", craft_no=" + craft_no + ", p_brand_no=" + p_brand_no + ", brand_no=" + brand_no + ", is_new="
-				+ is_new + ", is_best=" + is_best + ", is_dc=" + is_dc + ", description=" + description + ", reg_dt="
-				+ reg_dt + ", upd_dt=" + upd_dt + ", thumb_file=" + thumb_file + ", files=" + files + "]";
+				+ is_new + ", is_best=" + is_best + ", is_dc=" + is_dc + ", description=" + description + ", options="
+				+ options + ", reg_dt=" + reg_dt + ", upd_dt=" + upd_dt + ", thumb_file=" + thumb_file + ", files="
+				+ files + "]";
 	}
 }

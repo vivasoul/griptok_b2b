@@ -22,20 +22,25 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.griptk.b2b.common.service.FileAPI;
 import com.griptk.b2b.product.domain.IProductSortType;
+import com.griptk.b2b.product.domain.OptionVO;
 import com.griptk.b2b.product.domain.PredicateVO;
 import com.griptk.b2b.product.domain.ProductDetailVO;
 import com.griptk.b2b.product.domain.ProductImgReqVO;
 import com.griptk.b2b.product.domain.ProductReqVO;
 import com.griptk.b2b.product.domain.ProductRespVO;
 import com.griptk.b2b.product.domain.ProductVO;
+import com.griptk.b2b.product.mapper.OptionMapper;
 import com.griptk.b2b.product.mapper.ProductMapper;
 
 @RestController
 @RequestMapping("/products")
 @SessionAttributes({"user_no"})
-public class ProductAPI {	
+public class ProductAPI {
 	@Autowired
 	private ProductMapper mapper;
+
+	@Autowired
+	private OptionMapper optionMapper;	
 	
 	@Autowired
 	private FileAPI fileAPI;
@@ -144,6 +149,7 @@ public class ProductAPI {
 				mapper.createImages(images);
 			}
 			mapper.createDetail(payload);
+			updateOptions(payload);
 		}
 	}
 	
@@ -151,7 +157,9 @@ public class ProductAPI {
 	public ProductRespVO getDetailForEdit(@PathVariable("product_id") int product_id) {
 		ProductRespVO result = mapper.getDetail_2(product_id);
 		List<ProductImgReqVO> images = mapper.getDetailImages_2(product_id);
-		result.setFiles(images);		
+		List<OptionVO> options = optionMapper.getOptions(product_id);
+		result.setFiles(images);	
+		result.setOptions(options);
 		return result;
 	}	
 	
@@ -172,21 +180,57 @@ public class ProductAPI {
 				if(!images.isEmpty()) mapper.createImages(images);
 			}
 			mapper.updateDetail(payload);
+			updateOptions(payload);
 		}
 	}	
 	
 	@DeleteMapping
 	public void deleteProducts(@RequestBody List<ProductReqVO> list) {
 		if(!list.isEmpty()) mapper.delete(list);
-	};
+	}
 	
 	@DeleteMapping("/all")
 	public void deleteAllProducts() {
 		mapper.deleteAll();
-	};	
+	}
 	
 	@PutMapping("/dc")
 	public void setToDCProducts(@RequestBody List<ProductReqVO> list) {
 		if(!list.isEmpty()) mapper.changeToDC(list);
-	};	
+	}
+	
+	private void updateOptions(ProductReqVO vo){
+		if(vo.getOption_no() != null) {
+			int product_id = vo.getProduct_id();
+			
+			int[] option_nos = vo.getOption_no();
+			String[] option_txts = vo.getOption_txt();
+			String[] option_del_yns = vo.getOption_del_yn();
+			
+			int len = vo.getOption_no().length;
+			
+			for(int i=0; i<len; i++) {
+				int option_no = option_nos[i];
+				String option_txt = option_txts[i];
+				String option_del_yn = option_del_yns[i];
+				
+				OptionVO opt = new OptionVO();
+				opt.setProduct_id(product_id);
+				opt.setOption_no(option_no);
+				opt.setOption_txt(option_txt);
+				
+				if(option_no < 0) {
+					/* add option */
+					optionMapper.insertOption(opt);
+				}else if(option_del_yn.equals("Y")){
+					/* delete option */
+					optionMapper.deleteOption(opt);
+				}else {
+					/* update option */
+					optionMapper.updateOption(opt);
+				}
+			}
+		}
+		
+	}
 }
