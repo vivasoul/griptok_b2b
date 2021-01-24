@@ -4,6 +4,7 @@ const addOption = function(txt, option_no){
 	row.className = "gtk-option-row";
 		const input = document.createElement("input");
 		input.type="text";
+		input.required = true;
 		input.name="option_txt";
 		input.className="gtk-option-txt";
 		input.value = txt;
@@ -33,7 +34,7 @@ const addOption = function(txt, option_no){
 const deleteOption = function($parent){
 	$parent.find("input[name='option_del_yn']").val("Y");
 	$parent.find("input[name='option_txt']").prop("readOnly", true);
-	$parent.find(".gtk-option-btn .fa").removeClass("fa-minus").addClass("fa-refresh");
+	$parent.find(".gtk-option-btn .fa").removeClass("fa-minus").addClass("fa-refresh");	
 };
 
 const revertOption = function($parent){
@@ -106,9 +107,21 @@ const loadData = function(product_id) {
 		});
 };
 
+const preprocessOption = function(){
+	jQuery("#gtk-inputs-added .gtk-option-row").each(function(idx,elem){
+		const $this = jQuery(elem);
+		const option_no = Number($this.find("input[name='option_no']").val()) || -1;
+		const option_del_yn = $this.find("input[name='option_del_yn']").val();
+		
+		if(option_no < 0 && option_del_yn === "Y"){
+			$this.find("input").prop("disabled",true);
+		}
+	});
+};
+
 const insertData = function(){
     const form = jQuery('#save-product-form')[0];
-    
+    preprocessOption();
     if(!form.reportValidity()) return false;
     // Create an FormData object 
     const formData = new FormData(form);
@@ -135,7 +148,7 @@ const insertData = function(){
 
 const updateData = function(product_id){
     const form = jQuery('#save-product-form')[0];
-    
+    preprocessOption();
     if(!form.reportValidity()) return false;
     // Create an FormData object 
     const formData = new FormData(form);
