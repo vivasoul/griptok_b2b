@@ -72,61 +72,59 @@ jQuery(document).ready(function(e){
 </script>
 <div class="container-fluid">
 	<div class="gtk-main-box">
-		<div class="gtk-box-half">
-	 		<div class="gtk-group-title"><span class="title-icon">●</span> 브랜드 종류 관리</div>
-			<div class="gtk-group-content">
-				<div class="gtk-category-form">
-					<select id="v_p_brand_no_2" name="p_brand_no"></select><!-- 
-				 --><input type="text" id="v_brand_nm" name="brand_nm" placeholder="브랜드명"/><!-- 
-				 --><button type="button" class="gtk-btn gtk-btn-blue" id="save-brand-btn">추가</button>
-				</div>
-				<table class="gtk-table" id="brand-type-table">
-					<colgroup>
-						<col width="15%"/><col width="30%"/><col width="40%"/><col width="15%"/>
-					</colgroup>
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>상위브랜드명</th>
-							<th>브랜드명</th>
-							<th>사용</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-				<div id="brand-type-pager"></div>
+ 		<div class="gtk-group-title"><span class="title-icon">●</span> 브랜드 종류 관리</div>
+		<div class="gtk-group-content">
+			<div class="gtk-category-form">
+				<select id="v_p_brand_no_2" name="p_brand_no"></select><!-- 
+			 --><input type="text" id="v_brand_nm" name="brand_nm" placeholder="브랜드명"/><!-- 
+			 --><button type="button" class="gtk-btn gtk-btn-blue" id="save-brand-btn">추가</button>
 			</div>
-		</div><!-- 
-	 --><div class="gtk-box-half">
-			<div class="gtk-group-title"><span class="title-icon">●</span> 그립톡 종류 관리</div>
-			<div class="gtk-group-content">
-				<div class="gtk-category-form">
-					<input type="text" id="v_craft_nm" name="craft_nm" placeholder="그립톡명"/><!-- 
-				 --><button type="button" class="gtk-btn gtk-btn-blue" id="save-craft-btn">추가</button>
-				</div>
-				<table class="gtk-table" id="craft-type-table">
-					<colgroup>
-						<col width="20%"/><col width="60%"/><col width="20%"/>
-					</colgroup>
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>그립톡명</th>
-							<th>사용</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="gtk-td-center">1</td>
-							<td>테스트</td>
-							<td class="gtk-td-center"><input type="checkbox" /></td>
-						</tr>
-					</tbody>
-				</table>
-				<div id="craft-type-pager"></div>
+			<table class="gtk-table" id="brand-type-table">
+				<colgroup>
+					<col width="15%"/><col width="30%"/><col width="40%"/><col width="15%"/>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>상위브랜드명</th>
+						<th>브랜드명</th>
+						<th>사용</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div id="brand-type-pager"></div>
+		</div>
+	</div>
+	<div class="gtk-main-box">
+		<div class="gtk-group-title"><span class="title-icon">●</span> 그립톡 종류 관리</div>
+		<div class="gtk-group-content">
+			<div class="gtk-category-form">
+				<input type="text" id="v_craft_nm" name="craft_nm" placeholder="그립톡명"/><!-- 
+			 --><button type="button" class="gtk-btn gtk-btn-blue" id="save-craft-btn">추가</button>
 			</div>
-	 	</div>
+			<table class="gtk-table" id="craft-type-table">
+				<colgroup>
+					<col width="20%"/><col width="60%"/><col width="20%"/>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>그립톡명</th>
+						<th>사용</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="gtk-td-center">1</td>
+						<td>테스트</td>
+						<td class="gtk-td-center"><input type="checkbox" /></td>
+					</tr>
+				</tbody>
+			</table>
+			<div id="craft-type-pager"></div>
+		</div>
 	</div>	
 	<div class="gtk-main-box">
 		<div class="gtk-group-title"><span class="title-icon">●</span> 카테고리 종류 관리</div>
