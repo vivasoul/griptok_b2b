@@ -10,6 +10,7 @@ public class ProductReqVO {
 	private int retail_price;
 	private int sales_price;
 	private int stock_cnt;
+	private int category_no;
 	private int craft_no;
 	private int p_brand_no;
 	private int brand_no;
@@ -52,6 +53,12 @@ public class ProductReqVO {
 	}
 	public void setStock_cnt(int stock_cnt) {
 		this.stock_cnt = stock_cnt;
+	}
+	public int getCategory_no() {
+		return category_no;
+	}
+	public void setCategory_no(int category_no) {
+		this.category_no = category_no;
 	}
 	public int getCraft_no() {
 		return craft_no;
@@ -122,10 +129,10 @@ public class ProductReqVO {
 	@Override
 	public String toString() {
 		return "ProductReqVO [product_id=" + product_id + ", title=" + title + ", retail_price=" + retail_price
-				+ ", sales_price=" + sales_price + ", stock_cnt=" + stock_cnt + ", craft_no=" + craft_no
-				+ ", p_brand_no=" + p_brand_no + ", brand_no=" + brand_no + ", is_new=" + is_new + ", is_best="
-				+ is_best + ", is_dc=" + is_dc + ", description=" + description + ", thumb_img_no=" + thumb_img_no
-				+ ", thumb_file=" + thumb_file + ", img_nos=" + Arrays.toString(img_nos) + ", files="
-				+ Arrays.toString(files) + "]";
+				+ ", sales_price=" + sales_price + ", stock_cnt=" + stock_cnt + ", category_no=" + category_no
+				+ ", craft_no=" + craft_no + ", p_brand_no=" + p_brand_no + ", brand_no=" + brand_no + ", is_new="
+				+ is_new + ", is_best=" + is_best + ", is_dc=" + is_dc + ", description=" + description
+				+ ", thumb_img_no=" + thumb_img_no + ", thumb_file=" + thumb_file + ", img_nos="
+				+ Arrays.toString(img_nos) + ", files=" + Arrays.toString(files) + "]";
 	}
 }

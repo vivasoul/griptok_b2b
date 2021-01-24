@@ -1,15 +1,65 @@
 /* detail javascript for /admin/product */
-const loadBrandNo = function(){
+const addOption = function(txt, option_no){
+	const row = document.createElement("div");
+	row.className = "gtk-option-row";
+		const input = document.createElement("input");
+		input.type="text";
+		input.name="option_txt";
+		input.className="gtk-option-txt";
+		input.value = txt;
+		const button = document.createElement("button");
+		button.type="button";
+		button.className="gtk-option-btn";
+			const icon = document.createElement("i");
+			icon.className = "fa fa-minus";
+		button.appendChild(icon);
+		const input1 = document.createElement("input");
+		input1.name="option_del_yn";
+		input1.type="hidden";
+		input1.value="N";
+		const input2 = document.createElement("input");
+		input2.name="option_no";
+		input2.type="hidden";
+		input2.value=option_no || "-1";
+		
+	row.appendChild(input);
+	row.appendChild(button);
+	row.appendChild(input1);
+	row.appendChild(input2);
+	
+	jQuery("#gtk-inputs-added").append(row);
+};
+
+const deleteOption = function($parent){
+	$parent.find("input[name='option_del_yn']").val("Y");
+	$parent.find("input[name='option_txt']").prop("readOnly", true);
+	$parent.find(".gtk-option-btn .fa").removeClass("fa-minus").addClass("fa-refresh");
+};
+
+const revertOption = function($parent){
+	$parent.find("input[name='option_del_yn']").val("N");
+	$parent.find("input[name='option_txt']").prop("readOnly", false);
+	$parent.find(".gtk-option-btn .fa").removeClass("fa-refresh").addClass("fa-minus");
+};
+
+const loadCategoryNo = function() {
+	const craft_no = jQuery("#v_craft_no").val();
+	const brand_no = jQuery("#v_brand_no").val();
+	
+	loadSelect("#v_category_no","/categories?brand_no="+brand_no+"&craft_no="+craft_no,"category_no","category_nm");
+};
+
+const loadBrandNo = function(no_callback){
 	const p_brand_no = jQuery("#v_p_brand_no").val();
-	loadSelect("#v_brand_no","/categories/brands?p_brand_no="+p_brand_no,"brand_no","brand_nm");
+	loadSelect("#v_brand_no","/categories/brands?p_brand_no="+p_brand_no,"brand_no","brand_nm", no_callback ? null : loadCategoryNo);
 };
 
 const loadPBrandNo = function(){
 	loadSelect("#v_p_brand_no","/categories/brands","brand_no","brand_nm", loadBrandNo);
 };
 
-const loadCraftNo = function(){
-	loadSelect("#v_craft_no","/categories/crafts","craft_no","craft_nm");
+const loadCraftNo = function(no_callback){
+	loadSelect("#v_craft_no","/categories/crafts","craft_no","craft_nm", no_callback ? null : loadCategoryNo);
 };
 
 const setData = function(data){
@@ -18,9 +68,10 @@ const setData = function(data){
 	jQuery("#v_sales_price").val(data["sales_price"]);
 	jQuery("#v_stock_cnt").val(data["stock_cnt"]);
 	jQuery("#v_craft_no").lazyVal(data["craft_no"]);
-	loadCraftNo();
+	loadCraftNo(true);
 	jQuery("#v_p_brand_no").lazyVal(data["p_brand_no"]);
 	jQuery("#v_brand_no").lazyVal(data["brand_no"]);
+	jQuery("#v_category_no").lazyVal(data["category_no"]);
 	loadPBrandNo();
 	jQuery("#v_is_new").prop("checked",data["is_new"] === "Y");
 	jQuery("#v_is_best").prop("checked",data["is_best"] === "Y");
@@ -108,3 +159,19 @@ const updateData = function(product_id){
 		
 	});
 };
+
+/* initial callback for admin product detail-page */
+jQuery(document).ready(function(){
+	jQuery("#gtk-option-new-btn").on("click", function(){
+		const txt = jQuery("#gtk-option-new").val();
+		addOption(txt);
+		jQuery("#gtk-option-new").val("");
+	});
+	
+	jQuery("#gtk-inputs-added").on("click", ".gtk-option-btn", function(){
+		const $parent = jQuery(this.parentNode);
+		const deleted = $parent.find("input[name='option_del_yn']").val();
+		if(deleted === "Y")	revertOption($parent);
+		else							deleteOption($parent);
+	});
+});

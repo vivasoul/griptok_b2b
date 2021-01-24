@@ -84,6 +84,9 @@ jQuery(document).ready(function(e){
 	 			<select id="v_brand_no" name="brand_no" required>
 	 				<option value="">::선택::</option>
 	 			</select>
+	 			<select id="v_category_no" name="category_no" required>
+	 				<option value="">::선택::</option>
+	 			</select>	 			
 	 		</div>
 	 		 <div class="gtk-input-group">
 	 			<label for="v_is_new">신상품 여부</label>
@@ -100,6 +103,17 @@ jQuery(document).ready(function(e){
 	 		<%if(dc_only){%>
 	 		<input type="hidden" id="v_is_dc" name="is_dc" value="Y" readOnly/>
 	 		<%}%>
+	 		<div class="gtk-input-group">
+	 			<label>옵션</label>
+	 			<div id="gtk-inputs-added">
+	 			</div>
+	 			<div id="gtk-inputs-addable">
+	 				<div class="gtk-option-row"><!-- 
+	 					 --><input type="text" class="gtk-option-txt" id="gtk-option-new"/><!-- 
+	 					 --><button type="button" class="gtk-option-btn" id="gtk-option-new-btn"><i class="fa fa-plus"></i></button><!-- 
+	 		   --></div>
+	 			</div>
+	 		</div>
 	 	</div> 
 	 </div>
 	 <div class="gtk-form-btn-group">

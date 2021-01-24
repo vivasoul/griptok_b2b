@@ -85,7 +85,7 @@ input:-moz-read-only { background-color:#EAEAEA; }
 	font-size:17px; font-weight:600;
 	vertical-align:top;text-align:center;
 }
-
+.gtk-btn.gtk-btn-auto { width:auto; }
 .gtk-btn.gtk-btn-sm { width:100px; height:30px; font-size:12px; }
 .gtk-btn.gtk-btn-lg { width:250px; font-size:17px; }
 .gtk-btn.gtk-btn-fluid { width:100%; height:100%; font-size:17px; }

@@ -8,6 +8,7 @@
 	  	<result property="retail_price" column="retail_price"/>
 	  	<result property="sales_price" column="sales_price"/>
 	  	<result property="stock_cnt" column="stock_cnt"/>
+	  	<result property="category_no" column="category_no"/>
 	  	<result property="craft_no" column="craft_no"/>
 	  	<result property="p_brand_no" column="p_brand_no"/>
 	  	<result property="brand_no" column="brand_no"/>
@@ -312,7 +313,7 @@
 			IFNULL(#{is_best},'N'), 
 			IFNULL(#{is_dc},'N'), 
 			#{thumb_img_no}, 
-			(SELECT category_no FROM tb_product_category WHERE brand_no = #{brand_no} AND craft_no = #{craft_no})		
+			#{category_no}		
 		)
 	</insert>
 	<select id="insertedId" resultType="Integer">
@@ -339,7 +340,7 @@
 			is_new = IFNULL(#{is_new},'N'), 
 			is_best = IFNULL(#{is_best},'N'), 
 			is_dc = IFNULL(#{is_dc},'N'),
-			category_no =(SELECT category_no FROM tb_product_category WHERE brand_no = #{brand_no} AND craft_no = #{craft_no}),
+			category_no =#{category_no},
 			upd_dt = NOW()
 		WHERE product_id = #{product_id}
 	</update>
@@ -363,6 +364,7 @@
 			a.is_new,
 			a.is_best,
 			a.is_dc,
+			a.category_no,
 			d.craft_no,
 			e.p_brand_no,
 			d.brand_no,	

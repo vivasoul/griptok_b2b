@@ -73,6 +73,17 @@
 		INNER JOIN tb_craft_type d ON a.craft_no = d.craft_no
 		ORDER BY b.p_brand_no, a.brand_no, a.craft_no
 	</select>
+	<select id="listCategoryEX"  parameterType="com.griptk.b2b.product.domain.CategoryReqVO" 
+											   resultType="com.griptk.b2b.product.domain.CategoryVO">
+		SELECT 
+			a.category_no, a.category_nm
+		FROM tb_product_category a
+		WHERE 1=1
+		AND use_yn = 'Y'
+		AND craft_no = #{craft_no}
+		AND brand_no = #{brand_no}
+		ORDER BY a.craft_no
+	</select>		
 	<insert id="createBrand" parameterType="com.griptk.b2b.product.domain.BrandTypeVO">
 		INSERT INTO tb_brand_type(brand_nm, p_brand_no) VALUES(#{brand_nm}, #{p_brand_no})
 	</insert>

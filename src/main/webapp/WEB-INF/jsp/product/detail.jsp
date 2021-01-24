@@ -64,7 +64,7 @@ jQuery(document).ready(function(){
 			<div class="gtk-detail-images-thumbs"></div>
 		</div>
 		<div class="col-sm-6">
-			<div class="gtk-detail-id">상품 번호:<span class="data-id"></span></div>
+			<div class="gtk-detail-id">상품 코드:<span class="data-id"></span></div>
 			<div class="gtk-detail-title data-title"></div>
 			<div class="gtk-detail-price"><span class="data-retail-price"></span><span class="data-sales-price"></span></div>
 			<div class="gtk-detail-quantity">수량<button class="quantity-down-btn">-</button><input class="input-quantity" type="text" value="1"/><button class="quantity-up-btn">+</button></div>

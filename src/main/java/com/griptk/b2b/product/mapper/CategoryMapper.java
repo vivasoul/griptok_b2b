@@ -16,6 +16,7 @@ public interface CategoryMapper {
 	BrandTypeVO getBrand(int brand_no);
 	
 	List<CategoryVO> listCategory();
+	List<CategoryVO> listCategoryEX(CategoryReqVO vo);
 	
 	int createBrand(BrandTypeVO vo);
 	int updateBrand(BrandTypeVO vo);

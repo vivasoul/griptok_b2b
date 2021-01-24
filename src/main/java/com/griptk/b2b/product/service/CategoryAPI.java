@@ -50,8 +50,16 @@ public class CategoryAPI {
 	}	
 	
 	@GetMapping
-	public List<CategoryVO> listCategories(){
-		return mapper.listCategory();
+	public List<CategoryVO> listCategories(@RequestParam(value="brand_no", defaultValue="-1") int brand_no, 
+																 @RequestParam(value="craft_no", defaultValue="-1") int craft_no){
+		if(brand_no > -1 && craft_no > -1) {
+			CategoryReqVO vo = new CategoryReqVO();
+			vo.setBrand_no(brand_no);
+			vo.setCraft_no(craft_no);
+			return mapper.listCategoryEX(vo);
+		}else {
+			return mapper.listCategory();
+		}
 	}
 	@PostMapping("/brands")
 	public void createBrand(@RequestBody BrandTypeVO vo) {
