@@ -23,7 +23,23 @@ jQuery(document).ready(function(e){
 		<div class="gtk-box-half">
 			<div class="gtk-group-title"><span class="title-icon">●</span> 상품 이미지</div>
 			<div class="gtk-input-group">
-				<label for="v_thumb_file">썸네일 이미지</label>
+				<label for="v_thumbnail">썸네일</label>
+				<input type="text" id="v_thumb" name="thumb" />
+			</div>
+	 		<div class="gtk-input-group">
+	 			<label for="v_thumbnail">상세이미지</label>
+	 			<div id="gtk-imgs-added">
+	 			</div>
+	 			<div id="gtk-imgs-addable">
+	 				<div class="gtk-img-row"><!-- 
+	 					 --><input type="text" class="gtk-img-txt" id="gtk-img-new"/><!-- 
+	 					 --><button type="button" class="gtk-img-btn" id="gtk-img-new-btn"><i class="fa fa-plus"></i></button><!-- 
+	 		   --></div>
+	 			</div>
+	 		</div>			
+			<!-- 
+			<div class="gtk-input-group">
+				<9label for="v_thumb_file">썸네일 이미지</label>
 				<div class="gtk-file-upload">
 					<input type="file" id="v_thumb_file" name="thumb_file" accept="image/*" required/>
 				</div>
@@ -52,8 +68,9 @@ jQuery(document).ready(function(e){
 					<div class="gtk-file-upload">
 						<input type="file" id="v_file_4" name="files" accept="image/*" required/>
 					</div>
-				</div>												
+				</div>								
 			</div>
+			 -->
 		</div><!-- 
 	 --><div class="gtk-box-half">
 	 		<div class="gtk-group-title"><span class="title-icon">●</span> 상품 기본 정보</div>
@@ -105,9 +122,9 @@ jQuery(document).ready(function(e){
 	 		<%}%>
 	 		<div class="gtk-input-group">
 	 			<label>옵션</label>
-	 			<div id="gtk-inputs-added">
+	 			<div id="gtk-options-added">
 	 			</div>
-	 			<div id="gtk-inputs-addable">
+	 			<div id="gtk-options-addable">
 	 				<div class="gtk-option-row"><!-- 
 	 					 --><input type="text" class="gtk-option-txt" id="gtk-option-new"/><!-- 
 	 					 --><button type="button" class="gtk-option-btn" id="gtk-option-new-btn"><i class="fa fa-plus"></i></button><!-- 
@@ -121,3 +138,13 @@ jQuery(document).ready(function(e){
 	 </div>
 	</form>		
 </div>	
+<div class="gtk-modal">
+	<div class="gtk-modal-header">이미지 등록</div>
+	<div class="gtk-modal-body">
+		<input type="text" id="v_new_img" value=""/>
+	</div>
+	<div class="gtk-modal-footer">
+		<button type="button" class="gtk-btn gtk-btn-blue">등록</button>
+		<button type="button" class="gtk-btn">취소</button>
+	</div>
+</div>

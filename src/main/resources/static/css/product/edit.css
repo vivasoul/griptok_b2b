@@ -1,13 +1,16 @@
 #save-product-form #v_craft_no,
 #save-product-form #v_brand_no,
 #save-product-form #v_category_no { width:32%; }
-#save-product-form .gtk-option-row { margin-bottom:5px; }
-#save-product-form .gtk-option-btn {
+#save-product-form .gtk-option-row,
+#save-product-form .gtk-img-row { margin-bottom:5px; }
+#save-product-form .gtk-option-btn,
+#save-product-form .gtk-img-btn {
 	background-color:#19B4F0;color:#FFF;
 	border:0px solid transparent;
 }
 
-#save-product-form #gtk-inputs-added .gtk-option-btn {
+#save-product-form #gtk-options-added .gtk-option-btn,
+#save-product-form #gtk-imgs-added .gtk-img-btn {
 	background-color:#A0A0A0;
 }
 

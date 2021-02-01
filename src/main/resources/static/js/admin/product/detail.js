@@ -28,7 +28,7 @@ const addOption = function(option_txt, option_no){
 	row.appendChild(input1);
 	row.appendChild(input2);
 	
-	jQuery("#gtk-inputs-added").append(row);
+	jQuery("#gtk-options-added").append(row);
 };
 
 const deleteOption = function($parent){
@@ -41,6 +41,28 @@ const revertOption = function($parent){
 	$parent.find("input[name='option_del_yn']").val("N");
 	$parent.find("input[name='option_txt']").prop("readOnly", false);
 	$parent.find(".gtk-option-btn .fa").removeClass("fa-refresh").addClass("fa-minus");
+};
+
+const addImg = function(img_link){
+	const row = document.createElement("div");
+	row.className = "gtk-img-row";
+		const input = document.createElement("input");
+		input.type="text";
+		input.required = true;
+		input.name="img_link";
+		input.className="gtk-img-link";
+		input.value = img_link;
+		const button = document.createElement("button");
+		button.type="button";
+		button.className="gtk-img-btn";
+			const icon = document.createElement("i");
+			icon.className = "fa fa-minus";
+		button.appendChild(icon);
+		
+	row.appendChild(input);
+	row.appendChild(button);
+	
+	jQuery("#gtk-imgs-added").append(row);
 };
 
 const loadCategoryNo = function() {
@@ -115,7 +137,7 @@ const loadData = function(product_id) {
 };
 
 const preprocessOption = function(){
-	jQuery("#gtk-inputs-added .gtk-option-row").each(function(idx,elem){
+	jQuery("#gtk-options-added .gtk-option-row").each(function(idx,elem){
 		const $this = jQuery(elem);
 		const option_no = Number($this.find("input[name='option_no']").val()) || -1;
 		const option_del_yn = $this.find("input[name='option_del_yn']").val();
@@ -188,10 +210,16 @@ jQuery(document).ready(function(){
 		jQuery("#gtk-option-new").val("");
 	});
 	
-	jQuery("#gtk-inputs-added").on("click", ".gtk-option-btn", function(){
+	jQuery("#gtk-options-added").on("click", ".gtk-option-btn", function(){
 		const $parent = jQuery(this.parentNode);
 		const deleted = $parent.find("input[name='option_del_yn']").val();
 		if(deleted === "Y")	revertOption($parent);
 		else							deleteOption($parent);
+	});
+	
+	jQuery("#gtk-img-new-btn").on("click", function(){
+		const txt = jQuery("#gtk-option-new").val();
+		addImg(txt);
+		jQuery("#gtk-img-new").val("");
 	});
 });

@@ -209,3 +209,9 @@ input:-moz-read-only { background-color:#EAEAEA; }
 .gtk-pager .gtk-pager-next { color:#D1D1D1;vertical-align:middle; }
 .gtk-pager .gtk-pager-prev { margin-right:9px; }
 .gtk-pager .gtk-pager-next { margin-left:9px; }
+
+/* modal css */
+.gtk-modal {  }
+.gtk-modal .gtk-modal-header	{  }
+.gtk-modal .gtk-modal-body		{  }
+.gtk-modal .gtk-modal-footer		{  }

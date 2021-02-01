@@ -130,9 +130,9 @@ jQuery(document).ready(function(e){
 	 		<%}%>	
 	 		<div class="gtk-input-group">
 	 			<label>옵션</label>
-	 			<div id="gtk-inputs-added">
+	 			<div id="gtk-options-added">
 	 			</div>
-	 			<div id="gtk-inputs-addable">
+	 			<div id="gtk-options-addable">
 	 				<div class="gtk-option-row"><!-- 
 	 					 --><input type="text" class="gtk-option-txt" id="gtk-option-new"/><!-- 
 	 					 --><button type="button" class="gtk-option-btn" id="gtk-option-new-btn"><i class="fa fa-plus"></i></button><!-- 
