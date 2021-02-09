@@ -5,7 +5,15 @@
 <link rel="stylesheet" href="/css/product/edit.css" />
 <script type="text/javascript" src="/js/admin/product/detail.js"></script>
 <script type="text/javascript" src="/js/common/uploader.js"></script>
+<script type="text/javascript" src="/js/common/modal.js"></script>
 <script type="text/javascript">
+const openModal = function(src_id, old_val){
+	jQuery("#img-update-modal").gMOpen(function(){
+		jQuery("#target_id").val(src_id);
+		jQuery("#v_new_img").val(old_val);
+	});
+};
+
 jQuery(document).ready(function(e){
 	loadCraftNo();
 	loadPBrandNo();
@@ -14,6 +22,27 @@ jQuery(document).ready(function(e){
 	jQuery("#save-product-btn").on("click", function(e){
 		e.preventDefault();
 		insertData();
+	});
+	
+	jQuery("#img-update-modal").gModal({
+		"onOK": function(){
+			const id = jQuery("#target_id").val();
+			const value = jQuery("#v_new_img").val();
+			jQuery("#"+id).val(value).fire("change");
+			jQuery("#target_id").val("");
+			jQuery("#v_new_img").val("");
+		}
+	});
+	
+	jQuery("#save-product-form").on("click", ".gtk-file-upload-link", function(){
+		const $link = jQuery(this).find(".upload-link-input");
+		openModal($link.attr("id"), $link.val());
+	});
+	
+	jQuery("#gtk-file-upload-add").on("click", function(){
+		const src_id = addImg();
+		console.log(src_id);
+		openModal(src_id, "");
 	});
 });
 </script>
@@ -24,22 +53,47 @@ jQuery(document).ready(function(e){
 			<div class="gtk-group-title"><span class="title-icon">●</span> 상품 이미지</div>
 			<div class="gtk-input-group">
 				<label for="v_thumbnail">썸네일</label>
-				<input type="text" id="v_thumb" name="thumb" />
+				<div class="gtk-file-upload gtk-file-upload-link">
+					<input type="hidden" class="upload-link-input" id="v_thumb" name="thumb" />
+				</div>
 			</div>
-	 		<div class="gtk-input-group">
-	 			<label for="v_thumbnail">상세이미지</label>
-	 			<div id="gtk-imgs-added">
-	 			</div>
-	 			<div id="gtk-imgs-addable">
-	 				<div class="gtk-img-row"><!-- 
-	 					 --><input type="text" class="gtk-img-txt" id="gtk-img-new"/><!-- 
-	 					 --><button type="button" class="gtk-img-btn" id="gtk-img-new-btn"><i class="fa fa-plus"></i></button><!-- 
-	 		   --></div>
-	 			</div>
-	 		</div>			
+			<div class="gtk-detail-imgs-group">
+		 		<div class="gtk-input-group">
+		 			<label for="v_img_top">상세이미지(최상단)</label>
+					<div class="gtk-file-upload gtk-file-upload-link">
+						<input type="hidden" class="upload-link-input" id="v_img_top" name="img_top" />
+					</div> 
+					<br/>	
+					<label for="v_thumbnail">상세이미지(본문)</label>
+					<div id="gtk-upload-links">
+					</div>	
+					<div id="gtk-file-upload-add">
+						<p>
+							<i class="fa fa-plus"></i>
+						</p>
+					</div>
+		 			 <!-- 
+		 			<div id="gtk-imgs-added">
+		 			</div>
+		 			<div id="gtk-imgs-addable">
+		 				<div class="gtk-img-row">
+		 					<input type="text" class="gtk-img-txt" id="gtk-img-new"/> 
+		 					<button type="button" class="gtk-img-btn" id="gtk-img-new-btn"><i class="fa fa-plus"></i></button>
+		 				</div>
+		 			</div>
+		 			 -->
+		 		</div>	
+		 		<br/>
+		 		<div class="gtk-input-group">
+		 			<label for="v_img_bot">상세이미지(최하단)</label>
+					<div class="gtk-file-upload gtk-file-upload-link">
+						<input type="hidden" class="upload-link-input" id="v_img_bot" name="img_bot" />
+					</div>
+				</div>	
+	 		</div>	
 			<!-- 
 			<div class="gtk-input-group">
-				<9label for="v_thumb_file">썸네일 이미지</label>
+				<label for="v_thumb_file">썸네일 이미지</label>
 				<div class="gtk-file-upload">
 					<input type="file" id="v_thumb_file" name="thumb_file" accept="image/*" required/>
 				</div>
@@ -138,13 +192,18 @@ jQuery(document).ready(function(e){
 	 </div>
 	</form>		
 </div>	
-<div class="gtk-modal">
-	<div class="gtk-modal-header">이미지 등록</div>
-	<div class="gtk-modal-body">
-		<input type="text" id="v_new_img" value=""/>
-	</div>
-	<div class="gtk-modal-footer">
-		<button type="button" class="gtk-btn gtk-btn-blue">등록</button>
-		<button type="button" class="gtk-btn">취소</button>
+<div class="gtk-modal"  id="img-update-modal">
+	<div class="gtk-modal-main">
+		<div class="gtk-modal-header">이미지 등록</div>
+		<div class="gtk-modal-body">
+			<div class="gtk-input-group no-addon">
+				<input type="text" id="v_new_img" value=""/>
+				<input type="hidden" id="target_id" value=""/>
+			</div>
+		</div>
+		<div class="gtk-modal-footer">
+			<button type="button" class="gtk-btn gtk-btn-sm gtk-btn-blue modal-ok">등록</button>
+			<button type="button" class="gtk-btn gtk-btn-sm modal-close" data-id="img-update-modal">취소</button>
+		</div>
 	</div>
 </div>

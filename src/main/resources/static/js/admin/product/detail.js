@@ -44,25 +44,25 @@ const revertOption = function($parent){
 };
 
 const addImg = function(img_link){
+	const MAX_CNT = (jQuery("#gtk-upload-links").prop("max-img-cnt") || 0)+1;
+
 	const row = document.createElement("div");
-	row.className = "gtk-img-row";
+	row.className = "gtk-file-upload gtk-file-upload-link";
 		const input = document.createElement("input");
-		input.type="text";
+		input.type="hidden";
 		input.required = true;
-		input.name="img_link";
-		input.className="gtk-img-link";
+		input.name="imgs";
+		input.id = "v_img_"+MAX_CNT;
+		input.className="upload-link-input";
 		input.value = img_link;
-		const button = document.createElement("button");
-		button.type="button";
-		button.className="gtk-img-btn";
-			const icon = document.createElement("i");
-			icon.className = "fa fa-minus";
-		button.appendChild(icon);
 		
 	row.appendChild(input);
-	row.appendChild(button);
 	
-	jQuery("#gtk-imgs-added").append(row);
+	jQuery("#gtk-upload-links").append(row);
+	jQuery("#gtk-upload-links").prop("max-img-cnt", MAX_CNT);
+	createUpload.call(row);
+	jQuery(input).on("change", onUploadLinkChange);
+	return input.id;
 };
 
 const loadCategoryNo = function() {

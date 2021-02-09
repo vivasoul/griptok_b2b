@@ -128,10 +128,13 @@ input:-moz-read-only { background-color:#EAEAEA; }
 .gtk-file-upload img { display:none; }
 
 .gtk-detail-imgs-group { padding:5px 25px;  }
+.gtk-detail-imgs-group img { line-height:50px; }
 .gtk-detail-imgs-group .gtk-input-group { display:inline-block;padding:5px; }
 .gtk-detail-imgs-group .gtk-file-upload { width:50px;height:50px; }
 .gtk-detail-imgs-group .gtk-file-upload p { line-height:50px }
 .gtk-detail-imgs-group .gtk-file-upload p .upload-text { display:none; }
+.gtk-detail-imgs-group #gtk-file-upload-add { position:relative;top:0px;left:0px;border:2px dashed #CFCFCF; text-align:center;width:50px;height:50px;color:#CFCFCF;  }
+.gtk-detail-imgs-group #gtk-file-upload-add p { line-height:50px }
 .gtk-form-btn-group { margin-bottom:20px;text-align:center; }
 
 /* rescue-css */
@@ -211,7 +214,8 @@ input:-moz-read-only { background-color:#EAEAEA; }
 .gtk-pager .gtk-pager-next { margin-left:9px; }
 
 /* modal css */
-.gtk-modal {  }
-.gtk-modal .gtk-modal-header	{  }
-.gtk-modal .gtk-modal-body		{  }
-.gtk-modal .gtk-modal-footer		{  }
+.gtk-modal { position:fixed;top:0;left:0;width:100%;height:100vh;display:none;z-index:10;background-color:rgba(0,0,0,0.2); }
+.gtk-modal-main {margin:0 auto;margin-top:400px;padding:10px;width:500px;background-color:#FFF;box-shadow:0px 0px 10px 5px rgb(0,0,0,0.2); }
+.gtk-modal-main .gtk-modal-header	{ font-size:17px;font-weight:700;padding:10px 0px;  }
+.gtk-modal-main .gtk-modal-body		{ padding:10px; }
+.gtk-modal-main .gtk-modal-footer		{ text-align:right; }
