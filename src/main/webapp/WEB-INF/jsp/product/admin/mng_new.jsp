@@ -8,9 +8,17 @@
 <script type="text/javascript" src="/js/common/modal.js"></script>
 <script type="text/javascript">
 const openModal = function(src_id, old_val){
-	jQuery("#img-update-modal").gMOpen(function(){
-		jQuery("#target_id").val(src_id);
-		jQuery("#v_new_img").val(old_val);
+	jQuery("#target_id").val(src_id);
+	jQuery("#v_new_img").val(old_val);
+	jQuery("#img-update-modal").gMOpen();
+};
+
+const openModal_new = function(){
+	jQuery("#img-update-modal").gMOpen({
+		"beforeOK": function(){
+			const src_id = addImg();
+			jQuery("#target_id").val(src_id);
+		}
 	});
 };
 
@@ -40,9 +48,7 @@ jQuery(document).ready(function(e){
 	});
 	
 	jQuery("#gtk-file-upload-add").on("click", function(){
-		const src_id = addImg();
-		console.log(src_id);
-		openModal(src_id, "");
+		openModal_new();
 	});
 });
 </script>
@@ -66,8 +72,8 @@ jQuery(document).ready(function(e){
 					<br/>	
 					<label for="v_thumbnail">상세이미지(본문)</label>
 					<div id="gtk-upload-links">
-					</div>	
-					<div id="gtk-file-upload-add">
+					</div><!-- 	
+			   --><div id="gtk-file-upload-add">
 						<p>
 							<i class="fa fa-plus"></i>
 						</p>

@@ -17,26 +17,38 @@ jQuery.fn.gModal = function(options){
 		
 
 		$this.find(".modal-close").on("click", close_callback);
-		
+		$this.prop("__modal_options__", options); 
 		$this.prop("__modal_prepared__", true);
 	}	
-	const ok_callback = (function(t, c){
+	const ok_callback = (function(t){
 		return function(){
 			t.hide();
-			c();
+			const o = t.prop("__modal_options__");
+			const dummy = function(){};
+			const bo = o["beforeOK"] || dummy;
+			const oo = o["onOK"] || dummy;
+			const ao = o["afterOK"] || dummy;
+			bo();
+			oo();
+			ao();
 		}
-	})($this, options["onOK"] || function(){});		
+	})($this);		
 	
 	$this.find(".modal-ok").on("click", ok_callback);
 };
 
-jQuery.fn.gMOpen = function(onOpen){
+jQuery.fn.gMOpen = function(options){
+	options = options || {};
 	const prepared = jQuery(this).prop("__modal_prepared__");
 	const $this = this;
 	if(prepared){
-		if(onOpen instanceof Function){
-			onOpen();
-		}
+		const _o = $this.prop("__modal_options__");
+		const bo = options["beforeOK"];
+		const ao = options["afterOK"];
+		
+		_o["beforeOK"] = bo;
+		_o["afterOK"] = ao;
+		
 		$this.show();
 	}
 };
