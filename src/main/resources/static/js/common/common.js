@@ -68,13 +68,22 @@ const loadSelect = function(selector, url, cd_key, cd_nm_key, callback){
 		const $dom = jQuery(selector);
 		$dom.empty();
 		const options = [];
-		for(let i=0; i<datas.length; i++){
-			const d = datas[i];
+		
+		if(datas.length){
+			for(let i=0; i<datas.length; i++){
+				const d = datas[i];
+				const option = document.createElement("option");
+				option.value = d[cd_key];
+				option.innerHTML = d[cd_nm_key];
+				options.push(option);
+			}
+		}else{
 			const option = document.createElement("option");
-			option.value = d[cd_key];
-			option.innerHTML = d[cd_nm_key];
+			option.value = "";
+			option.innerHTML ="::없음::";
 			options.push(option);
-		}
+		}	
+		
 		$dom.append(options);
 		
 		const lazyValue = $dom.lazyVal();

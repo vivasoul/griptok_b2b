@@ -96,7 +96,7 @@
 			CASE a.is_dc WHEN 'Y' THEN ROUND(a.sales_price*0.9,-2) 
 										 ELSE a.sales_price
 			END AS sales_price,
-			CONCAT(b.file_path, '/', b.file_nm) AS thumb_img,
+			a.thumb AS thumb_img,
 			(CASE WHEN EXISTS (SELECT product_id FROM tb_interested_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
 			ELSE 'N' END) AS is_fav,
 			(CASE WHEN EXISTS (SELECT product_id FROM tb_carted_list WHERE product_id = a.product_id AND user_no = #{user_no}) THEN 'Y' 
@@ -105,7 +105,6 @@
 			DATE_FORMAT(a.reg_dt,'%Y.%m.%d') AS reg_dt,
 			DATE_FORMAT(a.upd_dt,'%Y.%m.%d') AS upd_dt
 		FROM tb_product a
-		INNER JOIN tb_img_file_info b ON a.thumb_img_no = b.img_no
 		INNER JOIN tb_product_detail c ON a.product_id = c.product_id
 		${order_by}
 		LIMIT #{start}, #{limit}
@@ -303,7 +302,7 @@
 	
 	<!-- CREATE -->
 	<insert id="create" parameterType="com.griptk.b2b.product.domain.ProductReqVO">
-		INSERT INTO tb_product (`title`, `retail_price`, `sales_price`, `is_new`, `is_best`, `is_dc`, `thumb_img_no`, `category_no`)
+		INSERT INTO tb_product (`title`, `retail_price`, `sales_price`, `is_new`, `is_best`, `is_dc`, `thumb`, `category_no`)
 		VALUES
 		( 
 			#{title}, 
@@ -312,7 +311,7 @@
 			IFNULL(#{is_new},'N'), 
 			IFNULL(#{is_best},'N'), 
 			IFNULL(#{is_dc},'N'), 
-			#{thumb_img_no}, 
+			#{thumb}, 
 			#{category_no}		
 		)
 	</insert>
@@ -324,11 +323,14 @@
 		VALUES (#{product_id}, #{stock_cnt})
 	</insert>
 	<insert id="createImages" parameterType="List">
-		INSERT INTO tb_product_img(product_id, img_no, reg_dt)
+		INSERT INTO tb_product_img_link(product_id, sort_no, img_link)
 		VALUES
 		<foreach item="item" collection="list" separator=",">
-		    (#{item.product_id}, #{item.img_no}, NOW()) 
+		    (#{item.product_id}, #{item.sort_no}, #{item.img_link})
 		</foreach>
+		ON DUPLICATE KEY UPDATE
+			img_link = VALUES(img_link),
+			upd_dt = NOW()
 	</insert>
 	<!-- UPDATE -->
 	<update id="update" parameterType="com.griptk.b2b.product.domain.ProductReqVO">
@@ -336,7 +338,8 @@
 		SET
 			title = #{title}, 
 			retail_price = #{retail_price}, 
-			sales_price = #{sales_price}, 
+			sales_price = #{sales_price},
+			thumb = #{thumb}, 
 			is_new = IFNULL(#{is_new},'N'), 
 			is_best = IFNULL(#{is_best},'N'), 
 			is_dc = IFNULL(#{is_dc},'N'),
@@ -369,11 +372,9 @@
 			e.p_brand_no,
 			d.brand_no,	
 			b.description,
-			c.img_no,
-			CONCAT(c.file_path, '/', c.file_nm) AS img_path 
+			a.thumb AS img_path 
 		FROM tb_product a 
 		INNER JOIN tb_product_detail b ON a.product_id = b.product_id
-		INNER JOIN tb_img_file_info c ON a.thumb_img_no = c.img_no
 		INNER JOIN tb_product_category d ON a.category_no = d.category_no
 		INNER JOIN tb_brand_type e ON d.brand_no = e.brand_no
 		WHERE 1=1
@@ -389,7 +390,14 @@
 		WHERE 1=1
 		AND a.product_id = #{product_id}		
 	</select>	
-	
+	<select id="getDetailImages_3" parameterType="Int" resultType="com.griptk.b2b.product.domain.ProductImgReqVO">
+		SELECT 
+			img_link,
+			sort_no
+		FROM tb_product_img_link a
+		WHERE 1=1
+		AND a.product_id = #{product_id}		
+	</select>		
 	<update id="delete" parameterType="java.util.List" >
 		UPDATE tb_product SET use_yn = 'N' 
 	 	WHERE product_id IN 

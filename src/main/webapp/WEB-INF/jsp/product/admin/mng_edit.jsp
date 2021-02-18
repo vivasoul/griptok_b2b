@@ -5,15 +5,16 @@
 <link rel="stylesheet" href="/css/product/edit.css" />
 <script type="text/javascript" src="/js/admin/product/detail.js"></script>
 <script type="text/javascript" src="/js/common/uploader.js"></script>
+<script type="text/javascript" src="/js/common/modal.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function(e){
-	jQuery("#v_p_brand_no").on("change", loadBrandNo);
-	
 	loadData(jQuery("#v_product_id").val());
 	
 	jQuery("#save-product-btn").on("click", function(e){
 		e.preventDefault();
 		/* disable input-fields related with file-upload to avoid buggy situation */
+		//Deprecated 
+		/*
 		jQuery(".gtk-file-upload input[type=file]").each(function(idx,elem){
 			const $this = jQuery(elem);
 			const key_input_id = $this.attr("key-input");
@@ -29,6 +30,7 @@ jQuery(document).ready(function(e){
 				$hidden.prop("disabled", true);
 			}
 		});
+		*/
 		updateData(jQuery("#v_product_id").val());
 	});
 });
@@ -39,42 +41,35 @@ jQuery(document).ready(function(e){
 		<div class="gtk-box-half">
 			<div class="gtk-group-title"><span class="title-icon">●</span> 상품 이미지</div>
 			<div class="gtk-input-group">
-				<label for="v_thumb_file">썸네일 이미지</label>
-				<div class="gtk-file-upload">
-					<input type="hidden" id="v_thumb_img_no" name="thumb_img_no" value="" />
-					<input type="file" id="v_thumb_file" name="thumb_file" accept="image/*" key-input="v_thumb_img_no"/>
+				<label for="v_thumbnail">썸네일</label>
+				<div class="gtk-file-upload gtk-file-upload-link">
+					<input type="hidden" class="upload-link-input" id="v_thumb" name="thumb" />
 				</div>
 			</div>
 			<div class="gtk-detail-imgs-group">
-				<div class="gtk-input-group">
-					<label for="v_file_1">이미지1</label>
-					<div class="gtk-file-upload">
-						<input type="hidden" id="v_img_no_1" name="img_nos" value="" />
-						<input type="file" id="v_file_1" name="files" accept="image/*" key-input="v_img_no_1" />
+		 		<div class="gtk-input-group">
+		 			<label for="v_img_top">상세이미지(최상단)</label>
+					<div class="gtk-file-upload gtk-file-upload-link">
+						<input type="hidden" class="upload-link-input" id="v_img_top" name="imgs" />
+					</div> 
+					<br/>	
+					<label for="v_thumbnail">상세이미지(본문)</label>
+					<div id="gtk-upload-links">
+					</div><!-- 	
+			   --><div id="gtk-file-upload-add">
+						<p>
+							<i class="fa fa-plus"></i>
+						</p>
 					</div>
-				</div>
-				<div class="gtk-input-group">
-					<label for="v_file_2">이미지2</label>
-					<div class="gtk-file-upload">
-						<input type="hidden" id="v_img_no_2" name="img_nos" value="" />
-						<input type="file" id="v_file_2" name="files" accept="image/*" key-input="v_img_no_2"/>
+		 		</div>	
+		 		<br/>
+		 		<div class="gtk-input-group">
+		 			<label for="v_img_bot">상세이미지(최하단)</label>
+					<div class="gtk-file-upload gtk-file-upload-link">
+						<input type="hidden" class="upload-link-input" id="v_img_bot" name="imgs" />
 					</div>
-				</div>
-				<div class="gtk-input-group">
-					<label for="v_file_3">이미지3</label>
-					<div class="gtk-file-upload">
-						<input type="hidden" id="v_img_no_3" name="img_nos" value="" />
-						<input type="file" id="v_file_3" name="files" accept="image/*" key-input="v_img_no_3"/>
-					</div>
-				</div>
-				<div class="gtk-input-group">
-					<label for="v_file_4">이미지4</label>
-					<div class="gtk-file-upload">
-						<input type="hidden" id="v_img_no_4" name="img_nos" value="" />
-						<input type="file" id="v_file_4" name="files" accept="image/*" key-input="v_img_no_4"/>
-					</div>
-				</div>												
-			</div>
+				</div>	
+	 		</div>
 		</div><!-- 
 	 --><div class="gtk-box-half">
 	 		<div class="gtk-group-title"><span class="title-icon">●</span> 상품 기본 정보</div>
@@ -146,3 +141,18 @@ jQuery(document).ready(function(e){
 	 </div>
 	</form>		
 </div>	
+<div class="gtk-modal"  id="img-update-modal">
+	<div class="gtk-modal-main">
+		<div class="gtk-modal-header">이미지 등록</div>
+		<div class="gtk-modal-body">
+			<div class="gtk-input-group no-addon">
+				<input type="text" id="v_new_img" value=""/>
+				<input type="hidden" id="target_id" value=""/>
+			</div>
+		</div>
+		<div class="gtk-modal-footer">
+			<button type="button" class="gtk-btn gtk-btn-sm gtk-btn-blue modal-ok">등록</button>
+			<button type="button" class="gtk-btn gtk-btn-sm modal-close" data-id="img-update-modal">취소</button>
+		</div>
+	</div>
+</div>

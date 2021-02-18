@@ -23,11 +23,18 @@ public class ProductReqVO {
 	private String[] option_txt;
 	private String[] option_del_yn;
 	
+	@Deprecated
 	private long thumb_img_no;
+	@Deprecated
 	private MultipartFile thumb_file;
-	
+	@Deprecated
 	private long[] img_nos;
+	@Deprecated
 	private MultipartFile[] files;
+	
+	private String thumb;
+	private String[] imgs;
+	
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -148,13 +155,27 @@ public class ProductReqVO {
 	public void setFiles(MultipartFile[] files) {
 		this.files = files;
 	}
+	public String getThumb() {
+		return thumb;
+	}
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
+	}
+	public String[] getImgs() {
+		return imgs;
+	}
+	public void setImgs(String[] imgs) {
+		this.imgs = imgs;
+	}
 	@Override
 	public String toString() {
 		return "ProductReqVO [product_id=" + product_id + ", title=" + title + ", retail_price=" + retail_price
 				+ ", sales_price=" + sales_price + ", stock_cnt=" + stock_cnt + ", category_no=" + category_no
 				+ ", craft_no=" + craft_no + ", p_brand_no=" + p_brand_no + ", brand_no=" + brand_no + ", is_new="
-				+ is_new + ", is_best=" + is_best + ", is_dc=" + is_dc + ", description=" + description
-				+ ", thumb_img_no=" + thumb_img_no + ", thumb_file=" + thumb_file + ", img_nos="
-				+ Arrays.toString(img_nos) + ", files=" + Arrays.toString(files) + "]";
+				+ is_new + ", is_best=" + is_best + ", is_dc=" + is_dc + ", description=" + description + ", option_no="
+				+ Arrays.toString(option_no) + ", option_txt=" + Arrays.toString(option_txt) + ", option_del_yn="
+				+ Arrays.toString(option_del_yn) + ", thumb_img_no=" + thumb_img_no + ", thumb_file=" + thumb_file
+				+ ", img_nos=" + Arrays.toString(img_nos) + ", files=" + Arrays.toString(files) + ", thumb=" + thumb
+				+ ", imgs=" + Arrays.toString(imgs) + "]";
 	}
 }

@@ -7,48 +7,14 @@
 <script type="text/javascript" src="/js/common/uploader.js"></script>
 <script type="text/javascript" src="/js/common/modal.js"></script>
 <script type="text/javascript">
-const openModal = function(src_id, old_val){
-	jQuery("#target_id").val(src_id);
-	jQuery("#v_new_img").val(old_val);
-	jQuery("#img-update-modal").gMOpen();
-};
-
-const openModal_new = function(){
-	jQuery("#img-update-modal").gMOpen({
-		"beforeOK": function(){
-			const src_id = addImg();
-			jQuery("#target_id").val(src_id);
-		}
-	});
-};
 
 jQuery(document).ready(function(e){
 	loadCraftNo();
 	loadPBrandNo();
-	jQuery("#v_p_brand_no").on("change", loadBrandNo);
 	
 	jQuery("#save-product-btn").on("click", function(e){
 		e.preventDefault();
 		insertData();
-	});
-	
-	jQuery("#img-update-modal").gModal({
-		"onOK": function(){
-			const id = jQuery("#target_id").val();
-			const value = jQuery("#v_new_img").val();
-			jQuery("#"+id).val(value).fire("change");
-			jQuery("#target_id").val("");
-			jQuery("#v_new_img").val("");
-		}
-	});
-	
-	jQuery("#save-product-form").on("click", ".gtk-file-upload-link", function(){
-		const $link = jQuery(this).find(".upload-link-input");
-		openModal($link.attr("id"), $link.val());
-	});
-	
-	jQuery("#gtk-file-upload-add").on("click", function(){
-		openModal_new();
 	});
 });
 </script>
@@ -67,7 +33,7 @@ jQuery(document).ready(function(e){
 		 		<div class="gtk-input-group">
 		 			<label for="v_img_top">상세이미지(최상단)</label>
 					<div class="gtk-file-upload gtk-file-upload-link">
-						<input type="hidden" class="upload-link-input" id="v_img_top" name="img_top" />
+						<input type="hidden" class="upload-link-input" id="v_img_top" name="imgs" />
 					</div> 
 					<br/>	
 					<label for="v_thumbnail">상세이미지(본문)</label>
@@ -78,59 +44,15 @@ jQuery(document).ready(function(e){
 							<i class="fa fa-plus"></i>
 						</p>
 					</div>
-		 			 <!-- 
-		 			<div id="gtk-imgs-added">
-		 			</div>
-		 			<div id="gtk-imgs-addable">
-		 				<div class="gtk-img-row">
-		 					<input type="text" class="gtk-img-txt" id="gtk-img-new"/> 
-		 					<button type="button" class="gtk-img-btn" id="gtk-img-new-btn"><i class="fa fa-plus"></i></button>
-		 				</div>
-		 			</div>
-		 			 -->
 		 		</div>	
 		 		<br/>
 		 		<div class="gtk-input-group">
 		 			<label for="v_img_bot">상세이미지(최하단)</label>
 					<div class="gtk-file-upload gtk-file-upload-link">
-						<input type="hidden" class="upload-link-input" id="v_img_bot" name="img_bot" />
+						<input type="hidden" class="upload-link-input" id="v_img_bot" name="imgs" />
 					</div>
 				</div>	
-	 		</div>	
-			<!-- 
-			<div class="gtk-input-group">
-				<label for="v_thumb_file">썸네일 이미지</label>
-				<div class="gtk-file-upload">
-					<input type="file" id="v_thumb_file" name="thumb_file" accept="image/*" required/>
-				</div>
-			</div>
-			<div class="gtk-detail-imgs-group">
-				<div class="gtk-input-group">
-					<label for="v_file_1">이미지1</label>
-					<div class="gtk-file-upload">
-						<input type="file" id="v_file_1" name="files" accept="image/*" required/>
-					</div>
-				</div>
-				<div class="gtk-input-group">
-					<label for="v_file_2">이미지2</label>
-					<div class="gtk-file-upload">
-						<input type="file" id="v_file_2" name="files" accept="image/*" required/>
-					</div>
-				</div>
-				<div class="gtk-input-group">
-					<label for="v_file_3">이미지3</label>
-					<div class="gtk-file-upload">
-						<input type="file" id="v_file_3" name="files" accept="image/*" required/>
-					</div>
-				</div>
-				<div class="gtk-input-group">
-					<label for="v_file_4">이미지4</label>
-					<div class="gtk-file-upload">
-						<input type="file" id="v_file_4" name="files" accept="image/*" required/>
-					</div>
-				</div>								
-			</div>
-			 -->
+	 		</div>
 		</div><!-- 
 	 --><div class="gtk-box-half">
 	 		<div class="gtk-group-title"><span class="title-icon">●</span> 상품 기본 정보</div>

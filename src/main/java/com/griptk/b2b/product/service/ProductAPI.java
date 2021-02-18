@@ -1,6 +1,7 @@
 package com.griptk.b2b.product.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -133,9 +134,9 @@ public class ProductAPI {
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	@Transactional
 	public void createProduct(@ModelAttribute ProductReqVO payload ) throws IOException, ServletException {
-		ProductImgReqVO imgReq = fileAPI.uploadProductImage(0, payload.getThumb_file());
-		long thumb_img_no = imgReq.getImg_no();
-		payload.setThumb_img_no(thumb_img_no);
+		//ProductImgReqVO imgReq = fileAPI.uploadProductImage(0, payload.getThumb_file());
+		//long thumb_img_no = imgReq.getImg_no();
+		//payload.setThumb_img_no(thumb_img_no);
 		
 		int result = mapper.create(payload);
 		
@@ -144,7 +145,7 @@ public class ProductAPI {
 			product_id = mapper.insertedId();
 			payload.setProduct_id(product_id);
 			
-			List<ProductImgReqVO> images = fileAPI.uploadProductMultipleImages(product_id, payload.getFiles());
+			List<ProductImgReqVO> images = getDetailImgs(product_id, payload.getImgs());
 			if(!images.isEmpty()) {
 				mapper.createImages(images);
 			}
@@ -156,7 +157,7 @@ public class ProductAPI {
 	@GetMapping("/{product_id}/edit")
 	public ProductRespVO getDetailForEdit(@PathVariable("product_id") int product_id) {
 		ProductRespVO result = mapper.getDetail_2(product_id);
-		List<ProductImgReqVO> images = mapper.getDetailImages_2(product_id);
+		List<ProductImgReqVO> images = mapper.getDetailImages_3(product_id);
 		List<OptionVO> options = optionMapper.getOptions(product_id);
 		result.setFiles(images);	
 		result.setOptions(options);
@@ -167,18 +168,18 @@ public class ProductAPI {
 	@Transactional
 	public void updateProduct(	@PathVariable int product_id,
 								@ModelAttribute ProductReqVO payload) throws IOException, ServletException {
-		long thumb_img_no = payload.getThumb_img_no();
-		if(thumb_img_no > 0) fileAPI.uploadProductImage(product_id, thumb_img_no, payload.getThumb_file());
+		//long thumb_img_no = payload.getThumb_img_no();
+		//if(thumb_img_no > 0) fileAPI.uploadProductImage(product_id, thumb_img_no, payload.getThumb_file());
 		
 		payload.setProduct_id(product_id);
 		int result = mapper.update(payload);
 		
 		if(result != 0) {
-			long[] img_nos = payload.getImg_nos();
-			if(img_nos != null) {
-				List<ProductImgReqVO> images = fileAPI.uploadProductMultipleImages(product_id, payload.getImg_nos(), payload.getFiles());
+			//long[] img_nos = payload.getImg_nos();
+			//if(img_nos != null) {
+				List<ProductImgReqVO> images = getDetailImgs(product_id, payload.getImgs());
 				if(!images.isEmpty()) mapper.createImages(images);
-			}
+			//}
 			mapper.updateDetail(payload);
 			updateOptions(payload);
 		}
@@ -231,6 +232,21 @@ public class ProductAPI {
 				}
 			}
 		}
+	}
+	
+	private List<ProductImgReqVO> getDetailImgs(int product_id, String[] links){
+		List<ProductImgReqVO> _imgs = new ArrayList<>();
 		
+		int i=0;
+		for(String link: links) {
+			i++;
+			ProductImgReqVO vo = new ProductImgReqVO();
+			vo.setProduct_id(product_id);
+			vo.setImg_link(link);
+			vo.setSort_no(i);
+			_imgs.add(vo);
+		}
+		
+		return _imgs;
 	}
 }

@@ -46,7 +46,9 @@ public interface ProductMapper {
 	
 	/* Need to be merged with getDetail/getDetailImages */
 	ProductRespVO getDetail_2(int product_id);
+	@Deprecated
 	List<ProductImgReqVO> getDetailImages_2(int product_id);
+	List<ProductImgReqVO> getDetailImages_3(int product_id);
 	
 	/* delete */
 	int delete(List<ProductReqVO> list);

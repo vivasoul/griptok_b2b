@@ -1,3 +1,4 @@
+/* optimized only for img-updater */
 jQuery.fn.gModal = function(options){
 	options = options || {};
 	const prepared = jQuery(this).prop("__modal_prepared__");
