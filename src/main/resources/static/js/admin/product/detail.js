@@ -224,14 +224,14 @@ const updateData = function(product_id){
 };
 
 const openModal = function(src_id, old_val){
-console.log(src_id);
-console.log(old_val);
 	jQuery("#target_id").val(src_id);
 	jQuery("#v_new_img").val(old_val);
 	jQuery("#img-update-modal").gMOpen();
 };
 
 const openModal_new = function(){
+	jQuery("#target_id").val("");
+	jQuery("#v_new_img").val("");
 	jQuery("#img-update-modal").gMOpen({
 		"beforeOK": function(){
 			const src_id = addImg();
