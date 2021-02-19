@@ -32,6 +32,7 @@ public interface ProductMapper {
 	ProductDetailVO getDetail(int product_id);
 	@Deprecated
 	List<String> getDetailImages(int product_id);
+	List<String> getImages(int product_id);
 	
 	/* create */
 	int create(ProductReqVO input);

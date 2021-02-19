@@ -21,13 +21,14 @@ const renderData = function(data) {
 				const f_img = document.createElement("img");
 				f_img.src = data.images[i];
 				$body.find(".gtk-detail-images-big").append(f_img);
+			}else{
+				const img2 = document.createElement("img");
+				img2.src = data.images[i];
+				$body.find(".gtk-description-body .gtk-detail-images").append(img2);
 			}
-			const img = document.createElement("img");
-			const img2 = document.createElement("img");
-			img.src = data.images[i];
-			img2.src = data.images[i];
-			$body.find(".gtk-detail-images-thumbs").append(img);
-			$body.find(".gtk-description-body .gtk-detail-images").append(img2);
+			//const img = document.createElement("img");
+			//img.src = data.images[i];
+			//$body.find(".gtk-detail-images-thumbs").append(img);
 		}
 	}
 	jQuery(".gtk-description-body .gtk-detail-genuine").css("display", data["description"] === "Y" ? "block": "none");

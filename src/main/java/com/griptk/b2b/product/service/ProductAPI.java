@@ -96,7 +96,7 @@ public class ProductAPI {
 	@GetMapping("/{product_id}")
 	public ProductDetailVO getDetail(@PathVariable("product_id") int product_id) {
 		ProductDetailVO result = mapper.getDetail(product_id);
-		List<String> images = mapper.getDetailImages(product_id);
+		List<String> images = mapper.getImages(product_id);
 		result.setImages(images);
 		return result;
 	}

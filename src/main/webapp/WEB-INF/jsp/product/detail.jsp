@@ -61,7 +61,7 @@ jQuery(document).ready(function(){
 	<div class="row gtk-detail">
 		<div class="col-sm-6 gtk-detail-images">
 			<div class="gtk-detail-images-big"></div>
-			<div class="gtk-detail-images-thumbs"></div>
+			<!-- div class="gtk-detail-images-thumbs"></div-->
 		</div>
 		<div class="col-sm-6">
 			<div class="gtk-detail-id">상품 코드:<span class="data-id"></span></div>
