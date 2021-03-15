@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.griptk.b2b.product.mapper.BannerMapper">
+	<insert id="save" parameterType="List">
+		INSERT INTO tb_main_banner(banner_no, banner_txt, banner_link, banner_img, sort_no) 
+		VALUES 	
+		<foreach item="item" collection="list" separator=",">
+		 (
+		 (CASE WHEN #{item.banner_no} = -1 THEN null ELSE #{item.banner_no} END), 
+		 #{item.banner_txt}, #{item.banner_link}, #{item.banner_img}, #{item.sort_no}
+		 )
+		</foreach>
+		ON DUPLICATE KEY UPDATE
+			banner_txt = VALUES(banner_txt),
+			banner_link = VALUES(banner_link),
+			banner_img = VALUES(banner_img),
+			sort_no = VALUES(sort_no),
+			upd_dt = NOW()		
+	</insert>
+	<select id="list" resultType="com.griptk.b2b.product.domain.BannerVO">
+		SELECT 
+			banner_no, banner_txt, banner_img, banner_link
+		FROM tb_main_banner
+		ORDER BY sort_no
+	</select>
+</mapper>

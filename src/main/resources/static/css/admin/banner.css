@@ -1,0 +1,12 @@
+.gtk-banner-box { display:block;margin:0 auto;height:225px;width:575px; }
+.gtk-banner-box .gtk-banner-content { display:inline-block;width:500px;height:100%;vertical-align:top;cursor:pointer;  }
+.gtk-banner-box .gtk-banner-content p {  line-height:225px;text-align:center;color:#CFCFCF;border:2px dashed #CFCFCF; }
+.gtk-banner-box .gtk-banner-content img { width: 100%;height:100%;border:2px solid #CFCFCF; }
+.gtk-banner-box .gtk-banner-sorts { display:inline-block;width:75px;height:100%;}
+.gtk-banner-sorts button:focus { outline: none; }
+.gtk-banner-sorts button:hover { background-color:#098fc3; }
+.gtk-banner-sorts button { display:block;margin:0 auto;width:50px;height:calc(50% - 2px);background-color:#19B4F0;color:#FFF;border:0px;font-size:35px; }
+.gtk-banner-sorts .gtk-banner-sort-up { margin-bottom:4px; }
+/*.gtk-banner-sorts .gtk-banner-sort-down {  }*/
+#gtk-banner-upload-add { width:100%; }
+#gtk-banners-added .gtk-banner-box { margin-bottom:5px; }

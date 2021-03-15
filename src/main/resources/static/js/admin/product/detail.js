@@ -44,7 +44,7 @@ const revertOption = function($parent){
 };
 
 const addImg = function(img_link){
-console.log(img_link);
+
 	const MAX_CNT = (jQuery("#gtk-upload-links").prop("max-img-cnt") || 0)+1;
 
 	const row = document.createElement("div");
@@ -271,7 +271,6 @@ jQuery(document).ready(function(){
 	
 	jQuery("#save-product-form").on("click", ".gtk-file-upload-link", function(){
 		const $link = jQuery(this).find(".upload-link-input");
-		console.log($link[0]);
 		openModal($link.attr("id"), $link.val());
 	});
 	
