@@ -133,10 +133,15 @@ const resizeBannerBox = function(){
 	if(left > 0) left = 0;
 	jQuery("#main-banners").css("width", width+"px").css("left", left+"px");
 	
-	const img_height = jQuery("#main-banners img").height();
+	const $img = jQuery(".main-banner.active img");
+	const naturalWidth = $img.prop("naturalWidth") || 2000;
+	const naturalHeight = $img.prop("naturalHeight") || 900;
+	const img_height = width/naturalWidth*naturalHeight;
+	
 	const height =img_height*0.75+5;
 	const top = img_height/4*-1-5;
-	const banner_top = img_height/20*-1;
+	const banner_top = img_height/15*-1;
+	
 	jQuery("#main-banners").css("top", top+"px").css("height", height+"px");
 	jQuery("#main-banner-links").css("top", banner_top+"px");
 };
@@ -167,9 +172,8 @@ const renderBanners = function(banners) {
 		}
 		jQuery("#main-banners").append(bs);
 		jQuery("#main-banner-links").append(ls);
-		
-		resizeBannerBox();
 	}
+	setTimeout(resizeBannerBox, 1);
 };
 
 const loadBanners = function() {

@@ -6,13 +6,13 @@
 .main-shopping-list{ margin-top:0px; }
 </style>
 <script type="text/javascript">
-jQuery(document).ready(function(){
+jQuery(window).on("resize", resizeBannerBox);
+
+jQuery(document).ready(function(){	
 	loadList("/products/new","new-product-list");
 	loadList("/products/best","best-product-list");
 	loadList("/products/dc","special-product-list");
-	
-	resizeBannerBox();
-	jQuery(window).on("resize", resizeBannerBox);
+
 	
 	jQuery("#main-banner-links").on("click", ".banner-link", function(){		
 		jQuery(".banner-link."+ACTIVE_CLASS).removeClass(ACTIVE_CLASS);
