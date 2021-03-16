@@ -125,3 +125,61 @@ const loadList = function(url, render_id){
 		//console.log("loadList finished.")
 	});
 };
+
+const ACTIVE_CLASS = "active";
+const resizeBannerBox = function(){
+	const width = window.document.body.clientWidth;
+	let left = 600 - width/2	;
+	if(left > 0) left = 0;
+	jQuery("#main-banners").css("width", width+"px").css("left", left+"px");
+	
+	const img_height = jQuery("#main-banners img").height();
+	const height =img_height*0.75+5;
+	const top = img_height/4*-1-5;
+	const banner_top = img_height/20*-1;
+	jQuery("#main-banners").css("top", top+"px").css("height", height+"px");
+	jQuery("#main-banner-links").css("top", banner_top+"px");
+};
+
+const renderBanners = function(banners) {
+	const len = banners && banners.length;
+	if(len) {
+		const bs = []; 
+		const ls = [];
+		for(let i=0; i<len; i++){
+			const is_active = i === 0;
+			const b = banners[i];
+			const id = "banner_"+b["banner_no"];
+			const b_div = document.createElement("div");
+			b_div.className = is_active ? "main-banner active" : "main-banner";
+			b_div.id = id;
+				const b_img = document.createElement("img");
+				b_img.src = b["banner_img"];
+			b_div.appendChild(b_img);
+			bs.push(b_div);
+			
+			const l_div = document.createElement("div");
+			l_div.className = is_active ? "banner-link active" : "banner-link";
+			l_div.innerHTML = b["banner_txt"];
+			l_div.setAttribute("banner-id", id);
+			
+			ls.push(l_div);			
+		}
+		jQuery("#main-banners").append(bs);
+		jQuery("#main-banner-links").append(ls);
+		
+		resizeBannerBox();
+	}
+};
+
+const loadBanners = function() {
+	jQuery.ajax({
+		  url: "/banners",
+		  method: "GET",
+		  dataType: "json"
+		}).done(renderBanners).fail(function(e){
+			console.log(e);
+		}).always(function(){
+			
+		});
+};

@@ -9,14 +9,35 @@
 jQuery(document).ready(function(){
 	loadList("/products/new","new-product-list");
 	loadList("/products/best","best-product-list");
-	loadList("/products/dc","special-product-list"); 
+	loadList("/products/dc","special-product-list");
+	
+	resizeBannerBox();
+	jQuery(window).on("resize", resizeBannerBox);
+	
+	jQuery("#main-banner-links").on("click", ".banner-link", function(){		
+		jQuery(".banner-link."+ACTIVE_CLASS).removeClass(ACTIVE_CLASS);
+		jQuery(".main-banner."+ACTIVE_CLASS).removeClass(ACTIVE_CLASS);
+		
+		const $this = jQuery(this);
+		const banner_id = $this.attr("banner-id");
+		
+		$this.addClass(ACTIVE_CLASS);
+		jQuery("#"+banner_id).addClass(ACTIVE_CLASS);
+	});
+	
+	loadBanners();
 });
 </script>
 <div class="container-fluid main-shopping-list">
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="main-banner">
-				<img src="/img/product/main_banner/banner_1.png"/>
+			<div class="main-banner-slide">
+				<div  id="main-banners">
+									
+				</div>
+				<div  id="main-banner-links">
+					
+				</div>
 			</div>
 		</div>
 	</div>

@@ -4,8 +4,14 @@
 	padding-left:0px;
 	padding-right:0px;
 }
-.main-shopping-list .main-banner{width:100%;height:370px;}
-.main-shopping-list .main-banner img { width:100%;height:100%; }
+.main-shopping-list #main-banners {position:relative;z-index:-2;}
+.main-shopping-list #main-banners .main-banner { width:100%;opacity:0;transition:opacity 300ms linear 0s;position:absolute;top:0;left:0 }
+.main-shopping-list #main-banners .main-banner.active { display:block;opacity:1; }
+.main-shopping-list #main-banners .main-banner img { width:100%; }
+.main-shopping-list #main-banner-links { position:relative;top:-120px;text-align:center }
+.main-shopping-list #main-banner-links .banner-link{ display:inline-block;font-size:12px;letter-spacing:0.03em;line-height:31px;padding:0 14px;margin:0 2px;background:white;color:#333;cursor:pointer;opacity:0.8; }
+.main-shopping-list #main-banner-links .banner-link.active { background:rgb(76,76,76);color:white;opacity:0.7; }
+
 .main-shopping-list .event-header { margin:3px 0 10px 0px;padding-left:9px;text-align:left;border-left:9px solid #19B4F0;font-size:25px;font-weight:900;color:#010101; }
 
 .gtk-shopping-row { margin-left:-5px;margin-right:-5px; }
